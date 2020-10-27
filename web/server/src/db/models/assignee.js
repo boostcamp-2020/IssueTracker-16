@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-module.exports = class Asignee extends Model {
+module.exports = class Assignee extends Model {
   static init(sequelize) {
     return super.init(
       {
@@ -13,8 +13,8 @@ module.exports = class Asignee extends Model {
         sequelize,
         timestamps: false,
         underscored: true,
-        modelName: 'Asignee',
-        tableName: 'asignees',
+        modelName: 'Assignee',
+        tableName: 'assignees',
         charset: 'utf8',
         collate: 'utf8_general_ci',
       }
