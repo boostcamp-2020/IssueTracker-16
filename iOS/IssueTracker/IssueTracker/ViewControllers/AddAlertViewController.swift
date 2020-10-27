@@ -19,18 +19,30 @@ class AddAlertViewController: UIViewController {
     
     // MARK: - Views
     
+    @IBOutlet weak private var contentBackgroundView: UIView!
+    @IBOutlet weak private var contentView: UIView!
     @IBOutlet weak private var contentStackView: UIStackView!
     
     // MARK: - Properties
     
     weak var delegate: AddAlertViewControllerDelegate?
-    private var inputViews = [InputView]()
+    private(set) var inputViews = [InputView]()
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         inputViews.forEach { contentStackView.addArrangedSubview($0) }
+        setupViews()
+    }
+    
+    private func setupViews() {
+        contentBackgroundView.layer.shadowColor = UIColor.black.cgColor
+        contentBackgroundView.layer.shadowRadius = 10
+        contentBackgroundView.layer.shadowOffset = .zero
+        contentBackgroundView.layer.shadowOpacity = 0.5
+        contentView.layer.masksToBounds = true
+        
     }
     
     // MARK: - Methods
