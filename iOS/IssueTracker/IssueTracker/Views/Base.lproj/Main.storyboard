@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6QH-xA-ZVv">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,18 +27,18 @@
         <!--레이블-->
         <scene sceneID="pwb-t6-sGw">
             <objects>
-                <viewController id="net-0T-dhm" sceneMemberID="viewController">
+                <viewController id="net-0T-dhm" customClass="LabelViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VkC-X8-z3e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="wYc-Va-Wt1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="레이블" id="YC0-fT-pjX"/>
+                    <navigationItem key="navigationItem" title="레이블" id="M3j-dU-Bpz"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1t2-UX-zdw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="716" y="490"/>
+            <point key="canvasLocation" x="1626.0869565217392" y="489.50892857142856"/>
         </scene>
         <!--마일스톤-->
         <scene sceneID="mlu-t0-xtF">
@@ -78,12 +78,13 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="6QH-xA-ZVv" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="P4D-eh-f2A">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="RLR-2B-qbs"/>
-                        <segue destination="net-0T-dhm" kind="relationship" relationship="viewControllers" id="6Dp-6U-q3d"/>
+                        <segue destination="glS-2D-ZY2" kind="relationship" relationship="viewControllers" id="6Dp-6U-q3d"/>
                         <segue destination="nGA-rj-qbg" kind="relationship" relationship="viewControllers" id="zye-0Y-aRB"/>
                         <segue destination="cqQ-sO-Bub" kind="relationship" relationship="viewControllers" id="q4T-cK-bRJ"/>
                     </connections>
@@ -91,6 +92,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oPj-Fm-puW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-371" y="490"/>
+        </scene>
+        <!--레이블-->
+        <scene sceneID="v27-hk-ho5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="glS-2D-ZY2" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="레이블" id="YC0-fT-pjX"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Shr-3m-Jfi">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="net-0T-dhm" kind="relationship" relationship="rootViewController" id="Gwm-CU-Cpc"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ALp-dB-ONH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="715.94202898550725" y="489.50892857142856"/>
         </scene>
     </scenes>
     <resources>
