@@ -17,6 +17,7 @@
     "rules": {
         "prettier/prettier": ["error", {"singleQuote": true, "parser": "flow"}],
         "no-var": "error",
-        "no-unused-vars": "warn"
+        "no-unused-vars": "warn",
+        "no-console": "warn"
     }
 }
