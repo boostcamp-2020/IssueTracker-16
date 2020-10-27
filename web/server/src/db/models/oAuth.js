@@ -4,12 +4,14 @@ module.exports = class OAuth extends Model {
     return super.init(
       {
         num: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.INTEGER.UNSIGNED,
           autoIncrement: true,
           primaryKey: true,
         },
         name: {
           type: DataTypes.STRING,
+          unique: true,
+          allowNull: false,
         },
       },
       {
@@ -23,7 +25,10 @@ module.exports = class OAuth extends Model {
       }
     );
   }
-  static associate() {
-    return;
+  static associate({ OAuth, OAuthUser }) {
+    OAuth.hasMany(OAuthUser, {
+      foreignKey: 'oauth_num',
+      sourceKey: 'num',
+    });
   }
 };

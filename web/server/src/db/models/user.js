@@ -4,18 +4,22 @@ module.exports = class User extends Model {
     return super.init(
       {
         num: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.INTEGER.UNSIGNED,
           autoIncrement: true,
           primaryKey: true,
         },
         id: {
           type: DataTypes.STRING,
+          unique: true,
+          allowNull: false,
         },
         password: {
           type: DataTypes.CHAR(64),
+          allowNull: false,
         },
         name: {
           type: DataTypes.STRING,
+          allowNull: false,
         },
       },
       {
@@ -29,7 +33,12 @@ module.exports = class User extends Model {
       }
     );
   }
-  static associate() {
-    return;
+  static associate({ User, OAuthUser, Issue, Reply, Assignee }) {
+    [OAuthUser, Issue, Reply, Assignee].forEach((model) =>
+      User.hasMany(model, {
+        foreignKey: 'user_num',
+        sourceKey: 'num',
+      })
+    );
   }
 };

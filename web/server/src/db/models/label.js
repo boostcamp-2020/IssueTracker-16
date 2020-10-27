@@ -4,7 +4,7 @@ module.exports = class Label extends Model {
     return super.init(
       {
         num: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.INTEGER.UNSIGNED,
           autoIncrement: true,
           primaryKey: true,
         },
@@ -31,5 +31,10 @@ module.exports = class Label extends Model {
       }
     );
   }
-  static associate() {}
+  static associate({ Label, IssueLabel }) {
+    Label.hasMany(IssueLabel, {
+      foreignKey: 'label_num',
+      sourceKey: 'num',
+    });
+  }
 };

@@ -4,12 +4,13 @@ module.exports = class OAuthUser extends Model {
     return super.init(
       {
         num: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.INTEGER.UNSIGNED.UNSIGNED,
           autoIncrement: true,
           primaryKey: true,
         },
         id: {
           type: DataTypes.STRING,
+          allowNull: false,
         },
       },
       {
@@ -23,7 +24,16 @@ module.exports = class OAuthUser extends Model {
       }
     );
   }
-  static associate() {
-    return;
+  static associate({ OAuthUser, User, OAuth }) {
+    OAuthUser.belongsTo(User, {
+      foreignKey: 'user_num',
+      targetKey: 'num',
+      onDelete: 'cascade',
+    });
+    OAuthUser.belongsTo(OAuth, {
+      foreignKey: 'oauth_num',
+      targetKey: 'num',
+      onDelete: 'cascade',
+    });
   }
 };

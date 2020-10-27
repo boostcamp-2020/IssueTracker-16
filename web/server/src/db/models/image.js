@@ -4,15 +4,17 @@ module.exports = class Image extends Model {
     return super.init(
       {
         num: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.INTEGER.UNSIGNED,
           autoIncrement: true,
           primaryKey: true,
         },
         uri: {
           type: DataTypes.STRING,
+          allowNull: false,
         },
         path: {
           type: DataTypes.STRING,
+          allowNull: false,
         },
       },
       {
