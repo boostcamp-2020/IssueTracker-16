@@ -11,8 +11,8 @@ class AddAlertInputView: UIView {
     
     // MARK: - Properties
     
-    private var titleLabel: UILabel = UILabel()
-    private var textField: UITextField = UITextField()
+    var titleLabel: UILabel = UILabel()
+    var textField: UITextField = UITextField()
     
     // MARK: - Initialize
     
@@ -55,7 +55,7 @@ class AddAlertInputView: UIView {
     
     // MARK: - 밑 줄 그리기
     
-    func addBottomLine() {
+    private func addBottomLine() {
         let lineWidth: CGFloat = 2
         let lineView = UIView()
         lineView.backgroundColor = .systemGray2
