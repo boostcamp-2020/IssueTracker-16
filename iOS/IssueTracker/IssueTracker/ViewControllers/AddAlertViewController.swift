@@ -20,7 +20,7 @@ class AddAlertViewController: UIViewController {
     // MARK: - Views
     
     @IBOutlet weak private var contentBackgroundView: UIView!
-    @IBOutlet weak private var contentView: UIView!
+    @IBOutlet weak private var contentView: BlockResponderView!
     @IBOutlet weak private var contentStackView: UIStackView!
     
     // MARK: - Properties
@@ -42,7 +42,12 @@ class AddAlertViewController: UIViewController {
         contentBackgroundView.layer.shadowOffset = .zero
         contentBackgroundView.layer.shadowOpacity = 0.5
         contentView.layer.masksToBounds = true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
         
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Methods

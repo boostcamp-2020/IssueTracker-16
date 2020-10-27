@@ -129,7 +129,7 @@
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eWv-80-h20">
                                 <rect key="frame" x="15" y="328" width="384" height="240"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WxV-9g-3dU" userLabel="ContentView">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WxV-9g-3dU" userLabel="ContentView" customClass="BlockResponderView" customModule="IssueTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="20" width="384" height="200"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="e63-6h-lPX">
