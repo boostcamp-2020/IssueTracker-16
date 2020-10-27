@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5138FF2547CA5A0084F65F /* LabelViewController.swift */; };
+		4C5139122548047A0084F65F /* AddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139112548047A0084F65F /* AddAlertViewController.swift */; };
+		4C513919254840570084F65F /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C513918254840570084F65F /* UIView+IBInspectable.swift */; };
+		4C51391D254847530084F65F /* BlockResponderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51391C254847530084F65F /* BlockResponderView.swift */; };
 		D4DF60212547AEF200765C0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60202547AEF200765C0A /* AppDelegate.swift */; };
 		D4DF60232547AEF200765C0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60222547AEF200765C0A /* SceneDelegate.swift */; };
 		D4DF60252547AEF200765C0A /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60242547AEF200765C0A /* IssueViewController.swift */; };
@@ -20,6 +23,9 @@
 
 /* Begin PBXFileReference section */
 		4C5138FF2547CA5A0084F65F /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
+		4C5139112548047A0084F65F /* AddAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertViewController.swift; sourceTree = "<group>"; };
+		4C513918254840570084F65F /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
+		4C51391C254847530084F65F /* BlockResponderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockResponderView.swift; sourceTree = "<group>"; };
 		D4DF601D2547AEF200765C0A /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DF60202547AEF200765C0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DF60222547AEF200765C0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C513917254840480084F65F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				4C513918254840570084F65F /* UIView+IBInspectable.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		D4DF60142547AEF200765C0A = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +76,7 @@
 		D4DF601F2547AEF200765C0A /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
+				4C513917254840480084F65F /* Utils */,
 				D4DF60372547AF7500765C0A /* Supporting Files */,
 				D4DF60352547AF5B00765C0A /* Entry */,
 				D4DF60382547AF9300765C0A /* Models */,
@@ -103,6 +118,7 @@
 				D4DF60262547AEF200765C0A /* Main.storyboard */,
 				D4DF604C254800C100765C0A /* AddAlertInputView.swift */,
 				D4DF60432547D16D00765C0A /* CustomLabelView.swift */,
+				4C51391C254847530084F65F /* BlockResponderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -112,6 +128,7 @@
 			children = (
 				D4DF60242547AEF200765C0A /* IssueViewController.swift */,
 				4C5138FF2547CA5A0084F65F /* LabelViewController.swift */,
+				4C5139112548047A0084F65F /* AddAlertViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -192,6 +209,9 @@
 				D4DF60232547AEF200765C0A /* SceneDelegate.swift in Sources */,
 				4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */,
 				D4DF604D254800C100765C0A /* AddAlertInputView.swift in Sources */,
+				4C51391D254847530084F65F /* BlockResponderView.swift in Sources */,
+				4C513919254840570084F65F /* UIView+IBInspectable.swift in Sources */,
+				4C5139122548047A0084F65F /* AddAlertViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

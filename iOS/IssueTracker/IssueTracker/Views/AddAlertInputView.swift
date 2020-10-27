@@ -11,8 +11,8 @@ class AddAlertInputView: UIView {
     
     // MARK: - Properties
     
-    private var titleLabel: UILabel = UILabel()
-    private var textField: UITextField = UITextField()
+    var titleLabel: UILabel = UILabel()
+    var textField: UITextField = UITextField()
     
     // MARK: - Initialize
     
@@ -55,16 +55,17 @@ class AddAlertInputView: UIView {
     
     // MARK: - 밑 줄 그리기
     
-    func addBottomLine() {
-        let lineWidth: CGFloat = 2
+    private func addBottomLine() {
+        let lineWidth: CGFloat = 1
         let lineView = UIView()
-        lineView.backgroundColor = .systemGray2
+        lineView.backgroundColor = .systemGray5
         self.addSubview(lineView)
         lineView.translatesAutoresizingMaskIntoConstraints = false
+        lineView.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 5).isActive = true
         lineView.heightAnchor.constraint(equalToConstant: lineWidth).isActive = true
         lineView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         lineView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        lineView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        lineView.bottomAnchor.constraint(greaterThanOrEqualTo: self.bottomAnchor).isActive = true
     }
     
 }
