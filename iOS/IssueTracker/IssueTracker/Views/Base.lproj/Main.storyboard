@@ -34,7 +34,9 @@
                         <viewLayoutGuide key="safeArea" id="wYc-Va-Wt1"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="레이블" id="M3j-dU-Bpz"/>
+                    <navigationItem key="navigationItem" title="레이블" id="M3j-dU-Bpz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="2O2-br-O6x"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1t2-UX-zdw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
