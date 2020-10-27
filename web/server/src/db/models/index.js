@@ -5,7 +5,8 @@ const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config.js')[env];
 const { database, username, password, ...rest } = config;
 const db = {
-  User: require('./user'),
+  Issue: require('./issue'),
+  Reply: require('./reply'),
 };
 
 const sequelize = new Sequelize(database, username, password, rest);
