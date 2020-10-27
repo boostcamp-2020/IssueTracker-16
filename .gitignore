@@ -374,3 +374,7 @@ iOSInjectionProject/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.toptal.com/developers/gitignore/api/node,xcode,vscode,intellij,macos,swift,cocoapods,react
+
+# added
+docker-compose.yml
+mysql/
