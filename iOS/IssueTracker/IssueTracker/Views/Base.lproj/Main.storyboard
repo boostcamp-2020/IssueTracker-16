@@ -118,7 +118,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2O2-br-O6x">
                             <connections>
                                 <action selector="touchedAddButton:" destination="net-0T-dhm" id="E3u-yt-L7O"/>
-                                <segue destination="erC-jD-Byw" kind="presentation" modalPresentationStyle="overFullScreen" id="0Xi-Du-NTR"/>
+                                <segue destination="erC-jD-Byw" kind="presentation" identifier="presentAddAlertViewContoller" modalPresentationStyle="overFullScreen" id="0Xi-Du-NTR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
