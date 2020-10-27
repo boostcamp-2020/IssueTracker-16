@@ -15,7 +15,7 @@ protocol AddAlertViewControllerDelegate: class {
 
 class AddAlertViewController: UIViewController {
     
-    typealias InputView = UITextField
+    typealias InputView = AddAlertInputView
     
     // MARK: - Views
     
@@ -38,8 +38,8 @@ class AddAlertViewController: UIViewController {
     
     func addInputView(title: String, placeholder: String) {
         let inputView = InputView()
-        inputView.text = title
-        inputView.placeholder = placeholder
+        inputView.titleLabel.text = title
+        inputView.textField.placeholder = placeholder
         contentStackView.addArrangedSubview(inputView)
     }
     
@@ -63,6 +63,6 @@ class AddAlertViewController: UIViewController {
     }
     
     @IBAction private func touchedClearButton(_ sender: UIButton) {
-        inputViews.forEach { $0.text = "" }
+        inputViews.forEach { $0.textField.text = "" }
     }
 }
