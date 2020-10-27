@@ -24,14 +24,13 @@ class AddAlertViewController: UIViewController {
     // MARK: - Properties
     
     weak var delegate: AddAlertViewControllerDelegate?
-    private var inputViews: [InputView] {
-        return contentStackView.arrangedSubviews.compactMap { $0 as? InputView }
-    }
+    private var inputViews = [InputView]()
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        inputViews.forEach { contentStackView.addArrangedSubview($0) }
     }
     
     // MARK: - Methods
@@ -40,7 +39,7 @@ class AddAlertViewController: UIViewController {
         let inputView = InputView()
         inputView.titleLabel.text = title
         inputView.textField.placeholder = placeholder
-        contentStackView.addArrangedSubview(inputView)
+        inputViews.append(inputView)
     }
     
     func addInputView(_ inputView: InputView) {
