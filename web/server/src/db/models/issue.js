@@ -5,20 +5,12 @@ module.exports = class Issue extends Model {
     return super.init(
       {
         num: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.INTEGER.UNSIGNED,
           autoIncrement: true,
           primaryKey: true,
         },
         title: {
-          type: DataTypes.STRING(100),
-          allowNull: false,
-        },
-        milestoneNum: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-        },
-        userNum: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.STRING,
           allowNull: false,
         },
         isClosed: {
@@ -42,5 +34,20 @@ module.exports = class Issue extends Model {
       }
     );
   }
-  static associate() {}
+  static associate({ Issue, Reply, Assignee, IssueLabel, Milestone, User }) {
+    [Reply, Assignee, IssueLabel].forEach((model) =>
+      Issue.hasMany(model, {
+        foreignKey: 'issue_num',
+        sourceKey: 'num',
+      })
+    );
+    Issue.belongsTo(Milestone, {
+      foreignKey: 'milestone_num',
+      targetKey: 'num',
+    });
+    Issue.belongsTo(User, {
+      foreignKey: 'user_num',
+      targetKey: 'num',
+    });
+  }
 };

@@ -5,20 +5,12 @@ module.exports = class Reply extends Model {
     return super.init(
       {
         num: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.INTEGER.UNSIGNED,
           autoIncrement: true,
           primaryKey: true,
         },
         comment: {
           type: DataTypes.TEXT,
-          allowNull: false,
-        },
-        issueNum: {
-          type: DataTypes.INTEGER,
-          allowNull: false,
-        },
-        userNum: {
-          type: DataTypes.INTEGER,
           allowNull: false,
         },
         isDeleted: {
@@ -37,5 +29,14 @@ module.exports = class Reply extends Model {
       }
     );
   }
-  static associate() {}
+  static associate({ Reply, Issue, User }) {
+    Reply.belongsTo(Issue, {
+      foreignKey: 'issue_num',
+      targetKey: 'num',
+    });
+    Reply.belongsTo(User, {
+      foreignKey: 'user_num',
+      targetKey: 'num',
+    });
+  }
 };

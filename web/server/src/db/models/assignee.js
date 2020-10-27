@@ -4,7 +4,7 @@ module.exports = class Assignee extends Model {
     return super.init(
       {
         num: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.INTEGER.UNSIGNED,
           autoIncrement: true,
           primaryKey: true,
         },
@@ -20,5 +20,14 @@ module.exports = class Assignee extends Model {
       }
     );
   }
-  static associate() {}
+  static associate({ Assignee, Issue, User }) {
+    Assignee.belongsTo(Issue, {
+      foreignKey: 'issue_num',
+      targetKey: 'num',
+    });
+    Assignee.belongsTo(User, {
+      foreignKey: 'user_num',
+      targetKey: 'num',
+    });
+  }
 };

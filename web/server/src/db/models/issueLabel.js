@@ -4,7 +4,7 @@ module.exports = class IssueLabel extends Model {
     return super.init(
       {
         num: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.INTEGER.UNSIGNED,
           autoIncrement: true,
           primaryKey: true,
         },
@@ -20,5 +20,15 @@ module.exports = class IssueLabel extends Model {
       }
     );
   }
-  static associate() {}
+  static associate({ IssueLabel, Issue, Label }) {
+    IssueLabel.belongsTo(Issue, {
+      foreignKey: 'issue_num',
+      targetKey: 'num',
+    });
+    IssueLabel.belongsTo(Label, {
+      foreignKey: 'label_num',
+      targetKey: 'num',
+      onDelete: 'cascade',
+    });
+  }
 };

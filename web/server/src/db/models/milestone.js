@@ -4,7 +4,7 @@ module.exports = class Milestone extends Model {
     return super.init(
       {
         num: {
-          type: DataTypes.INTEGER,
+          type: DataTypes.INTEGER.UNSIGNED,
           autoIncrement: true,
           primaryKey: true,
         },
@@ -30,5 +30,10 @@ module.exports = class Milestone extends Model {
       }
     );
   }
-  static associate() {}
+  static associate({ Milestone, Issue }) {
+    Milestone.hasMany(Issue, {
+      foreignKey: 'milestone_num',
+      sourceKey: 'num',
+    });
+  }
 };
