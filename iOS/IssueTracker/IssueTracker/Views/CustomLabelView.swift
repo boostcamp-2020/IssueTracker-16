@@ -10,10 +10,6 @@ import UIKit
 @IBDesignable
 class CustomLabelView: UIButton {
 
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-    }
     
     @IBInspectable var borderColor: UIColor? {
         set {

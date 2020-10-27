@@ -50,21 +50,27 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-Jj-hcj">
-                                                    <rect key="frame" x="28" y="18" width="38" height="30"/>
-                                                    <color key="backgroundColor" red="0.91414409875869751" green="0.59449648857116699" blue="0.33978945016860962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <state key="normal" title="name">
-                                                        <color key="titleColor" systemColor="labelColor"/>
-                                                    </state>
-                                                </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVP-Kq-4J7">
-                                                    <rect key="frame" x="28" y="54" width="85.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0hb-Aj-Edp">
+                                                    <rect key="frame" x="28" y="21" width="85.5" height="51"/>
+                                                    <subviews>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-Jj-hcj" customClass="CustomLabelView" customModule="IssueTracker" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="48" height="20.5"/>
+                                                            <color key="backgroundColor" red="0.91414409875869751" green="0.59449648857116699" blue="0.33978945016860962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                                            <state key="normal" title="name">
+                                                                <color key="titleColor" systemColor="labelColor"/>
+                                                            </state>
+                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVP-Kq-4J7">
+                                                            <rect key="frame" x="0.0" y="30.5" width="85.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="30V-Ch-lbv">
-                                                    <rect key="frame" x="342" y="24.5" width="44" height="44"/>
+                                                    <rect key="frame" x="352" y="24.5" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="CTC-qb-tcJ"/>
                                                         <constraint firstAttribute="width" constant="44" id="YvZ-Ld-HRv"/>
@@ -74,15 +80,11 @@
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="GVP-Kq-4J7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gAX-Jj-hcj" secondAttribute="bottom" id="43K-Od-IRK"/>
-                                                <constraint firstItem="gAX-Jj-hcj" firstAttribute="top" secondItem="CPB-Vb-xAg" secondAttribute="topMargin" constant="10" id="87I-VK-B1n"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="GVP-Kq-4J7" secondAttribute="bottom" constant="10" id="Ly3-1R-yTc"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="30V-Ch-lbv" secondAttribute="trailing" constant="20" id="Uov-Bc-sfc"/>
-                                                <constraint firstItem="gAX-Jj-hcj" firstAttribute="leading" secondItem="CPB-Vb-xAg" secondAttribute="leadingMargin" constant="20" id="WIk-y2-9cC"/>
-                                                <constraint firstItem="GVP-Kq-4J7" firstAttribute="leading" secondItem="CPB-Vb-xAg" secondAttribute="leadingMargin" constant="20" id="dxp-su-ZiS"/>
+                                                <constraint firstItem="30V-Ch-lbv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0hb-Aj-Edp" secondAttribute="trailing" constant="10" id="4LV-IH-mkO"/>
+                                                <constraint firstItem="0hb-Aj-Edp" firstAttribute="leading" secondItem="CPB-Vb-xAg" secondAttribute="leadingMargin" constant="20" id="PKk-qX-9bJ"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="30V-Ch-lbv" secondAttribute="trailing" constant="10" id="Uov-Bc-sfc"/>
                                                 <constraint firstItem="30V-Ch-lbv" firstAttribute="centerY" secondItem="CPB-Vb-xAg" secondAttribute="centerY" id="n5G-Md-AeQ"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gAX-Jj-hcj" secondAttribute="trailing" id="tyQ-KE-tby"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GVP-Kq-4J7" secondAttribute="trailing" id="xnq-Wm-fbw"/>
+                                                <constraint firstItem="0hb-Aj-Edp" firstAttribute="centerY" secondItem="CPB-Vb-xAg" secondAttribute="centerY" id="zhx-e0-Stz"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="414" height="93"/>
@@ -184,6 +186,11 @@
             <point key="canvasLocation" x="632" y="503"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="gAX-Jj-hcj">
+            <size key="intrinsicContentSize" width="48" height="18"/>
+        </designable>
+    </designables>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <systemColor name="labelColor">
