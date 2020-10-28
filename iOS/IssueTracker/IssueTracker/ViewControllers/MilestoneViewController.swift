@@ -17,3 +17,24 @@ class MilestoneViewController: UIViewController {
     }
     
 }
+
+// MARK: - UICollectionView Data Source
+
+extension MilestoneViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "temp", for: indexPath)
+        return cell
+    }
+}
+
+// MARK: - UICollectionView Delegate FlowLayout
+
+extension MilestoneViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: view.bounds.width, height: 80)
+    }
+}
