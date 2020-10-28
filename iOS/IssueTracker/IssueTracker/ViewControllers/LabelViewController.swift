@@ -35,7 +35,9 @@ extension LabelViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LabelCollectionViewCell.identifier, for: indexPath) as! LabelCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LabelCollectionViewCell.identifier, for: indexPath) as? LabelCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         
         return cell
     }
@@ -53,7 +55,9 @@ extension LabelViewController: UICollectionViewDelegateFlowLayout {
 
 extension LabelViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LabelCollectionViewCell.identifier, for: indexPath) as! LabelCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LabelCollectionViewCell.identifier, for: indexPath) as? LabelCollectionViewCell else {
+            return
+        }
         if let labelName = cell.labelName.titleLabel?.text,
            let labelDescription = cell.labelDescription.text,
            let labelColor = cell.labelName.backgroundColor?.hexString {
