@@ -9,6 +9,8 @@ import UIKit
 
 class LabelViewController: UIViewController {
     
+    @IBOutlet weak var labelCollectionView: UICollectionView!
+    
     // MARK: - Properties
     
     var dummyData = [(
