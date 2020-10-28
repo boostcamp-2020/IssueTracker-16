@@ -17,7 +17,7 @@ module.exports = class IssueLabel extends Model {
         tableName: 'issues_labels',
         charset: 'utf8',
         collate: 'utf8_general_ci',
-      }
+      },
     );
   }
   static associate({ IssueLabel, Issue, Label }) {

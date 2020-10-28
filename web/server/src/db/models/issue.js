@@ -31,15 +31,15 @@ module.exports = class Issue extends Model {
         tableName: 'issues',
         charset: 'utf8',
         collate: 'utf8_general_ci',
-      }
+      },
     );
   }
   static associate({ Issue, Reply, Assignee, IssueLabel, Milestone, User }) {
-    [Reply, Assignee, IssueLabel].forEach((model) =>
+    [Reply, Assignee, IssueLabel].forEach(model =>
       Issue.hasMany(model, {
         foreignKey: 'issue_num',
         sourceKey: 'num',
-      })
+      }),
     );
     Issue.belongsTo(Milestone, {
       foreignKey: 'milestone_num',
