@@ -1,6 +1,13 @@
 {
-    "plugins": ["prettier"],
-    "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+    "plugins": [
+        "prettier"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:prettier/recommended",
+        "react-app",
+        "react-app/jest"
+    ],
     "parserOptions": {
         "ecmaVersion": 2020,
         "sourceType": "module",
@@ -13,7 +20,9 @@
         "node": true,
         "es6": true
     },
-    "ignorePatterns": ["node_modules/"],
+    "ignorePatterns": [
+        "node_modules/"
+    ],
     "rules": {
         "prettier/prettier": "error",
         "no-var": "error",
