@@ -7,7 +7,10 @@ class LabelController {
 
   // add(req, res) { }
 
-  // getAll(req, res) { }
+  async getAll(req, res) {
+    const labels = await labelService.findAll();
+    res.status(200).send(labels);
+  }
 
   async getOne(req, res) {
     const { num } = req.params;
