@@ -14,6 +14,17 @@ class MilestoneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let vc = segue.destination as? AddAlertViewController else { return }
+        if let sender = sender as? (name: String, dueDate: String, description: String) {
+            vc.addInputView(title: "제목", placeholder: "", text: sender.name)
+            vc.addInputView(title: "완료날짜", placeholder: "yyyy-mm-dd (선택)", text: sender.dueDate)
+            vc.addInputView(title: "설명", placeholder: "", text: sender.description)
+        } else {
+            vc.addInputView(title: "제목", placeholder: "", text: "")
+            vc.addInputView(title: "완료날짜", placeholder: "yyyy-mm-dd (선택)", text: "")
+            vc.addInputView(title: "설명", placeholder: "", text: "")
+        }
     }
     
 }
@@ -39,5 +50,13 @@ extension MilestoneViewController: UICollectionViewDataSource {
 extension MilestoneViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.bounds.width, height: 80)
+    }
+}
+
+// MARK: - UICollectionView Delegate
+
+extension MilestoneViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            performSegue(withIdentifier: "presentAddAlertViewContoller", sender: nil)
     }
 }

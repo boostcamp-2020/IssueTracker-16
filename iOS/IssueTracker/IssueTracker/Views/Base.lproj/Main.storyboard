@@ -405,7 +405,7 @@
                     <navigationItem key="navigationItem" title="마일스톤" id="9xD-PO-41x">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0K7-O1-C8w">
                             <connections>
-                                <segue destination="erC-jD-Byw" kind="presentation" modalPresentationStyle="overFullScreen" id="dFs-Mp-xCJ"/>
+                                <segue destination="erC-jD-Byw" kind="presentation" identifier="presentAddAlertViewContoller" modalPresentationStyle="overFullScreen" id="dFs-Mp-xCJ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
