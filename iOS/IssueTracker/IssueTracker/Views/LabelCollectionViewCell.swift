@@ -9,7 +9,7 @@ import UIKit
 
 class LabelCollectionViewCell: UICollectionViewCell {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     static var identifier: String {
         String(describing: self)
@@ -17,4 +17,11 @@ class LabelCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var labelName: UIButton!
     @IBOutlet weak var labelDescription: UILabel!
     
+    // MARK: - Methods
+    
+    func configure(name: String, description: String, color: UIColor) {
+        labelName.setTitle(name, for: .normal)
+        labelDescription.text = description
+        labelName.backgroundColor = color
+    }
 }
