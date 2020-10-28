@@ -30,7 +30,7 @@
 		D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */; };
 		D42EC19D2549CEA600E57627 /* AddAlertColorInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC19C2549CEA600E57627 /* AddAlertColorInputView.swift */; };
 		D4660EA625487BE0002B392E /* LabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4660EA525487BE0002B392E /* LabelCollectionViewCell.swift */; };
-		D4A060A82548877600FAF62B /* UIColor+hexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A060A72548877600FAF62B /* UIColor+hexString.swift */; };
+		D4A060A82548877600FAF62B /* UIColor+hexString+random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A060A72548877600FAF62B /* UIColor+hexString+random.swift */; };
 		D4DF60212547AEF200765C0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60202547AEF200765C0A /* AppDelegate.swift */; };
 		D4DF60232547AEF200765C0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60222547AEF200765C0A /* SceneDelegate.swift */; };
 		D4DF60252547AEF200765C0A /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60242547AEF200765C0A /* IssueViewController.swift */; };
@@ -88,7 +88,7 @@
 		D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCollectionViewCell.swift; sourceTree = "<group>"; };
 		D42EC19C2549CEA600E57627 /* AddAlertColorInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertColorInputView.swift; sourceTree = "<group>"; };
 		D4660EA525487BE0002B392E /* LabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewCell.swift; sourceTree = "<group>"; };
-		D4A060A72548877600FAF62B /* UIColor+hexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexString.swift"; sourceTree = "<group>"; };
+		D4A060A72548877600FAF62B /* UIColor+hexString+random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexString+random.swift"; sourceTree = "<group>"; };
 		D4DF601D2547AEF200765C0A /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DF60202547AEF200765C0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DF60222547AEF200765C0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				4C513918254840570084F65F /* UIView+IBInspectable.swift */,
-				D4A060A72548877600FAF62B /* UIColor+hexString.swift */,
+				D4A060A72548877600FAF62B /* UIColor+hexString+random.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -412,7 +412,7 @@
 				4C5139122548047A0084F65F /* AddAlertViewController.swift in Sources */,
 				4C5139A625493BB20084F65F /* Label.swift in Sources */,
 				D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */,
-				D4A060A82548877600FAF62B /* UIColor+hexString.swift in Sources */,
+				D4A060A82548877600FAF62B /* UIColor+hexString+random.swift in Sources */,
 				D42EC1912549180A00E57627 /* MilestoneViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
