@@ -16,15 +16,19 @@ class LabelViewController: UIViewController {
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let vc = segue.destination as? AddAlertViewController else { return }
-        if let sender = sender as? (String, String, String) {
-            vc.addInputView(title: "제목", placeholder: "", text: sender.0)
-            vc.addInputView(title: "설명", placeholder: "", text: sender.1)
-            vc.addInputView(title: "색상", placeholder: "", text: sender.2)
-        }
+    @IBAction func touchedAddButton(_ sender: UIBarButtonItem) {
+        
     }
     
+    // MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let addAlertVC = segue.destination as? AddAlertViewController else { return }
+        
+        addAlertVC.addInputView(title: "제목", placeholder: "")
+        addAlertVC.addInputView(title: "설명", placeholder: "")
+        addAlertVC.addInputView(title: "색상", placeholder: "")
+    }
 }
 
 // MARK: - UICollectionView Data Source
