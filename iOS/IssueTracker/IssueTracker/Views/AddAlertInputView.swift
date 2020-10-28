@@ -13,6 +13,7 @@ class AddAlertInputView: UIView {
     
     var titleLabel: UILabel = UILabel()
     var textField: UITextField = UITextField()
+    var stackView: UIStackView = UIStackView()
     
     // MARK: - Initialize
     
@@ -36,19 +37,23 @@ class AddAlertInputView: UIView {
     private func setUp() {
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 0
+        stackView.axis = .horizontal
+        stackView.alignment = .fill
+        stackView.distribution = .fill
+        stackView.addArrangedSubview(textField)
         self.addSubview(titleLabel)
-        self.addSubview(textField)
+        self.addSubview(stackView)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            textField.centerYAnchor.constraint(equalTo: self.centerYAnchor),
             titleLabel.heightAnchor.constraint(equalTo: self.heightAnchor),
-            textField.heightAnchor.constraint(equalTo: self.heightAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            textField.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: textField.leadingAnchor, constant: -10),
-            titleLabel.widthAnchor.constraint(equalToConstant: 40)
+            titleLabel.trailingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: -10),
+            titleLabel.widthAnchor.constraint(equalToConstant: 40),
+            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            stackView.heightAnchor.constraint(equalTo: self.heightAnchor),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
         addBottomLine()
     }
@@ -66,6 +71,14 @@ class AddAlertInputView: UIView {
         lineView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         lineView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         lineView.bottomAnchor.constraint(greaterThanOrEqualTo: self.bottomAnchor).isActive = true
+    }
+    
+    func configure(title: String, placeholder: String, text: String?) {
+        titleLabel.text = title
+        textField.placeholder = placeholder
+        if let text = text {
+            textField.text = text
+        }
     }
     
 }

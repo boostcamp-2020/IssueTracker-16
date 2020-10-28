@@ -16,6 +16,7 @@ protocol AddAlertViewControllerDelegate: class {
 class AddAlertViewController: UIViewController {
     
     typealias InputView = AddAlertInputView
+    typealias ColorInputView = AddAlertColorInputView
     
     // MARK: - Views
     
@@ -53,12 +54,15 @@ class AddAlertViewController: UIViewController {
     // MARK: - Methods
     
     func addInputView(title: String, placeholder: String, text: String?) {
-        let inputView = InputView()
-        inputView.titleLabel.text = title
-        inputView.textField.placeholder = placeholder
-        if let text = text {
-            inputView.textField.text = text
+        var inputView: InputView
+        if title == "색상" {
+            inputView = ColorInputView()
+            guard let inputView = inputView as? ColorInputView else { return }
+        } else {
+            inputView = InputView()
         }
+        
+        inputView.configure(title: title, placeholder: placeholder, text: text)
         inputViews.append(inputView)
     }
     
