@@ -375,8 +375,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4DF60252547AEF200765C0A /* IssueViewController.swift in Sources */,
-				D4660EA625487BE0002B392E /* LabelCollectionViewCell.swift in Sources */,
-				4C51396825492A3C0084F65F /* MilestoneEndPoint.swift in Sources */,
 				D4DF60212547AEF200765C0A /* AppDelegate.swift in Sources */,
 				4C51396B25492C150084F65F /* IssueTrackerAPI.swift in Sources */,
 				D4DF60442547D16D00765C0A /* CustomLabelView.swift in Sources */,
