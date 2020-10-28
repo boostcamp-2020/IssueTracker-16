@@ -11,6 +11,13 @@ class LabelViewController: UIViewController {
     
     // MARK: - Properties
     
+    var labels = [Label]()
+    var interactor: LabelBusinessLogic?
+    
+    @IBOutlet weak var labelCollectionView: UICollectionView!
+    
+    // MARK: - Properties
+    
     var dummyData = [(
         name: String,
         description: String,
@@ -21,11 +28,16 @@ class LabelViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dummyData = [
-            ("feature", "기능에 대한 레이블입니다.", #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)),
-            ("bug", "수정할 버그에 대한 레이블입니다.", #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1))
-        ]
         
+        interactor = LabelInteractor()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        interactor?.request(endPoint: .list, completionHandler: { (labels) in
+            self.labels = labels
+            self.labelCollectionView.reloadData()
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -40,14 +52,13 @@ class LabelViewController: UIViewController {
             vc.addInputView(title: "색상", placeholder: "", text: "")
         }
     }
-    
 }
 
 // MARK: - UICollectionView Data Source
 
 extension LabelViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dummyData.count
+        return labels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -55,12 +66,12 @@ extension LabelViewController: UICollectionViewDataSource {
               indexPath.row < dummyData.count else {
             return UICollectionViewCell()
         }
-        let index = indexPath.row
-        cell.configure(
-            name: dummyData[index].name,
-            description: dummyData[index].description,
-            color: dummyData[index].color
-        )
+        
+        let label = labels[indexPath.item]
+        cell.labelName.setTitle(label.name, for: .normal)
+        cell.labelDescription.text = label.description
+        cell.labelName.backgroundColor = UIColor(hex: label.color)
+        
         return cell
     }
 }
