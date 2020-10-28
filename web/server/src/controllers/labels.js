@@ -5,7 +5,15 @@ class LabelController {
     this.labelService = labelService;
   }
 
-  // add(req, res) { }
+  async add(req, res) {
+    const { name, color, description } = req.body;
+    try {
+      await labelService.add({ name, color, description });
+      res.status(200).json({ success: true });
+    } catch (err) {
+      res.status(404).json({ success: false });
+    }
+  }
 
   async getAll(req, res) {
     const labels = await labelService.findAll();

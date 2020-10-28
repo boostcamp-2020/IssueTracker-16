@@ -16,6 +16,9 @@ class LabelService {
   async remove({ num }) {
     return this.Label.destroy({ where: { num } });
   }
+  async add({ name, color, description }) {
+    return this.Label.create({ name, color, description });
+  }
 }
 
 module.exports = new LabelService({ Label });

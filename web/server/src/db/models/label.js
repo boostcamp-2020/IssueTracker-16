@@ -11,6 +11,7 @@ module.exports = class Label extends Model {
         name: {
           type: DataTypes.STRING(100),
           allowNull: false,
+          unique: true,
         },
         color: {
           type: DataTypes.CHAR(6),
