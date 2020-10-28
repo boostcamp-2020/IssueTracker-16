@@ -25,7 +25,7 @@ module.exports = class Image extends Model {
         tableName: 'images',
         charset: 'utf8',
         collate: 'utf8_general_ci',
-      }
+      },
     );
   }
   static associate() {

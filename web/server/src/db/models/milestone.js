@@ -27,7 +27,7 @@ module.exports = class Milestone extends Model {
         tableName: 'milestones',
         charset: 'utf8',
         collate: 'utf8_general_ci',
-      }
+      },
     );
   }
   static associate({ Milestone, Issue }) {

@@ -17,7 +17,7 @@ module.exports = class Assignee extends Model {
         tableName: 'assignees',
         charset: 'utf8',
         collate: 'utf8_general_ci',
-      }
+      },
     );
   }
   static associate({ Assignee, Issue, User }) {
