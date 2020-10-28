@@ -52,10 +52,13 @@ class AddAlertViewController: UIViewController {
     
     // MARK: - Methods
     
-    func addInputView(title: String, placeholder: String) {
+    func addInputView(title: String, placeholder: String, text: String?) {
         let inputView = InputView()
         inputView.titleLabel.text = title
         inputView.textField.placeholder = placeholder
+        if let text = text {
+            inputView.textField.text = text
+        }
         inputViews.append(inputView)
     }
     

@@ -43,7 +43,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LabelCell" id="Xcg-rs-kl1">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LabelCollectionViewCell" id="Xcg-rs-kl1" customClass="LabelCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CPB-Vb-xAg">
@@ -53,13 +53,18 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0hb-Aj-Edp">
                                                     <rect key="frame" x="28" y="21" width="85.5" height="51"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-Jj-hcj" customClass="CustomLabelView" customModule="IssueTracker" customModuleProvider="target">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-Jj-hcj">
                                                             <rect key="frame" x="0.0" y="0.0" width="48" height="20.5"/>
                                                             <color key="backgroundColor" red="0.91414409875869751" green="0.59449648857116699" blue="0.33978945016860962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                             <state key="normal" title="name">
                                                                 <color key="titleColor" systemColor="labelColor"/>
                                                             </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="10"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVP-Kq-4J7">
                                                             <rect key="frame" x="0.0" y="30.5" width="85.5" height="20.5"/>
@@ -88,6 +93,10 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="414" height="93"/>
+                                        <connections>
+                                            <outlet property="labelDescription" destination="GVP-Kq-4J7" id="aza-A6-aie"/>
+                                            <outlet property="labelName" destination="gAX-Jj-hcj" id="OJt-Ve-vWq"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -109,7 +118,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2O2-br-O6x">
                             <connections>
                                 <action selector="touchedAddButton:" destination="net-0T-dhm" id="E3u-yt-L7O"/>
-                                <segue destination="erC-jD-Byw" kind="presentation" modalPresentationStyle="overFullScreen" id="0Xi-Du-NTR"/>
+                                <segue destination="erC-jD-Byw" kind="presentation" identifier="presentAddAlertViewContoller" modalPresentationStyle="overFullScreen" id="0Xi-Du-NTR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -332,11 +341,6 @@
             <point key="canvasLocation" x="632" y="503"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="gAX-Jj-hcj">
-            <size key="intrinsicContentSize" width="48" height="18"/>
-        </designable>
-    </designables>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <systemColor name="labelColor">
