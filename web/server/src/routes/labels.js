@@ -6,6 +6,6 @@ const controller = require('../controllers/labels');
 // router.get(controller.getAll);
 router.get('/:num', controller.getOne);
 // router.put('/:num', controller.update);
-// router.delete('/:num', controller.delete);
+router.delete('/:num', controller.delete);
 
 module.exports = router;

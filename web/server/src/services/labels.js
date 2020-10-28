@@ -8,6 +8,10 @@ class LabelService {
   async findOneByNum({ num }) {
     return this.Label.findByPk(num);
   }
+
+  async remove({ num }) {
+    return this.Label.destroy({ where: { num } });
+  }
 }
 
 module.exports = new LabelService({ Label });
