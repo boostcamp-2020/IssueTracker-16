@@ -15,6 +15,20 @@ class LabelViewController: UIViewController {
         super.viewDidLoad()
         
     }
+    
+    @IBAction func touchedAddButton(_ sender: UIBarButtonItem) {
+        
+    }
+    
+    // MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let addAlertVC = segue.destination as? AddAlertViewController else { return }
+        
+        addAlertVC.addInputView(title: "제목", placeholder: "")
+        addAlertVC.addInputView(title: "설명", placeholder: "")
+        addAlertVC.addInputView(title: "색상", placeholder: "")
+    }
 }
 
 // MARK: - UICollectionView Data Source
