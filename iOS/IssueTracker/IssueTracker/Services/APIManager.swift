@@ -8,7 +8,7 @@
 import Foundation
 import NetworkService
 
-final class APIManger {
+final class APIManager {
     static func request<T: Decodable>(endPoint: EndPointType, completionHandler: @escaping (T?) -> Void) {
         NetworkManager.shared.request(endPoint: endPoint) { (data: T?, response: NetworkManager.NetworkResponse?) in
             guard response == nil else {

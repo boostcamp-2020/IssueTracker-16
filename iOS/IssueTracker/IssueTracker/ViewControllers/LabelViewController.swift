@@ -28,7 +28,8 @@ class LabelViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor = LabelInteractor(apiManager: APIManger())
+        
+        interactor = LabelInteractor()
     }
     
     override func viewWillAppear(_ animated: Bool) {
