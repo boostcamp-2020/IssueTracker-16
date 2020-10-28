@@ -25,7 +25,9 @@
 		4C5139992549348B0084F65F /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139922549348B0084F65F /* EndPointType.swift */; };
 		4C5139A1254934D20084F65F /* MilestoneEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51399E254934D20084F65F /* MilestoneEndPoint.swift */; };
 		4C5139A2254934D20084F65F /* LabelEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51399F254934D20084F65F /* LabelEndPoint.swift */; };
-		4C5139A3254934D20084F65F /* IssueTrackerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139A0254934D20084F65F /* IssueTrackerAPI.swift */; };
+		4C5139A3254934D20084F65F /* APIManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139A0254934D20084F65F /* APIManger.swift */; };
+		4C5139A625493BB20084F65F /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139A525493BB20084F65F /* Label.swift */; };
+		4C5139AA25494E7E0084F65F /* LabelInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139A925494E7E0084F65F /* LabelInteractor.swift */; };
 		D4660EA625487BE0002B392E /* LabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4660EA525487BE0002B392E /* LabelCollectionViewCell.swift */; };
 		D4A060A82548877600FAF62B /* UIColor+hexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A060A72548877600FAF62B /* UIColor+hexString.swift */; };
 		D4DF60212547AEF200765C0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60202547AEF200765C0A /* AppDelegate.swift */; };
@@ -80,7 +82,9 @@
 		4C5139922549348B0084F65F /* EndPointType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
 		4C51399E254934D20084F65F /* MilestoneEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MilestoneEndPoint.swift; sourceTree = "<group>"; };
 		4C51399F254934D20084F65F /* LabelEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelEndPoint.swift; sourceTree = "<group>"; };
-		4C5139A0254934D20084F65F /* IssueTrackerAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueTrackerAPI.swift; sourceTree = "<group>"; };
+		4C5139A0254934D20084F65F /* APIManger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManger.swift; sourceTree = "<group>"; };
+		4C5139A525493BB20084F65F /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Label.swift; path = IssueTracker/Services/Label.swift; sourceTree = SOURCE_ROOT; };
+		4C5139A925494E7E0084F65F /* LabelInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelInteractor.swift; sourceTree = "<group>"; };
 		D4660EA525487BE0002B392E /* LabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelCollectionViewCell.swift; sourceTree = "<group>"; };
 		D4A060A72548877600FAF62B /* UIColor+hexString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexString.swift"; sourceTree = "<group>"; };
 		D4DF601D2547AEF200765C0A /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,7 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				4C51399D254934D20084F65F /* EndPoints */,
-				4C5139A0254934D20084F65F /* IssueTrackerAPI.swift */,
+				4C5139A0254934D20084F65F /* APIManger.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -170,6 +174,14 @@
 				4C51399F254934D20084F65F /* LabelEndPoint.swift */,
 			);
 			path = EndPoints;
+			sourceTree = "<group>";
+		};
+		4C5139A825494E700084F65F /* Usecase */ = {
+			isa = PBXGroup;
+			children = (
+				4C5139A925494E7E0084F65F /* LabelInteractor.swift */,
+			);
+			path = Usecase;
 			sourceTree = "<group>";
 		};
 		D4DF60142547AEF200765C0A = {
@@ -198,6 +210,7 @@
 				D4DF60352547AF5B00765C0A /* Entry */,
 				4C51399C254934D20084F65F /* Services */,
 				D4DF60382547AF9300765C0A /* Models */,
+				4C5139A825494E700084F65F /* Usecase */,
 				D4DF603A2547AFA800765C0A /* ViewControllers */,
 				D4DF60392547AF9700765C0A /* Views */,
 			);
@@ -226,6 +239,7 @@
 		D4DF60382547AF9300765C0A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				4C5139A525493BB20084F65F /* Label.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -385,12 +399,14 @@
 				D4DF60212547AEF200765C0A /* AppDelegate.swift in Sources */,
 				D4DF60232547AEF200765C0A /* SceneDelegate.swift in Sources */,
 				4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */,
+				4C5139AA25494E7E0084F65F /* LabelInteractor.swift in Sources */,
 				D4DF604D254800C100765C0A /* AddAlertInputView.swift in Sources */,
 				4C5139A2254934D20084F65F /* LabelEndPoint.swift in Sources */,
 				4C51391D254847530084F65F /* BlockResponderView.swift in Sources */,
-				4C5139A3254934D20084F65F /* IssueTrackerAPI.swift in Sources */,
+				4C5139A3254934D20084F65F /* APIManger.swift in Sources */,
 				4C513919254840570084F65F /* UIView+IBInspectable.swift in Sources */,
 				4C5139122548047A0084F65F /* AddAlertViewController.swift in Sources */,
+				4C5139A625493BB20084F65F /* Label.swift in Sources */,
 				D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */,
 				D4A060A82548877600FAF62B /* UIColor+hexString.swift in Sources */,
 				D42EC1912549180A00E57627 /* MilestoneViewController.swift in Sources */,
