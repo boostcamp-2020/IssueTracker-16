@@ -10,7 +10,8 @@ class MilestoneService {
 
   findAll = async () => this.Milestone.findAll();
 
-  update = async () => this.Milestone.update();
+  update = async ({ num, payload }) =>
+    this.Milestone.update(payload, { where: { num } });
 
   remove = async () => this.Milestone.destroy();
 }

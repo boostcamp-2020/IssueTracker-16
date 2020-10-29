@@ -18,7 +18,17 @@ class MilestoneController {
 
   getAll = async (req, res) => {};
 
-  update = async (req, res) => {};
+  update = async (req, res) => {
+    const {
+      params: { num },
+      body: payload,
+    } = req;
+    const [updated] = await this.milestoneService.update({ num, payload });
+    if (!updated) {
+      return res.status(404).json({ success: false, message: 'no contents' });
+    }
+    res.status(200).json({ success: true });
+  };
 
   delete = async (req, res) => {};
 }
