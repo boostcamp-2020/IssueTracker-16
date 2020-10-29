@@ -19,6 +19,19 @@ class AddAlertColorInputView: AddAlertInputView {
             colorPicker.backgroundColor = color
         }
     }
+    lazy var picker: UIColorPickerViewController = {
+        let picker = UIColorPickerViewController()
+        picker.supportsAlpha = false
+        picker.modalTransitionStyle = .coverVertical
+        picker.modalPresentationStyle = .popover
+        if let color = color {
+            picker.selectedColor = color
+        } else {
+            picker.selectedColor = UIColor.random
+        }
+        picker.delegate = self
+        return picker
+    }()
     
     // MARK: - initialize
     
@@ -47,5 +60,11 @@ class AddAlertColorInputView: AddAlertInputView {
     
     @objc private func touchedRandomColor() {
         color = UIColor.random
+    }
+}
+
+extension AddAlertColorInputView: UIColorPickerViewControllerDelegate {
+    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
+        color = viewController.selectedColor
     }
 }

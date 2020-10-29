@@ -62,7 +62,6 @@ class AddAlertViewController: UIViewController {
         } else {
             inputView = InputView()
         }
-        
         inputView.configure(title: title, placeholder: placeholder, text: text)
         inputViews.append(inputView)
     }
@@ -73,18 +72,12 @@ class AddAlertViewController: UIViewController {
     
     // MARK: Selectors
     
-    @objc private func touchedColorPicker(sender: UIButton) {
-        let picker = UIColorPickerViewController()
-        picker.supportsAlpha = false
-        picker.modalTransitionStyle = .coverVertical
-        picker.modalPresentationStyle = .popover
-        if let color = sender.backgroundColor {
-            picker.selectedColor = color
-        } else {
-            picker.selectedColor = UIColor.random
+    @objc private func touchedColorPicker() {
+        for inputView in inputViews {
+            guard let colorInputView = inputView as? ColorInputView else { continue }
+            self.present(colorInputView.picker, animated: true, completion: nil)
+            return
         }
-        picker.delegate = self
-        self.present(picker, animated: true, completion: nil)
     }
     
     // MARK: Private
@@ -104,17 +97,5 @@ class AddAlertViewController: UIViewController {
     
     @IBAction private func touchedClearButton(_ sender: UIButton) {
         inputViews.forEach { $0.textField.text = "" }
-    }
-}
-
-// MARK: Color Picker Delegate
-
-extension AddAlertViewController: UIColorPickerViewControllerDelegate {
-    func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
-        for inputView in inputViews {
-            guard let colorInputView = inputView as? ColorInputView else { continue }
-            colorInputView.color = viewController.selectedColor
-            return
-        }
     }
 }
