@@ -13,6 +13,10 @@ class LabelService {
     return this.Label.findByPk(num);
   }
 
+  async update({ num, payload }) {
+    return this.Label.update(payload, { where: { num } });
+  }
+
   async remove({ num }) {
     return this.Label.destroy({ where: { num } });
   }

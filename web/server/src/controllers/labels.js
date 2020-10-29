@@ -3,6 +3,8 @@ const labelService = require('../services/labels');
 class LabelController {
   constructor({ labelService }) {
     this.labelService = labelService;
+
+    this.update = this.update.bind(this);
   }
 
   async add(req, res) {
@@ -26,7 +28,17 @@ class LabelController {
     res.status(200).json(label);
   }
 
-  // update(req, res) { }
+  async update(req, res) {
+    const {
+      params: { num },
+      body: payload,
+    } = req;
+    const updated = await this.labelService.update({ num, payload });
+    if (!updated) {
+      return res.status(404).json({ success: false });
+    }
+    res.status(200).json({ success: true });
+  }
 
   async delete(req, res) {
     const { num } = req.params;
