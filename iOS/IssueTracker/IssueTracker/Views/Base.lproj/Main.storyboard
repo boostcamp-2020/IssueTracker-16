@@ -43,7 +43,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LabelCell" id="Xcg-rs-kl1">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LabelCollectionViewCell" id="Xcg-rs-kl1" customClass="LabelCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="CPB-Vb-xAg">
@@ -53,18 +53,23 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0hb-Aj-Edp">
                                                     <rect key="frame" x="28" y="21" width="85.5" height="51"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-Jj-hcj" customClass="CustomLabelView" customModule="IssueTracker" customModuleProvider="target">
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-Jj-hcj">
                                                             <rect key="frame" x="0.0" y="0.0" width="48" height="20.5"/>
                                                             <color key="backgroundColor" red="0.91414409875869751" green="0.59449648857116699" blue="0.33978945016860962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                             <state key="normal" title="name">
                                                                 <color key="titleColor" systemColor="labelColor"/>
                                                             </state>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVP-Kq-4J7">
                                                             <rect key="frame" x="0.0" y="30.5" width="85.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
@@ -88,6 +93,10 @@
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="414" height="93"/>
+                                        <connections>
+                                            <outlet property="labelDescription" destination="GVP-Kq-4J7" id="aza-A6-aie"/>
+                                            <outlet property="labelName" destination="gAX-Jj-hcj" id="OJt-Ve-vWq"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -109,14 +118,17 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2O2-br-O6x">
                             <connections>
                                 <action selector="touchedAddButton:" destination="net-0T-dhm" id="E3u-yt-L7O"/>
-                                <segue destination="erC-jD-Byw" kind="presentation" modalPresentationStyle="overFullScreen" id="0Xi-Du-NTR"/>
+                                <segue destination="erC-jD-Byw" kind="presentation" identifier="presentAddAlertViewContoller" modalPresentationStyle="overFullScreen" id="0Xi-Du-NTR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="labelCollectionView" destination="DvT-g1-Gij" id="zcm-a0-n3I"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1t2-UX-zdw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1359" y="503"/>
+            <point key="canvasLocation" x="1442" y="503"/>
         </scene>
         <!--Add Alert View Controller-->
         <scene sceneID="zgA-OR-bQe">
@@ -262,18 +274,148 @@
         <!--마일스톤-->
         <scene sceneID="mlu-t0-xtF">
             <objects>
-                <viewController id="nGA-rj-qbg" sceneMemberID="viewController">
+                <viewController id="nGA-rj-qbg" customClass="MilestoneViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t9H-MO-lL8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="e8K-9z-M9n">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hoe-5H-12y">
+                                    <size key="itemSize" width="414" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MilestoneCollectionViewCell" id="Oj5-Sb-0rI" customClass="MilestoneCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dKX-CN-nRF">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="93"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Mlq-1o-Ame">
+                                                    <rect key="frame" x="28" y="21" width="114.5" height="51"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="khs-bO-cE4">
+                                                            <rect key="frame" x="0.0" y="0.0" width="114.5" height="20.5"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gs-Pe-3ET">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="48" height="20.5"/>
+                                                                    <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
+                                                                    <state key="normal" title="name">
+                                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </state>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                            <real key="value" value="1"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="5"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </button>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dueDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Mo-KJ-rBZ">
+                                                                    <rect key="frame" x="63" y="0.0" width="51.5" height="20.5"/>
+                                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                                    <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wz5-3a-jlN">
+                                                            <rect key="frame" x="0.0" y="30.5" width="85.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" systemColor="secondaryLabelColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="67p-pi-uv6">
+                                                    <rect key="frame" x="296" y="8" width="100" height="77"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="percent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Snb-Lp-CEk">
+                                                            <rect key="frame" x="38" y="0.0" width="62" height="19.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                            <color key="textColor" systemColor="systemGreenColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FfR-o8-gUb">
+                                                            <rect key="frame" x="0.0" y="19.5" width="100" height="19"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="openIssues" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wtz-Sv-kGi">
+                                                            <rect key="frame" x="31" y="38.5" width="69" height="19.5"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="closedIssues" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xlF-ou-S25">
+                                                            <rect key="frame" x="21.5" y="58" width="78.5" height="19"/>
+                                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="ACK-Xf-mMW"/>
+                                                    </constraints>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="67p-pi-uv6" firstAttribute="centerY" secondItem="dKX-CN-nRF" secondAttribute="centerY" id="8lh-bD-vzs"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="67p-pi-uv6" secondAttribute="trailing" constant="10" id="Bpf-Ta-kC4"/>
+                                                <constraint firstItem="67p-pi-uv6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dKX-CN-nRF" secondAttribute="topMargin" id="JAS-mp-Sa8"/>
+                                                <constraint firstItem="Mlq-1o-Ame" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dKX-CN-nRF" secondAttribute="topMargin" id="LK7-O9-dcI"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="67p-pi-uv6" secondAttribute="bottom" id="WZQ-bw-g73"/>
+                                                <constraint firstItem="Mlq-1o-Ame" firstAttribute="leading" secondItem="dKX-CN-nRF" secondAttribute="leadingMargin" constant="20" id="aQd-Wh-dsf"/>
+                                                <constraint firstItem="Mlq-1o-Ame" firstAttribute="centerY" secondItem="dKX-CN-nRF" secondAttribute="centerY" id="epy-67-F0u"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Mlq-1o-Ame" secondAttribute="bottom" id="pg9-H2-yzH"/>
+                                                <constraint firstItem="67p-pi-uv6" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mlq-1o-Ame" secondAttribute="trailing" constant="10" id="ucx-M1-DsE"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="414" height="93"/>
+                                        <connections>
+                                            <outlet property="milestoneClosedIssues" destination="xlF-ou-S25" id="wcd-G7-8vq"/>
+                                            <outlet property="milestoneDescription" destination="Wz5-3a-jlN" id="dOc-7Z-JNc"/>
+                                            <outlet property="milestoneDueDate" destination="9Mo-KJ-rBZ" id="J6X-FO-gT1"/>
+                                            <outlet property="milestoneName" destination="8gs-Pe-3ET" id="rjp-FW-lkR"/>
+                                            <outlet property="milestoneOpenIssues" destination="Wtz-Sv-kGi" id="Xua-po-biu"/>
+                                            <outlet property="milestonePercent" destination="Snb-Lp-CEk" id="BLf-7z-nQM"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="nGA-rj-qbg" id="bDf-Pw-OqU"/>
+                                    <outlet property="delegate" destination="nGA-rj-qbg" id="CHF-pr-wz3"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="NdA-SF-rEV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="e8K-9z-M9n" firstAttribute="top" secondItem="NdA-SF-rEV" secondAttribute="top" id="Nzj-1k-PGi"/>
+                            <constraint firstItem="e8K-9z-M9n" firstAttribute="leading" secondItem="NdA-SF-rEV" secondAttribute="leading" id="TJr-ei-rJf"/>
+                            <constraint firstItem="NdA-SF-rEV" firstAttribute="trailing" secondItem="e8K-9z-M9n" secondAttribute="trailing" id="Z9l-e4-btm"/>
+                            <constraint firstItem="NdA-SF-rEV" firstAttribute="bottom" secondItem="e8K-9z-M9n" secondAttribute="bottom" id="iuR-pt-Kdi"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="마일스톤" id="Dbo-jA-NDL"/>
+                    <navigationItem key="navigationItem" title="마일스톤" id="9xD-PO-41x">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0K7-O1-C8w">
+                            <connections>
+                                <segue destination="erC-jD-Byw" kind="presentation" identifier="presentAddAlertViewContoller" modalPresentationStyle="overFullScreen" id="dFs-Mp-xCJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYY-nq-g7e" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="716" y="1194"/>
+            <point key="canvasLocation" x="1442" y="1193"/>
         </scene>
         <!--설정-->
         <scene sceneID="dTP-V6-NwP">
@@ -304,7 +446,7 @@
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="RLR-2B-qbs"/>
                         <segue destination="glS-2D-ZY2" kind="relationship" relationship="viewControllers" id="6Dp-6U-q3d"/>
-                        <segue destination="nGA-rj-qbg" kind="relationship" relationship="viewControllers" id="zye-0Y-aRB"/>
+                        <segue destination="GJn-h3-okA" kind="relationship" relationship="viewControllers" id="zye-0Y-aRB"/>
                         <segue destination="cqQ-sO-Bub" kind="relationship" relationship="viewControllers" id="q4T-cK-bRJ"/>
                     </connections>
                 </tabBarController>
@@ -329,24 +471,44 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALp-dB-ONH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="632" y="503"/>
+            <point key="canvasLocation" x="716" y="503"/>
+        </scene>
+        <!--마일스톤-->
+        <scene sceneID="OIK-sa-BV2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GJn-h3-okA" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="마일스톤" id="Dbo-jA-NDL"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="med-FQ-MZ9">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nGA-rj-qbg" kind="relationship" relationship="rootViewController" id="0RM-DL-cIE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BNZ-mZ-R0A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="716" y="1193"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="gAX-Jj-hcj">
-            <size key="intrinsicContentSize" width="48" height="18"/>
-        </designable>
-    </designables>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

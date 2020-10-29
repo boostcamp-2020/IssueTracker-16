@@ -1,84 +1,76 @@
 //
-//  LabelViewController.swift
+//  MilestoneViewController.swift
 //  IssueTracker
 //
-//  Created by woong on 2020/10/27.
+//  Created by 홍경표 on 2020/10/28.
 //
 
 import UIKit
 
-class LabelViewController: UIViewController {
-    
-    // MARK: - Properties
-    
-    var labels = [Label]()
-    var interactor: LabelBusinessLogic?
-    
-    @IBOutlet weak var labelCollectionView: UICollectionView!
+class MilestoneViewController: UIViewController {
     
     // MARK: - Properties
     
     var dummyData = [(
         name: String,
         description: String,
-        color: UIColor
+        dueDate: String,
+        openIssues: Int,
+        closedIssues: Int
     )]()
     
     // MARK: - View Life Cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        interactor = LabelInteractor()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        interactor?.request(endPoint: .list, completionHandler: { (labels) in
-            self.labels = labels
-            self.labelCollectionView.reloadData()
-        })
+        dummyData = [
+            ("스프린트2", "이번 배포를 위한 스프린트", "2020년 6월 19일 까지", 13, 23),
+            ("스프린트3", "다음 배포를 위한 스프린트", "2020년 6월 26일 까지", 0, 0)
+        ]
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let vc = segue.destination as? AddAlertViewController else { return }
-        if let sender = sender as? (name: String, description: String, color: UIColor) {
+        if let sender = sender as? (name: String, dueDate: String, description: String) {
             vc.addInputView(title: "제목", placeholder: "", text: sender.name)
+            vc.addInputView(title: "완료날짜", placeholder: "yyyy-mm-dd (선택)", text: sender.dueDate)
             vc.addInputView(title: "설명", placeholder: "", text: sender.description)
-            vc.addInputView(title: "색상", placeholder: "", text: sender.color.hexString)
         } else {
             vc.addInputView(title: "제목", placeholder: "", text: "")
+            vc.addInputView(title: "완료날짜", placeholder: "yyyy-mm-dd (선택)", text: "")
             vc.addInputView(title: "설명", placeholder: "", text: "")
-            vc.addInputView(title: "색상", placeholder: "", text: "")
         }
     }
+    
 }
 
 // MARK: - UICollectionView Data Source
 
-extension LabelViewController: UICollectionViewDataSource {
+extension MilestoneViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return labels.count
+        return dummyData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LabelCollectionViewCell.identifier, for: indexPath) as? LabelCollectionViewCell,
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MilestoneCollectionViewCell.identifier, for: indexPath) as? MilestoneCollectionViewCell,
               indexPath.row < dummyData.count else {
             return UICollectionViewCell()
         }
-        
-        let label = labels[indexPath.item]
-        cell.labelName.setTitle(label.name, for: .normal)
-        cell.labelDescription.text = label.description
-        cell.labelName.backgroundColor = UIColor(hex: label.color)
-        
+        let index = indexPath.row
+        cell.configure(
+            name: dummyData[index].name,
+            description: dummyData[index].description,
+            dueDate: dummyData[index].dueDate,
+            openIssues: dummyData[index].openIssues,
+            closedIssues: dummyData[index].closedIssues
+        )
         return cell
     }
 }
 
 // MARK: - UICollectionView Delegate FlowLayout
 
-extension LabelViewController: UICollectionViewDelegateFlowLayout {
+extension MilestoneViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.bounds.width, height: 80)
     }
@@ -86,19 +78,17 @@ extension LabelViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - UICollectionView Delegate
 
-extension LabelViewController: UICollectionViewDelegate {
+extension MilestoneViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard indexPath.row < dummyData.count else {
             performSegue(withIdentifier: "presentAddAlertViewContoller", sender: nil)
             return
         }
         let index = indexPath.row
-        performSegue(withIdentifier: "presentAddAlertViewContoller",
-                     sender: (
-                        dummyData[index].name,
-                        dummyData[index].description,
-                        dummyData[index].color
-                     )
-        )
+        performSegue(withIdentifier: "presentAddAlertViewContoller", sender: (
+            dummyData[index].name,
+            dummyData[index].dueDate,
+            dummyData[index].description
+        ))
     }
 }
