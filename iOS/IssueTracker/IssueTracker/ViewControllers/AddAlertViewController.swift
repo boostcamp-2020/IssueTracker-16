@@ -73,7 +73,7 @@ class AddAlertViewController: UIViewController {
     
     // MARK: Selectors
     
-    @objc func touchedColorPicker(sender: UIButton) {
+    @objc private func touchedColorPicker(sender: UIButton) {
         let picker = UIColorPickerViewController()
         picker.supportsAlpha = false
         picker.modalTransitionStyle = .coverVertical
@@ -113,7 +113,7 @@ extension AddAlertViewController: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         for inputView in inputViews {
             guard let colorInputView = inputView as? ColorInputView else { continue }
-            colorInputView.colorPicker.backgroundColor = viewController.selectedColor
+            colorInputView.color = viewController.selectedColor
             return
         }
     }
