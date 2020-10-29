@@ -7,7 +7,10 @@ class MilestoneController {
 
   add = async (req, res) => {};
 
-  getAll = async (req, res) => {};
+  getAll = async (req, res) => {
+    const milestones = await this.milestoneService.findAll();
+    res.status(200).json(milestones);
+  };
 
   update = async (req, res) => {};
 
