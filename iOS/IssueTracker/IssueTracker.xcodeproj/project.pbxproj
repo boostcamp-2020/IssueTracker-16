@@ -39,6 +39,7 @@
 		D4DF602D2547AEF300765C0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4DF602B2547AEF300765C0A /* LaunchScreen.storyboard */; };
 		D4DF604D254800C100765C0A /* AddAlertInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF604C254800C100765C0A /* AddAlertInputView.swift */; };
 		D4EA0AA0254A9AEC0000CF67 /* AddAlertDateInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA0A9F254A9AEC0000CF67 /* AddAlertDateInputView.swift */; };
+		D4EA0AA6254AB93C0000CF67 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA0AA5254AB93C0000CF67 /* Milestone.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		D4DF602E2547AEF300765C0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4DF604C254800C100765C0A /* AddAlertInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertInputView.swift; sourceTree = "<group>"; };
 		D4EA0A9F254A9AEC0000CF67 /* AddAlertDateInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertDateInputView.swift; sourceTree = "<group>"; };
+		D4EA0AA5254AB93C0000CF67 /* Milestone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				4C5139A525493BB20084F65F /* Label.swift */,
+				D4EA0AA5254AB93C0000CF67 /* Milestone.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 				4C5139A625493BB20084F65F /* Label.swift in Sources */,
 				D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */,
 				D4A060A82548877600FAF62B /* UIColor+hexString+random.swift in Sources */,
+				D4EA0AA6254AB93C0000CF67 /* Milestone.swift in Sources */,
 				D42EC1912549180A00E57627 /* MilestoneViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,14 +16,6 @@ class LabelViewController: UIViewController {
     
     @IBOutlet weak var labelCollectionView: UICollectionView!
     
-    // MARK: - Properties
-    
-    var dummyData = [(
-        name: String,
-        description: String,
-        color: UIColor
-    )]()
-    
     // MARK: - View Life Cycle
 
     override func viewDidLoad() {

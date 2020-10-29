@@ -11,28 +11,24 @@ class MilestoneViewController: UIViewController {
     
     // MARK: - Properties
     
-    var dummyData = [(
-        name: String,
-        description: String,
-        dueDate: String,
-        openIssues: Int,
-        closedIssues: Int
-    )]()
+    var milestones = [Milestone]()
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dummyData = [
-            ("스프린트2", "이번 배포를 위한 스프린트", "2020-06-19", 13, 23),
-            ("스프린트3", "다음 배포를 위한 스프린트", "2020-06-26", 0, 0)
-        ]
+        milestones.append(Milestone(id: 0, title: "스프린트2", dueDate: "2020-06-19", description: "이번 배포를 위한 스프린트", openIssues: 13, closedIssues: 23))
+        milestones.append(Milestone(id: 0, title: "스프린트3", dueDate: "2020-06-26", description: "다음 배포를 위한 스프린트", openIssues: 0, closedIssues: 0))
+//        milestones = [
+//            ("스프린트2", "이번 배포를 위한 스프린트", "2020-06-19", 13, 23),
+//            ("스프린트3", "다음 배포를 위한 스프린트", "2020-06-26", 0, 0)
+//        ]
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let vc = segue.destination as? AddAlertViewController else { return }
-        if let sender = sender as? (name: String, dueDate: String, description: String) {
-            vc.addInputView(title: "제목", placeholder: "", text: sender.name)
+        if let sender = sender as? Milestone {
+            vc.addInputView(title: "제목", placeholder: "", text: sender.title)
             vc.addInputView(title: "완료날짜", placeholder: "yyyy-mm-dd (선택)", text: sender.dueDate)
             vc.addInputView(title: "설명", placeholder: "", text: sender.description)
         } else {
@@ -48,21 +44,21 @@ class MilestoneViewController: UIViewController {
 
 extension MilestoneViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dummyData.count
+        return milestones.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MilestoneCollectionViewCell.identifier, for: indexPath) as? MilestoneCollectionViewCell,
-              indexPath.row < dummyData.count else {
+              indexPath.row < milestones.count else {
             return UICollectionViewCell()
         }
         let index = indexPath.row
         cell.configure(
-            name: dummyData[index].name,
-            description: dummyData[index].description,
-            dueDate: dummyData[index].dueDate,
-            openIssues: dummyData[index].openIssues,
-            closedIssues: dummyData[index].closedIssues
+            title: milestones[index].title,
+            dueDate: milestones[index].dueDate,
+            description: milestones[index].description,
+            openIssues: milestones[index].openIssues,
+            closedIssues: milestones[index].closedIssues
         )
         return cell
     }
@@ -80,15 +76,11 @@ extension MilestoneViewController: UICollectionViewDelegateFlowLayout {
 
 extension MilestoneViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard indexPath.row < dummyData.count else {
+        guard indexPath.row < milestones.count else {
             performSegue(withIdentifier: "presentAddAlertViewContoller", sender: nil)
             return
         }
         let index = indexPath.row
-        performSegue(withIdentifier: "presentAddAlertViewContoller", sender: (
-            dummyData[index].name,
-            dummyData[index].dueDate,
-            dummyData[index].description
-        ))
+        performSegue(withIdentifier: "presentAddAlertViewContoller", sender: milestones[index])
     }
 }
