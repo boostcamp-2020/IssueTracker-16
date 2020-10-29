@@ -11,6 +11,7 @@ module.exports = class Milestone extends Model {
         title: {
           type: DataTypes.STRING(100),
           allowNull: false,
+          unique: true,
         },
         dueDate: {
           type: DataTypes.DATEONLY,
