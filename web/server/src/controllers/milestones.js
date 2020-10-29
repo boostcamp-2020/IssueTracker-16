@@ -13,9 +13,7 @@ class MilestoneController {
   add = async (req, res) => {
     const { title, dueDate, description } = req.body;
     if (isNaN(new Date(dueDate))) {
-      return res
-        .status(400)
-        .json({ success: false, message: 'Invalid date type' });
+      throw new Error(BAD_REQUEST);
     }
     await this.milestoneService.add({ title, dueDate, description });
     res.status(200).json({ success: true });
