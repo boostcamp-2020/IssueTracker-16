@@ -40,7 +40,7 @@ class MilestoneController {
     } = req;
     const [updated] = await this.milestoneService.update({ num, payload });
     if (!updated) {
-      return res.status(404).json({ success: false, message: 'no contents' });
+      throw new Error(NO_CONTENTS);
     }
     res.status(200).json({ success: true });
   };
@@ -49,7 +49,7 @@ class MilestoneController {
     const { num } = req.params;
     const deleted = await this.milestoneService.remove({ num });
     if (!deleted) {
-      return res.status(404).json({ success: false, message: 'no contents' });
+      throw new Error(NO_CONTENTS);
     }
     res.status(200).json({ success: true });
   };
