@@ -6,6 +6,7 @@
         "eslint:recommended",
         "plugin:prettier/recommended"
     ],
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaVersion": 2020,
         "sourceType": "module",
