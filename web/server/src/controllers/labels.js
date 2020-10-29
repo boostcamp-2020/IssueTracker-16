@@ -12,15 +12,8 @@ class LabelController {
 
   add = async (req, res) => {
     const { name, color, description } = req.body;
-    try {
-      await this.labelService.add({ name, color, description });
-      res.status(200).json({ success: true });
-    } catch (err) {
-      if (err.name === 'SequelizeUniqueConstraintError') {
-        return res.status(409).json({ success: false, message: err.message });
-      }
-      throw err;
-    }
+    await this.labelService.add({ name, color, description });
+    res.status(200).json({ success: true });
   };
 
   getAll = async (req, res) => {
