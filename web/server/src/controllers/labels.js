@@ -43,7 +43,7 @@ class LabelController {
     const { num } = req.params;
     const deleted = await this.labelService.remove({ num });
     if (!deleted) {
-      return res.status(404).json({ success: false, message: 'no contents' });
+      throw new Error(NO_CONTENTS);
     }
     res.status(200).json({ success: true });
   };

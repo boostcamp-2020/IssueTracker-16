@@ -4,9 +4,9 @@ const controller = require('../controllers/labels');
 const { errorHandler } = require('../common/errorHandler');
 
 router.post('', errorHandler(controller.add));
-router.get('', controller.getAll);
+router.get('', errorHandler(controller.getAll));
 router.get('/:num', controller.getOne);
 router.put('/:num', controller.update);
-router.delete('/:num', controller.delete);
+router.delete('/:num', errorHandler(controller.delete));
 
 module.exports = router;
