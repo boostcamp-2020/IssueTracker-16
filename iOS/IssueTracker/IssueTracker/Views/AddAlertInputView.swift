@@ -14,6 +14,9 @@ class AddAlertInputView: UIView {
     var titleLabel: UILabel = UILabel()
     var textField: UITextField = UITextField()
     var stackView: UIStackView = UIStackView()
+    var isValid: Bool {
+        return self.layer.borderColor == UIColor.clear.cgColor ? true : false
+    }
     
     // MARK: - Initialize
     
@@ -35,6 +38,10 @@ class AddAlertInputView: UIView {
     }
     
     private func setUp() {
+        self.layer.borderWidth = 1
+        self.layer.borderColor = UIColor.clear.cgColor
+        self.layer.cornerRadius = 5
+        textField.delegate = self
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 0
         stackView.axis = .horizontal
@@ -76,9 +83,28 @@ class AddAlertInputView: UIView {
     func configure(title: String, placeholder: String, text: String?) {
         titleLabel.text = title
         textField.placeholder = placeholder
-        if let text = text {
-            textField.text = text
+        guard let text = text,
+              text.trimmingCharacters(in: .whitespaces) != "" else {
+            if title == "제목" {
+                self.layer.borderColor = UIColor.systemRed.cgColor
+            }
+            return
         }
+        textField.text = text
     }
     
+}
+
+// MARK: TextField Delegate
+
+extension AddAlertInputView: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let title = titleLabel.text, title == "제목" else { return }
+        guard let text = textField.text,
+              text.trimmingCharacters(in: .whitespaces) != "" else {
+            self.layer.borderColor = UIColor.systemRed.cgColor
+            return
+        }
+        self.layer.borderColor = UIColor.clear.cgColor
+    }
 }
