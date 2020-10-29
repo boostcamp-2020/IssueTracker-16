@@ -5,8 +5,8 @@ const { errorHandler } = require('../common/errorHandler');
 
 router.post('', controller.add);
 router.get('', controller.getAll);
-router.get('/:num', controller.getOne);
-router.put('/:num', controller.update);
+router.get('/:num', errorHandler(controller.getOne));
+router.put('/:num', errorHandler(controller.update));
 router.delete('/:num', controller.delete);
 
 module.exports = router;

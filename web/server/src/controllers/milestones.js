@@ -30,6 +30,9 @@ class MilestoneController {
 
   getAll = async (req, res) => {
     const milestones = await this.milestoneService.findAll();
+    if (!milestones.length) {
+      throw new Error(NO_CONTENTS);
+    }
     res.status(200).json(milestones);
   };
 
