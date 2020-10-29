@@ -5,24 +5,17 @@ class LabelService {
     this.Label = Label;
   }
 
-  async findAll() {
-    return this.Label.findAll();
-  }
+  add = async ({ name, color, description }) =>
+    this.Label.create({ name, color, description });
 
-  async findOneByNum({ num }) {
-    return this.Label.findByPk(num);
-  }
+  findAll = async () => this.Label.findAll();
 
-  async update({ num, payload }) {
-    return this.Label.update(payload, { where: { num } });
-  }
+  findOneByNum = async ({ num }) => this.Label.findByPk(num);
 
-  async remove({ num }) {
-    return this.Label.destroy({ where: { num } });
-  }
-  async add({ name, color, description }) {
-    return this.Label.create({ name, color, description });
-  }
+  update = async ({ num, payload }) =>
+    this.Label.update(payload, { where: { num } });
+
+  remove = async ({ num }) => this.Label.destroy({ where: { num } });
 }
 
 module.exports = new LabelService({ Label });
