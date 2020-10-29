@@ -30,15 +30,15 @@ module.exports = class User extends Model {
         tableName: 'users',
         charset: 'utf8',
         collate: 'utf8_general_ci',
-      }
+      },
     );
   }
   static associate({ User, OAuthUser, Issue, Reply, Assignee }) {
-    [OAuthUser, Issue, Reply, Assignee].forEach((model) =>
+    [OAuthUser, Issue, Reply, Assignee].forEach(model =>
       User.hasMany(model, {
         foreignKey: 'user_num',
         sourceKey: 'num',
-      })
+      }),
     );
   }
 };

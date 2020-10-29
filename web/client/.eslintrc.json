@@ -1,6 +1,13 @@
 {
-    "plugins": ["prettier"],
-    "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+    "plugins": [
+        "prettier"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:prettier/recommended",
+        "react-app",
+        "react-app/jest"
+    ],
     "parserOptions": {
         "ecmaVersion": 2020,
         "sourceType": "module",
@@ -13,9 +20,11 @@
         "node": true,
         "es6": true
     },
-    "ignorePatterns": ["node_modules/"],
+    "ignorePatterns": [
+        "node_modules/"
+    ],
     "rules": {
-        "prettier/prettier": ["error", {"singleQuote": true, "parser": "flow"}],
+        "prettier/prettier": "error",
         "no-var": "error",
         "no-unused-vars": "warn",
         "no-console": "warn"

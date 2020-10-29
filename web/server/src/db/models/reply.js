@@ -26,7 +26,7 @@ module.exports = class Reply extends Model {
         tableName: 'replies',
         charset: 'utf8',
         collate: 'utf8_general_ci',
-      }
+      },
     );
   }
   static associate({ Reply, Issue, User }) {
