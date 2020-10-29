@@ -7,6 +7,6 @@ router.post('', controller.add);
 router.get('', errorHandler(controller.getAll));
 router.get('/:num', controller.getOne);
 router.put('/:num', controller.update);
-router.delete('/:num', controller.delete);
+router.delete('/:num', errorHandler(controller.delete));
 
 module.exports = router;
