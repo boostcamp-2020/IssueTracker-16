@@ -10,7 +10,7 @@ import NetworkService
 
 final class APIManager {
     static func request<T: Decodable>(endPoint: EndPointType, completionHandler: @escaping (T?) -> Void) {
-        NetworkManager.shared.request(endPoint: endPoint) { (data: T?, response: NetworkManager.NetworkResponse?) in
+        NetworkManager.shared.request(endPoint: endPoint) { (data: T?, response: NetworkManager.Response?) in
             guard response == nil else {
                 return
             }
