@@ -14,6 +14,20 @@ struct Label {
     var color: String
 }
 
+extension Label: Hashable {
+    static func ==(lhs: Label, rhs: Label) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
+extension Label: Inputable {
+    
+}
+
 extension Label: Codable {
     
 }

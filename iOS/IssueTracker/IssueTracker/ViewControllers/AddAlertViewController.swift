@@ -7,6 +7,8 @@
 
 import UIKit
 
+protocol Inputable {
+    
 protocol AddAlertViewControllerDelegate: class {
     func addAlertViewController<InputView>(_ addAlertViewController: AddAlertViewController, didTabAddWithTextFields: [InputView])
     
@@ -28,6 +30,7 @@ class AddAlertViewController: UIViewController {
     
     weak var delegate: AddAlertViewControllerDelegate?
     private(set) var inputViews = [InputView]()
+    var item: Inputable?
     
     // MARK: - View Life Cycle
     
