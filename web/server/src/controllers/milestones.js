@@ -17,15 +17,8 @@ class MilestoneController {
         .status(400)
         .json({ success: false, message: 'Invalid date type' });
     }
-    try {
-      await this.milestoneService.add({ title, dueDate, description });
-      res.status(200).json({ success: true });
-    } catch (err) {
-      if (err.name === 'SequelizeUniqueConstraintError') {
-        return res.status(409).json({ success: false, message: err.message });
-      }
-      throw err;
-    }
+    await this.milestoneService.add({ title, dueDate, description });
+    res.status(200).json({ success: true });
   };
 
   getAll = async (req, res) => {
@@ -43,7 +36,7 @@ class MilestoneController {
     } = req;
     const [updated] = await this.milestoneService.update({ num, payload });
     if (!updated) {
-      return res.status(404).json({ success: false, message: 'no contents' });
+      throw new Error(NO_CONTENTS);
     }
     res.status(200).json({ success: true });
   };
@@ -52,7 +45,7 @@ class MilestoneController {
     const { num } = req.params;
     const deleted = await this.milestoneService.remove({ num });
     if (!deleted) {
-      return res.status(404).json({ success: false, message: 'no contents' });
+      throw new Error(NO_CONTENTS);
     }
     res.status(200).json({ success: true });
   };
