@@ -5,7 +5,8 @@ class MilestoneService {
     this.Milestone = Milestone;
   }
 
-  add = async () => this.Milestone.create();
+  add = ({ title, dueDate, description }) =>
+    this.Milestone.create({ title, dueDate, description });
 
   findAll = async () => this.Milestone.findAll();
 
