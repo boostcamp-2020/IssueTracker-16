@@ -11,7 +11,7 @@ class MilestoneService {
 
   update = async () => this.Milestone.update();
 
-  remove = async () => this.Milestone.destroy();
+  remove = async ({ num }) => this.Milestone.destroy({ where: { num } });
 }
 
 module.exports = new MilestoneService({ Milestone });
