@@ -9,10 +9,12 @@ import UIKit
 
 protocol Inputable {
     
+}
+
 protocol AddAlertViewControllerDelegate: class {
-    func addAlertViewController<InputView>(_ addAlertViewController: AddAlertViewController, didTabAddWithTextFields: [InputView])
-    
     func addAlertViewControllerDidCancel(_ addAlertViewController: AddAlertViewController)
+    
+    func addAlertViewController(_ addAlertViewController: AddAlertViewController, didTabAddWithItem item: Inputable)
 }
 
 class AddAlertViewController: UIViewController {
@@ -97,7 +99,9 @@ class AddAlertViewController: UIViewController {
     }
     
     @IBAction private func touchedAddButton(_ sender: UIButton) {
-        delegate?.addAlertViewController(self, didTabAddWithTextFields: inputViews)
+        guard let item = item else { return }
+        delegate?.addAlertViewController(self, didTabAddWithItem: item)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction private func touchedClearButton(_ sender: UIButton) {
