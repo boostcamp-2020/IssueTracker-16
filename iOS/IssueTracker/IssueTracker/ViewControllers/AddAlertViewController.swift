@@ -16,6 +16,7 @@ protocol AddAlertViewControllerDelegate: class {
 class AddAlertViewController: UIViewController {
     
     typealias InputView = AddAlertInputView
+    typealias ColorInputView = AddAlertColorInputView
     
     // MARK: - Views
     
@@ -53,17 +54,32 @@ class AddAlertViewController: UIViewController {
     // MARK: - Methods
     
     func addInputView(title: String, placeholder: String, text: String?) {
-        let inputView = InputView()
-        inputView.titleLabel.text = title
-        inputView.textField.placeholder = placeholder
-        if let text = text {
-            inputView.textField.text = text
+        var inputView: InputView
+        if title == "색상" {
+            inputView = ColorInputView()
+            guard let inputView = inputView as? ColorInputView else { return }
+            inputView.colorPicker.addTarget(self, action: #selector(touchedColorPicker), for: .touchUpInside)
+        } else if title == "완료날짜"{
+            inputView = AddAlertDateInputView()
+        } else {
+            inputView = InputView()
         }
+        inputView.configure(title: title, placeholder: placeholder, text: text)
         inputViews.append(inputView)
     }
     
     func addInputView(_ inputView: InputView) {
         
+    }
+    
+    // MARK: Selectors
+    
+    @objc private func touchedColorPicker() {
+        for inputView in inputViews {
+            guard let colorInputView = inputView as? ColorInputView else { continue }
+            self.present(colorInputView.picker, animated: true, completion: nil)
+            return
+        }
     }
     
     // MARK: Private

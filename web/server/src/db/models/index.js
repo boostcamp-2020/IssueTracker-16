@@ -20,8 +20,8 @@ const db = {
 const sequelize = new Sequelize(database, username, password, rest);
 
 Object.values(db)
-  .map((model) => model.init(sequelize))
-  .forEach((model) => model.associate(db));
+  .map(model => model.init(sequelize))
+  .forEach(model => model.associate(db));
 
 module.exports = {
   ...db,

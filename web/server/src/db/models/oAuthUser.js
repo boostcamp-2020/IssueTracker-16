@@ -21,7 +21,7 @@ module.exports = class OAuthUser extends Model {
         tableName: 'oauths_users',
         charset: 'utf8',
         collate: 'utf8_general_ci',
-      }
+      },
     );
   }
   static associate({ OAuthUser, User, OAuth }) {
