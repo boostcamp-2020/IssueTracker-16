@@ -1,9 +1,5 @@
 const milestoneService = require('../services/milestones');
-const {
-  BAD_REQUEST,
-  NO_CONTENTS,
-  VALIDATION_ERROR,
-} = require('../common/errorHandler');
+const { BAD_REQUEST, NO_CONTENTS } = require('../common/errorHandler');
 
 class MilestoneController {
   constructor({ milestoneService }) {
@@ -31,6 +27,12 @@ class MilestoneController {
       params: { num },
       body: payload,
     } = req;
+
+    const { dueDate } = payload;
+    if (isNaN(new Date(dueDate))) {
+      throw new Error(BAD_REQUEST);
+    }
+
     const [updated] = await this.milestoneService.update({ num, payload });
     if (!updated) {
       throw new Error(NO_CONTENTS);
