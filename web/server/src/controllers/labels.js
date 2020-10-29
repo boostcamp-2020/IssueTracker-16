@@ -1,4 +1,9 @@
 const labelService = require('../services/labels');
+const {
+  BAD_REQUEST,
+  NO_CONTENTS,
+  VALIDATION_ERROR,
+} = require('../common/errorHandler');
 
 class LabelController {
   constructor({ labelService }) {
