@@ -24,8 +24,8 @@ class MilestoneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dummyData = [
-            ("스프린트2", "이번 배포를 위한 스프린트", "2020년 6월 19일 까지", 13, 23),
-            ("스프린트3", "다음 배포를 위한 스프린트", "2020년 6월 26일 까지", 0, 0)
+            ("스프린트2", "이번 배포를 위한 스프린트", "2020-06-19", 13, 23),
+            ("스프린트3", "다음 배포를 위한 스프린트", "2020-06-26", 0, 0)
         ]
     }
     

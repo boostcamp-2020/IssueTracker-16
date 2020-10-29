@@ -59,6 +59,8 @@ class AddAlertViewController: UIViewController {
             inputView = ColorInputView()
             guard let inputView = inputView as? ColorInputView else { return }
             inputView.colorPicker.addTarget(self, action: #selector(touchedColorPicker), for: .touchUpInside)
+        } else if title == "완료날짜"{
+            inputView = AddAlertDateInputView()
         } else {
             inputView = InputView()
         }
