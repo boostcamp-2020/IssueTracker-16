@@ -16,4 +16,9 @@ app.use(cookieParser());
 
 app.use('/api', apiRouter);
 
+app.use((err, req, res, next) => {
+  const { status, message } = err;
+  res.status(status).json({ success: false, message });
+});
+
 module.exports = app;

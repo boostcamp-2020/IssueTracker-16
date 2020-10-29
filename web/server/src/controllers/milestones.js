@@ -1,4 +1,9 @@
 const milestoneService = require('../services/milestones');
+const {
+  BAD_REQUEST,
+  NO_CONTENTS,
+  VALIDATION_ERROR,
+} = require('../common/errorHandler');
 
 class MilestoneController {
   constructor({ milestoneService }) {
