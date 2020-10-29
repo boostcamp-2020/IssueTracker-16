@@ -36,15 +36,18 @@ class LabelViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let vc = segue.destination as? AddAlertViewController else { return }
-        if let sender = sender as? Label {
-            vc.addInputView(title: "제목", placeholder: "", text: sender.name)
-            vc.addInputView(title: "설명", placeholder: "", text: sender.description)
-            vc.addInputView(title: "색상", placeholder: "", text: sender.color)
+        vc.delegate = self
+        if let label = sender as? Label {
+            vc.addInputView(title: "제목", placeholder: "", text: label.name)
+            vc.addInputView(title: "설명", placeholder: "", text: label.description)
+            vc.addInputView(title: "색상", placeholder: "", text: label.color)
+            vc.item = label
         } else {
             vc.addInputView(title: "제목", placeholder: "", text: "")
             vc.addInputView(title: "설명", placeholder: "", text: "")
             vc.addInputView(title: "색상", placeholder: "", text: "")
         }
+        
     }
 }
 
@@ -89,4 +92,31 @@ extension LabelViewController: UICollectionViewDelegate {
         let index = indexPath.row
         performSegue(withIdentifier: "presentAddAlertViewContoller", sender: labels[index])
     }
+}
+
+extension LabelViewController: AddAlertViewControllerDelegate {
+    func addAlertViewControllerDidCancel(_ addAlertViewController: AddAlertViewController) {
+        
+    }
+    
+    func addAlertViewController(_ addAlertViewController: AddAlertViewController, didTabAddWithItem item: Inputable) {
+        guard
+            var label = item as? Label,
+            let index = labels.firstIndex(of: label),
+            addAlertViewController.inputViews.count == 3,
+            let name = addAlertViewController.inputViews[0].textField.text,
+            let description = addAlertViewController.inputViews[1].textField.text,
+            let color = addAlertViewController.inputViews[2].textField.text
+        else {
+            return
+        }
+        
+        label.name = name
+        label.description = description
+        label.color = color
+        labels[index] = label
+        labelCollectionView.reloadData()
+    }
+    
+    
 }

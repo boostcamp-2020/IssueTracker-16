@@ -7,10 +7,14 @@
 
 import UIKit
 
-protocol AddAlertViewControllerDelegate: class {
-    func addAlertViewController<InputView>(_ addAlertViewController: AddAlertViewController, didTabAddWithTextFields: [InputView])
+protocol Inputable {
     
+}
+
+protocol AddAlertViewControllerDelegate: class {
     func addAlertViewControllerDidCancel(_ addAlertViewController: AddAlertViewController)
+    
+    func addAlertViewController(_ addAlertViewController: AddAlertViewController, didTabAddWithItem item: Inputable)
 }
 
 class AddAlertViewController: UIViewController {
@@ -28,6 +32,7 @@ class AddAlertViewController: UIViewController {
     
     weak var delegate: AddAlertViewControllerDelegate?
     private(set) var inputViews = [InputView]()
+    var item: Inputable?
     
     // MARK: - View Life Cycle
     
@@ -94,7 +99,9 @@ class AddAlertViewController: UIViewController {
     }
     
     @IBAction private func touchedAddButton(_ sender: UIButton) {
-        delegate?.addAlertViewController(self, didTabAddWithTextFields: inputViews)
+        guard let item = item else { return }
+        delegate?.addAlertViewController(self, didTabAddWithItem: item)
+        dismiss(animated: true, completion: nil)
     }
     
     @IBAction private func touchedClearButton(_ sender: UIButton) {
