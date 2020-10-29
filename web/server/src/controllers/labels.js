@@ -24,6 +24,9 @@ class LabelController {
   getOne = async (req, res) => {
     const { num } = req.params;
     const label = await this.labelService.findOneByNum({ num });
+    if (!label) {
+      throw new Error(NO_CONTENTS);
+    }
     res.status(200).json(label);
   };
 
@@ -34,7 +37,7 @@ class LabelController {
     } = req;
     const [updated] = await this.labelService.update({ num, payload });
     if (!updated) {
-      return res.status(404).json({ success: false, message: 'no contents' });
+      throw new Error(NO_CONTENTS);
     }
     res.status(200).json({ success: true });
   };
