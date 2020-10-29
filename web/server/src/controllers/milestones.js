@@ -12,8 +12,15 @@ class MilestoneController {
         .status(400)
         .json({ success: false, message: 'Invalid date type' });
     }
-    await this.milestoneService.add({ title, dueDate, description });
-    res.status(200).json({ success: true });
+    try {
+      await this.milestoneService.add({ title, dueDate, description });
+      res.status(200).json({ success: true });
+    } catch (err) {
+      if (err.name === 'SequelizeUniqueConstraintError') {
+        return res.status(409).json({ success: false, message: err.message });
+      }
+      throw err;
+    }
   };
 
   getAll = async (req, res) => {
