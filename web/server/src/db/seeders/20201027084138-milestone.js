@@ -14,11 +14,17 @@ module.exports = {
     return queryInterface.bulkInsert('milestones', [
       {
         title: 'week 1',
-        due_date: new Date(),
+        due_date: new Date(2020, 10, 30),
+        description: '첫 번째 주차 입니다.',
       },
       {
         title: 'week 2',
+        due_date: new Date(2020, 11, 6),
         description: '두 번째 주차 입니다.',
+      },
+      {
+        title: 'week 3',
+        description: '세 번째 주차 입니다.',
       },
     ]);
   },
