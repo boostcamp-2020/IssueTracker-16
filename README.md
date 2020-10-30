@@ -29,58 +29,13 @@
 ## 기술 스택
 
 | 범위 | 스택 |
-|: --- :|: --- :|
+|:---:|:---:|
 | iOS | <img src="https://devicon.dev/devicon.git/icons/swift/swift-original.svg" alt="" height="50"/> |
 | WEB | <img src="https://devicon.dev/devicon.git/icons/javascript/javascript-original.svg" alt="javaScript" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/nodejs/nodejs-original-wordmark.svg" alt="" height="50"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://devicon.dev/devicon.git/icons/npm/npm-original-wordmark.svg" alt="" height="50"/> |
 | Front End | <img src="https://devicon.dev/devicon.git/icons/react/react-original.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/babel/babel-original.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/webpack/webpack-original.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/html5/html5-original.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/css3/css3-original.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/sass/sass-original.svg" alt="" height="50"/> |
 | Back End | <img src="https://devicon.dev/devicon.git/icons/express/express-original-wordmark.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/sequelize/sequelize-original-wordmark.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/mysql/mysql-original-wordmark.svg" alt="" height="50"/> |
 | Deploy | <img src="https://devicon.dev/devicon.git/icons/docker/docker-original-wordmark.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://raw.githubusercontent.com/docker/compose/master/logo.png" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://www.ncloud.com/public/img/logo-m.png" alt="" height="50"/> |
 | Version Control | <img src="https://devicon.dev/devicon.git/icons/github/github-original.svg" alt="" height="50"/> |
-
-<!--
-
-- iOS
-<div align="center">
-<img src="https://devicon.dev/devicon.git/icons/swift/swift-original.svg" alt="" height="50"/>
-</div>
-
-- web
-<div align="center">
-<img src="https://devicon.dev/devicon.git/icons/javascript/javascript-original.svg" alt="javaScript" height="50"/>
-<img src="https://devicon.dev/devicon.git/icons/nodejs/nodejs-original-wordmark.svg" alt="" height="50"/>
-<img src="https://devicon.dev/devicon.git/icons/npm/npm-original-wordmark.svg" alt="" height="50"/>
-</div>
-
-- web client
-<div align="center">
-<img src="https://devicon.dev/devicon.git/icons/react/react-original.svg" alt="" height="50"/>
-<img src="https://devicon.dev/devicon.git/icons/babel/babel-original.svg" alt="" height="50"/>
-<img src="https://devicon.dev/devicon.git/icons/webpack/webpack-original.svg" alt="" height="50"/>
-<img src="https://devicon.dev/devicon.git/icons/html5/html5-original.svg" alt="" height="50"/>
-<img src="https://devicon.dev/devicon.git/icons/css3/css3-original.svg" alt="" height="50"/>
-<img src="https://devicon.dev/devicon.git/icons/sass/sass-original.svg" alt="" height="50"/>
-</div>
-
-- web server
-<div align="center">
-<img src="https://devicon.dev/devicon.git/icons/express/express-original-wordmark.svg" alt="" height="50"/>
-<img src="https://devicon.dev/devicon.git/icons/sequelize/sequelize-original-wordmark.svg" alt="" height="50"/>
-<img src="https://devicon.dev/devicon.git/icons/mysql/mysql-original-wordmark.svg" alt="" height="50"/>
-</div>
-
-- deploy
-<div align="center">
-<img src="https://devicon.dev/devicon.git/icons/docker/docker-original-wordmark.svg" alt="" height="50"/>
-<img src="https://raw.githubusercontent.com/docker/compose/master/logo.png" alt="" height="50"/>
-<img src="https://www.ncloud.com/public/img/logo-m.png" alt="" height="50"/>
-</div>
-
-- version control
-<div align="center">
-<img src="https://devicon.dev/devicon.git/icons/github/github-original.svg" alt="" height="50"/>
-</div>
-
--->
 
 ## 프로젝트 구조 🗂
 ```
