@@ -2,6 +2,10 @@
 
 <div align="center" >
 
+![](https://media.giphy.com/media/du3J3cXyzhj75IOgvA/giphy.gif)
+
+# GitHub 이슈 관리 서비스 클론    
+
 ![Swift](https://img.shields.io/badge/swift-v5.0-orange?logo=swift)
 ![Javascript](https://img.shields.io/badge/javascript-ES6+-yellow?logo=javascript)
 ![react](https://img.shields.io/badge/react-17.0.1-9cf?logo=react)
