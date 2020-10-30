@@ -1,5 +1,5 @@
 const { Milestone, Issue, sequelize } = require('../db/models');
-const { findAllMilestones } = require('../common/query');
+const { countOpenedIssues, countClosedIssues } = require('../common/query');
 
 class MilestoneService {
   constructor({ Milestone, Issue, sequelize }) {
@@ -11,10 +11,16 @@ class MilestoneService {
   add = ({ title, dueDate, description }) =>
     this.Milestone.create({ title, dueDate, description });
 
-  findAll = async () => {
-    const [milestones] = await this.sequelize.query(findAllMilestones);
-    return milestones;
-  };
+  findAll = async () =>
+    this.Milestone.findAll({
+      attributes: {
+        include: [
+          [sequelize.literal(countOpenedIssues), 'openedIssues'],
+          [sequelize.literal(countClosedIssues), 'closedIssues'],
+        ],
+      },
+      group: ['num'],
+    });
 
   update = async ({ num, payload }) =>
     this.Milestone.update(payload, { where: { num } });
