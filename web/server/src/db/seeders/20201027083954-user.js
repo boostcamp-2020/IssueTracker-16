@@ -13,9 +13,14 @@ module.exports = {
      */
     return queryInterface.bulkInsert('users', [
       {
-        id: 'test',
-        password: 'test',
-        name: 'Test',
+        id: 'user01',
+        password: 'user01',
+        name: 'user01',
+      },
+      {
+        id: 'user02',
+        password: 'user02',
+        name: 'user02',
       },
     ]);
   },

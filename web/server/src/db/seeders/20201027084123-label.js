@@ -13,14 +13,19 @@ module.exports = {
      */
     return queryInterface.bulkInsert('labels', [
       {
-        name: 'bug',
-        color: 'ff0066',
-        description: '버그 수정',
+        name: 'feature',
+        color: 'c4dafa',
+        description: '기능에 대한 레이블입니다.',
       },
       {
-        name: 'documentation',
-        color: '0000ff',
-        description: '문서 작성',
+        name: 'bug',
+        color: 'f57f7d',
+        description: '수정할 버그에 대한 레이블입니다.',
+      },
+      {
+        name: 'good',
+        color: 'f5bd39',
+        description: '그냥 멋진 레이블입니다.',
       },
     ]);
   },
