@@ -16,19 +16,13 @@ class LabelViewController: UIViewController {
     
     @IBOutlet weak var labelCollectionView: UICollectionView!
     
-    // MARK: - Properties
-    
-    var dummyData = [(
-        name: String,
-        description: String,
-        color: UIColor
-    )]()
-    
     // MARK: - View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        labels.append(Label(id: 0, name: "feature", description: "기능에 대한 레이블입니다.", color: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).hexString))
+        labels.append(Label(id: 0, name: "bug", description: "수정할 버그에 대한 레이블입니다.", color: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1).hexString))
         interactor = LabelInteractor()
     }
     
@@ -42,15 +36,18 @@ class LabelViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let vc = segue.destination as? AddAlertViewController else { return }
-        if let sender = sender as? (name: String, description: String, color: UIColor) {
-            vc.addInputView(title: "제목", placeholder: "", text: sender.name)
-            vc.addInputView(title: "설명", placeholder: "", text: sender.description)
-            vc.addInputView(title: "색상", placeholder: "", text: sender.color.hexString)
+        vc.delegate = self
+        if let label = sender as? Label {
+            vc.addInputView(title: "제목", placeholder: "", text: label.name)
+            vc.addInputView(title: "설명", placeholder: "", text: label.description)
+            vc.addInputView(title: "색상", placeholder: "", text: label.color)
+            vc.item = label
         } else {
             vc.addInputView(title: "제목", placeholder: "", text: "")
             vc.addInputView(title: "설명", placeholder: "", text: "")
             vc.addInputView(title: "색상", placeholder: "", text: "")
         }
+        
     }
 }
 
@@ -63,7 +60,7 @@ extension LabelViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LabelCollectionViewCell.identifier, for: indexPath) as? LabelCollectionViewCell,
-              indexPath.row < dummyData.count else {
+              indexPath.row < labels.count else {
             return UICollectionViewCell()
         }
         
@@ -88,17 +85,38 @@ extension LabelViewController: UICollectionViewDelegateFlowLayout {
 
 extension LabelViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard indexPath.row < dummyData.count else {
+        guard indexPath.row < labels.count else {
             performSegue(withIdentifier: "presentAddAlertViewContoller", sender: nil)
             return
         }
         let index = indexPath.row
-        performSegue(withIdentifier: "presentAddAlertViewContoller",
-                     sender: (
-                        dummyData[index].name,
-                        dummyData[index].description,
-                        dummyData[index].color
-                     )
-        )
+        performSegue(withIdentifier: "presentAddAlertViewContoller", sender: labels[index])
     }
+}
+
+extension LabelViewController: AddAlertViewControllerDelegate {
+    func addAlertViewControllerDidCancel(_ addAlertViewController: AddAlertViewController) {
+        
+    }
+    
+    func addAlertViewController(_ addAlertViewController: AddAlertViewController, didTabAddWithItem item: Inputable) {
+        guard
+            var label = item as? Label,
+            let index = labels.firstIndex(of: label),
+            addAlertViewController.inputViews.count == 3,
+            let name = addAlertViewController.inputViews[0].textField.text,
+            let description = addAlertViewController.inputViews[1].textField.text,
+            let color = addAlertViewController.inputViews[2].textField.text
+        else {
+            return
+        }
+        
+        label.name = name
+        label.description = description
+        label.color = color
+        labels[index] = label
+        labelCollectionView.reloadData()
+    }
+    
+    
 }
