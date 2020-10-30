@@ -1,54 +1,51 @@
 const labelService = require('../services/labels');
+const { NO_CONTENTS } = require('../common/errorHandler');
 
 class LabelController {
   constructor({ labelService }) {
     this.labelService = labelService;
-
-    this.update = this.update.bind(this);
   }
 
-  async add(req, res) {
+  add = async (req, res) => {
     const { name, color, description } = req.body;
-    try {
-      await labelService.add({ name, color, description });
-      res.status(200).json({ success: true });
-    } catch (err) {
-      res.status(404).json({ success: false });
-    }
-  }
+    await this.labelService.add({ name, color, description });
+    res.status(200).json({ success: true });
+  };
 
-  async getAll(req, res) {
-    const labels = await labelService.findAll();
-    res.status(200).send(labels);
-  }
+  getAll = async (req, res) => {
+    const labels = await this.labelService.findAll();
+    res.status(200).json(labels);
+  };
 
-  async getOne(req, res) {
+  getOne = async (req, res) => {
     const { num } = req.params;
-    const label = await labelService.findOneByNum({ num });
+    const label = await this.labelService.findOneByNum({ num });
+    if (!label) {
+      throw new Error(NO_CONTENTS);
+    }
     res.status(200).json(label);
-  }
+  };
 
-  async update(req, res) {
+  update = async (req, res) => {
     const {
       params: { num },
       body: payload,
     } = req;
-    const updated = await this.labelService.update({ num, payload });
+    const [updated] = await this.labelService.update({ num, payload });
     if (!updated) {
-      return res.status(404).json({ success: false });
+      throw new Error(NO_CONTENTS);
     }
     res.status(200).json({ success: true });
-  }
+  };
 
-  async delete(req, res) {
+  delete = async (req, res) => {
     const { num } = req.params;
-    const deleted = await labelService.remove({ num });
-    if (deleted) {
-      res.status(200).json({ success: true });
-    } else {
-      res.status(404).json({ success: false });
+    const deleted = await this.labelService.remove({ num });
+    if (!deleted) {
+      throw new Error(NO_CONTENTS);
     }
-  }
+    res.status(200).json({ success: true });
+  };
 }
 
 module.exports = new LabelController({ labelService });
