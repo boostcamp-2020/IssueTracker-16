@@ -2,10 +2,9 @@
 
 ## 그룹 인원 🧑🏻‍💻
 
-J041 김석중, J100 시경덕, J113 양아림
+![image](https://user-images.githubusercontent.com/43347250/97613356-f33adf80-1a5b-11eb-9c94-2ff3ff37e386.png)
 
-S061 최철웅, S064 홍경표
-
+[@김석중](https://github.com/seokju2ng) [@시경덕](https://github.com/skid901) [@양아림](https://github.com/ahrimy) [@최철웅](https://github.com/chelwoong) [@홍경표](https://github.com/kyungpyoda) 
 ## 팀 그라운드 룰 ⚠️
 
 [공통](https://github.com/boostcamp-2020/IssueTracker-16/wiki/Week-1#git-브랜치-전략)
