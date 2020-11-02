@@ -89,7 +89,15 @@ open class Request {
                                         bodyEncoding: bodyEncoding,
                                         urlParameters: urlParameters,
                                         request: &request)
-                default: break
+                case let .requestParametersAndHeaders(bodyParameters,
+                                                      bodyEncoding,
+                                                      urlParameters,
+                                                      additionHeaders):
+                    try configureParameters(bodyParameters: bodyParameters,
+                                        bodyEncoding: bodyEncoding,
+                                        urlParameters: urlParameters,
+                                        additionHeaders: additionHeaders,
+                                        request: &request)
             }
         } catch {
             self.error = .failedParameterEncode(error)
@@ -103,7 +111,9 @@ open class Request {
     private func configureParameters(bodyParameters: Parameters?,
                              bodyEncoding: ParameterEncoding,
                              urlParameters: Parameters?,
+                             additionHeaders: HTTPHeaders? = nil,
                              request: inout URLRequest) throws {
+        request.allHTTPHeaderFields = additionHeaders
         do {
             try bodyEncoding.encode(urlRequest: &request,
                                     bodyParameters: bodyParameters,
