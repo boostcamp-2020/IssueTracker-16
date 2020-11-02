@@ -31,5 +31,8 @@ class IssueViewController: UIViewController {
     
     // MARK: IBActions
     
+    @IBAction func touchedAddIssueButton(_ sender: Any) {
+        // TODO: - 이슈 추가화면 push
+    }
 }
 

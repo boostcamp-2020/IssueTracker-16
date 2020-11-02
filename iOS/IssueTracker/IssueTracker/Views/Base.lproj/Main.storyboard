@@ -16,8 +16,29 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Pl-3U-2ex">
+                                <rect key="frame" x="344" y="743.5" width="50" height="49"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="2U8-4Q-uTn"/>
+                                    <constraint firstAttribute="height" constant="50" id="Dp7-F2-Jcy"/>
+                                    <constraint firstAttribute="width" constant="50" id="MJv-CW-j82"/>
+                                    <constraint firstAttribute="width" secondItem="0Pl-3U-2ex" secondAttribute="height" multiplier="1:1" id="c2a-E9-hLv"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="zIp-a1-fTW"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="plus.circle.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="touchedAddIssueButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rZK-BE-o3I"/>
+                                    <segue destination="cg3-T3-F2p" kind="presentation" id="1mN-ca-cf2"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="0Pl-3U-2ex" secondAttribute="trailing" constant="20" id="1Uf-c5-X93"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0Pl-3U-2ex" secondAttribute="bottom" constant="20" id="nXW-ch-BzT"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="이슈" id="HbE-1k-cwF">
                         <barButtonItem key="leftBarButtonItem" title="Filter" id="au0-SA-MrG">
@@ -31,6 +52,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1626.0869565217392" y="-210.26785714285714"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="n6A-oa-NiL">
+            <objects>
+                <viewController id="cg3-T3-F2p" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="SBx-5w-wwB">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Z5u-VO-E5k"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oeW-8D-VL8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2425" y="-887"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="BQ1-FK-C2T">
@@ -554,6 +590,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
