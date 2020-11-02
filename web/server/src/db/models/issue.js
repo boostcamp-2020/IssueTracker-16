@@ -34,13 +34,11 @@ module.exports = class Issue extends Model {
       },
     );
   }
-  static associate({ Issue, Comment, Assignee, IssueLabel, Milestone, User }) {
-    [Comment, Assignee, IssueLabel].forEach(model =>
-      Issue.hasMany(model, {
-        foreignKey: 'issue_num',
-        sourceKey: 'num',
-      }),
-    );
+  static associate({ Issue, Comment, Milestone, User, Label }) {
+    Issue.hasMany(Comment, {
+      foreignKey: 'issue_num',
+      sourceKey: 'num',
+    });
     Issue.belongsTo(Milestone, {
       foreignKey: 'milestone_num',
       targetKey: 'num',
@@ -48,6 +46,16 @@ module.exports = class Issue extends Model {
     Issue.belongsTo(User, {
       foreignKey: 'user_num',
       targetKey: 'num',
+    });
+    Issue.belongsToMany(User, {
+      as: 'assignee',
+      through: 'assignees',
+      foreignKey: 'issue_num',
+    });
+    Issue.belongsToMany(Label, {
+      as: 'labeled',
+      through: 'issues_labels',
+      foreignKey: 'issue_num',
     });
   }
 };

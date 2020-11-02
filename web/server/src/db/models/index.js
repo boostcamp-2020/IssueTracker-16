@@ -12,8 +12,6 @@ const db = {
   Comment: require('./comment'),
   Label: require('./label'),
   Milestone: require('./milestone'),
-  IssueLabel: require('./issueLabel'),
-  Assignee: require('./assignee'),
   Image: require('./image'),
 };
 
