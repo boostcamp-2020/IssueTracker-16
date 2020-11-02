@@ -36,6 +36,41 @@ extension UIView {
             return layer.cornerRadius
         }
     }
+    @IBInspectable var shadowColor: UIColor? {
+        set {
+            layer.shadowColor = newValue?.cgColor
+        }
+        get {
+            guard let shadowColor = layer.shadowColor else {
+                return nil
+            }
+            return UIColor(cgColor: shadowColor)
+        }
+    }
+    @IBInspectable var shadowOpacity: Float {
+        set {
+            layer.shadowOpacity = newValue
+        }
+        get {
+            return layer.shadowOpacity
+        }
+    }
+    @IBInspectable var shadowOffset: CGSize {
+        set {
+            layer.shadowOffset = newValue
+        }
+        get {
+            return layer.shadowOffset
+        }
+    }
+    @IBInspectable var shadowRadius: CGFloat {
+        set {
+            layer.shadowRadius = newValue
+        }
+        get {
+            return layer.shadowRadius
+        }
+    }
 }
 
 
