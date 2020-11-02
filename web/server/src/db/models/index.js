@@ -9,7 +9,7 @@ const db = {
   OAuth: require('./oAuth'),
   OAuthUser: require('./oAuthUser'),
   Issue: require('./issue'),
-  Reply: require('./reply'),
+  Comment: require('./comment'),
   Label: require('./label'),
   Milestone: require('./milestone'),
   IssueLabel: require('./issueLabel'),

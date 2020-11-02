@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
 
-module.exports = class Reply extends Model {
+module.exports = class Comment extends Model {
   static init(sequelize) {
     return super.init(
       {
@@ -9,7 +9,7 @@ module.exports = class Reply extends Model {
           autoIncrement: true,
           primaryKey: true,
         },
-        comment: {
+        content: {
           type: DataTypes.TEXT,
           allowNull: false,
         },
@@ -22,19 +22,19 @@ module.exports = class Reply extends Model {
       {
         sequelize,
         underscored: true,
-        modelName: 'Reply',
-        tableName: 'replies',
+        modelName: 'Comment',
+        tableName: 'comments',
         charset: 'utf8',
         collate: 'utf8_general_ci',
       },
     );
   }
-  static associate({ Reply, Issue, User }) {
-    Reply.belongsTo(Issue, {
+  static associate({ Comment, Issue, User }) {
+    Comment.belongsTo(Issue, {
       foreignKey: 'issue_num',
       targetKey: 'num',
     });
-    Reply.belongsTo(User, {
+    Comment.belongsTo(User, {
       foreignKey: 'user_num',
       targetKey: 'num',
     });

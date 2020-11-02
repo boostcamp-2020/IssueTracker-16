@@ -34,8 +34,8 @@ module.exports = class Issue extends Model {
       },
     );
   }
-  static associate({ Issue, Reply, Assignee, IssueLabel, Milestone, User }) {
-    [Reply, Assignee, IssueLabel].forEach(model =>
+  static associate({ Issue, Comment, Assignee, IssueLabel, Milestone, User }) {
+    [Comment, Assignee, IssueLabel].forEach(model =>
       Issue.hasMany(model, {
         foreignKey: 'issue_num',
         sourceKey: 'num',
