@@ -12,6 +12,7 @@ class IssueViewController: UIViewController {
     // MARK: - Constants
     
     // MARK: - Properties
+    let searchController = UISearchController(searchResultsController: nil)
     
     // MARK: - Views
     
@@ -19,7 +20,7 @@ class IssueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        navigationItem.searchController = searchController
     }
 
     // MARK: - Initialize
