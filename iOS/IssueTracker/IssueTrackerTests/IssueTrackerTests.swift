@@ -10,10 +10,15 @@ import XCTest
 
 class IssueTrackerTests: XCTestCase {
     
-    func testDateRegularExpression() throws {
+    // MARK: - Regular Expression
+    
+    func test_regularExpression_withValidDate_shouldNotBeNil() throws {
         let valid = "2020-12-31"
         XCTAssertNotNil(valid.dateRegEx)
         XCTAssertEqual(valid, valid.dateRegEx)
+    }
+    
+    func test_regularExpression_withInvalidDate_shouldBeNil() throws {
         let invalidFormat = "20201231"
         XCTAssertNil(invalidFormat.dateRegEx)
         let invalidMonth = "2020-13-31"
@@ -22,19 +27,27 @@ class IssueTrackerTests: XCTestCase {
         XCTAssertNil(invalidDay.dateRegEx)
     }
     
-    func testUIColorHexString() throws {
+    // MARK: - UIColor+String
+    
+    func test_UIColorToHexString_withRGBColorNotGrayScale() throws {
+        let redHex = UIColor.red.hexString
+        XCTAssertEqual(redHex, "#FF0000")
+        let blueHex = UIColor.blue.hexString
+        XCTAssertEqual(blueHex, "#0000FF")
+        let blackHex = UIColor.init(red: 0, green: 0, blue: 0, alpha: 1).hexString
+        XCTAssertEqual(blackHex, "#000000")
+    }
+    
+    func test_hexStringToUIColor_withValidString() throws {
         let redHex = "#FF0000"
-        let red = UIColor(hex: redHex)
-        XCTAssertEqual(red, UIColor.red)
-        XCTAssertEqual(redHex, red?.hexString)
-        let blueHex = "0000FF"
-        let blue = UIColor(hex: blueHex)
-        XCTAssertEqual(blue, UIColor.blue)
-        XCTAssertEqual("#" + blueHex, blue?.hexString)
-        let blackHex = "000000"
-        let black = UIColor(hex: blackHex)
-        XCTAssertEqual(black, UIColor.init(red: 0, green: 0, blue: 0, alpha: 1))
-        XCTAssertEqual("#" + blackHex, black?.hexString)
+        XCTAssertEqual(UIColor.init(hex: redHex), UIColor.red)
+        let blueHex = "#0000FF"
+        XCTAssertEqual(UIColor.init(hex: blueHex), UIColor.blue)
+        let blackHex = "#000000"
+        XCTAssertEqual(UIColor.init(hex: blackHex), UIColor.init(red: 0, green: 0, blue: 0, alpha: 1))
+    }
+    
+    func test_hexStringToUIColor_withInvalidString_shouldBeNil() throws {
         let invalidHex1 = "#FF00000"
         let invalid1 = UIColor(hex: invalidHex1)
         XCTAssertNil(invalid1)
