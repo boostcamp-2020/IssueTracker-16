@@ -13,6 +13,7 @@ class IssueViewController: UIViewController {
     
     // MARK: - Properties
     let searchController = UISearchController(searchResultsController: nil)
+    var interactor: IssueBusinessLogic?
     
     // MARK: - Views
     
@@ -20,8 +21,17 @@ class IssueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        interactor = IssueInteractor()
         navigationItem.searchController = searchController
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        interactor?.request(endPoint: .list, completionHandler: { (issues) in
+//            debugPrint("TODO: ")
+//        })
+    }
+    
 
     // MARK: - Initialize
 
