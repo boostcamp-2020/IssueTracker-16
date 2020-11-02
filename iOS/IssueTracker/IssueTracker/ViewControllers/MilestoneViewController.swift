@@ -11,14 +11,36 @@ class MilestoneViewController: UIViewController {
     
     // MARK: - Properties
     
+    var interactor: MilestoneBusinessLogic?
     var milestones = [Milestone]()
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var milestoneCollectionView: UICollectionView!
+    
+    
+    // MARK: - Views
+    
+    
     
     // MARK: - View Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        interactor = MilestoneInteractor()
         milestones.append(Milestone(id: 0, title: "스프린트2", dueDate: "2020-06-19", description: "이번 배포를 위한 스프린트", openIssues: 13, closedIssues: 23))
         milestones.append(Milestone(id: 0, title: "스프린트3", dueDate: "2020-06-26", description: "다음 배포를 위한 스프린트", openIssues: 0, closedIssues: 0))
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        activityIndicator.startAnimating()
+        interactor?.request(endPoint: .list, completionHandler: { [weak self] (milestones) in
+            self?.milestones = milestones
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self?.milestoneCollectionView.reloadData()
+                self?.activityIndicator.stopAnimating()
+            }
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
