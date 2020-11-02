@@ -29,7 +29,6 @@
 		4CBA2190254FEB70002BDCC3 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA218C254FEB70002BDCC3 /* Request.swift */; };
 		4CBA2191254FEB70002BDCC3 /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA218D254FEB70002BDCC3 /* DataRequest.swift */; };
 		4CBA2192254FEB70002BDCC3 /* DownloadRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA218E254FEB70002BDCC3 /* DownloadRequest.swift */; };
-		4CBA2193254FEB70002BDCC3 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA218F254FEB70002BDCC3 /* SessionManager.swift */; };
 		4CBA2198254FF0F8002BDCC3 /* MilestoneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2197254FF0F8002BDCC3 /* MilestoneInteractor.swift */; };
 		D40B30E225500FD400DEC3AA /* IssueInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B30E125500FD400DEC3AA /* IssueInteractor.swift */; };
 		D40B30E62550100800DEC3AA /* IssueEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B30E52550100800DEC3AA /* IssueEndPoint.swift */; };
