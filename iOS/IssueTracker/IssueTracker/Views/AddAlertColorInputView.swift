@@ -63,6 +63,8 @@ class AddAlertColorInputView: AddAlertInputView {
     }
 }
 
+// MARK: ColorPickerViewController Delegate
+
 extension AddAlertColorInputView: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         color = viewController.selectedColor

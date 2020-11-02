@@ -76,7 +76,9 @@ extension LabelViewController: UICollectionViewDataSource {
 // MARK: - UICollectionView Delegate FlowLayout
 
 extension LabelViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.bounds.width, height: 80)
     }
 }
@@ -117,6 +119,5 @@ extension LabelViewController: AddAlertViewControllerDelegate {
         labels[index] = label
         labelCollectionView.reloadData()
     }
-    
     
 }
