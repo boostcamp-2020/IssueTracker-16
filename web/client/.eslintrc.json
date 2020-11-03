@@ -5,14 +5,13 @@
     "extends": [
         "eslint:recommended",
         "plugin:prettier/recommended",
-        "react-app",
-        "react-app/jest"
+        "react-app"
     ],
     "parserOptions": {
         "ecmaVersion": 2020,
         "sourceType": "module",
         "ecmaFeatures": {
-            "jsx": false
+            "jsx": true
         }
     },
     "env": {

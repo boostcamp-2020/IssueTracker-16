@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require('sequelize');
-module.exports = class IssueLabel extends Model {
+
+module.exports = class Comment extends Model {
   static init(sequelize) {
     return super.init(
       {
@@ -8,27 +9,34 @@ module.exports = class IssueLabel extends Model {
           autoIncrement: true,
           primaryKey: true,
         },
+        content: {
+          type: DataTypes.TEXT,
+          allowNull: false,
+        },
+        isDeleted: {
+          type: DataTypes.BOOLEAN,
+          allowNull: false,
+          defaultValue: false,
+        },
       },
       {
         sequelize,
-        timestamps: false,
         underscored: true,
-        modelName: 'IssueLabel',
-        tableName: 'issues_labels',
+        modelName: 'Comment',
+        tableName: 'comments',
         charset: 'utf8',
         collate: 'utf8_general_ci',
       },
     );
   }
-  static associate({ IssueLabel, Issue, Label }) {
-    IssueLabel.belongsTo(Issue, {
+  static associate({ Comment, Issue, User }) {
+    Comment.belongsTo(Issue, {
       foreignKey: 'issue_num',
       targetKey: 'num',
     });
-    IssueLabel.belongsTo(Label, {
-      foreignKey: 'label_num',
+    Comment.belongsTo(User, {
+      foreignKey: 'user_num',
       targetKey: 'num',
-      onDelete: 'cascade',
     });
   }
 };

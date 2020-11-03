@@ -32,10 +32,11 @@ module.exports = class Label extends Model {
       },
     );
   }
-  static associate({ Label, IssueLabel }) {
-    Label.hasMany(IssueLabel, {
+  static associate({ Label, Issue }) {
+    Label.belongsToMany(Issue, {
+      as: 'labeling',
+      through: 'issues_labels',
       foreignKey: 'label_num',
-      sourceKey: 'num',
     });
   }
 };
