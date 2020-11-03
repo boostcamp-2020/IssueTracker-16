@@ -26,7 +26,7 @@
 		4C5139A3254934D20084F65F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139A0254934D20084F65F /* APIManager.swift */; };
 		4C5139A625493BB20084F65F /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139A525493BB20084F65F /* Label.swift */; };
 		4C5139AA25494E7E0084F65F /* LabelInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139A925494E7E0084F65F /* LabelInteractor.swift */; };
-		4CBA2190254FEB70002BDCC3 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA218C254FEB70002BDCC3 /* Request.swift */; };
+		4CBA21A5255002B8002BDCC3 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21A4255002B8002BDCC3 /* PaddingLabel.swift */; };
 		4CBA2191254FEB70002BDCC3 /* DataRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA218D254FEB70002BDCC3 /* DataRequest.swift */; };
 		4CBA2192254FEB70002BDCC3 /* DownloadRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA218E254FEB70002BDCC3 /* DownloadRequest.swift */; };
 		4CBA2198254FF0F8002BDCC3 /* MilestoneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2197254FF0F8002BDCC3 /* MilestoneInteractor.swift */; };
@@ -106,7 +106,7 @@
 		4C5139A0254934D20084F65F /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		4C5139A525493BB20084F65F /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Label.swift; path = IssueTracker/Services/Label.swift; sourceTree = SOURCE_ROOT; };
 		4C5139A925494E7E0084F65F /* LabelInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelInteractor.swift; sourceTree = "<group>"; };
-		4CBA218C254FEB70002BDCC3 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		4CBA21A4255002B8002BDCC3 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		4CBA218D254FEB70002BDCC3 /* DataRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataRequest.swift; sourceTree = "<group>"; };
 		4CBA218E254FEB70002BDCC3 /* DownloadRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadRequest.swift; sourceTree = "<group>"; };
 		4CBA218F254FEB70002BDCC3 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
@@ -527,7 +527,7 @@
 				D4EA0AA0254A9AEC0000CF67 /* AddAlertDateInputView.swift in Sources */,
 				D4DF604D254800C100765C0A /* AddAlertInputView.swift in Sources */,
 				4C5139A2254934D20084F65F /* LabelEndPoint.swift in Sources */,
-				D40B30E225500FD400DEC3AA /* IssueInteractor.swift in Sources */,
+				4CBA21A5255002B8002BDCC3 /* PaddingLabel.swift in Sources */,
 				4C51391D254847530084F65F /* BlockResponderView.swift in Sources */,
 				D42EC19D2549CEA600E57627 /* AddAlertColorInputView.swift in Sources */,
 				4C5139A3254934D20084F65F /* APIManager.swift in Sources */,
