@@ -5,9 +5,11 @@ export default function IssueListNav() {
   return (
     <div>
       <SearchBar />
-      <button>Labels</button>
-      <button>Milestones</button>
-      <button>New Issue</button>
+      <div>
+        <button>Labels</button>
+        <button>Milestones</button>
+        <button>New Issue</button>
+      </div>
     </div>
   );
 }
