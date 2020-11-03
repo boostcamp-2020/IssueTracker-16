@@ -22,6 +22,17 @@ class MilestoneService {
       group: ['num'],
     });
 
+  findOneByNum = async ({ num }) =>
+    this.Milestone.findByPk(num, {
+      attributes: {
+        include: [
+          [sequelize.literal(countOpenedIssues), 'openedIssues'],
+          [sequelize.literal(countClosedIssues), 'closedIssues'],
+        ],
+      },
+      group: ['num'],
+    });
+
   update = async ({ num, payload }) =>
     this.Milestone.update(payload, { where: { num } });
 
