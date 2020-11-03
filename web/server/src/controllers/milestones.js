@@ -20,6 +20,15 @@ class MilestoneController {
     res.status(200).json(milestones);
   };
 
+  getOne = async (req, res) => {
+    const { num } = req.params;
+    const milestone = await this.milestoneService.findOneByNum({ num });
+    if (!milestone) {
+      throw new Error(NO_CONTENTS);
+    }
+    res.status(200).json(milestone);
+  };
+
   update = async (req, res) => {
     const {
       params: { num },
