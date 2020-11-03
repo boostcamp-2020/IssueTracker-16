@@ -12,6 +12,8 @@ class IssueViewController: UIViewController {
     // MARK: - Constants
     
     // MARK: - Properties
+    let searchController = UISearchController(searchResultsController: nil)
+    var interactor: IssueBusinessLogic?
     
     // MARK: - Views
     
@@ -19,8 +21,17 @@ class IssueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        interactor = IssueInteractor()
+        navigationItem.searchController = searchController
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+//        interactor?.request(endPoint: .list, completionHandler: { (issues) in
+//            debugPrint("TODO: ")
+//        })
+    }
+    
 
     // MARK: - Initialize
 
@@ -30,5 +41,8 @@ class IssueViewController: UIViewController {
     
     // MARK: IBActions
     
+    @IBAction func touchedAddIssueButton(_ sender: Any) {
+        // TODO: - 이슈 추가화면 push
+    }
 }
 

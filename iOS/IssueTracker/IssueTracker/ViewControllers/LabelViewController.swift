@@ -13,14 +13,14 @@ class LabelViewController: UIViewController {
     
     var labels = [Label]()
     var interactor: LabelBusinessLogic?
-    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var labelCollectionView: UICollectionView!
     
     // MARK: - View Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+       
         labels.append(Label(id: 0, name: "feature", description: "기능에 대한 레이블입니다.", color: #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1).hexString))
         labels.append(Label(id: 0, name: "bug", description: "수정할 버그에 대한 레이블입니다.", color: #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 1).hexString))
         interactor = LabelInteractor()
@@ -28,9 +28,13 @@ class LabelViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        interactor?.request(endPoint: .list, completionHandler: { (labels) in
-            self.labels = labels
-            self.labelCollectionView.reloadData()
+        activityIndicator.startAnimating()
+        interactor?.request(endPoint: .list, completionHandler: { [weak self] (labels) in
+            self?.labels = labels
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self?.labelCollectionView.reloadData()
+                self?.activityIndicator.stopAnimating()
+            }
         })
     }
     
@@ -66,6 +70,7 @@ extension LabelViewController: UICollectionViewDataSource {
         
         let label = labels[indexPath.item]
         cell.labelName.setTitle(label.name, for: .normal)
+        
         cell.labelDescription.text = label.description
         cell.labelName.backgroundColor = UIColor(hex: label.color)
         
@@ -76,7 +81,9 @@ extension LabelViewController: UICollectionViewDataSource {
 // MARK: - UICollectionView Delegate FlowLayout
 
 extension LabelViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.bounds.width, height: 80)
     }
 }
@@ -117,6 +124,5 @@ extension LabelViewController: AddAlertViewControllerDelegate {
         labels[index] = label
         labelCollectionView.reloadData()
     }
-    
     
 }

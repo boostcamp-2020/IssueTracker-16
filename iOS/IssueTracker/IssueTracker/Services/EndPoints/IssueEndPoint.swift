@@ -1,14 +1,14 @@
 //
-//  MilestoneEndPoint.swift
+//  IssueEndPoint.swift
 //  IssueTracker
 //
-//  Created by woong on 2020/10/28.
+//  Created by 홍경표 on 2020/11/02.
 //
 
 import Foundation
 import NetworkService
 
-enum MilestoneEndPoint: EndPointType {
+enum IssueEndPoint: EndPointType {
     
     case list
     case create(body: Parameters)
@@ -24,10 +24,10 @@ enum MilestoneEndPoint: EndPointType {
     
     var path: String {
         switch self {
-            case .list: return "milestones"
+            case .list: return "issues"
             case .create, .delete: return ""
             case .update(let id, _):
-                return "milestones/\(id)"
+                return "issues/\(id)"
         }
     }
     

@@ -12,6 +12,14 @@ struct Label {
     var name: String
     var description: String
     var color: String
+    
+    var jsonData: [String: Any] {
+        return [
+            "name": name,
+            "description": description,
+            "color": color
+        ]
+    }
 }
 
 extension Label: Hashable {
