@@ -44,6 +44,7 @@ module.exports = class User extends Model {
       as: 'assigner',
       through: 'assignees',
       foreignKey: 'user_num',
+      timestamps: false,
     });
   }
 };
