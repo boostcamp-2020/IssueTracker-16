@@ -32,6 +32,7 @@
 		4CBA2198254FF0F8002BDCC3 /* MilestoneInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA2197254FF0F8002BDCC3 /* MilestoneInteractor.swift */; };
 		D40B30E225500FD400DEC3AA /* IssueInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B30E125500FD400DEC3AA /* IssueInteractor.swift */; };
 		D40B30E62550100800DEC3AA /* IssueEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B30E52550100800DEC3AA /* IssueEndPoint.swift */; };
+		D40B30FA255049F200DEC3AA /* IssueBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */; };
 		D42EC1912549180A00E57627 /* MilestoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC1902549180A00E57627 /* MilestoneViewController.swift */; };
 		D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */; };
 		D42EC19D2549CEA600E57627 /* AddAlertColorInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC19C2549CEA600E57627 /* AddAlertColorInputView.swift */; };
@@ -113,6 +114,7 @@
 		4CBA2197254FF0F8002BDCC3 /* MilestoneInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneInteractor.swift; sourceTree = "<group>"; };
 		D40B30E125500FD400DEC3AA /* IssueInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueInteractor.swift; sourceTree = "<group>"; };
 		D40B30E52550100800DEC3AA /* IssueEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueEndPoint.swift; sourceTree = "<group>"; };
+		D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBottomSheetViewController.swift; sourceTree = "<group>"; };
 		D42EC1902549180A00E57627 /* MilestoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneViewController.swift; sourceTree = "<group>"; };
 		D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCollectionViewCell.swift; sourceTree = "<group>"; };
 		D42EC19C2549CEA600E57627 /* AddAlertColorInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertColorInputView.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				4C5138FF2547CA5A0084F65F /* LabelViewController.swift */,
 				4C5139112548047A0084F65F /* AddAlertViewController.swift */,
 				D42EC1902549180A00E57627 /* MilestoneViewController.swift */,
+				D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				D4DF60252547AEF200765C0A /* IssueViewController.swift in Sources */,
 				D40B30E62550100800DEC3AA /* IssueEndPoint.swift in Sources */,
 				D44A9D09254FF1EC00ABA1A9 /* Issue.swift in Sources */,
+				D40B30FA255049F200DEC3AA /* IssueBottomSheetViewController.swift in Sources */,
 				4C5139A1254934D20084F65F /* MilestoneEndPoint.swift in Sources */,
 				4CBA2198254FF0F8002BDCC3 /* MilestoneInteractor.swift in Sources */,
 				D4660EA625487BE0002B392E /* LabelCollectionViewCell.swift in Sources */,
