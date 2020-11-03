@@ -37,6 +37,7 @@ module.exports = class Comment extends Model {
     Comment.belongsTo(User, {
       foreignKey: 'user_num',
       targetKey: 'num',
+      as: 'writer',
     });
   }
 };
