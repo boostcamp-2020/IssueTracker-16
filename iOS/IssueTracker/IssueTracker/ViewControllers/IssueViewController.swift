@@ -46,3 +46,8 @@ class IssueViewController: UIViewController {
     }
 }
 
+extension IssueViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return .init(width: view.bounds.width, height: 50)
+    }
+}
