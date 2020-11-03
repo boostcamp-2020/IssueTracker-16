@@ -1,17 +1,8 @@
 'use strict';
 
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-     */
-    return queryInterface.bulkInsert('comments', [
+  up: async queryInterface =>
+    queryInterface.bulkInsert('comments', [
       {
         content: '첫 번째 코멘트',
         issue_num: 1,
@@ -60,16 +51,6 @@ module.exports = {
         created_at: new Date(),
         updated_at: new Date(),
       },
-    ]);
-  },
-
-  down: async (queryInterface, Sequelize) => {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-    return queryInterface.bulkDelete('comments');
-  },
+    ]),
+  down: async queryInterface => queryInterface.bulkDelete('comments'),
 };
