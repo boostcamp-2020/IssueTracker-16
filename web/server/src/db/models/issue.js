@@ -56,6 +56,7 @@ module.exports = class Issue extends Model {
       as: 'labeled',
       through: 'issues_labels',
       foreignKey: 'issue_num',
+      timestamps: false,
     });
   }
 };
