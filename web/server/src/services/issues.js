@@ -1,7 +1,7 @@
-const { Issue, Label, Milestone, User } = require('../db/models');
+const { Issue, Label, Milestone, User, Comment } = require('../db/models');
 
 class IssueService {
-  constructor({ Issue, Label, Milestone, User }) {
+  constructor({ Issue, Label, Milestone, User, Comment }) {
     this.Issue = Issue;
     this.Label = Label;
     this.Milestone = Milestone;
@@ -13,4 +13,4 @@ class IssueService {
   findOne = async () => {};
 }
 
-module.exports = new IssueService({ Issue, Label, Milestone, User });
+module.exports = new IssueService({ Issue, Label, Milestone, User, Comment });
