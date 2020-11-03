@@ -6,6 +6,7 @@ class IssueService {
     this.Label = Label;
     this.Milestone = Milestone;
     this.User = User;
+    this.Comment = Comment;
   }
 
   findAll = async () => {};
