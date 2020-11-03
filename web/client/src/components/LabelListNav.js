@@ -7,7 +7,7 @@ export default function LabelListNav() {
         <button>Labels</button>
         <button>Milestones</button>
       </div>
-      <button>New Issue</button>
+      <button>New Label</button>
     </div>
   );
 }
