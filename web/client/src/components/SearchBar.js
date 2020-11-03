@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Issue() {
+export default function SearchBar() {
   return (
     <div>
       <span>[Filter] </span>

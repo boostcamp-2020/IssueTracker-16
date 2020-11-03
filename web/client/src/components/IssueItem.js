@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Issue() {
+export default function IssueItem() {
   return (
     <div>
       <span>[Title] </span>

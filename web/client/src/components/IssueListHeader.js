@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Issue() {
+export default function IssueListHeader() {
   return (
     <div>
       <span>[Author Filter] </span>
