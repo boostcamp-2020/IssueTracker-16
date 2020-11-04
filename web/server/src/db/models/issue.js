@@ -54,6 +54,7 @@ module.exports = class Issue extends Model {
       foreignKey: 'issue_num',
       through: 'assignments',
       as: 'assignees',
+      timestamps: false,
     });
     Issue.belongsToMany(Label, {
       foreignKey: 'issue_num',
