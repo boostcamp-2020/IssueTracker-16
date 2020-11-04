@@ -41,8 +41,6 @@ class IssueViewController: UIViewController {
     }
     
     // MARK: - Views
-    @IBOutlet weak var collectionView: UICollectionView!
-    
     @IBOutlet private weak var issueCollectionView: UICollectionView!
     @IBOutlet private weak var editBarButton: UIBarButtonItem!
     @IBOutlet private weak var filterBarButton: UIBarButtonItem!
@@ -78,11 +76,7 @@ class IssueViewController: UIViewController {
     
     @IBAction private func touchedAddIssueButton(_ sender: Any) {
         // TODO: - 이슈 추가화면 push
-        guard let indexPath = collectionView.indexPathsForVisibleItems.first else {
-            return
-        }
-        print(collectionView.indexPathsForVisibleItems)
-        print(collectionView.contentSize.height)
+        debugPrint("AddIssueButton Touched")
     }
     
     @IBAction private func touchedEditButton(_ sender: UIBarButtonItem) {
@@ -140,8 +134,6 @@ extension IssueViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let c = collectionView.dequeueReusableCell(withReuseIdentifier: "testCell", for: indexPath)
-//        return c
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IssueListCollectionViewCell.identfier, for: indexPath) as? IssueListCollectionViewCell else { return UICollectionViewCell() }
         
         switch currentState {
@@ -150,8 +142,6 @@ extension IssueViewController: UICollectionViewDataSource {
             default:
                 cell.currentState = .none
         }
-        
-        
         
         if selectedIssues.contains(indexPath) {
             cell.isSelected = true
@@ -167,7 +157,6 @@ extension IssueViewController: UICollectionViewDataSource {
 
 extension IssueViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
         guard currentState == .edit else { return }
         if !selectedIssues.contains(indexPath) {
             selectedIssues.insert(indexPath)
@@ -189,22 +178,3 @@ extension IssueViewController: UICollectionViewDelegateFlowLayout {
         return .init(width: view.bounds.width, height: 120)
     }
 }
-
-// MARK: - UICollectionView Delegate
-
-extension IssueViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    }
-}
-
-/*
- func addBottomSheetView() {
-     let bottomSheetVC = IssueBottomSheetViewController()
-     self.addChild(bottomSheetVC)
-     self.view.addSubview(bottomSheetVC.view)
-     bottomSheetVC.didMove(toParent: self)
-     let height = view.frame.height
-     let width = view.frame.width
-     bottomSheetVC.view.frame = CGRect(x: 0, y: view.frame.maxY, width: width, height: height)
- }
- */

@@ -69,11 +69,7 @@ extension LabelViewController: UICollectionViewDataSource {
         }
         
         let label = labels[indexPath.item]
-        cell.labelName.setTitle(label.name, for: .normal)
-        
-        cell.labelDescription.text = label.description
-        cell.labelName.backgroundColor = UIColor(hex: label.color)
-        
+        cell.configure(label: label)
         return cell
     }
 }

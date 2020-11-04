@@ -250,20 +250,6 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="44" id="zIp-a1-fTW"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="plus.circle.fill" catalog="system"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                        <size key="value" width="2" height="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                        <real key="value" value="3"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
-                                        <color key="value" systemColor="systemGray2Color"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="touchedAddIssueButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rZK-BE-o3I"/>
                                     <segue destination="cg3-T3-F2p" kind="presentation" id="1mN-ca-cf2"/>
@@ -591,19 +577,29 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0hb-Aj-Edp">
                                                     <rect key="frame" x="27.999999999999993" y="19.666666666666671" width="85.333333333333314" height="54"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gAX-Jj-hcj">
-                                                            <rect key="frame" x="0.0" y="0.0" width="55" height="22"/>
-                                                            <color key="backgroundColor" red="0.91414409875869751" green="0.59449648857116699" blue="0.33978945016860962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
-                                                            <state key="normal" title="name">
-                                                                <color key="titleColor" systemColor="labelColor"/>
-                                                            </state>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4r-np-wfI" customClass="GithubLabel" customModule="IssueTracker" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="44.666666666666664" height="21.666666666666668"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="5"/>
+                                                                    <integer key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                                                                    <real key="value" value="3"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                                                                    <real key="value" value="3"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                                                    <real key="value" value="0.0"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                                                    <real key="value" value="0.0"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
-                                                        </button>
+                                                        </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVP-Kq-4J7">
                                                             <rect key="frame" x="0.0" y="32" width="85.333333333333329" height="22"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -633,7 +629,7 @@
                                         <size key="customSize" width="414" height="93"/>
                                         <connections>
                                             <outlet property="labelDescription" destination="GVP-Kq-4J7" id="aza-A6-aie"/>
-                                            <outlet property="labelName" destination="gAX-Jj-hcj" id="OJt-Ve-vWq"/>
+                                            <outlet property="labelName" destination="u4r-np-wfI" id="uFg-iL-BcR"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -847,24 +843,32 @@
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="khs-bO-cE4">
                                                             <rect key="frame" x="0.0" y="0.0" width="121.33333333333333" height="22"/>
                                                             <subviews>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8gs-Pe-3ET">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="55" height="22"/>
-                                                                    <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
-                                                                    <state key="normal" title="name">
-                                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                    </state>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mOx-nK-UW6" customClass="PaddingLabel" customModule="IssueTracker" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="43.666666666666664" height="21.666666666666668"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <nil key="highlightedColor"/>
                                                                     <userDefinedRuntimeAttributes>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                                                            <real key="value" value="1"/>
+                                                                            <integer key="value" value="1"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                            <real key="value" value="5"/>
+                                                                            <integer key="value" value="5"/>
                                                                         </userDefinedRuntimeAttribute>
-                                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                                            <color key="value" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="topInset">
+                                                                            <real key="value" value="0.0"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="bottomInset">
+                                                                            <real key="value" value="0.0"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="leftInset">
+                                                                            <real key="value" value="3"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="rightInset">
+                                                                            <real key="value" value="3"/>
                                                                         </userDefinedRuntimeAttribute>
                                                                     </userDefinedRuntimeAttributes>
-                                                                </button>
+                                                                </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="dueDate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Mo-KJ-rBZ">
                                                                     <rect key="frame" x="70" y="0.0" width="51.333333333333343" height="22"/>
                                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
@@ -929,7 +933,7 @@
                                             <outlet property="milestoneClosedIssues" destination="xlF-ou-S25" id="wcd-G7-8vq"/>
                                             <outlet property="milestoneDescription" destination="Wz5-3a-jlN" id="dOc-7Z-JNc"/>
                                             <outlet property="milestoneDueDate" destination="9Mo-KJ-rBZ" id="J6X-FO-gT1"/>
-                                            <outlet property="milestoneName" destination="8gs-Pe-3ET" id="rjp-FW-lkR"/>
+                                            <outlet property="milestoneName" destination="mOx-nK-UW6" id="5na-LT-36I"/>
                                             <outlet property="milestoneOpenIssues" destination="Wtz-Sv-kGi" id="Xua-po-biu"/>
                                             <outlet property="milestonePercent" destination="Snb-Lp-CEk" id="BLf-7z-nQM"/>
                                         </connections>
@@ -1067,11 +1071,11 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dFs-Mp-xCJ"/>
+        <segue reference="0Xi-Du-NTR"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="check" width="512" height="512"/>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="chevron.up" catalog="system" width="128" height="72"/>
         <image name="face.smiling" catalog="system" width="128" height="121"/>
@@ -1085,9 +1089,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
