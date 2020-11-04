@@ -24,7 +24,15 @@ class IssueViewController: UIViewController {
         return issues
     }
     
-    private var selectedIssues = Set<IndexPath>()
+    private var selectedIssues = Set<IndexPath>() {
+        didSet {
+            if currentState == .none {
+                title = "이슈"
+            } else {
+                title = "\(selectedIssues.count)개 선택"
+            }
+        }
+    }
     
     // MARK: - Properties
     private let searchController = UISearchController(searchResultsController: nil)
@@ -91,13 +99,14 @@ class IssueViewController: UIViewController {
         } else if currentState == .none {
             currentState = .edit
         }
-        
+
         issueCollectionView.reloadData()
     }
         
     // MARK: Private
     
     private func updateEditingMode() {
+        title = "\(selectedIssues.count)개 선택"
         editBarButton.title = "Cancel"
         filterBarButton.title = "Select All"
         navigationItem.searchController = nil
@@ -106,6 +115,7 @@ class IssueViewController: UIViewController {
     }
     
     private func updateDefaultMode() {
+        title = "이슈"
         selectedIssues.removeAll()
         editBarButton.title = "Edit"
         filterBarButton.title = "Filter"
@@ -121,6 +131,38 @@ class IssueViewController: UIViewController {
         
         issueCollectionView.reloadData()
     }
+    
+    private func moveToUp() {
+        guard
+            var minIndexPath = issueCollectionView.indexPathsForVisibleItems.min(),
+            let cell = issueCollectionView.cellForItem(at: minIndexPath)
+        else {
+            return
+        }
+        
+        let isCompletlyVisible = issueCollectionView.bounds.contains(cell.frame)
+        if isCompletlyVisible, minIndexPath.item > 0 {
+            minIndexPath.item -= 1
+        }
+        issueCollectionView.scrollToItem(at: minIndexPath, at: .top, animated: true)
+    }
+    
+    private func moveToDown() {
+        guard
+            var maxIndexPath = issueCollectionView.indexPathsForVisibleItems.max(),
+            let cell = issueCollectionView.cellForItem(at: maxIndexPath)
+        else {
+            return
+        }
+        
+        let isCompletlyVisible = issueCollectionView.bounds.contains(cell.frame)
+        if isCompletlyVisible, maxIndexPath.item < issues.count {
+            maxIndexPath.item += 1
+        }
+        issueCollectionView.scrollToItem(at: maxIndexPath, at: .bottom, animated: true)
+    }
+    
+    
     
     // MARK: - Navigation
     
