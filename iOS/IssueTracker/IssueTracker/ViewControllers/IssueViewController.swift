@@ -94,7 +94,7 @@ class IssueViewController: UIViewController {
         } else if currentState == .none {
             currentState = .edit
         }
-        
+
         issueCollectionView.reloadData()
     }
         
@@ -184,8 +184,6 @@ extension IssueViewController: UICollectionViewDataSource {
             default:
                 cell.currentState = .none
         }
-        
-        
         
         if selectedIssues.contains(indexPath) {
             cell.isSelected = true
