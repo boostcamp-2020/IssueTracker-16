@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5138FF2547CA5A0084F65F /* LabelViewController.swift */; };
 		4C5139122548047A0084F65F /* AddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139112548047A0084F65F /* AddAlertViewController.swift */; };
-		4C513919254840570084F65F /* UIView+IBInspectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C513918254840570084F65F /* UIView+IBInspectable.swift */; };
 		4C51391D254847530084F65F /* BlockResponderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51391C254847530084F65F /* BlockResponderView.swift */; };
 		4C513980254934760084F65F /* NetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = 4C51397E254934760084F65F /* NetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C513983254934760084F65F /* NetworkService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C51397C254934760084F65F /* NetworkService.framework */; };
@@ -90,7 +89,6 @@
 /* Begin PBXFileReference section */
 		4C5138FF2547CA5A0084F65F /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
 		4C5139112548047A0084F65F /* AddAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertViewController.swift; sourceTree = "<group>"; };
-		4C513918254840570084F65F /* UIView+IBInspectable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+IBInspectable.swift"; sourceTree = "<group>"; };
 		4C51391C254847530084F65F /* BlockResponderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockResponderView.swift; sourceTree = "<group>"; };
 		4C51397C254934760084F65F /* NetworkService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C51397E254934760084F65F /* NetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkService.h; sourceTree = "<group>"; };
@@ -170,7 +168,6 @@
 		4C513917254840480084F65F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				4C513918254840570084F65F /* UIView+IBInspectable.swift */,
 				D4A060A72548877600FAF62B /* UIColor+hexString+random.swift */,
 				D476EB03254B28AC00CB4C09 /* String+dateRegEx.swift */,
 			);
@@ -531,7 +528,6 @@
 				4C51391D254847530084F65F /* BlockResponderView.swift in Sources */,
 				D42EC19D2549CEA600E57627 /* AddAlertColorInputView.swift in Sources */,
 				4C5139A3254934D20084F65F /* APIManager.swift in Sources */,
-				4C513919254840570084F65F /* UIView+IBInspectable.swift in Sources */,
 				4C5139122548047A0084F65F /* AddAlertViewController.swift in Sources */,
 				4C5139A625493BB20084F65F /* Label.swift in Sources */,
 				D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */,
