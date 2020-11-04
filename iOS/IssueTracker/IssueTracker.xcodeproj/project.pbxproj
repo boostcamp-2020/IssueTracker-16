@@ -55,6 +55,7 @@
 		D4DF604D254800C100765C0A /* AddAlertInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF604C254800C100765C0A /* AddAlertInputView.swift */; };
 		D4EA0AA0254A9AEC0000CF67 /* AddAlertDateInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA0A9F254A9AEC0000CF67 /* AddAlertDateInputView.swift */; };
 		D4EA0AA6254AB93C0000CF67 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA0AA5254AB93C0000CF67 /* Milestone.swift */; };
+		D4F8FCC025531713008C311E /* EditIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8FCBF25531713008C311E /* EditIssueViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,8 +114,8 @@
 		4CBA21B525503B47002BDCC3 /* MilestoneInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MilestoneInteractor.swift; sourceTree = "<group>"; };
 		4CBA21BA25503B63002BDCC3 /* IssueEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueEndPoint.swift; sourceTree = "<group>"; };
 		4CBA21C825512FD7002BDCC3 /* GithubLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLabel.swift; sourceTree = "<group>"; };
-		D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBottomSheetViewController.swift; sourceTree = "<group>"; };
 		4CBA21D625529331002BDCC3 /* ActionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCollectionViewCell.swift; sourceTree = "<group>"; };
+		D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBottomSheetViewController.swift; sourceTree = "<group>"; };
 		D42EC1902549180A00E57627 /* MilestoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneViewController.swift; sourceTree = "<group>"; };
 		D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCollectionViewCell.swift; sourceTree = "<group>"; };
 		D42EC19C2549CEA600E57627 /* AddAlertColorInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertColorInputView.swift; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 		D4DF604C254800C100765C0A /* AddAlertInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertInputView.swift; sourceTree = "<group>"; };
 		D4EA0A9F254A9AEC0000CF67 /* AddAlertDateInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertDateInputView.swift; sourceTree = "<group>"; };
 		D4EA0AA5254AB93C0000CF67 /* Milestone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
+		D4F8FCBF25531713008C311E /* EditIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIssueViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +345,7 @@
 				4C5139112548047A0084F65F /* AddAlertViewController.swift */,
 				D42EC1902549180A00E57627 /* MilestoneViewController.swift */,
 				D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */,
+				D4F8FCBF25531713008C311E /* EditIssueViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -528,6 +531,7 @@
 				D4DF60232547AEF200765C0A /* SceneDelegate.swift in Sources */,
 				4CBA21D725529331002BDCC3 /* ActionCollectionViewCell.swift in Sources */,
 				4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */,
+				D4F8FCC025531713008C311E /* EditIssueViewController.swift in Sources */,
 				4C5139AA25494E7E0084F65F /* LabelInteractor.swift in Sources */,
 				D4EA0AA0254A9AEC0000CF67 /* AddAlertDateInputView.swift in Sources */,
 				D4DF604D254800C100765C0A /* AddAlertInputView.swift in Sources */,
