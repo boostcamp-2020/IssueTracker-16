@@ -11,6 +11,14 @@ class IssueViewController: UIViewController {
     
     // MARK: - Constants
     
+    private var issues: [Issue] {
+        var issues = [Issue]()
+        for i in 0..<20 {
+            issues.append(Issue(id: i, title: "이슈 탭을 완성합시다"))
+        }
+        return issues
+    }
+    
     // MARK: - Properties
     let searchController = UISearchController(searchResultsController: nil)
     var interactor: IssueBusinessLogic?
@@ -48,7 +56,7 @@ class IssueViewController: UIViewController {
 
 extension IssueViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return issues.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
