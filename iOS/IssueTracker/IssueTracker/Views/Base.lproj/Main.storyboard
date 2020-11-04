@@ -227,7 +227,7 @@
                     <navigationItem key="navigationItem" title="이슈" id="HbE-1k-cwF">
                         <barButtonItem key="leftBarButtonItem" title="Filter" id="au0-SA-MrG">
                             <connections>
-                                <segue destination="xwq-lx-Svw" kind="presentation" id="Zc5-Oy-9c7"/>
+                                <segue destination="xwq-lx-Svw" kind="presentation" identifier="IssueViewControllerToFilterViewController" id="Zc5-Oy-9c7"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="iN5-m6-V2z">
@@ -273,6 +273,7 @@
                         <viewLayoutGuide key="safeArea" id="g0T-y4-t8i"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ndH-Jc-YdK"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V7T-Ti-FnN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

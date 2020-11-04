@@ -108,7 +108,24 @@ class IssueViewController: UIViewController {
         editingToolBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
     }
-
+    
+    private func selectAllIssues() {
+        for item in 0..<issues.count {
+            selectedIssues.insert(IndexPath(item: item, section: 0))
+        }
+        
+        issueCollectionView.reloadData()
+    }
+    
+    // MARK: - Navigation
+    
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        guard currentState != .edit else {
+            selectAllIssues()
+            return false
+        }
+        return true
+    }
 }
 
 extension IssueViewController: UICollectionViewDataSource {
@@ -126,6 +143,16 @@ extension IssueViewController: UICollectionViewDataSource {
                 cell.currentState = .none
         }
         
+        
+        
+        if selectedIssues.contains(indexPath) {
+            cell.isSelected = true
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+        } else {
+            cell.isSelected = false
+            collectionView.deselectItem(at: indexPath, animated: false)
+        }
+        
         return cell
     }
 }
@@ -134,10 +161,15 @@ extension IssueViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         guard currentState == .edit else { return }
+        if !selectedIssues.contains(indexPath) {
+            selectedIssues.insert(indexPath)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard currentState == .edit else { return }
         if selectedIssues.contains(indexPath) {
             selectedIssues.remove(indexPath)
-        } else {
-            selectedIssues.insert(indexPath)
         }
     }
 }
