@@ -44,6 +44,7 @@
 		D476EB0D254B298E00CB4C09 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476EB09254B298D00CB4C09 /* SessionManager.swift */; };
 		D476EB0E254B298E00CB4C09 /* DownloadRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476EB0A254B298D00CB4C09 /* DownloadRequest.swift */; };
 		D4A060A82548877600FAF62B /* UIColor+hexString+random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A060A72548877600FAF62B /* UIColor+hexString+random.swift */; };
+		D4AEAB7B25528C9000AED514 /* CommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AEAB7A25528C9000AED514 /* CommentCollectionViewCell.swift */; };
 		D4DF60212547AEF200765C0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60202547AEF200765C0A /* AppDelegate.swift */; };
 		D4DF60232547AEF200765C0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60222547AEF200765C0A /* SceneDelegate.swift */; };
 		D4DF60252547AEF200765C0A /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60242547AEF200765C0A /* IssueViewController.swift */; };
@@ -127,6 +128,7 @@
 		D476EB09254B298D00CB4C09 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		D476EB0A254B298D00CB4C09 /* DownloadRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadRequest.swift; sourceTree = "<group>"; };
 		D4A060A72548877600FAF62B /* UIColor+hexString+random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexString+random.swift"; sourceTree = "<group>"; };
+		D4AEAB7A25528C9000AED514 /* CommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCollectionViewCell.swift; sourceTree = "<group>"; };
 		D4DF601D2547AEF200765C0A /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DF60202547AEF200765C0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DF60222547AEF200765C0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				4CBA21A4255002B8002BDCC3 /* PaddingLabel.swift */,
 				4CBA21A8255007E8002BDCC3 /* IssueListCollectionViewCell.swift */,
 				4CBA21C825512FD7002BDCC3 /* GithubLabel.swift */,
+				D4AEAB7A25528C9000AED514 /* CommentCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				D4660EA625487BE0002B392E /* LabelCollectionViewCell.swift in Sources */,
 				4CBA21B625503B47002BDCC3 /* IssueInteractor.swift in Sources */,
 				D4DF60212547AEF200765C0A /* AppDelegate.swift in Sources */,
+				D4AEAB7B25528C9000AED514 /* CommentCollectionViewCell.swift in Sources */,
 				4CBA21A9255007E8002BDCC3 /* IssueListCollectionViewCell.swift in Sources */,
 				D4DF60232547AEF200765C0A /* SceneDelegate.swift in Sources */,
 				4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */,
