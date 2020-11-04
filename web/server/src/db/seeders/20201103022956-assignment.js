@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async queryInterface =>
-    queryInterface.bulkInsert('assignees', [
+    queryInterface.bulkInsert('assignments', [
       {
         issue_num: 1,
         user_num: 1,
@@ -20,5 +20,5 @@ module.exports = {
         user_num: 2,
       },
     ]),
-  down: async queryInterface => queryInterface.bulkDelete('assignees'),
+  down: async queryInterface => queryInterface.bulkDelete('assignments'),
 };

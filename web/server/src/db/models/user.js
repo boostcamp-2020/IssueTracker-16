@@ -41,9 +41,8 @@ module.exports = class User extends Model {
       }),
     );
     User.belongsToMany(Issue, {
-      as: 'assigner',
-      through: 'assignees',
       foreignKey: 'user_num',
+      through: 'assignments',
       timestamps: false,
     });
   }
