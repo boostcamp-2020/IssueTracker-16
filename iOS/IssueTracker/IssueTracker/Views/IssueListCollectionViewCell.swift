@@ -7,7 +7,7 @@
 
 import UIKit
 
-class IssueListCollectionViewCell: UICollectionViewCell {
+class IssueListCollectionViewCell: ActionCollectionViewCell {
     static let identfier = String(describing: IssueListCollectionViewCell.self)
     
     @IBOutlet weak var nameLabel: UILabel!
