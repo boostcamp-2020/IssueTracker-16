@@ -70,13 +70,18 @@ class IssueViewController: UIViewController {
 
     // MARK: - Methods
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let vc = segue.destination as? AddIssueViewController else { return }
+        let sender = sender as? Issue
+        vc.issue = sender
+    }
+    
     // MARK: Selectors
     
     // MARK: IBActions
     
     @IBAction private func touchedAddIssueButton(_ sender: Any) {
-        // TODO: - 이슈 추가화면 push
-        debugPrint("AddIssueButton Touched")
+        performSegue(withIdentifier: AddIssueViewController.fromSegueIdentifier, sender: nil)
     }
     
     @IBAction private func touchedEditButton(_ sender: UIBarButtonItem) {
@@ -157,7 +162,10 @@ extension IssueViewController: UICollectionViewDataSource {
 
 extension IssueViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard currentState == .edit else { return }
+        guard currentState == .edit else {
+            performSegue(withIdentifier: AddIssueViewController.fromSegueIdentifier, sender: issues[indexPath.row])
+            return
+        }
         if !selectedIssues.contains(indexPath) {
             selectedIssues.insert(indexPath)
         }

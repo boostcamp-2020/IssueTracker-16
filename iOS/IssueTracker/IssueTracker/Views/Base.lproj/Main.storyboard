@@ -252,7 +252,7 @@
                                 <state key="normal" backgroundImage="plus.circle.fill" catalog="system"/>
                                 <connections>
                                     <action selector="touchedAddIssueButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rZK-BE-o3I"/>
-                                    <segue destination="cg3-T3-F2p" kind="presentation" id="1mN-ca-cf2"/>
+                                    <segue destination="cg3-T3-F2p" kind="presentation" identifier="presentAddIssueViewController" id="1mN-ca-cf2"/>
                                 </connections>
                             </button>
                             <toolbar hidden="YES" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZqS-bb-gaL">
@@ -302,10 +302,10 @@
             </objects>
             <point key="canvasLocation" x="1221.7391304347827" y="-210.32608695652175"/>
         </scene>
-        <!--Edit Issue View Controller-->
+        <!--Add Issue View Controller-->
         <scene sceneID="n6A-oa-NiL">
             <objects>
-                <viewController id="cg3-T3-F2p" customClass="EditIssueViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cg3-T3-F2p" customClass="AddIssueViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SBx-5w-wwB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -390,6 +390,10 @@
                             <constraint firstItem="son-tP-Ubg" firstAttribute="top" secondItem="uwN-wX-qw2" secondAttribute="bottom" constant="10" id="zeW-fm-Lv4"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="issueID" destination="son-tP-Ubg" id="cEe-03-PjT"/>
+                        <outlet property="issueTitle" destination="kRU-Uo-sGC" id="3dJ-ez-BsE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeW-8D-VL8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
