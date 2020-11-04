@@ -24,7 +24,15 @@ class IssueViewController: UIViewController {
         return issues
     }
     
-    private var selectedIssues = Set<IndexPath>()
+    private var selectedIssues = Set<IndexPath>() {
+        didSet {
+            if currentState == .none {
+                title = "이슈"
+            } else {
+                title = "\(selectedIssues.count)개 선택"
+            }
+        }
+    }
     
     // MARK: - Properties
     private let searchController = UISearchController(searchResultsController: nil)
@@ -93,6 +101,7 @@ class IssueViewController: UIViewController {
     // MARK: Private
     
     private func updateEditingMode() {
+        title = "\(selectedIssues.count)개 선택"
         editBarButton.title = "Cancel"
         filterBarButton.title = "Select All"
         navigationItem.searchController = nil
@@ -101,6 +110,7 @@ class IssueViewController: UIViewController {
     }
     
     private func updateDefaultMode() {
+        title = "이슈"
         selectedIssues.removeAll()
         editBarButton.title = "Edit"
         filterBarButton.title = "Filter"
