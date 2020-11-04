@@ -3,7 +3,13 @@ import React from 'react';
 import Label from '../labelList/Label';
 
 export default function IssueItem({
-  issue: { title, author, labels, assignees, milestone, isClosed, createdAt },
+  title,
+  author,
+  labels,
+  assignees,
+  milestone,
+  isClosed,
+  createdAt,
 }) {
   return (
     <div>
@@ -11,12 +17,12 @@ export default function IssueItem({
       <span>{title} </span>
       <span>
         {labels.map(label => (
-          <Label key={label.num} label={label} />
+          <Label key={label.num} {...label} />
         ))}
       </span>
       <span>
         {assignees.map(a => (
-          <div>{a.id}</div>
+          <div key={a.num}>{a.id}</div>
         ))}
       </span>
       <br />

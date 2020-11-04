@@ -14,7 +14,7 @@ export default function IssueListBody() {
     <div>
       {!issues.length && <div>기다리는 중입니다...</div>}
       {issues.length &&
-        issues.map(issue => <IssueItem key={issue.num} issue={issue} />)}
+        issues.map(issue => <IssueItem key={issue.num} {...issue} />)}
     </div>
   );
 }
