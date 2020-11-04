@@ -7,28 +7,41 @@
 
 import UIKit
 
-class IssueListCollectionViewCell: UICollectionViewCell {
+class IssueListCollectionViewCell: ActionCollectionViewCell {
     static let identfier = String(describing: IssueListCollectionViewCell.self)
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var labelsBackgroundView: UIView!
+    
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var editingView: UIView!
+    @IBOutlet private weak var editingButton: UIButton!
+    
+    override var isSelected: Bool {
+        didSet {
+            editingButton.isSelected = isSelected
+        }
+    }
+    var currentState: ActionState = .none
+    
+    private func changeEditMode() {
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.allowAnimatedContent]) {
+            
+            self.contentView.transform = CGAffineTransform(translationX: self.editingView.frame.width, y: 0)
+        }
+    }
+    
+    private func changeNone() {
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.allowAnimatedContent]) {
+            self.contentView.transform = .identity
+        }
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-    }
-    
-    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
-        
-        // top + spacing + bottom
-        let padding: CGFloat = 10 + 6 + 10
-        
-        
-        let contentsSize = CGSize(width: targetSize.width, height: nameLabel.frame.height + descriptionLabel.frame.height + padding)
-        
-        let labelsSize = CGSize(width: targetSize.width, height: labelsBackgroundView.frame.height + padding)
-        
-        // FIXME: 둘 중 큰 걸 셀 높이로 잡도록 하고 있는데 더 스마트한 방법이 없을지...
-        return (contentsSize.height > labelsSize.height) ? contentsSize : labelsSize
+        if currentState == .edit {
+            changeEditMode()
+        } else {
+            changeNone()
+        }
     }
 }
