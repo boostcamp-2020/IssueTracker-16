@@ -1,6 +1,6 @@
 import React from 'react';
-import LabelListNav from '../components/LabelListNav';
-import LabelList from '../components/LabelList';
+import LabelListNav from '../components/labelList/LabelListNav';
+import LabelList from '../components/labelList/LabelList';
 
 export default function LabelListPage() {
   return (

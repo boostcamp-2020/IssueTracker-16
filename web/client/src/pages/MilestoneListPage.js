@@ -1,6 +1,6 @@
 import React from 'react';
-import MilestoneListNav from '../components/MilestoneListNav';
-import MilestoneList from '../components/MilestoneList';
+import MilestoneListNav from '../components/milestoneList/MilestoneListNav';
+import MilestoneList from '../components/milestoneList/MilestoneList';
 
 export default function MilestoneListPage() {
   return (
