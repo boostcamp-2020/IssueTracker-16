@@ -11,6 +11,11 @@ class IssueViewController: UIViewController {
     
     // MARK: - Constants
     
+    enum State {
+        case none
+        case edit
+    }
+    
     private var issues: [Issue] {
         var issues = [Issue]()
         for i in 0..<20 {
@@ -19,11 +24,28 @@ class IssueViewController: UIViewController {
         return issues
     }
     
+    private var selectedIssues = Set<IndexPath>()
+    
     // MARK: - Properties
-    let searchController = UISearchController(searchResultsController: nil)
-    var interactor: IssueBusinessLogic?
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var interactor: IssueBusinessLogic?
+    private(set) var currentState: State = .none {
+        didSet {
+            switch currentState {
+                case .edit:
+                    updateEditingMode()
+                default:
+                    updateDefaultMode()
+            }
+        }
+    }
     
     // MARK: - Views
+    
+    @IBOutlet private weak var issueCollectionView: UICollectionView!
+    @IBOutlet private weak var editBarButton: UIBarButtonItem!
+    @IBOutlet private weak var filterBarButton: UIBarButtonItem!
+    @IBOutlet private weak var editingToolBar: UIToolbar!
     
     // MARK: - View Life Cycle
     
@@ -31,6 +53,7 @@ class IssueViewController: UIViewController {
         super.viewDidLoad()
         interactor = IssueInteractor()
         navigationItem.searchController = searchController
+        configureCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,9 +62,12 @@ class IssueViewController: UIViewController {
 //            debugPrint("TODO: ")
 //        })
     }
-    
 
     // MARK: - Initialize
+    
+    private func configureCollectionView() {
+        issueCollectionView.allowsMultipleSelection = true
+    }
 
     // MARK: - Methods
     
@@ -49,9 +75,40 @@ class IssueViewController: UIViewController {
     
     // MARK: IBActions
     
-    @IBAction func touchedAddIssueButton(_ sender: Any) {
+    @IBAction private func touchedAddIssueButton(_ sender: Any) {
         // TODO: - 이슈 추가화면 push
     }
+    
+    @IBAction private func touchedEditButton(_ sender: UIBarButtonItem) {
+        
+        if currentState == .edit {
+            currentState = .none
+        } else if currentState == .none {
+            currentState = .edit
+        }
+        
+        issueCollectionView.reloadData()
+    }
+        
+    // MARK: Private
+    
+    private func updateEditingMode() {
+        editBarButton.title = "Cancel"
+        filterBarButton.title = "Select All"
+        navigationItem.searchController = nil
+        editingToolBar.isHidden = false
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    private func updateDefaultMode() {
+        selectedIssues.removeAll()
+        editBarButton.title = "Edit"
+        filterBarButton.title = "Filter"
+        navigationItem.searchController = searchController
+        editingToolBar.isHidden = true
+        tabBarController?.tabBar.isHidden = false
+    }
+
 }
 
 extension IssueViewController: UICollectionViewDataSource {
@@ -62,10 +119,27 @@ extension IssueViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IssueListCollectionViewCell.identfier, for: indexPath) as? IssueListCollectionViewCell else { return UICollectionViewCell() }
         
+        switch currentState {
+            case .edit:
+                cell.currentState = .edit
+            default:
+                cell.currentState = .none
+        }
+        
         return cell
     }
-    
-    
+}
+
+extension IssueViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard currentState == .edit else { return }
+        if selectedIssues.contains(indexPath) {
+            selectedIssues.remove(indexPath)
+        } else {
+            selectedIssues.insert(indexPath)
+        }
+    }
 }
 
 extension IssueViewController: UICollectionViewDelegateFlowLayout {
