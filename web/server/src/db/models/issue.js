@@ -38,24 +38,28 @@ module.exports = class Issue extends Model {
     Issue.hasMany(Comment, {
       foreignKey: 'issue_num',
       sourceKey: 'num',
+      as: 'comments',
     });
     Issue.belongsTo(Milestone, {
       foreignKey: 'milestone_num',
       targetKey: 'num',
+      as: 'milestone',
     });
     Issue.belongsTo(User, {
       foreignKey: 'user_num',
       targetKey: 'num',
+      as: 'author',
     });
     Issue.belongsToMany(User, {
-      as: 'assignee',
-      through: 'assignees',
       foreignKey: 'issue_num',
+      through: 'assignments',
+      as: 'assignees',
+      timestamps: false,
     });
     Issue.belongsToMany(Label, {
-      as: 'labeled',
-      through: 'issues_labels',
       foreignKey: 'issue_num',
+      through: 'issues_labels',
+      as: 'labels',
       timestamps: false,
     });
   }

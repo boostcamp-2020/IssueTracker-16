@@ -9,7 +9,48 @@ class IssueService {
     this.Comment = Comment;
   }
 
-  findAll = async () => {};
+  findAll = async () => {
+    const issues = await this.Issue.findAll({
+      attributes: ['num', 'title', 'createdAt', 'isClosed'],
+      where: {
+        isDeleted: false,
+        isClosed: false,
+      },
+      include: [
+        {
+          model: this.User,
+          as: 'author',
+          attributes: ['num', 'id'],
+        },
+        {
+          model: this.Milestone,
+          as: 'milestone',
+          attributes: ['num', 'title'],
+        },
+        {
+          model: this.Comment,
+          as: 'comments',
+          attributes: ['content'],
+          limit: 1,
+        },
+        {
+          model: this.Label,
+          as: 'labels',
+          attributes: ['num', 'name', 'color'],
+        },
+        {
+          model: this.User,
+          as: 'assignees',
+          attributes: ['num', 'id'],
+        },
+      ],
+    });
+    return issues.map(issue => {
+      issue.dataValues.comment = issue.dataValues.comments[0];
+      delete issue.dataValues.comments;
+      return issue;
+    });
+  };
 
   findOne = async () => {};
 }
