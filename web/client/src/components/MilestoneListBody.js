@@ -3,7 +3,7 @@ import MilestoneItem from './MilestoneItem';
 
 export default function MilestoneListBody() {
   return (
-    <div className="milestone-list-body">
+    <div>
       <MilestoneItem />
       <MilestoneItem />
     </div>

@@ -3,7 +3,7 @@ import MilestoneProgress from './MilestoneProgress';
 
 export default function MilestoneItem() {
   return (
-    <div className="milestone-item">
+    <div>
       <div>
         <div>[Title]</div>
         <div>[Due date]</div>

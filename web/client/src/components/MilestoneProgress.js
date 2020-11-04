@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function MilestoneProgress() {
   return (
-    <div className="milestone-progress">
+    <div>
       [Progress bar]
       <div>
         <span>[Complete percentage] </span>

@@ -4,7 +4,7 @@ import MilestoneListBody from './MilestoneListBody';
 
 export default function MilestoneList() {
   return (
-    <div className="milestone-list">
+    <div>
       <MilestoneListHeader />
       <MilestoneListBody />
     </div>

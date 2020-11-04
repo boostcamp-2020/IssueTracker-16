@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function MilestoneListNav() {
   return (
-    <div className="milestone-list-nav">
+    <div>
       <div>
         <button>Labels</button>
         <button>Milestones</button>
