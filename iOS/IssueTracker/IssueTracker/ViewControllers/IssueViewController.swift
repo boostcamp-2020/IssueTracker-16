@@ -88,10 +88,6 @@ class IssueViewController: UIViewController {
     
     // MARK: IBActions
     
-    @IBAction private func touchedAddIssueButton(_ sender: Any) {
-        performSegue(withIdentifier: AddIssueViewController.fromSegueIdentifier, sender: nil)
-    }
-    
     @IBAction private func touchedEditButton(_ sender: UIBarButtonItem) {
         
         if currentState == .edit {
@@ -173,6 +169,8 @@ class IssueViewController: UIViewController {
         }
         return true
     }
+    
+    
 }
 
 extension IssueViewController: UICollectionViewDataSource {
@@ -197,6 +195,7 @@ extension IssueViewController: UICollectionViewDataSource {
             cell.isSelected = false
             collectionView.deselectItem(at: indexPath, animated: false)
         }
+        cell.addSwipeGestures()
         
         return cell
     }

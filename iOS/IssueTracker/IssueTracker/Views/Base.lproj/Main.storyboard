@@ -141,6 +141,19 @@
                                                         <constraint firstItem="ho0-JB-Mfb" firstAttribute="centerY" secondItem="NJb-fE-LS2" secondAttribute="centerY" id="eCR-So-lp7"/>
                                                     </constraints>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mse-SH-Mb4">
+                                                    <rect key="frame" x="414" y="0.0" width="80" height="98"/>
+                                                    <color key="backgroundColor" systemColor="systemRedColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="bFW-ft-YiY"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Delete">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="touchedDeleteButton:" destination="0Ff-T7-98o" eventType="touchUpInside" id="YDB-6c-38W"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="0Nm-r1-8Mx" firstAttribute="top" secondItem="va4-lt-8TH" secondAttribute="bottom" constant="4" id="0uo-HI-ojc"/>
@@ -150,16 +163,20 @@
                                                 <constraint firstItem="0Nm-r1-8Mx" firstAttribute="leading" secondItem="va4-lt-8TH" secondAttribute="leading" id="IaL-SC-0ge"/>
                                                 <constraint firstItem="0Nm-r1-8Mx" firstAttribute="trailing" secondItem="va4-lt-8TH" secondAttribute="trailing" id="Lo8-Ee-a74"/>
                                                 <constraint firstItem="va4-lt-8TH" firstAttribute="top" secondItem="4bf-UN-f0a" secondAttribute="top" constant="10" id="Nuh-Nw-n2j"/>
+                                                <constraint firstItem="Mse-SH-Mb4" firstAttribute="top" secondItem="4bf-UN-f0a" secondAttribute="top" id="O1C-7J-REl"/>
+                                                <constraint firstItem="Mse-SH-Mb4" firstAttribute="leading" secondItem="4bf-UN-f0a" secondAttribute="trailing" id="Psy-0X-K1S"/>
                                                 <constraint firstAttribute="trailing" secondItem="PfM-jN-3bn" secondAttribute="trailing" constant="16" id="fQd-Uc-0qS"/>
                                                 <constraint firstAttribute="bottom" secondItem="NJb-fE-LS2" secondAttribute="bottom" id="gEB-NG-cpw"/>
                                                 <constraint firstAttribute="leading" secondItem="NJb-fE-LS2" secondAttribute="trailing" id="mhI-Sf-YQa"/>
                                                 <constraint firstItem="va4-lt-8TH" firstAttribute="leading" secondItem="4bf-UN-f0a" secondAttribute="leading" constant="16" id="sGx-gv-fRQ"/>
                                                 <constraint firstItem="NJb-fE-LS2" firstAttribute="top" secondItem="4bf-UN-f0a" secondAttribute="top" id="uta-Cs-DE4"/>
                                                 <constraint firstItem="PfM-jN-3bn" firstAttribute="top" secondItem="va4-lt-8TH" secondAttribute="top" id="ven-EM-W7D"/>
+                                                <constraint firstAttribute="bottom" secondItem="Mse-SH-Mb4" secondAttribute="bottom" id="ySl-Nz-JaY"/>
                                             </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="414" height="98"/>
                                         <connections>
+                                            <outlet property="deleteButton" destination="Mse-SH-Mb4" id="ljd-rI-pdN"/>
                                             <outlet property="descriptionLabel" destination="0Nm-r1-8Mx" id="HSw-na-j89"/>
                                             <outlet property="editingButton" destination="ho0-JB-Mfb" id="8xM-Vx-rhg"/>
                                             <outlet property="editingView" destination="NJb-fE-LS2" id="SuK-fG-2Hh"/>
@@ -251,7 +268,6 @@
                                 </constraints>
                                 <state key="normal" backgroundImage="plus.circle.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="touchedAddIssueButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rZK-BE-o3I"/>
                                     <segue destination="cg3-T3-F2p" kind="presentation" identifier="presentAddIssueViewController" id="1mN-ca-cf2"/>
                                 </connections>
                             </button>
@@ -1183,6 +1199,9 @@
         </systemColor>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
