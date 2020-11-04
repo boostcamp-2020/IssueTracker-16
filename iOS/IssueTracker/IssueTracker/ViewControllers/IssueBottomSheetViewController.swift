@@ -11,6 +11,7 @@ class IssueBottomSheetViewController: UIViewController {
     
     // MARK: - Properties
     
+    static let identifier: String = String(describing: IssueBottomSheetViewController.self)
     private enum State {
         case partial
         case full
@@ -26,6 +27,12 @@ class IssueBottomSheetViewController: UIViewController {
         UIColor.systemBackground.getWhite(&grayScale, alpha: nil)
         return grayScale
     }()
+    
+    // MARK: Views
+    
+    @IBOutlet weak var addCommentButton: UIButton!
+    @IBOutlet weak var upButton: UIButton!
+    @IBOutlet weak var downButton: UIButton!
     
     // MARK: - View Life Cycle
     
@@ -53,18 +60,8 @@ class IssueBottomSheetViewController: UIViewController {
         view.layer.shadowOpacity = 0.2
         view.layer.shadowOffset = CGSize(width: 0, height: -3)
         view.layer.shadowRadius = 5
-        let btn = UIButton(type: .system)
-        btn.setTitle("TEST", for: .normal)
-        btn.backgroundColor = .systemGreen
-        btn.addTarget(self, action: #selector(test), for: .touchUpInside)
-        self.view.addSubview(btn)
-        btn.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            btn.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            btn.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            btn.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50),
-            btn.heightAnchor.constraint(equalToConstant: 50)
-        ])
+        addCommentButton.layer.cornerRadius = 5
+        
     }
     
     private func addTopShortLine() {

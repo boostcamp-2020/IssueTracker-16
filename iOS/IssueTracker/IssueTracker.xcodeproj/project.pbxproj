@@ -44,6 +44,7 @@
 		D476EB0D254B298E00CB4C09 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476EB09254B298D00CB4C09 /* SessionManager.swift */; };
 		D476EB0E254B298E00CB4C09 /* DownloadRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476EB0A254B298D00CB4C09 /* DownloadRequest.swift */; };
 		D4A060A82548877600FAF62B /* UIColor+hexString+random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A060A72548877600FAF62B /* UIColor+hexString+random.swift */; };
+		D4A598E02552A0DE00E825D3 /* IssueBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */; };
 		D4AEAB7B25528C9000AED514 /* CommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AEAB7A25528C9000AED514 /* CommentCollectionViewCell.swift */; };
 		D4DF60212547AEF200765C0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60202547AEF200765C0A /* AppDelegate.swift */; };
 		D4DF60232547AEF200765C0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60222547AEF200765C0A /* SceneDelegate.swift */; };
@@ -107,13 +108,13 @@
 		4C5139A0254934D20084F65F /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		4C5139A525493BB20084F65F /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Label.swift; path = IssueTracker/Services/Label.swift; sourceTree = SOURCE_ROOT; };
 		4C5139A925494E7E0084F65F /* LabelInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelInteractor.swift; sourceTree = "<group>"; };
-		D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBottomSheetViewController.swift; sourceTree = "<group>"; };
 		4CBA21A4255002B8002BDCC3 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		4CBA21A8255007E8002BDCC3 /* IssueListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewCell.swift; sourceTree = "<group>"; };
 		4CBA21B425503B47002BDCC3 /* IssueInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueInteractor.swift; sourceTree = "<group>"; };
 		4CBA21B525503B47002BDCC3 /* MilestoneInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MilestoneInteractor.swift; sourceTree = "<group>"; };
 		4CBA21BA25503B63002BDCC3 /* IssueEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueEndPoint.swift; sourceTree = "<group>"; };
 		4CBA21C825512FD7002BDCC3 /* GithubLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLabel.swift; sourceTree = "<group>"; };
+		D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBottomSheetViewController.swift; sourceTree = "<group>"; };
 		D42EC1902549180A00E57627 /* MilestoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneViewController.swift; sourceTree = "<group>"; };
 		D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCollectionViewCell.swift; sourceTree = "<group>"; };
 		D42EC19C2549CEA600E57627 /* AddAlertColorInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertColorInputView.swift; sourceTree = "<group>"; };
@@ -514,9 +515,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A598E02552A0DE00E825D3 /* IssueBottomSheetViewController.swift in Sources */,
 				D4DF60252547AEF200765C0A /* IssueViewController.swift in Sources */,
 				D44A9D09254FF1EC00ABA1A9 /* Issue.swift in Sources */,
-				D40B30FA255049F200DEC3AA /* IssueBottomSheetViewController.swift in Sources */,
 				4C5139A1254934D20084F65F /* MilestoneEndPoint.swift in Sources */,
 				4CBA21C925512FD7002BDCC3 /* GithubLabel.swift in Sources */,
 				D4660EA625487BE0002B392E /* LabelCollectionViewCell.swift in Sources */,
