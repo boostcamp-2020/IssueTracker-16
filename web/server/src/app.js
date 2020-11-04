@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const createHttpError = require('http-errors');
 
 const { sequelize } = require('./db/models');
 const apiRouter = require('./routes/index');
@@ -15,6 +16,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api', apiRouter);
+
+app.use((req, res, next) => next(createHttpError(404, 'Page not found')));
 
 app.use((err, req, res, next) => {
   const { status, message } = err;
