@@ -117,6 +117,38 @@ class IssueViewController: UIViewController {
         issueCollectionView.reloadData()
     }
     
+    private func moveToUp() {
+        guard
+            var minIndexPath = issueCollectionView.indexPathsForVisibleItems.min(),
+            let cell = issueCollectionView.cellForItem(at: minIndexPath)
+        else {
+            return
+        }
+        
+        let isCompletlyVisible = issueCollectionView.bounds.contains(cell.frame)
+        if isCompletlyVisible, minIndexPath.item > 0 {
+            minIndexPath.item -= 1
+        }
+        issueCollectionView.scrollToItem(at: minIndexPath, at: .top, animated: true)
+    }
+    
+    private func moveToDown() {
+        guard
+            var maxIndexPath = issueCollectionView.indexPathsForVisibleItems.max(),
+            let cell = issueCollectionView.cellForItem(at: maxIndexPath)
+        else {
+            return
+        }
+        
+        let isCompletlyVisible = issueCollectionView.bounds.contains(cell.frame)
+        if isCompletlyVisible, maxIndexPath.item < issues.count {
+            maxIndexPath.item += 1
+        }
+        issueCollectionView.scrollToItem(at: maxIndexPath, at: .bottom, animated: true)
+    }
+    
+    
+    
     // MARK: - Navigation
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
