@@ -1,4 +1,4 @@
-const { Milestone, Issue, sequelize } = require('../db/models');
+const { Milestone, sequelize } = require('../db/models');
 const { countOpenedIssues, countClosedIssues } = require('../common/query');
 
 const option = {
@@ -11,24 +11,18 @@ const option = {
   group: ['num'],
 };
 
-class MilestoneService {
-  constructor({ Milestone, Issue, sequelize }) {
-    this.Milestone = Milestone;
-    this.Issue = Issue;
-    this.sequelize = sequelize;
-  }
+const milestoneService = {
+  add: async ({ title, dueDate, description }) =>
+    Milestone.create({ title, dueDate, description }),
 
-  add = ({ title, dueDate, description }) =>
-    this.Milestone.create({ title, dueDate, description });
+  findAll: async () => Milestone.findAll(option),
 
-  findAll = async () => this.Milestone.findAll(option);
+  findOneByNum: async ({ num }) => Milestone.findByPk(num, option),
 
-  findOneByNum = async ({ num }) => this.Milestone.findByPk(num, option);
+  update: async ({ num, payload }) =>
+    Milestone.update(payload, { where: { num } }),
 
-  update = async ({ num, payload }) =>
-    this.Milestone.update(payload, { where: { num } });
+  remove: async ({ num }) => Milestone.destroy({ where: { num } }),
+};
 
-  remove = async ({ num }) => this.Milestone.destroy({ where: { num } });
-}
-
-module.exports = new MilestoneService({ Milestone, Issue, sequelize });
+module.exports = milestoneService;
