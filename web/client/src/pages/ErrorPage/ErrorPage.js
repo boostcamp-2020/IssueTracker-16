@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet';
 
 import './ErrorPage.scss';
 
-export default function NotFoundPage({ match }) {
+export default function ErrorPage({ match }) {
   const codes = ['404', '500'];
   let code = match.params.code;
   if (!codes.includes(code)) {
