@@ -1,15 +1,33 @@
 import React from 'react';
+import styled from 'styled-components';
+
+import ListItem from '../common/ListItem';
 import Label from '../common/Label';
 
-export default function LabelItem() {
+const Description = styled.div`
+  width: 55%;
+`;
+
+const LabelView = styled.div`
+  width: 25%;
+`;
+
+const Buttons = styled.div`
+  text-align: right;
+  width: 20%;
+`;
+
+export default function LabelItem({ num, name, color, description }) {
   return (
-    <div>
-      <Label />
-      <span>[description] </span>
-      <div>
+    <ListItem>
+      <LabelView>
+        <Label {...{ name, color }} />
+      </LabelView>
+      <Description>{description}</Description>
+      <Buttons>
         <button>Edit</button>
         <button>Delete</button>
-      </div>
-    </div>
+      </Buttons>
+    </ListItem>
   );
 }
