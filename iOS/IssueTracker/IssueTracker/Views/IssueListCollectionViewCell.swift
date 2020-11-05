@@ -22,6 +22,16 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
         }
     }
     var currentState: ActionState = .none
+    var delegate: SwipeControllerDelegate?
+    var indexPath: IndexPath?
+    
+    func cancelSwiped() {
+        if currentState == .none { return }
+        currentState = .none
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.allowAnimatedContent]) {
+            self.contentView.bounds.origin.x -= self.deleteButton.frame.width
+        }
+    }
     
     func addSwipeGestures() {
         let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler))
@@ -37,16 +47,9 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
               sender.direction == .left || sender.direction == .right else { return }
         print(sender.direction)
         if sender.direction == .left && currentState == .none {
-            UIView.animate(withDuration: 0.4, delay: 0, options: [.allowAnimatedContent]) {
-                self.contentView.transform = CGAffineTransform(translationX: self.deleteButton.frame.width * -1, y: 0)
-            }
-            currentState = .swiped
+            delegate?.swipeController(self)
         } else if sender.direction == .right && currentState == .swiped {
-            UIView.animate(withDuration: 0.4, delay: 0, options: [.allowAnimatedContent], animations: {
-                self.contentView.transform = .identity
-            }, completion: { [weak self] _ in
-                self?.currentState = .none
-            })
+            delegate?.swipeController(self)
         }
     }
     
@@ -57,15 +60,15 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
         }
     }
     
-    private func changeNone() {
+    func changeNone() {
         UIView.animate(withDuration: 0.4, delay: 0, options: [.allowAnimatedContent]) {
             self.contentView.transform = .identity
         }
     }
     
-    private func changeSwipeLeft() {
+    func changeSwiped() {
         UIView.animate(withDuration: 0.4, delay: 0, options: [.allowAnimatedContent]) {
-            self.contentView.transform = CGAffineTransform(translationX: -50, y: 0)
+            self.contentView.transform = CGAffineTransform(translationX: self.deleteButton.frame.width * -1, y: 0)
         }
     }
     
@@ -77,9 +80,7 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
         case .edit:
             changeEditMode()
         case .swiped:
-//            changeSwipeLeft()
-            //
-            break
+            changeSwiped()
         }
     }
     @IBAction private func touchedDeleteButton(_ sender: Any) {

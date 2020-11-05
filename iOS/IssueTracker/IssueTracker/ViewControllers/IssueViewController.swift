@@ -7,7 +7,25 @@
 
 import UIKit
 
-class IssueViewController: UIViewController {
+protocol SwipeControllerDelegate {
+    func swipeController(_ cell: IssueListCollectionViewCell)
+}
+
+class IssueViewController: UIViewController, SwipeControllerDelegate {
+    func swipeController( _ cell: IssueListCollectionViewCell) {
+        if let swipedIndex = swipedIndex,
+              let beforeCell = issueCollectionView.cellForItem(at: swipedIndex) as? IssueListCollectionViewCell {
+        
+            beforeCell.currentState = .none
+            beforeCell.changeNone()
+        }
+        
+        cell.currentState = .swiped
+        cell.changeSwiped()
+        swipedIndex = cell.indexPath
+    }
+    
+    private var swipedIndex: IndexPath?
     
     // MARK: - Constants
     
@@ -180,12 +198,17 @@ extension IssueViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IssueListCollectionViewCell.identfier, for: indexPath) as? IssueListCollectionViewCell else { return UICollectionViewCell() }
-        
         switch currentState {
             case .edit:
                 cell.currentState = .edit
             default:
-                cell.currentState = .none
+                if indexPath == swipedIndex {
+                    cell.currentState = .swiped
+                } else {
+                    cell.currentState = .none
+                }
+                
+                break
         }
         
         if selectedIssues.contains(indexPath) {
@@ -196,6 +219,8 @@ extension IssueViewController: UICollectionViewDataSource {
             collectionView.deselectItem(at: indexPath, animated: false)
         }
         cell.addSwipeGestures()
+        cell.indexPath = indexPath
+        cell.delegate = self
         
         return cell
     }
