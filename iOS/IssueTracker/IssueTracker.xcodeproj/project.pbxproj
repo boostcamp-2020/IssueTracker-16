@@ -32,6 +32,10 @@
 		4CBA21BB25503B63002BDCC3 /* IssueEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21BA25503B63002BDCC3 /* IssueEndPoint.swift */; };
 		4CBA21C925512FD7002BDCC3 /* GithubLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21C825512FD7002BDCC3 /* GithubLabel.swift */; };
 		4CBA21D725529331002BDCC3 /* ActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21D625529331002BDCC3 /* ActionCollectionViewCell.swift */; };
+		4CBA21E62553CB4D002BDCC3 /* IssueDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21E52553CB4D002BDCC3 /* IssueDetailViewController.swift */; };
+		4CBA21EA2553D6D1002BDCC3 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21E92553D6D1002BDCC3 /* FilterViewController.swift */; };
+		4CBA21EE2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21ED2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift */; };
+		4CBA21F62553E377002BDCC3 /* IssueDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21F52553E377002BDCC3 /* IssueDetailHeaderView.swift */; };
 		D42EC1912549180A00E57627 /* MilestoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC1902549180A00E57627 /* MilestoneViewController.swift */; };
 		D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */; };
 		D42EC19D2549CEA600E57627 /* AddAlertColorInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC19C2549CEA600E57627 /* AddAlertColorInputView.swift */; };
@@ -115,6 +119,10 @@
 		4CBA21BA25503B63002BDCC3 /* IssueEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueEndPoint.swift; sourceTree = "<group>"; };
 		4CBA21C825512FD7002BDCC3 /* GithubLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLabel.swift; sourceTree = "<group>"; };
 		4CBA21D625529331002BDCC3 /* ActionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCollectionViewCell.swift; sourceTree = "<group>"; };
+		4CBA21E52553CB4D002BDCC3 /* IssueDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailViewController.swift; sourceTree = "<group>"; };
+		4CBA21E92553D6D1002BDCC3 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		4CBA21ED2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+segueIdentifier.swift"; sourceTree = "<group>"; };
+		4CBA21F52553E377002BDCC3 /* IssueDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailHeaderView.swift; sourceTree = "<group>"; };
 		D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBottomSheetViewController.swift; sourceTree = "<group>"; };
 		D42EC1902549180A00E57627 /* MilestoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneViewController.swift; sourceTree = "<group>"; };
 		D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -176,6 +184,7 @@
 			children = (
 				D4A060A72548877600FAF62B /* UIColor+hexString+random.swift */,
 				D476EB03254B28AC00CB4C09 /* String+dateRegEx.swift */,
+				4CBA21ED2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -333,6 +342,7 @@
 				4CBA21C825512FD7002BDCC3 /* GithubLabel.swift */,
 				D4AEAB7A25528C9000AED514 /* CommentCollectionViewCell.swift */,
 				4CBA21D625529331002BDCC3 /* ActionCollectionViewCell.swift */,
+				4CBA21F52553E377002BDCC3 /* IssueDetailHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -344,6 +354,8 @@
 				4C5138FF2547CA5A0084F65F /* LabelViewController.swift */,
 				4C5139112548047A0084F65F /* AddAlertViewController.swift */,
 				D42EC1902549180A00E57627 /* MilestoneViewController.swift */,
+				4CBA21E52553CB4D002BDCC3 /* IssueDetailViewController.swift */,
+				4CBA21E92553D6D1002BDCC3 /* FilterViewController.swift */,
 				D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */,
 				D4F8FCBF25531713008C311E /* AddIssueViewController.swift */,
 			);
@@ -528,6 +540,7 @@
 				D4DF60212547AEF200765C0A /* AppDelegate.swift in Sources */,
 				D4AEAB7B25528C9000AED514 /* CommentCollectionViewCell.swift in Sources */,
 				4CBA21A9255007E8002BDCC3 /* IssueListCollectionViewCell.swift in Sources */,
+				4CBA21F62553E377002BDCC3 /* IssueDetailHeaderView.swift in Sources */,
 				D4DF60232547AEF200765C0A /* SceneDelegate.swift in Sources */,
 				4CBA21D725529331002BDCC3 /* ActionCollectionViewCell.swift in Sources */,
 				4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */,
@@ -544,7 +557,10 @@
 				4C5139A625493BB20084F65F /* Label.swift in Sources */,
 				D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */,
 				4CBA21B725503B47002BDCC3 /* MilestoneInteractor.swift in Sources */,
+				4CBA21E62553CB4D002BDCC3 /* IssueDetailViewController.swift in Sources */,
+				4CBA21EA2553D6D1002BDCC3 /* FilterViewController.swift in Sources */,
 				D4A060A82548877600FAF62B /* UIColor+hexString+random.swift in Sources */,
+				4CBA21EE2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift in Sources */,
 				D476EB04254B28AC00CB4C09 /* String+dateRegEx.swift in Sources */,
 				4CBA21BB25503B63002BDCC3 /* IssueEndPoint.swift in Sources */,
 				D4EA0AA6254AB93C0000CF67 /* Milestone.swift in Sources */,

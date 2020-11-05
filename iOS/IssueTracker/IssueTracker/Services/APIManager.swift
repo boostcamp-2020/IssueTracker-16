@@ -12,6 +12,7 @@ final class APIManager {
     static func request<T: Decodable>(endPoint: EndPointType, completionHandler: @escaping (T?) -> Void) {
         NetworkManager.shared.request(endPoint: endPoint) { (data: T?, response: NetworkManager.Response?) in
             guard response == nil else {
+                debugPrint(response)
                 return
             }
             completionHandler(data)

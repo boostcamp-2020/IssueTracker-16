@@ -15,6 +15,22 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
     @IBOutlet private weak var editingView: UIView!
     @IBOutlet private weak var editingButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var milestoneLabel: PaddingLabel!
+    @IBOutlet weak var labelLabel: GithubLabel!
+    
+    var issue: Issue? {
+        didSet {
+            nameLabel.text = issue?.title
+            descriptionLabel.text = ""
+            milestoneLabel.text = issue?.milestone.title
+            if let label = issue?.labels.first {
+                labelLabel.isHidden = false
+                labelLabel.text = label.name
+            } else {
+                labelLabel.isHidden = true
+            }
+        }
+    }
     
     override var isSelected: Bool {
         didSet {

@@ -10,12 +10,15 @@ import Foundation
 struct Milestone {
     var id: Int
     var title: String
-    var dueDate: String
+    var dueDate: String?
     var description: String
-    var openIssues: Int
+    var openedIssues: Int
     var closedIssues: Int
 }
 
 extension Milestone: Codable {
-    
+    enum CodingKeys: String, CodingKey {
+        case id = "num"
+        case title, dueDate, description, openedIssues, closedIssues
+    }
 }

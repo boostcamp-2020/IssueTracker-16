@@ -26,9 +26,6 @@ class MilestoneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor = MilestoneInteractor()
-        milestones.append(Milestone(id: 0, title: "스프린트2", dueDate: "2020-06-19", description: "이번 배포를 위한 스프린트", openIssues: 13, closedIssues: 23))
-        milestones.append(Milestone(id: 0, title: "스프린트3", dueDate: "2020-06-26", description: "다음 배포를 위한 스프린트", openIssues: 0, closedIssues: 0))
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +33,7 @@ class MilestoneViewController: UIViewController {
         activityIndicator.startAnimating()
         interactor?.request(endPoint: .list, completionHandler: { [weak self] (milestones) in
             self?.milestones = milestones
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
                 self?.milestoneCollectionView.reloadData()
                 self?.activityIndicator.stopAnimating()
             }
@@ -73,9 +70,9 @@ extension MilestoneViewController: UICollectionViewDataSource {
         let index = indexPath.row
         cell.configure(
             title: milestones[index].title,
-            dueDate: milestones[index].dueDate,
+            dueDate: milestones[index].dueDate ?? "",
             description: milestones[index].description,
-            openIssues: milestones[index].openIssues,
+            openIssues: milestones[index].openedIssues,
             closedIssues: milestones[index].closedIssues
         )
         return cell
