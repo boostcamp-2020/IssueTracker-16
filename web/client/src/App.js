@@ -1,7 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
-import NotFound from './pages/NotFound/NotFoundPage';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 import IssueListPage from './pages/IssueListPage';
 import LabelListPage from './pages/LabelListPage';
 import MilestoneListPage from './pages/MilestoneListPage';
@@ -15,7 +15,8 @@ function App() {
           <Route path="/issues" component={IssueListPage} />
           <Route path="/labels" component={LabelListPage} />
           <Route path="/milestones" component={MilestoneListPage} />
-          <Route component={NotFound} />
+          <Route path="/error/:code" component={ErrorPage} />
+          <Redirect to="/error/404" />
         </Switch>
       </BrowserRouter>
     </>
