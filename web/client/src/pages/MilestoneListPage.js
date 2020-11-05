@@ -1,7 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
 
-import Header from '../components/Header';
+import Header from '../components/common/Header';
 import MilestoneListNav from '../components/milestoneList/MilestoneListNav';
 import MilestoneList from '../components/milestoneList/MilestoneList';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Label from './Label';
+import Label from '../common/Label';
 
 export default function LabelItem() {
   return (

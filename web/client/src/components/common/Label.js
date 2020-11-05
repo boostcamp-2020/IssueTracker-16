@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const LabelElement = styled.div`
+const Div = styled.div`
   background-color: #${props => props.color};
   display: inline;
   padding: 3px 8px;
@@ -11,5 +11,5 @@ const LabelElement = styled.div`
 `;
 
 export default function Label({ name, color }) {
-  return <LabelElement color={color}>{name}</LabelElement>;
+  return <Div color={color}>{name}</Div>;
 }
