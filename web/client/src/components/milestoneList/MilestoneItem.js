@@ -1,22 +1,59 @@
 import React from 'react';
+import styled from 'styled-components';
+
+import ListItem from '../common/ListItem';
 import MilestoneProgress from './MilestoneProgress';
 
-export default function MilestoneItem() {
+const ItemElement = styled.div`
+  width: 48%;
+`;
+const Title = styled.div`
+  font-size: 20pt;
+`;
+const Description = styled.div`
+  font-size: 10pt;
+  color: #959da5;
+`;
+const Button = styled.button`
+  margin-right: 5px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+
+  > a {
+    color: ${props => (props.isDelete ? 'red' : 'blue')};
+  }
+`;
+
+export default function MilestoneItem({
+  title,
+  dueDate,
+  description,
+  openedIssues,
+  closedIssues,
+}) {
   return (
-    <div>
-      <div>
-        <div>[Title]</div>
-        <div>[Due date]</div>
-        <div>[description]</div>
-      </div>
-      <div>
-        <MilestoneProgress />
+    <ListItem>
+      <ItemElement>
+        <Title>{title}</Title>
+        <Description>{dueDate}</Description>
+        <Description>{description}</Description>
+      </ItemElement>
+      <ItemElement>
+        <MilestoneProgress {...{ openedIssues, closedIssues }} />
         <div>
-          <button>Edit</button>
-          <button>Close</button>
-          <button>Delete</button>
+          <Button isDelete={false}>
+            <a href="/">Edit</a>
+          </Button>
+          <Button isDelete={false}>
+            <a href="/">Close</a>
+          </Button>
+          <Button isDelete={true}>
+            <a href="/">Delete</a>
+          </Button>
         </div>
-      </div>
-    </div>
+      </ItemElement>
+    </ListItem>
   );
 }

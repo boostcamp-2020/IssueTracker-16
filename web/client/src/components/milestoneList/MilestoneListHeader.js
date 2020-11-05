@@ -1,10 +1,12 @@
 import React from 'react';
 
+import ListHeader from '../common/ListHeader';
+
 export default function MilestoneListHeader() {
   return (
-    <div>
-      <span>[Open] </span>
-      <span>[Closed] </span>
-    </div>
+    <ListHeader>
+      <a href="/">[Open] </a>
+      <a href="/">[Closed] </a>
+    </ListHeader>
   );
 }

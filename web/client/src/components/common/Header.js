@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import RepositoryLogo from '../statics/svg/repository';
+import RepositoryLogo from '../../statics/svg/repository';
 
 const HeaderElement = styled.header`
   background-color: #24292e;
