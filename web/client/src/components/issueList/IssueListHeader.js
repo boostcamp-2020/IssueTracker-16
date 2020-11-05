@@ -1,12 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
 
+import ListHeader from '../common/ListHeader';
+
+const Filter = styled.span`
+  font-size: 10pt;
+  margin-left: 5%;
+`;
 export default function IssueListHeader() {
   return (
-    <div>
-      <span>[Author Filter] </span>
-      <span>[Label Filter] </span>
-      <span>[Milestone Filter] </span>
-      <span>[Assignee Filter] </span>
-    </div>
+    <ListHeader isIssueList={true}>
+      <Filter>Author▾ </Filter>
+      <Filter>Label▾ </Filter>
+      <Filter>Milestone▾ </Filter>
+      <Filter>Assignee▾ </Filter>
+    </ListHeader>
   );
 }

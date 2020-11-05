@@ -2,13 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
+  height: 50px;
   width: 80%;
-  padding: 2% 1%;
+  padding: 10px 1%;
   margin: 0 auto;
+  margin-top: 10px;
+  display: flex;
+  justify-content: ${props => (props.isIssueList ? 'flex-end' : 'flex-start')};
+  align-items: center;
   border: 0.1px solid #e0e0e0;
-  background-color: #c0c0c0;
+  border-radius: 10px 10px 0px 0px;
+  background-color: #fafbfc;
 `;
 
-export default function ListHeader({ children }) {
-  return <Div>{children}</Div>;
+export default function ListHeader({ children, isIssueList }) {
+  return <Div isIssueList={isIssueList}>{children}</Div>;
 }
