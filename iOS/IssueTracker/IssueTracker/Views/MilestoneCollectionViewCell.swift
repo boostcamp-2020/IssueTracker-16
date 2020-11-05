@@ -25,11 +25,16 @@ class MilestoneCollectionViewCell: UICollectionViewCell {
     
     func configure(title: String, dueDate: String, description: String, openIssues: Int, closedIssues: Int) {
         milestoneName.text = title
-        let formattedDate: String = {
-            let arr = dueDate.components(separatedBy: "-")
-            return "\(arr[0])년 \(arr[1])월 \(arr[2])일"
-        }()
-        milestoneDueDate.text = formattedDate
+        
+        if !dueDate.isEmpty {
+            let formattedDate: String = {
+                let arr = dueDate.components(separatedBy: "-")
+                return "\(arr[0])년 \(arr[1])월 \(arr[2])일"
+            }()
+            milestoneDueDate.text = formattedDate
+        } else {
+            milestoneDueDate.text = ""
+        }
         milestoneDescription.text = description
         milestoneOpenIssues.text = "\(openIssues) open"
         milestoneClosedIssues.text = "\(closedIssues) closed"

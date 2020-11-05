@@ -7,11 +7,43 @@
 
 import Foundation
 
+//{
+//    num,
+//    title,
+//    author: { id },
+//    createdAt,
+//    isClosed,
+//    labels: [ { name, color }, ... ],
+//    milestone: { name },
+//    assignees: [ { id }, ... ]
+//    comment: { content }
+//}
+
 struct Issue {
     var id: Int
     var title: String
+    var author: AuthorResponse
+    var createdAt: String
+    var isClosed: Bool
+    var labels: [Label]
+    var milestone: MilestoneResponse
+    var assignees: [Int]
+}
+// {"num":2,"title":"week 2"}
+struct MilestoneResponse: Codable {
+    var num: Int
+    var title: String
+}
+
+// "author":{"num":1,"id":"user01"}
+struct AuthorResponse: Codable {
+    var num: Int
+    var id: String
 }
 
 extension Issue: Codable {
-    
+    enum CodingKeys: String, CodingKey {
+        case id = "num"
+        case title, author, createdAt, isClosed, labels, milestone, assignees
+    }
 }

@@ -16,13 +16,7 @@ class IssueViewController: UIViewController {
         case edit
     }
     
-    private var issues: [Issue] {
-        var issues = [Issue]()
-        for i in 0..<20 {
-            issues.append(Issue(id: i, title: "이슈 탭을 완성합시다"))
-        }
-        return issues
-    }
+    private var issues = [Issue]()
     
     private var selectedIssues = Set<IndexPath>() {
         didSet {
@@ -53,6 +47,7 @@ class IssueViewController: UIViewController {
     @IBOutlet private weak var editBarButton: UIBarButtonItem!
     @IBOutlet private weak var filterBarButton: UIBarButtonItem!
     @IBOutlet private weak var editingToolBar: UIToolbar!
+    @IBOutlet weak var addIssueButton: UIButton!
     
     // MARK: - View Life Cycle
     
@@ -65,9 +60,16 @@ class IssueViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        interactor?.request(endPoint: .list, completionHandler: { (issues) in
-//            debugPrint("TODO: ")
-//        })
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
+        interactor?.request(endPoint: .list, completionHandler: { [weak self] (issues) in
+            
+            self?.issues = issues
+            DispatchQueue.main.async {
+                self?.issueCollectionView.reloadData()
+            }
+        })
     }
 
     // MARK: - Initialize
@@ -95,29 +97,32 @@ class IssueViewController: UIViewController {
         } else if currentState == .none {
             currentState = .edit
         }
-
+        
         issueCollectionView.reloadData()
     }
         
     // MARK: Private
     
     private func updateEditingMode() {
-        title = "\(selectedIssues.count)개 선택"
+        addIssueButton.isHidden = true
+        navigationItem.searchController?.searchBar.isHidden = true
+        navigationItem.title = "\(selectedIssues.count)개 선택"
+        tabBarController?.tabBar.isHidden = true
         editBarButton.title = "Cancel"
         filterBarButton.title = "Select All"
-        navigationItem.searchController = nil
         editingToolBar.isHidden = false
-        tabBarController?.tabBar.isHidden = true
     }
     
     private func updateDefaultMode() {
-        title = "이슈"
+        addIssueButton.isHidden = false
+        navigationItem.title = "이슈"
         selectedIssues.removeAll()
         editBarButton.title = "Edit"
         filterBarButton.title = "Filter"
-        navigationItem.searchController = searchController
+        navigationItem.searchController?.searchBar.isHidden = false
         editingToolBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
+        addIssueButton.layer.zPosition = 1
     }
     
     private func selectAllIssues() {
@@ -163,10 +168,14 @@ class IssueViewController: UIViewController {
     // MARK: - Navigation
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        
         guard currentState != .edit else {
-            selectAllIssues()
+            if identifier == self.segueIdentifier(to: FilterViewController.self) {
+                selectAllIssues()
+            }
             return false
         }
+        
         return true
     }
     
@@ -196,6 +205,7 @@ extension IssueViewController: UICollectionViewDataSource {
             collectionView.deselectItem(at: indexPath, animated: false)
         }
         cell.addSwipeGestures()
+        cell.issue = issues[indexPath.item]
         
         return cell
     }

@@ -35,8 +35,10 @@ public class NetworkManager {
         let request = sessionManager.request(for: endPoint)
         
         request.responseData { (data: Data?, response: Request.NetworkResponse?) in
+            
             guard let data = data else {
                 completion(nil, response)
+                
                 return
             }
             

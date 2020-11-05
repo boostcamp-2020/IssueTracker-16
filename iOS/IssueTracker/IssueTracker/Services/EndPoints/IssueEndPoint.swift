@@ -17,7 +17,7 @@ enum IssueEndPoint: EndPointType {
     
     var baseURL: URL? {
         switch self {
-            case .list: return URL(string: "http://localhost:3000/api/")
+            case .list: return URL(string: "http://issue-tracker.kro.kr:3000/api/")
             case.create, .delete, .update: return nil
         }
     }
