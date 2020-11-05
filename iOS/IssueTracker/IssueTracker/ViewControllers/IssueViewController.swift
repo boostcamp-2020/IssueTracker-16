@@ -99,7 +99,7 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
     // MARK: - Methods
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let vc = segue.destination as? AddIssueViewController else { return }
+        guard let vc = segue.destination as? IssueDetailViewController else { return }
         let sender = sender as? Issue
         vc.issue = sender
     }
@@ -151,35 +151,7 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
         issueCollectionView.reloadData()
     }
     
-    private func moveToUp() {
-        guard
-            var minIndexPath = issueCollectionView.indexPathsForVisibleItems.min(),
-            let cell = issueCollectionView.cellForItem(at: minIndexPath)
-        else {
-            return
-        }
-        
-        let isCompletlyVisible = issueCollectionView.bounds.contains(cell.frame)
-        if isCompletlyVisible, minIndexPath.item > 0 {
-            minIndexPath.item -= 1
-        }
-        issueCollectionView.scrollToItem(at: minIndexPath, at: .top, animated: true)
-    }
     
-    private func moveToDown() {
-        guard
-            var maxIndexPath = issueCollectionView.indexPathsForVisibleItems.max(),
-            let cell = issueCollectionView.cellForItem(at: maxIndexPath)
-        else {
-            return
-        }
-        
-        let isCompletlyVisible = issueCollectionView.bounds.contains(cell.frame)
-        if isCompletlyVisible, maxIndexPath.item < issues.count {
-            maxIndexPath.item += 1
-        }
-        issueCollectionView.scrollToItem(at: maxIndexPath, at: .bottom, animated: true)
-    }
     
     
     
@@ -239,7 +211,7 @@ extension IssueViewController: UICollectionViewDataSource {
 extension IssueViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard currentState == .edit else {
-            performSegue(withIdentifier: AddIssueViewController.fromSegueIdentifier, sender: issues[indexPath.row])
+            performSegue(withIdentifier: segueIdentifier(to: IssueDetailViewController.self), sender: issues[indexPath.row])
             return
         }
         if !selectedIssues.contains(indexPath) {
