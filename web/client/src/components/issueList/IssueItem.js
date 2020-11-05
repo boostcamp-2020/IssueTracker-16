@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Label from '../labelList/Label';
+import Label from '../common/Label';
 
 export default function IssueItem({
   title,
