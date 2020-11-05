@@ -14,14 +14,14 @@ class LabelCollectionViewCell: UICollectionViewCell {
     static var identifier: String {
         String(describing: self)
     }
-    @IBOutlet weak var labelName: UIButton!
+    
+    @IBOutlet weak var labelName: GithubLabel!
     @IBOutlet weak var labelDescription: UILabel!
     
     // MARK: - Methods
     
-    func configure(name: String, description: String, color: UIColor) {
-        labelName.setTitle(name, for: .normal)
-        labelDescription.text = description
-        labelName.backgroundColor = color
+    func configure(label: Label) {
+        labelName.label = label
+        labelDescription.text = label.description
     }
 }

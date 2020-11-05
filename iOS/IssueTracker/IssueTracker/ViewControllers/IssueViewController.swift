@@ -49,7 +49,6 @@ class IssueViewController: UIViewController {
     }
     
     // MARK: - Views
-    
     @IBOutlet private weak var issueCollectionView: UICollectionView!
     @IBOutlet private weak var editBarButton: UIBarButtonItem!
     @IBOutlet private weak var filterBarButton: UIBarButtonItem!
@@ -79,13 +78,15 @@ class IssueViewController: UIViewController {
 
     // MARK: - Methods
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let vc = segue.destination as? AddIssueViewController else { return }
+        let sender = sender as? Issue
+        vc.issue = sender
+    }
+    
     // MARK: Selectors
     
     // MARK: IBActions
-    
-    @IBAction private func touchedAddIssueButton(_ sender: Any) {
-        // TODO: - 이슈 추가화면 push
-    }
     
     @IBAction private func touchedEditButton(_ sender: UIBarButtonItem) {
         
@@ -168,6 +169,8 @@ class IssueViewController: UIViewController {
         }
         return true
     }
+    
+    
 }
 
 extension IssueViewController: UICollectionViewDataSource {
@@ -192,6 +195,7 @@ extension IssueViewController: UICollectionViewDataSource {
             cell.isSelected = false
             collectionView.deselectItem(at: indexPath, animated: false)
         }
+        cell.addSwipeGestures()
         
         return cell
     }
@@ -199,8 +203,10 @@ extension IssueViewController: UICollectionViewDataSource {
 
 extension IssueViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        guard currentState == .edit else { return }
+        guard currentState == .edit else {
+            performSegue(withIdentifier: AddIssueViewController.fromSegueIdentifier, sender: issues[indexPath.row])
+            return
+        }
         if !selectedIssues.contains(indexPath) {
             selectedIssues.insert(indexPath)
         }
@@ -213,6 +219,8 @@ extension IssueViewController: UICollectionViewDelegate {
         }
     }
 }
+
+// MARK: - UICollectionView Delegate FlowLayout
 
 extension IssueViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

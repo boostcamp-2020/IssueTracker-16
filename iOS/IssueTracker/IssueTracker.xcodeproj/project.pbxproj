@@ -44,6 +44,8 @@
 		D476EB0D254B298E00CB4C09 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476EB09254B298D00CB4C09 /* SessionManager.swift */; };
 		D476EB0E254B298E00CB4C09 /* DownloadRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = D476EB0A254B298D00CB4C09 /* DownloadRequest.swift */; };
 		D4A060A82548877600FAF62B /* UIColor+hexString+random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A060A72548877600FAF62B /* UIColor+hexString+random.swift */; };
+		D4A598E02552A0DE00E825D3 /* IssueBottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */; };
+		D4AEAB7B25528C9000AED514 /* CommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AEAB7A25528C9000AED514 /* CommentCollectionViewCell.swift */; };
 		D4DF60212547AEF200765C0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60202547AEF200765C0A /* AppDelegate.swift */; };
 		D4DF60232547AEF200765C0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60222547AEF200765C0A /* SceneDelegate.swift */; };
 		D4DF60252547AEF200765C0A /* IssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF60242547AEF200765C0A /* IssueViewController.swift */; };
@@ -53,6 +55,7 @@
 		D4DF604D254800C100765C0A /* AddAlertInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DF604C254800C100765C0A /* AddAlertInputView.swift */; };
 		D4EA0AA0254A9AEC0000CF67 /* AddAlertDateInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA0A9F254A9AEC0000CF67 /* AddAlertDateInputView.swift */; };
 		D4EA0AA6254AB93C0000CF67 /* Milestone.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA0AA5254AB93C0000CF67 /* Milestone.swift */; };
+		D4F8FCC025531713008C311E /* AddIssueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F8FCBF25531713008C311E /* AddIssueViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +115,7 @@
 		4CBA21BA25503B63002BDCC3 /* IssueEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueEndPoint.swift; sourceTree = "<group>"; };
 		4CBA21C825512FD7002BDCC3 /* GithubLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubLabel.swift; sourceTree = "<group>"; };
 		4CBA21D625529331002BDCC3 /* ActionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCollectionViewCell.swift; sourceTree = "<group>"; };
+		D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBottomSheetViewController.swift; sourceTree = "<group>"; };
 		D42EC1902549180A00E57627 /* MilestoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneViewController.swift; sourceTree = "<group>"; };
 		D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCollectionViewCell.swift; sourceTree = "<group>"; };
 		D42EC19C2549CEA600E57627 /* AddAlertColorInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertColorInputView.swift; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 		D476EB09254B298D00CB4C09 /* SessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		D476EB0A254B298D00CB4C09 /* DownloadRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadRequest.swift; sourceTree = "<group>"; };
 		D4A060A72548877600FAF62B /* UIColor+hexString+random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexString+random.swift"; sourceTree = "<group>"; };
+		D4AEAB7A25528C9000AED514 /* CommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCollectionViewCell.swift; sourceTree = "<group>"; };
 		D4DF601D2547AEF200765C0A /* IssueTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IssueTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4DF60202547AEF200765C0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4DF60222547AEF200765C0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -137,6 +142,7 @@
 		D4DF604C254800C100765C0A /* AddAlertInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertInputView.swift; sourceTree = "<group>"; };
 		D4EA0A9F254A9AEC0000CF67 /* AddAlertDateInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertDateInputView.swift; sourceTree = "<group>"; };
 		D4EA0AA5254AB93C0000CF67 /* Milestone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Milestone.swift; sourceTree = "<group>"; };
+		D4F8FCBF25531713008C311E /* AddIssueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIssueViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +331,7 @@
 				4CBA21A4255002B8002BDCC3 /* PaddingLabel.swift */,
 				4CBA21A8255007E8002BDCC3 /* IssueListCollectionViewCell.swift */,
 				4CBA21C825512FD7002BDCC3 /* GithubLabel.swift */,
+				D4AEAB7A25528C9000AED514 /* CommentCollectionViewCell.swift */,
 				4CBA21D625529331002BDCC3 /* ActionCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -337,6 +344,8 @@
 				4C5138FF2547CA5A0084F65F /* LabelViewController.swift */,
 				4C5139112548047A0084F65F /* AddAlertViewController.swift */,
 				D42EC1902549180A00E57627 /* MilestoneViewController.swift */,
+				D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */,
+				D4F8FCBF25531713008C311E /* AddIssueViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -509,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A598E02552A0DE00E825D3 /* IssueBottomSheetViewController.swift in Sources */,
 				D4DF60252547AEF200765C0A /* IssueViewController.swift in Sources */,
 				D44A9D09254FF1EC00ABA1A9 /* Issue.swift in Sources */,
 				4C5139A1254934D20084F65F /* MilestoneEndPoint.swift in Sources */,
@@ -516,10 +526,12 @@
 				D4660EA625487BE0002B392E /* LabelCollectionViewCell.swift in Sources */,
 				4CBA21B625503B47002BDCC3 /* IssueInteractor.swift in Sources */,
 				D4DF60212547AEF200765C0A /* AppDelegate.swift in Sources */,
+				D4AEAB7B25528C9000AED514 /* CommentCollectionViewCell.swift in Sources */,
 				4CBA21A9255007E8002BDCC3 /* IssueListCollectionViewCell.swift in Sources */,
 				D4DF60232547AEF200765C0A /* SceneDelegate.swift in Sources */,
 				4CBA21D725529331002BDCC3 /* ActionCollectionViewCell.swift in Sources */,
 				4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */,
+				D4F8FCC025531713008C311E /* AddIssueViewController.swift in Sources */,
 				4C5139AA25494E7E0084F65F /* LabelInteractor.swift in Sources */,
 				D4EA0AA0254A9AEC0000CF67 /* AddAlertDateInputView.swift in Sources */,
 				D4DF604D254800C100765C0A /* AddAlertInputView.swift in Sources */,

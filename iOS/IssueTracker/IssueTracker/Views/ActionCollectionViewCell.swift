@@ -11,5 +11,6 @@ class ActionCollectionViewCell: UICollectionViewCell {
     enum ActionState {
         case none
         case edit
+        case swiped
     }
 }
