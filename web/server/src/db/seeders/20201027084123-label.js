@@ -1,17 +1,8 @@
 'use strict';
 
 module.exports = {
-  up: async queryInterface => {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-     */
-    return queryInterface.bulkInsert('labels', [
+  up: async queryInterface =>
+    queryInterface.bulkInsert('labels', [
       {
         name: 'feature',
         color: 'c4dafa',
@@ -27,16 +18,6 @@ module.exports = {
         color: 'f5bd39',
         description: '그냥 멋진 레이블입니다.',
       },
-    ]);
-  },
-
-  down: async queryInterface => {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-    return queryInterface.bulkDelete('labels');
-  },
+    ]),
+  down: async queryInterface => queryInterface.bulkDelete('labels'),
 };

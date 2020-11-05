@@ -1,17 +1,8 @@
 'use strict';
 
 module.exports = {
-  up: async queryInterface => {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-     */
-    return queryInterface.bulkInsert('users', [
+  up: async queryInterface =>
+    queryInterface.bulkInsert('users', [
       {
         id: 'user01',
         password: 'user01',
@@ -22,16 +13,6 @@ module.exports = {
         password: 'user02',
         name: 'user02',
       },
-    ]);
-  },
-
-  down: async queryInterface => {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
-    return queryInterface.bulkDelete('users');
-  },
+    ]),
+  down: async queryInterface => queryInterface.bulkDelete('users'),
 };

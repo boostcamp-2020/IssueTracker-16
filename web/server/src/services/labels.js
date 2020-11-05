@@ -1,21 +1,16 @@
 const { Label } = require('../db/models');
 
-class LabelService {
-  constructor({ Label }) {
-    this.Label = Label;
-  }
+const labelService = {
+  add: async ({ name, color, description }) =>
+    Label.create({ name, color, description }),
 
-  add = async ({ name, color, description }) =>
-    this.Label.create({ name, color, description });
+  findAll: async () => Label.findAll(),
 
-  findAll = async () => this.Label.findAll();
+  findOneByNum: async ({ num }) => Label.findByPk(num),
 
-  findOneByNum = async ({ num }) => this.Label.findByPk(num);
+  update: async ({ num, payload }) => Label.update(payload, { where: { num } }),
 
-  update = async ({ num, payload }) =>
-    this.Label.update(payload, { where: { num } });
+  remove: async ({ num }) => Label.destroy({ where: { num } }),
+};
 
-  remove = async ({ num }) => this.Label.destroy({ where: { num } });
-}
-
-module.exports = new LabelService({ Label });
+module.exports = labelService;
