@@ -1,13 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React from 'react';
 
-const LabelListHeaderElement = styled.div`
-  background-color: #fafbfc;
-  border: 1px solid lightgrey;
-  padding: 20px;
-  font-weight: 600;
-`;
+import ListHeader from '../common/ListHeader';
 
 export default function LabelListHeader() {
-  return <LabelListHeaderElement>3 labels</LabelListHeaderElement>;
+  return <ListHeader isIssueList={false}>3 labels</ListHeader>;
 }

@@ -4,6 +4,9 @@ import styled from 'styled-components';
 import ListItem from '../common/ListItem';
 import MilestoneProgress from './MilestoneProgress';
 
+const Link = styled.a`
+  text-decoration: none;
+`;
 const ItemElement = styled.div`
   width: 48%;
 `;
@@ -44,13 +47,13 @@ export default function MilestoneItem({
         <MilestoneProgress {...{ openedIssues, closedIssues }} />
         <div>
           <Button isDelete={false}>
-            <a href="/">Edit</a>
+            <Link href="/">Edit</Link>
           </Button>
           <Button isDelete={false}>
-            <a href="/">Close</a>
+            <Link href="/">Close</Link>
           </Button>
           <Button isDelete={true}>
-            <a href="/">Delete</a>
+            <Link href="/">Delete</Link>
           </Button>
         </div>
       </ItemElement>
