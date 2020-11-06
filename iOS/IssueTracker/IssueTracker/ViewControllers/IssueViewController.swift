@@ -7,7 +7,25 @@
 
 import UIKit
 
-class IssueViewController: UIViewController {
+protocol SwipeControllerDelegate {
+    func swipeController(_ cell: IssueListCollectionViewCell)
+}
+
+class IssueViewController: UIViewController, SwipeControllerDelegate {
+    func swipeController( _ cell: IssueListCollectionViewCell) {
+        if let swipedIndex = swipedIndex,
+              let beforeCell = issueCollectionView.cellForItem(at: swipedIndex) as? IssueListCollectionViewCell {
+        
+            beforeCell.currentState = .none
+            beforeCell.changeNone()
+        }
+        
+        cell.currentState = .swiped
+        cell.changeSwiped()
+        swipedIndex = cell.indexPath
+    }
+    
+    private var swipedIndex: IndexPath?
     
     // MARK: - Constants
     
@@ -81,7 +99,7 @@ class IssueViewController: UIViewController {
     // MARK: - Methods
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let vc = segue.destination as? AddIssueViewController else { return }
+        guard let vc = segue.destination as? IssueDetailViewController else { return }
         let sender = sender as? Issue
         vc.issue = sender
     }
@@ -133,35 +151,7 @@ class IssueViewController: UIViewController {
         issueCollectionView.reloadData()
     }
     
-    private func moveToUp() {
-        guard
-            var minIndexPath = issueCollectionView.indexPathsForVisibleItems.min(),
-            let cell = issueCollectionView.cellForItem(at: minIndexPath)
-        else {
-            return
-        }
-        
-        let isCompletlyVisible = issueCollectionView.bounds.contains(cell.frame)
-        if isCompletlyVisible, minIndexPath.item > 0 {
-            minIndexPath.item -= 1
-        }
-        issueCollectionView.scrollToItem(at: minIndexPath, at: .top, animated: true)
-    }
     
-    private func moveToDown() {
-        guard
-            var maxIndexPath = issueCollectionView.indexPathsForVisibleItems.max(),
-            let cell = issueCollectionView.cellForItem(at: maxIndexPath)
-        else {
-            return
-        }
-        
-        let isCompletlyVisible = issueCollectionView.bounds.contains(cell.frame)
-        if isCompletlyVisible, maxIndexPath.item < issues.count {
-            maxIndexPath.item += 1
-        }
-        issueCollectionView.scrollToItem(at: maxIndexPath, at: .bottom, animated: true)
-    }
     
     
     
@@ -189,12 +179,17 @@ extension IssueViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IssueListCollectionViewCell.identfier, for: indexPath) as? IssueListCollectionViewCell else { return UICollectionViewCell() }
-        
         switch currentState {
             case .edit:
                 cell.currentState = .edit
             default:
-                cell.currentState = .none
+                if indexPath == swipedIndex {
+                    cell.currentState = .swiped
+                } else {
+                    cell.currentState = .none
+                }
+                
+                break
         }
         
         if selectedIssues.contains(indexPath) {
@@ -205,6 +200,8 @@ extension IssueViewController: UICollectionViewDataSource {
             collectionView.deselectItem(at: indexPath, animated: false)
         }
         cell.addSwipeGestures()
+        cell.indexPath = indexPath
+        cell.delegate = self
         cell.issue = issues[indexPath.item]
         
         return cell
@@ -214,7 +211,7 @@ extension IssueViewController: UICollectionViewDataSource {
 extension IssueViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard currentState == .edit else {
-            performSegue(withIdentifier: AddIssueViewController.fromSegueIdentifier, sender: issues[indexPath.row])
+            performSegue(withIdentifier: segueIdentifier(to: IssueDetailViewController.self), sender: issues[indexPath.row])
             return
         }
         if !selectedIssues.contains(indexPath) {

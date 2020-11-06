@@ -7,18 +7,6 @@
 
 import Foundation
 
-//{
-//    num,
-//    title,
-//    author: { id },
-//    createdAt,
-//    isClosed,
-//    labels: [ { name, color }, ... ],
-//    milestone: { name },
-//    assignees: [ { id }, ... ]
-//    comment: { content }
-//}
-
 struct Issue {
     var id: Int
     var title: String

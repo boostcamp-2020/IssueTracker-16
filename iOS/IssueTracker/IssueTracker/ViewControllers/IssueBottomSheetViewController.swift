@@ -17,22 +17,36 @@ class IssueBottomSheetViewController: UIViewController {
         case full
     }
     private var fullViewPosition: CGFloat {
-        (navigationController?.navigationBar.frame.height ?? 100) + 10
+        150
     }
     private var partialViewPosition: CGFloat {
-        UIScreen.main.bounds.height - 130
+        UIScreen.main.bounds.height - 120
     }
-    private let backGroundColorGrayScale: CGFloat = {
-        var grayScale: CGFloat = 0
-        UIColor.systemBackground.getWhite(&grayScale, alpha: nil)
-        return grayScale
-    }()
+    var delegate: IssueDetailViewController?
+    var author: AuthorResponse? {
+        didSet {
+            authorLabel.text = author?.id
+        }
+    }
+    var milestone: MilestoneResponse? {
+        didSet {
+            milestoneLabel.text = milestone?.title
+        }
+    }
+    var label: Label? {
+        didSet {
+            labelLabel.label = label
+        }
+    }
     
     // MARK: Views
     
-    @IBOutlet weak var addCommentButton: UIButton!
-    @IBOutlet weak var upButton: UIButton!
-    @IBOutlet weak var downButton: UIButton!
+    @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var labelLabel: GithubLabel!
+    @IBOutlet weak var milestoneLabel: UILabel!
+    @IBOutlet weak var milestonePercentBar: UIProgressView!
+    @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var issueCloseButton: UIButton!
     
     // MARK: - View Life Cycle
     
@@ -58,10 +72,10 @@ class IssueBottomSheetViewController: UIViewController {
         view.layer.cornerRadius = 10
         view.layer.shadowColor = UIColor.label.cgColor
         view.layer.shadowOpacity = 0.2
-        view.layer.shadowOffset = CGSize(width: 0, height: -3)
+        view.layer.shadowOffset = CGSize(width: 0, height: -2)
         view.layer.shadowRadius = 5
-        addCommentButton.layer.cornerRadius = 5
-        
+        shadowView.backgroundColor = .label
+        shadowView.alpha = 0
     }
     
     private func addTopShortLine() {
@@ -84,8 +98,7 @@ class IssueBottomSheetViewController: UIViewController {
     private func moveView(state: State) {
         let yPosition = state == .partial ? partialViewPosition : fullViewPosition
         view.frame = CGRect(x: 0, y: yPosition, width: view.frame.width, height: view.frame.height)
-        let grayScale = state == .partial ? backGroundColorGrayScale : 0.5
-        self.parent?.view.backgroundColor = UIColor(white: grayScale, alpha: 1)
+        shadowView.alpha = state == .partial ? 0 : 0.5
     }
     
     private func moveView(panGestureRecognizer recognizer: UIPanGestureRecognizer) {
@@ -95,8 +108,8 @@ class IssueBottomSheetViewController: UIViewController {
         view.frame = CGRect(x: 0, y: minY + transition.y, width: view.frame.width, height: view.frame.height)
         recognizer.setTranslation(CGPoint.zero, in: view)
         guard minY <= (250 + fullViewPosition) else { return }
-        let grayScale = backGroundColorGrayScale == 1.0 ? (minY - fullViewPosition) / 500.0 : -1 * (minY - fullViewPosition) / 500.0
-        self.parent?.view.backgroundColor = UIColor(white: grayScale + 0.5, alpha: 1)
+        let alpha = 0.5 - (minY - fullViewPosition) / 500.0
+        shadowView.alpha = alpha
     }
     
     // MARK: Selectors
@@ -111,8 +124,10 @@ class IssueBottomSheetViewController: UIViewController {
         }, completion: nil)
     }
     
-    @objc private func test() {
-        debugPrint("test")
+    @IBAction func touchedUpButton(_ sender: Any) {
+        delegate?.moveToUp()
     }
-    
+    @IBAction func touchedDownButton(_ sender: Any) {
+        delegate?.moveToDown()
+    }
 }
