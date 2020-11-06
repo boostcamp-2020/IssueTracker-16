@@ -33,7 +33,7 @@ class MilestoneViewController: UIViewController {
         activityIndicator.startAnimating()
         interactor?.request(endPoint: .list, completionHandler: { [weak self] (milestones) in
             self?.milestones = milestones
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self?.milestoneCollectionView.reloadData()
                 self?.activityIndicator.stopAnimating()
             }

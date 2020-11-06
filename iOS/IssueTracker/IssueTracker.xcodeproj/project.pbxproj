@@ -351,10 +351,10 @@
 			isa = PBXGroup;
 			children = (
 				D4DF60242547AEF200765C0A /* IssueViewController.swift */,
+				4CBA21E52553CB4D002BDCC3 /* IssueDetailViewController.swift */,
 				4C5138FF2547CA5A0084F65F /* LabelViewController.swift */,
 				4C5139112548047A0084F65F /* AddAlertViewController.swift */,
 				D42EC1902549180A00E57627 /* MilestoneViewController.swift */,
-				4CBA21E52553CB4D002BDCC3 /* IssueDetailViewController.swift */,
 				4CBA21E92553D6D1002BDCC3 /* FilterViewController.swift */,
 				D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */,
 				D4F8FCBF25531713008C311E /* AddIssueViewController.swift */,
@@ -818,6 +818,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				INFOPLIST_FILE = "IssueTracker/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -837,6 +838,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				INFOPLIST_FILE = "IssueTracker/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

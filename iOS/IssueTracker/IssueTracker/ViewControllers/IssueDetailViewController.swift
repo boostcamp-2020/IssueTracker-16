@@ -37,7 +37,11 @@ class IssueDetailViewController: UIViewController {
         bottomSheetVC.view.frame = CGRect(x: 0, y: view.frame.maxY, width: width, height: height)
         bottomSheetVC.delegate = self
         bottomSheetVC.author = issue?.author
-        bottomSheetVC.label = issue?.labels.first
+        
+        // FIXME: 수정수정!!!@#!@#!@#!@#
+        let labelResponse = issue?.labels.first
+        let label = Label(id: 0, name: labelResponse?.name ?? "", description: "", color: labelResponse?.color ?? "")
+        bottomSheetVC.label = label
         bottomSheetVC.milestone = issue?.milestone
     }
     

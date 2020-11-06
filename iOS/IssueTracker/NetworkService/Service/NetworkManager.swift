@@ -48,6 +48,7 @@ public class NetworkManager {
                 let result = try decoder.decode(T.self, from: data)
                 completion(result, nil)
             } catch {
+                print(error)
                 completion(nil, .unableToDecode)
             }
         }
