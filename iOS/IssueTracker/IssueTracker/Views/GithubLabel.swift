@@ -15,6 +15,7 @@ class GithubLabel: PaddingLabel {
             backgroundColor = UIColor(hex: label.color)
             
             setupInsets()
+            
         }
     }
     
@@ -24,4 +25,5 @@ class GithubLabel: PaddingLabel {
         rightInset = trailing
         bottomInset = bottom
     }
+    
 }

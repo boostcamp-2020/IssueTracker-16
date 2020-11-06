@@ -66,6 +66,7 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
     @IBOutlet private weak var filterBarButton: UIBarButtonItem!
     @IBOutlet private weak var editingToolBar: UIToolbar!
     @IBOutlet weak var addIssueButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - View Life Cycle
     
@@ -78,14 +79,15 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        activityIndicator.startAnimating()
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .automatic
         interactor?.request(endPoint: .list, completionHandler: { [weak self] (issues) in
             
             self?.issues = issues
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self?.issueCollectionView.reloadData()
+                self?.activityIndicator.stopAnimating()
             }
         })
     }
@@ -203,6 +205,7 @@ extension IssueViewController: UICollectionViewDataSource {
         cell.indexPath = indexPath
         cell.delegate = self
         cell.issue = issues[indexPath.item]
+        
         
         return cell
     }

@@ -23,12 +23,16 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
             nameLabel.text = issue?.title
             descriptionLabel.text = ""
             milestoneLabel.text = issue?.milestone.title
+            descriptionLabel.text = issue?.comment.content
             if let label = issue?.labels.first {
                 labelLabel.isHidden = false
                 labelLabel.text = label.name
             } else {
                 labelLabel.isHidden = true
             }
+            #warning("코너레디우스가 제대로 안 먹혀서 임의로 넣어둠!!")
+            labelLabel.layer.cornerRadius = 6
+            labelLabel.clipsToBounds = true
         }
     }
     

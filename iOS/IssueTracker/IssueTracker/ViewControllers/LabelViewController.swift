@@ -28,7 +28,7 @@ class LabelViewController: UIViewController {
         activityIndicator.startAnimating()
         interactor?.request(endPoint: .list, completionHandler: { [weak self] (labels) in
             self?.labels = labels
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self?.labelCollectionView.reloadData()
                 self?.activityIndicator.stopAnimating()
             }
