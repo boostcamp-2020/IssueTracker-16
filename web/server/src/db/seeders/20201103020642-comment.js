@@ -12,7 +12,7 @@ module.exports = {
         updated_at: new Date(),
       },
       {
-        content: '첫 번째 코멘트',
+        content: '첫 번째 코멘트\n두 번째 줄 입니다\n세 번째 줄 입니다',
         issue_num: 2,
         user_num: 1,
         is_deleted: false,
