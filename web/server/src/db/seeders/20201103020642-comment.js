@@ -4,7 +4,7 @@ module.exports = {
   up: async queryInterface =>
     queryInterface.bulkInsert('comments', [
       {
-        content: '첫 번째 코멘트',
+        content: '레이블 전체 목록을 볼 수 있어야 한다\n2줄까지 보입니다.',
         issue_num: 1,
         user_num: 1,
         is_deleted: false,
