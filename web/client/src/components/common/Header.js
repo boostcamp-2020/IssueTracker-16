@@ -3,7 +3,12 @@ import styled from 'styled-components';
 
 import RepositoryLogo from '../../statics/svg/repository';
 
+const Link = styled.a`
+  color: white;
+  text-decoration: none;
+`;
 const HeaderElement = styled.header`
+  min-width: 700px;
   background-color: #24292e;
   color: white;
   padding: 21.5px 0;
@@ -22,7 +27,7 @@ export default function Header() {
   return (
     <HeaderElement>
       <RepositoryLogo />
-      <div>ISSUES</div>
+      <Link href="/">ISSUES</Link>
     </HeaderElement>
   );
 }

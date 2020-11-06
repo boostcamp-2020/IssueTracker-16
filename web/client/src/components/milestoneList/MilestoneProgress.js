@@ -29,10 +29,9 @@ const ProgressDesc = styled.div`
 `;
 
 export default function MilestoneProgress({ openedIssues, closedIssues }) {
-  const percentage =
-    openedIssues + closedIssues
-      ? Math.floor((openedIssues / (openedIssues + closedIssues)) * 100)
-      : 0;
+  const percentage = closedIssues
+    ? Math.floor((openedIssues / (openedIssues + closedIssues)) * 100)
+    : 0;
 
   return (
     <div>

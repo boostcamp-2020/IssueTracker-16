@@ -17,6 +17,15 @@ const Buttons = styled.div`
   width: 20%;
 `;
 
+const Button = styled.button`
+  border: none;
+  background-color: transparent;
+  color: gray;
+  margin-left: 10px;
+  outline: none;
+  cursor: pointer;
+`;
+
 export default function LabelItem({ num, name, color, description }) {
   return (
     <ListItem>
@@ -25,8 +34,8 @@ export default function LabelItem({ num, name, color, description }) {
       </LabelView>
       <Description>{description}</Description>
       <Buttons>
-        <button>Edit</button>
-        <button>Delete</button>
+        <Button>Edit</Button>
+        <Button>Delete</Button>
       </Buttons>
     </ListItem>
   );

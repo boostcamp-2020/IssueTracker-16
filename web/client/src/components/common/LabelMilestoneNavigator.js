@@ -1,9 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 import LabelLogo from '../../statics/svg/label';
 import MilestoneLogo from '../../statics/svg/milestone';
+
+const Link = styled.a`
+  text-decoration: none;
+`;
 
 const Nav = styled.nav`
   margin-left: auto;
@@ -25,7 +28,7 @@ const TabButton = styled.button`
     border-bottom-left-radius: 6px;
   }
 
-  &:nth-child(2) {
+  &:last-child {
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     margin-left: -1px;
@@ -47,13 +50,13 @@ export default function LabelMilestoneNavigator() {
     <Nav>
       <TabButton>
         <LabelLogo />
-        <Link to={URL.labels}>
+        <Link href={URL.labels}>
           <Span>Labels</Span>
         </Link>
       </TabButton>
       <TabButton>
         <MilestoneLogo />
-        <Link to={URL.milestones}>
+        <Link href={URL.milestones}>
           <Span>Milestones</Span>
         </Link>
       </TabButton>
