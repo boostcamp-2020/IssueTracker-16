@@ -11,9 +11,13 @@ class AddAlertInputView: UIView {
     
     // MARK: - Properties
     
+    let lineView = UIView()
+    var contentView = UIView()
     var titleLabel: UILabel = UILabel()
     var textField: UITextField = UITextField()
     var stackView: UIStackView = UIStackView()
+    var beginEditingHandler: ((UITextField) -> Void)?
+    var returnHandler: ((UITextField) -> Void)?
     var isValid: Bool {
         return self.layer.borderColor == UIColor.clear.cgColor ? true : false
     }
@@ -41,26 +45,38 @@ class AddAlertInputView: UIView {
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.clear.cgColor
         self.layer.cornerRadius = 5
+        addSubview(contentView)
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         textField.delegate = self
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 0
         stackView.axis = .horizontal
-        stackView.alignment = .fill
+        stackView.alignment = .center
         stackView.distribution = .fill
         stackView.addArrangedSubview(textField)
-        self.addSubview(titleLabel)
-        self.addSubview(stackView)
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(stackView)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.setContentCompressionResistancePriority(UILayoutPriority(900), for: .vertical)
         NSLayoutConstraint.activate([
-            titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            titleLabel.heightAnchor.constraint(equalTo: self.heightAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            contentView.topAnchor.constraint(equalTo: topAnchor),
+            contentView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            contentView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            titleLabel.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10),
+            titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: 10),
+            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            // titleLabel.heightAnchor.constraint(greaterThanOrEqualTo: self.heightAnchor, constant: 50),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: -10),
             titleLabel.widthAnchor.constraint(equalToConstant: 40),
-            stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            stackView.heightAnchor.constraint(equalTo: self.heightAnchor),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
+//            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+//            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            // stackView.heightAnchor.constraint(equalTo: self.titleLabel.heightAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
         addBottomLine()
         validate()
@@ -80,7 +96,6 @@ class AddAlertInputView: UIView {
     
     private func addBottomLine() {
         let lineWidth: CGFloat = 1
-        let lineView = UIView()
         lineView.backgroundColor = .systemGray5
         self.addSubview(lineView)
         lineView.translatesAutoresizingMaskIntoConstraints = false
@@ -98,15 +113,27 @@ class AddAlertInputView: UIView {
         guard let text = textField.text,
               !text.trimmingCharacters(in: .whitespaces).isEmpty else {
             self.layer.borderColor = UIColor.systemRed.cgColor
+            self.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 0.1022848887)
             return
         }
-        self.layer.borderColor = UIColor.clear.cgColor
+        self.layer.borderColor = nil
+        self.backgroundColor = nil
     }
 }
 
 // MARK: TextField Delegate
 
 extension AddAlertInputView: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        beginEditingHandler?(textField)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        returnHandler?(textField)
+        return true
+    }
+    
     func textFieldDidChangeSelection(_ textField: UITextField) {
         validate()
     }

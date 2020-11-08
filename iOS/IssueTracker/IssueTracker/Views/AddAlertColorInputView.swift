@@ -56,7 +56,8 @@ class AddAlertColorInputView: AddAlertInputView {
         stackView.addArrangedSubview(randomColorGenerator)
         NSLayoutConstraint.activate([
             colorPicker.widthAnchor.constraint(equalToConstant: 50),
-            randomColorGenerator.widthAnchor.constraint(equalTo: stackView.heightAnchor)
+            colorPicker.heightAnchor.constraint(equalToConstant: 24),
+            randomColorGenerator.widthAnchor.constraint(equalTo: randomColorGenerator.heightAnchor)
         ])
     }
     

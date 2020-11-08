@@ -31,8 +31,8 @@ class MilestoneViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         activityIndicator.startAnimating()
-        interactor?.request(endPoint: .list, completionHandler: { [weak self] (milestones) in
-            self?.milestones = milestones
+        interactor?.request(endPoint: .list, completionHandler: { [weak self] (milestones: [Milestone]?) in
+            self?.milestones = milestones ?? []
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self?.milestoneCollectionView.reloadData()
                 self?.activityIndicator.stopAnimating()

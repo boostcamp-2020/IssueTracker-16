@@ -13,6 +13,10 @@ class LabelViewController: UIViewController {
     
     var labels = [Label]()
     var interactor: LabelBusinessLogic?
+    
+    // MARK: - Views
+    
+    private var refreshControl = UIRefreshControl()
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var labelCollectionView: UICollectionView!
     
@@ -21,19 +25,36 @@ class LabelViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor = LabelInteractor()
+        request(for: .list)
+        configureCollectionView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        activityIndicator.startAnimating()
-        interactor?.request(endPoint: .list, completionHandler: { [weak self] (labels) in
-            self?.labels = labels
+    // MARK: - Initialize
+    
+    private func configureCollectionView() {
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        labelCollectionView.refreshControl = refreshControl
+    }
+    
+    // MARK: - Methods
+    
+    private func request(for endPoint: LabelEndPoint) {
+        interactor?.request(endPoint: .list, completionHandler: { [weak self] (labels: [Label]?) in
+            self?.labels = labels ?? []
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self?.labelCollectionView.reloadData()
                 self?.activityIndicator.stopAnimating()
             }
         })
     }
+    
+    @objc
+    private func refresh(_ sender: AnyObject) {
+        request(for: .list)
+        refreshControl.endRefreshing()
+    }
+    
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let vc = segue.destination as? AddAlertViewController else { return }
@@ -48,7 +69,6 @@ class LabelViewController: UIViewController {
             vc.addInputView(title: "설명", placeholder: "", text: "")
             vc.addInputView(title: "색상", placeholder: "", text: "")
         }
-        
     }
 }
 
@@ -99,10 +119,8 @@ extension LabelViewController: AddAlertViewControllerDelegate {
         
     }
     
-    func addAlertViewController(_ addAlertViewController: AddAlertViewController, didTabAddWithItem item: Inputable) {
+    func addAlertViewController(_ addAlertViewController: AddAlertViewController, didTabAddWithItem item: Inputable?) {
         guard
-            var label = item as? Label,
-            let index = labels.firstIndex(of: label),
             addAlertViewController.inputViews.count == 3,
             let name = addAlertViewController.inputViews[0].textField.text,
             let description = addAlertViewController.inputViews[1].textField.text,
@@ -111,11 +129,24 @@ extension LabelViewController: AddAlertViewControllerDelegate {
             return
         }
         
-        label.name = name
-        label.description = description
-        label.color = color
-        labels[index] = label
-        labelCollectionView.reloadData()
+        let newLabel = Label(id: -1, name: name, description: description, color: color)
+        var endPoint = LabelEndPoint.create(body: newLabel.jsonData)
+        
+        if let label = item as? Label {
+            endPoint = LabelEndPoint.update(id: label.id, body: newLabel.jsonData)
+        }
+        
+        interactor?.request(endPoint: endPoint, completionHandler: { [weak self] (response: APIResponse?) in
+            
+            guard let response = response else {
+                print("response is Empty")
+                return
+            }
+            
+            if response.success {
+                self?.request(for: .list)
+            }
+        })
     }
     
 }
