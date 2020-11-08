@@ -24,7 +24,7 @@ module.exports = class Milestone extends Model {
         sequelize,
         timestamps: false,
         underscored: true,
-        modelName: 'Milestone',
+        modelName: 'milestone',
         tableName: 'milestones',
         charset: 'utf8',
         collate: 'utf8_general_ci',

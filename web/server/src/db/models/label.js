@@ -25,7 +25,7 @@ module.exports = class Label extends Model {
         sequelize,
         timestamps: false,
         underscored: true,
-        modelName: 'Label',
+        modelName: 'label',
         tableName: 'labels',
         charset: 'utf8',
         collate: 'utf8_general_ci',

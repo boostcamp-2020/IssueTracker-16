@@ -27,7 +27,7 @@ module.exports = class Issue extends Model {
       {
         sequelize,
         underscored: true,
-        modelName: 'Issue',
+        modelName: 'issue',
         tableName: 'issues',
         charset: 'utf8',
         collate: 'utf8_general_ci',

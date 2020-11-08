@@ -17,7 +17,7 @@ module.exports = class OAuthUser extends Model {
         sequelize,
         underscored: true,
         timestamps: false,
-        modelName: 'OAuthUser',
+        modelName: 'oauthuser',
         tableName: 'oauths_users',
         charset: 'utf8',
         collate: 'utf8_general_ci',

@@ -22,7 +22,7 @@ module.exports = class Comment extends Model {
       {
         sequelize,
         underscored: true,
-        modelName: 'Comment',
+        modelName: 'comment',
         tableName: 'comments',
         charset: 'utf8',
         collate: 'utf8_general_ci',
