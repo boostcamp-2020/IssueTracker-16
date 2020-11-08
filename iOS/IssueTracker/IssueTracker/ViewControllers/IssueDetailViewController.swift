@@ -10,9 +10,9 @@ import UIKit
 class IssueDetailViewController: UIViewController {
 
     @IBOutlet weak var issueDetailCollectionView: UICollectionView!
+    private var bottomSheetVC: IssueBottomSheetViewController?
     
     var titleYAnchor: NSLayoutConstraint?
-    
     
     var issue: Issue?
     
@@ -27,23 +27,6 @@ class IssueDetailViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    private func addBottomSheetVC() {
-        let bottomSheetVC = self.storyboard?.instantiateViewController(identifier: IssueBottomSheetViewController.identifier) as! IssueBottomSheetViewController
-        self.addChild(bottomSheetVC)
-        self.view.addSubview(bottomSheetVC.view)
-        bottomSheetVC.didMove(toParent: self)
-        let height = view.frame.height
-        let width = view.frame.width
-        bottomSheetVC.view.frame = CGRect(x: 0, y: view.frame.maxY, width: width, height: height)
-        bottomSheetVC.delegate = self
-        bottomSheetVC.author = issue?.author
-        
-        // FIXME: 수정수정!!!@#!@#!@#!@#
-        let labelResponse = issue?.labels.first
-        let label = Label(id: 0, name: labelResponse?.name ?? "", description: "", color: labelResponse?.color ?? "")
-        bottomSheetVC.label = label
-        bottomSheetVC.milestone = issue?.milestone
-    }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 //        guard let headerFrame = issueDetailCollectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 0))?.frame else { return }
@@ -100,6 +83,79 @@ extension IssueDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.bounds.width, height: 200)
     }
+}
+
+// MARK: - Bottom Sheet
+
+extension IssueDetailViewController {
+    private enum State {
+        case partial
+        case full
+    }
+    private var fullViewPosition: CGFloat {
+        guard let height = bottomSheetVC?.view.frame.height else { return 150 }
+        return view.frame.height - height
+    }
+    private var partialViewPosition: CGFloat {
+        UIScreen.main.bounds.height - 120
+    }
+    private func addBottomSheetVC() {
+        bottomSheetVC = self.storyboard?.instantiateViewController(identifier: IssueBottomSheetViewController.identifier)
+        guard let bottomSheetVC = bottomSheetVC else { return }
+        self.addChild(bottomSheetVC)
+        let height = view.frame.height * 0.8
+        let width = view.frame.width
+        bottomSheetVC.view.frame = CGRect(x: 0, y: view.frame.maxY, width: width, height: height)
+        self.view.addSubview(bottomSheetVC.view)
+        bottomSheetVC.didMove(toParent: self)
+        
+        bottomSheetVC.delegate = self
+        bottomSheetVC.author = issue?.author
+        
+        // FIXME: 수정수정!!!@#!@#!@#!@#
+        let labelResponse = issue?.labels.first
+        let label = Label(id: 0, name: labelResponse?.name ?? "", description: "", color: labelResponse?.color ?? "")
+        bottomSheetVC.label = label
+        bottomSheetVC.milestone = issue?.milestone
+        
+        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(panGesture))
+        bottomSheetVC.view.addGestureRecognizer(gesture)
+    }
+    
+    // MARK: - Methods
+    
+    private func moveView(state: State) {
+        guard let bottomSheetView = bottomSheetVC?.view else { return }
+        let yPosition = state == .partial ? partialViewPosition : fullViewPosition
+        bottomSheetView.frame = CGRect(x: 0, y: yPosition, width: bottomSheetView.frame.width, height: bottomSheetView.frame.height)
+        bottomSheetVC?.shadowView.alpha = state == .partial ? 0 : 0.5
+    }
+    
+    private func moveView(panGestureRecognizer recognizer: UIPanGestureRecognizer) {
+        guard let bottomSheetView = bottomSheetVC?.view else { return }
+        let transition = recognizer.translation(in: bottomSheetView)
+        let minY = bottomSheetView.frame.minY
+        guard (minY + transition.y >= fullViewPosition) && (minY + transition.y <= partialViewPosition) else { return }
+        bottomSheetView.frame = CGRect(x: 0, y: minY + transition.y, width: bottomSheetView.frame.width, height: bottomSheetView.frame.height)
+        recognizer.setTranslation(CGPoint.zero, in: bottomSheetView)
+        guard minY <= (250 + fullViewPosition) else { return }
+        let alpha = 0.5 - (minY - fullViewPosition) / 500.0
+        bottomSheetVC?.shadowView.alpha = alpha
+    }
+    
+    // MARK: PanGesture
+    
+    @objc private func panGesture(_ recognizer: UIPanGestureRecognizer) {
+        moveView(panGestureRecognizer: recognizer)
+        guard let bottomSheetView = bottomSheetVC?.view else { return }
+        guard recognizer.state == .ended else { return }
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: { [weak self] in
+            guard let self = self else { return }
+            let state: State = bottomSheetView.frame.minY >= UIScreen.main.bounds.height / 2 ? .partial : .full
+            self.moveView(state: state)
+        }, completion: nil)
+    }
+    
 }
 
 protocol BottomSheetDelegate {

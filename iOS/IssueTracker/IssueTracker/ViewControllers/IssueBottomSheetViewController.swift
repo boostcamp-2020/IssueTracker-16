@@ -12,16 +12,7 @@ class IssueBottomSheetViewController: UIViewController {
     // MARK: - Properties
     
     static let identifier: String = String(describing: IssueBottomSheetViewController.self)
-    private enum State {
-        case partial
-        case full
-    }
-    private var fullViewPosition: CGFloat {
-        150
-    }
-    private var partialViewPosition: CGFloat {
-        UIScreen.main.bounds.height - 120
-    }
+    
     var delegate: IssueDetailViewController?
     var author: AuthorResponse? {
         didSet {
@@ -59,7 +50,7 @@ class IssueBottomSheetViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIView.animate(withDuration: 0.6, animations: {
-            self.moveView(state: .partial)
+            self.view.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 120, width: self.view.frame.width, height: self.view.frame.height)
         })
     }
     
@@ -67,9 +58,8 @@ class IssueBottomSheetViewController: UIViewController {
     
     private func configure() {
         view.backgroundColor = .systemGray6
-        let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(panGesture))
-        view.addGestureRecognizer(gesture)
         view.layer.cornerRadius = 10
+        view.layer.shadowPath = UIBezierPath(rect: view.bounds).cgPath
         view.layer.shadowColor = UIColor.label.cgColor
         view.layer.shadowOpacity = 0.2
         view.layer.shadowOffset = CGSize(width: 0, height: -2)
@@ -91,37 +81,6 @@ class IssueBottomSheetViewController: UIViewController {
             lineView.widthAnchor.constraint(equalToConstant: 50),
             lineView.heightAnchor.constraint(equalToConstant: lineWidth)
         ])
-    }
-    
-    // MARK: - Methods
-    
-    private func moveView(state: State) {
-        let yPosition = state == .partial ? partialViewPosition : fullViewPosition
-        view.frame = CGRect(x: 0, y: yPosition, width: view.frame.width, height: view.frame.height)
-        shadowView.alpha = state == .partial ? 0 : 0.5
-    }
-    
-    private func moveView(panGestureRecognizer recognizer: UIPanGestureRecognizer) {
-        let transition = recognizer.translation(in: view)
-        let minY = view.frame.minY
-        guard (minY + transition.y >= fullViewPosition) && (minY + transition.y <= partialViewPosition) else { return }
-        view.frame = CGRect(x: 0, y: minY + transition.y, width: view.frame.width, height: view.frame.height)
-        recognizer.setTranslation(CGPoint.zero, in: view)
-        guard minY <= (250 + fullViewPosition) else { return }
-        let alpha = 0.5 - (minY - fullViewPosition) / 500.0
-        shadowView.alpha = alpha
-    }
-    
-    // MARK: Selectors
-    
-    @objc private func panGesture(_ recognizer: UIPanGestureRecognizer) {
-        moveView(panGestureRecognizer: recognizer)
-        guard recognizer.state == .ended else { return }
-        UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: { [weak self] in
-            guard let self = self else { return }
-            let state: State = self.view.frame.minY >= UIScreen.main.bounds.height / 2 ? .partial : .full
-            self.moveView(state: state)
-        }, completion: nil)
     }
     
     @IBAction func touchedUpButton(_ sender: Any) {
