@@ -9,6 +9,6 @@ import UIKit
 
 class BlockResponderView: UIView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        self.endEditing(true)
     }
 }

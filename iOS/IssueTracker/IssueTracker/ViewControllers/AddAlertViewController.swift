@@ -30,6 +30,7 @@ class AddAlertViewController: UIViewController {
     
     // MARK: - Properties
     
+    private var selectedTextFieldFrame: CGRect = .zero
     weak var delegate: AddAlertViewControllerDelegate?
     private(set) var inputViews = [InputView]()
     var item: Inputable?
@@ -38,11 +39,28 @@ class AddAlertViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        inputViews.forEach { contentStackView.addArrangedSubview($0) }
+        
         setupViews()
+        addObservers()
     }
     
     private func setupViews() {
+        inputViews.forEach { inputview in
+            contentStackView.addArrangedSubview(inputview)
+            inputview.beginEditingHandler = { [weak self] (textField) in
+                let textFieldFrame = self?.view.convert(textField.frame, from: textField)
+                self?.selectedTextFieldFrame = textFieldFrame ?? .zero
+            }
+            
+            inputview.returnHandler = { [weak self] (textField) in
+                if let index = self?.inputViews.firstIndex(where: { $0.textField == textField }),
+                   index+1 < self?.inputViews.count ?? 0 {
+                    self?.inputViews[index+1].textField.becomeFirstResponder()
+                } else {
+                    self?.view.endEditing(true)
+                }
+            }
+        }
         contentBackgroundView.layer.shadowColor = UIColor.black.cgColor
         contentBackgroundView.layer.shadowRadius = 10
         contentBackgroundView.layer.shadowOffset = .zero
@@ -77,7 +95,24 @@ class AddAlertViewController: UIViewController {
         
     }
     
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChanged(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
     // MARK: Selectors
+    
+    @objc private func keyboardWillChanged(_ notification: Notification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+        let keyboardRect =  keyboardFrame.cgRectValue
+
+        if contentBackgroundView.frame.maxY > keyboardRect.origin.y {
+            view.frame.origin.y = -(contentBackgroundView.frame.maxY - keyboardRect.origin.y + 20)
+        } else {
+            view.frame.origin.y = 0
+        }
+    }
     
     @objc private func touchedColorPicker() {
         for inputView in inputViews {
@@ -99,7 +134,6 @@ class AddAlertViewController: UIViewController {
     }
     
     @IBAction private func touchedAddButton(_ sender: UIButton) {
-        guard let item = item else { return }
         delegate?.addAlertViewController(self, didTabAddWithItem: item)
         dismiss(animated: true, completion: nil)
     }

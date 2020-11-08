@@ -11,9 +11,13 @@ class AddAlertInputView: UIView {
     
     // MARK: - Properties
     
+    let lineView = UIView()
+    var contentView = UIView()
     var titleLabel: UILabel = UILabel()
     var textField: UITextField = UITextField()
     var stackView: UIStackView = UIStackView()
+    var beginEditingHandler: ((UITextField) -> Void)?
+    var returnHandler: ((UITextField) -> Void)?
     var isValid: Bool {
         return self.layer.borderColor == UIColor.clear.cgColor ? true : false
     }
@@ -98,6 +102,16 @@ class AddAlertInputView: UIView {
 // MARK: TextField Delegate
 
 extension AddAlertInputView: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        beginEditingHandler?(textField)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        returnHandler?(textField)
+        return true
+    }
+    
     func textFieldDidChangeSelection(_ textField: UITextField) {
         guard let title = titleLabel.text, title == "제목" else { return }
         guard let text = textField.text,
