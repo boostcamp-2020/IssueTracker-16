@@ -19,6 +19,11 @@ module.exports = class Milestone extends Model {
         description: {
           type: DataTypes.STRING,
         },
+        isClosed: {
+          type: DataTypes.BOOLEAN,
+          allowNull: false,
+          defaultValue: false,
+        },
       },
       {
         sequelize,
