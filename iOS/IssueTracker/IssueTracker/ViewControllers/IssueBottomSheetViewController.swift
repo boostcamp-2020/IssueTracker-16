@@ -64,8 +64,6 @@ class IssueBottomSheetViewController: UIViewController {
         view.layer.shadowOpacity = 0.2
         view.layer.shadowOffset = CGSize(width: 0, height: -2)
         view.layer.shadowRadius = 5
-        shadowView.backgroundColor = .label
-        shadowView.alpha = 0
     }
     
     private func addTopShortLine() {
