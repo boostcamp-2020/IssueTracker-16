@@ -105,6 +105,9 @@ class AddAlertViewController: UIViewController {
     }
     
     @IBAction private func touchedClearButton(_ sender: UIButton) {
-        inputViews.forEach { $0.textField.text = "" }
+        inputViews.forEach {
+            $0.textField.text = ""
+            $0.validate()
+        }
     }
 }

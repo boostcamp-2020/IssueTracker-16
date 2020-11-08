@@ -37,7 +37,7 @@ class AddAlertInputView: UIView {
         setUp()
     }
     
-    private func setUp() {
+    internal func setUp() {
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.clear.cgColor
         self.layer.cornerRadius = 5
@@ -63,6 +63,17 @@ class AddAlertInputView: UIView {
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
         addBottomLine()
+        validate()
+    }
+    
+    func configure(title: String, placeholder: String, text: String?) {
+        titleLabel.text = title
+        textField.placeholder = placeholder
+        guard let text = text,
+              text.trimmingCharacters(in: .whitespaces) != "" else {
+            return
+        }
+        textField.text = text
     }
     
     // MARK: - 밑 줄 그리기
@@ -80,31 +91,23 @@ class AddAlertInputView: UIView {
         lineView.bottomAnchor.constraint(greaterThanOrEqualTo: self.bottomAnchor).isActive = true
     }
     
-    func configure(title: String, placeholder: String, text: String?) {
-        titleLabel.text = title
-        textField.placeholder = placeholder
-        guard let text = text,
-              text.trimmingCharacters(in: .whitespaces) != "" else {
-            if title == "제목" {
-                self.layer.borderColor = UIColor.systemRed.cgColor
-            }
+    // MARK: - Methods
+    
+    func validate() {
+        guard let title = titleLabel.text, title == "제목" else { return }
+        guard let text = textField.text,
+              !text.trimmingCharacters(in: .whitespaces).isEmpty else {
+            self.layer.borderColor = UIColor.systemRed.cgColor
             return
         }
-        textField.text = text
+        self.layer.borderColor = UIColor.clear.cgColor
     }
-    
 }
 
 // MARK: TextField Delegate
 
 extension AddAlertInputView: UITextFieldDelegate {
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        guard let title = titleLabel.text, title == "제목" else { return }
-        guard let text = textField.text,
-              text.trimmingCharacters(in: .whitespaces) != "" else {
-            self.layer.borderColor = UIColor.systemRed.cgColor
-            return
-        }
-        self.layer.borderColor = UIColor.clear.cgColor
+        validate()
     }
 }
