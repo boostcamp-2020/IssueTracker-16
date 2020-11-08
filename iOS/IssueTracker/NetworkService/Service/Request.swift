@@ -65,6 +65,7 @@ open class Request {
     func configureRequest(for endPoint: EndPointType) {
         guard var baseURL = endPoint.baseURL else {
             self.error = .badURL
+            debugPrint(error)
             return
         }
         
