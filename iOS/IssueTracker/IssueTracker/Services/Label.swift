@@ -17,7 +17,7 @@ struct Label {
         return [
             "name": name,
             "description": description,
-            "color": color
+            "color": color.replacingOccurrences(of: "#", with: "")
         ]
     }
 }

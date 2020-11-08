@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C2D05A82557ECA300FA787F /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05A72557ECA300FA787F /* APIResponse.swift */; };
 		4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5138FF2547CA5A0084F65F /* LabelViewController.swift */; };
 		4C5139122548047A0084F65F /* AddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139112548047A0084F65F /* AddAlertViewController.swift */; };
 		4C51391D254847530084F65F /* BlockResponderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51391C254847530084F65F /* BlockResponderView.swift */; };
@@ -22,7 +23,6 @@
 		4C5139992549348B0084F65F /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139922549348B0084F65F /* EndPointType.swift */; };
 		4C5139A1254934D20084F65F /* MilestoneEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51399E254934D20084F65F /* MilestoneEndPoint.swift */; };
 		4C5139A2254934D20084F65F /* LabelEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51399F254934D20084F65F /* LabelEndPoint.swift */; };
-		4C5139A3254934D20084F65F /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139A0254934D20084F65F /* APIManager.swift */; };
 		4C5139A625493BB20084F65F /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139A525493BB20084F65F /* Label.swift */; };
 		4C5139AA25494E7E0084F65F /* LabelInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139A925494E7E0084F65F /* LabelInteractor.swift */; };
 		4CBA21A5255002B8002BDCC3 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21A4255002B8002BDCC3 /* PaddingLabel.swift */; };
@@ -94,6 +94,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4C2D05A72557ECA300FA787F /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		4C5138FF2547CA5A0084F65F /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
 		4C5139112548047A0084F65F /* AddAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertViewController.swift; sourceTree = "<group>"; };
 		4C51391C254847530084F65F /* BlockResponderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockResponderView.swift; sourceTree = "<group>"; };
@@ -109,7 +110,6 @@
 		4C5139922549348B0084F65F /* EndPointType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
 		4C51399E254934D20084F65F /* MilestoneEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MilestoneEndPoint.swift; sourceTree = "<group>"; };
 		4C51399F254934D20084F65F /* LabelEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelEndPoint.swift; sourceTree = "<group>"; };
-		4C5139A0254934D20084F65F /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		4C5139A525493BB20084F65F /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Label.swift; path = IssueTracker/Services/Label.swift; sourceTree = SOURCE_ROOT; };
 		4C5139A925494E7E0084F65F /* LabelInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelInteractor.swift; sourceTree = "<group>"; };
 		4CBA21A4255002B8002BDCC3 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
@@ -229,7 +229,6 @@
 			isa = PBXGroup;
 			children = (
 				4C51399D254934D20084F65F /* EndPoints */,
-				4C5139A0254934D20084F65F /* APIManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -323,6 +322,7 @@
 				4C5139A525493BB20084F65F /* Label.swift */,
 				D4EA0AA5254AB93C0000CF67 /* Milestone.swift */,
 				D44A9D08254FF1EC00ABA1A9 /* Issue.swift */,
+				4C2D05A72557ECA300FA787F /* APIResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -547,12 +547,12 @@
 				D4F8FCC025531713008C311E /* AddIssueViewController.swift in Sources */,
 				4C5139AA25494E7E0084F65F /* LabelInteractor.swift in Sources */,
 				D4EA0AA0254A9AEC0000CF67 /* AddAlertDateInputView.swift in Sources */,
+				4C2D05A82557ECA300FA787F /* APIResponse.swift in Sources */,
 				D4DF604D254800C100765C0A /* AddAlertInputView.swift in Sources */,
 				4C5139A2254934D20084F65F /* LabelEndPoint.swift in Sources */,
 				4CBA21A5255002B8002BDCC3 /* PaddingLabel.swift in Sources */,
 				4C51391D254847530084F65F /* BlockResponderView.swift in Sources */,
 				D42EC19D2549CEA600E57627 /* AddAlertColorInputView.swift in Sources */,
-				4C5139A3254934D20084F65F /* APIManager.swift in Sources */,
 				4C5139122548047A0084F65F /* AddAlertViewController.swift in Sources */,
 				4C5139A625493BB20084F65F /* Label.swift in Sources */,
 				D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */,

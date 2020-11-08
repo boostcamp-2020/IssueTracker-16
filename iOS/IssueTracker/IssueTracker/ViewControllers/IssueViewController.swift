@@ -61,6 +61,8 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
     }
     
     // MARK: - Views
+    
+    private var refreshControl = UIRefreshControl()
     @IBOutlet private weak var issueCollectionView: UICollectionView!
     @IBOutlet private weak var editBarButton: UIBarButtonItem!
     @IBOutlet private weak var filterBarButton: UIBarButtonItem!
@@ -75,27 +77,17 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
         interactor = IssueInteractor()
         navigationItem.searchController = searchController
         configureCollectionView()
+        request(for: .list)
+        
+        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        activityIndicator.startAnimating()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .automatic
-        interactor?.request(endPoint: .list, completionHandler: { [weak self] (issues) in
-            
-            self?.issues = issues
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self?.issueCollectionView.reloadData()
-                self?.activityIndicator.stopAnimating()
-            }
-        })
-    }
-
     // MARK: - Initialize
     
     private func configureCollectionView() {
         issueCollectionView.allowsMultipleSelection = true
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        issueCollectionView.refreshControl = refreshControl
     }
 
     // MARK: - Methods
@@ -106,7 +98,22 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
         vc.issue = sender
     }
     
+    private func request(for endPoint: IssueEndPoint) {
+        interactor?.request(endPoint: endPoint, completionHandler: { [weak self] (issues: [Issue]?) in
+            self?.issues = issues ?? []
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self?.issueCollectionView.reloadData()
+                self?.activityIndicator.stopAnimating()
+            }
+        })
+    }
+    
     // MARK: Selectors
+    
+    @objc private func refresh(_ sender: AnyObject) {
+        request(for: .list)
+        refreshControl.endRefreshing()
+    }
     
     // MARK: IBActions
     
