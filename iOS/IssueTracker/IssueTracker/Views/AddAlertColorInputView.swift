@@ -17,6 +17,7 @@ class AddAlertColorInputView: AddAlertInputView {
         didSet {
             textField.text = color?.hexString
             colorPicker.backgroundColor = color
+            picker.selectedColor = color ?? .random
         }
     }
     lazy var picker: UIColorPickerViewController = {
@@ -35,10 +36,9 @@ class AddAlertColorInputView: AddAlertInputView {
     
     // MARK: - initialize
     
-    override func configure(title: String, placeholder: String, text: String?) {
+    override func configure(title: String, placeholder: String?, text: String?) {
+        color = UIColor(hex: text ?? "")
         super.configure(title: title, placeholder: placeholder, text: text)
-        guard let text = text else { return }
-        color = UIColor(hex: text)
     }
     override func setUp() {
         super.setUp()
@@ -52,6 +52,7 @@ class AddAlertColorInputView: AddAlertInputView {
         randomColorGenerator.backgroundColor = .systemGray2
         randomColorGenerator.tintColor = .label
         randomColorGenerator.addTarget(self, action: #selector(touchedRandomColor), for: .touchUpInside)
+        stackView.spacing = 10
         stackView.addArrangedSubview(colorPicker)
         stackView.addArrangedSubview(randomColorGenerator)
         NSLayoutConstraint.activate([
@@ -59,6 +60,7 @@ class AddAlertColorInputView: AddAlertInputView {
             colorPicker.heightAnchor.constraint(equalToConstant: 24),
             randomColorGenerator.widthAnchor.constraint(equalTo: randomColorGenerator.heightAnchor)
         ])
+        validate()
     }
     
     // MARK: - Methods
@@ -67,9 +69,21 @@ class AddAlertColorInputView: AddAlertInputView {
         color = UIColor.random
     }
     
+    override func clear() {
+        var whiteOrBlack: CGFloat = 0
+        UIColor.systemBackground.getWhite(&whiteOrBlack, alpha: nil)
+        color = UIColor(red: whiteOrBlack, green: whiteOrBlack, blue: whiteOrBlack, alpha: 1)
+    }
     override func validate() {
-        super.validate()
-        color = nil
+        guard let text = textField.text,
+              let color = UIColor(hex: text) else {
+            self.layer.borderColor = UIColor.systemRed.cgColor
+            self.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 0.1022848887)
+            return
+        }
+        self.layer.borderColor = UIColor.clear.cgColor
+        self.backgroundColor = nil
+        self.color = color
     }
 }
 

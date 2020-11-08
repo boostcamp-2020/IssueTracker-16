@@ -42,15 +42,11 @@ class MilestoneViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let vc = segue.destination as? AddAlertViewController else { return }
-        if let sender = sender as? Milestone {
-            vc.addInputView(title: "제목", placeholder: "", text: sender.title)
-            vc.addInputView(title: "완료날짜", placeholder: "yyyy-mm-dd (선택)", text: sender.dueDate)
-            vc.addInputView(title: "설명", placeholder: "", text: sender.description)
-        } else {
-            vc.addInputView(title: "제목", placeholder: "", text: "")
-            vc.addInputView(title: "완료날짜", placeholder: "yyyy-mm-dd (선택)", text: "")
-            vc.addInputView(title: "설명", placeholder: "", text: "")
-        }
+        let milestone = sender as? Milestone
+        vc.addInputView(title: "제목", placeholder: "", text: milestone?.title)
+        vc.addInputView(title: "완료날짜", placeholder: "yyyy-mm-dd (선택)", text: milestone?.dueDate)
+        vc.addInputView(title: "설명", placeholder: "", text: milestone?.description)
+        vc.item = milestone
     }
     
 }

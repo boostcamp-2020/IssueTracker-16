@@ -76,23 +76,20 @@ class AddAlertViewController: UIViewController {
     
     // MARK: - Methods
     
-    func addInputView(title: String, placeholder: String, text: String?) {
+    func addInputView(title: String, placeholder: String?, text: String?) {
         var inputView: InputView
         if title == "색상" {
-            inputView = ColorInputView()
-            guard let inputView = inputView as? ColorInputView else { return }
-            inputView.colorPicker.addTarget(self, action: #selector(touchedColorPicker), for: .touchUpInside)
+            inputView = {
+                let colorInputView = ColorInputView(title: title, placeholder: placeholder, text: text)
+                colorInputView.colorPicker.addTarget(self, action: #selector(touchedColorPicker), for: .touchUpInside)
+                return colorInputView
+            }()
         } else if title == "완료날짜"{
-            inputView = AddAlertDateInputView()
+            inputView = AddAlertDateInputView(title: title, placeholder: placeholder, text: text)
         } else {
-            inputView = InputView()
+            inputView = InputView(title: title, placeholder: placeholder, text: text)
         }
-        inputView.configure(title: title, placeholder: placeholder, text: text)
         inputViews.append(inputView)
-    }
-    
-    func addInputView(_ inputView: InputView) {
-        
     }
     
     private func addObservers() {
@@ -134,14 +131,14 @@ class AddAlertViewController: UIViewController {
     }
     
     @IBAction private func touchedAddButton(_ sender: UIButton) {
+        // TODO:
         delegate?.addAlertViewController(self, didTabAddWithItem: item)
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction private func touchedClearButton(_ sender: UIButton) {
         inputViews.forEach {
-            $0.textField.text = ""
-            $0.validate()
+            $0.clear()
         }
     }
 }

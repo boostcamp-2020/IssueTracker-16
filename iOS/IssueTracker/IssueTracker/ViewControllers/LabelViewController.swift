@@ -48,8 +48,7 @@ class LabelViewController: UIViewController {
         })
     }
     
-    @objc
-    private func refresh(_ sender: AnyObject) {
+    @objc private func refresh(_ sender: AnyObject) {
         request(for: .list)
         refreshControl.endRefreshing()
     }
@@ -59,16 +58,11 @@ class LabelViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let vc = segue.destination as? AddAlertViewController else { return }
         vc.delegate = self
-        if let label = sender as? Label {
-            vc.addInputView(title: "제목", placeholder: "", text: label.name)
-            vc.addInputView(title: "설명", placeholder: "", text: label.description)
-            vc.addInputView(title: "색상", placeholder: "", text: label.color)
-            vc.item = label
-        } else {
-            vc.addInputView(title: "제목", placeholder: "", text: "")
-            vc.addInputView(title: "설명", placeholder: "", text: "")
-            vc.addInputView(title: "색상", placeholder: "", text: "")
-        }
+        let label = sender as? Label
+        vc.addInputView(title: "제목", placeholder: "", text: label?.name)
+        vc.addInputView(title: "설명", placeholder: "", text: label?.description)
+        vc.addInputView(title: "색상", placeholder: "", text: label?.color)
+        vc.item = label
     }
 }
 

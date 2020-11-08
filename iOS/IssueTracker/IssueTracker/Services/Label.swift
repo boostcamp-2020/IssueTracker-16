@@ -32,13 +32,13 @@ extension Label: Hashable {
     }
 }
 
-extension Label: Inputable {
-    
-}
-
 extension Label: Codable {
     enum CodingKeys: String, CodingKey {
         case id = "num"
         case name, description, color
     }
+}
+
+extension Label: Inputable {
+    
 }

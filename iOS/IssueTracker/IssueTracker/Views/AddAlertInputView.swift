@@ -24,21 +24,20 @@ class AddAlertInputView: UIView {
     
     // MARK: - Initialize
     
-    required init(title: String, placeholder: String) {
+    required init(title: String, placeholder: String?, text: String?) {
         super.init(frame: .zero)
-        self.titleLabel.text = title
-        self.textField.placeholder = placeholder
+        configure(title: title, placeholder: placeholder, text: text)
         setUp()
     }
-    
     required init?(coder aDecorder: NSCoder) {
         super.init(coder: aDecorder)
         setUp()
     }
     
-    required override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUp()
+    func configure(title: String, placeholder: String?, text: String?) {
+        titleLabel.text = title
+        textField.placeholder = placeholder
+        textField.text = text
     }
     
     internal func setUp() {
@@ -68,28 +67,14 @@ class AddAlertInputView: UIView {
             titleLabel.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10),
             titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: 10),
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            // titleLabel.heightAnchor.constraint(greaterThanOrEqualTo: self.heightAnchor, constant: 50),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: -10),
             titleLabel.widthAnchor.constraint(equalToConstant: 40),
-//            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            // stackView.heightAnchor.constraint(equalTo: self.titleLabel.heightAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
         addBottomLine()
         validate()
-    }
-    
-    func configure(title: String, placeholder: String, text: String?) {
-        titleLabel.text = title
-        textField.placeholder = placeholder
-        guard let text = text,
-              text.trimmingCharacters(in: .whitespaces) != "" else {
-            return
-        }
-        textField.text = text
     }
     
     // MARK: - 밑 줄 그리기
@@ -108,7 +93,12 @@ class AddAlertInputView: UIView {
     
     // MARK: - Methods
     
-    func validate() {
+    internal func clear() {
+        textField.text = ""
+        validate()
+    }
+    
+    internal func validate() {
         guard let title = titleLabel.text, title == "제목" else { return }
         guard let text = textField.text,
               !text.trimmingCharacters(in: .whitespaces).isEmpty else {
@@ -116,7 +106,7 @@ class AddAlertInputView: UIView {
             self.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 0.1022848887)
             return
         }
-        self.layer.borderColor = nil
+        self.layer.borderColor = UIColor.clear.cgColor
         self.backgroundColor = nil
     }
 }
