@@ -6,17 +6,29 @@
 //
 
 import Foundation
+import NetworkService
 
 protocol LabelBusinessLogic {
-    func request(endPoint: LabelEndPoint, completionHandler: @escaping ([Label]) -> Void)
+    func request<T: Codable>(endPoint: LabelEndPoint, completionHandler: @escaping (T?) -> Void)
+    func request(endPoint: LabelEndPoint, completionHandler: @escaping (Data?) -> Void)
 }
 
 class LabelInteractor: LabelBusinessLogic {
     
-    func request(endPoint: LabelEndPoint, completionHandler: @escaping ([Label]) -> Void) {
-        APIManager.request(endPoint: endPoint) { (data: [Label]?) in
-            guard let data = data else {
-                completionHandler([])
+    func request(endPoint: LabelEndPoint, completionHandler: @escaping (Data?) -> Void) {
+        NetworkManager.shared.request(endPoint: endPoint) { (data: Data?, response: NetworkManager.Response?) in
+            guard response == nil else {
+                debugPrint(response)
+                return
+            }
+            completionHandler(data)
+        }
+    }
+    
+    func request<T>(endPoint: LabelEndPoint, completionHandler: @escaping (T?) -> Void) where T : Decodable, T : Encodable {
+        NetworkManager.shared.request(endPoint: endPoint) { (data: T?, response: NetworkManager.Response?) in
+            guard response == nil else {
+                debugPrint(response)
                 return
             }
             completionHandler(data)
