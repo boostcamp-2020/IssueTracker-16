@@ -14,7 +14,7 @@ protocol Inputable {
 protocol AddAlertViewControllerDelegate: class {
     func addAlertViewControllerDidCancel(_ addAlertViewController: AddAlertViewController)
     
-    func addAlertViewController(_ addAlertViewController: AddAlertViewController, didTabAddWithItem item: Inputable)
+    func addAlertViewController(_ addAlertViewController: AddAlertViewController, didTabAddWithItem item: Inputable?)
 }
 
 class AddAlertViewController: UIViewController {

@@ -99,10 +99,8 @@ extension LabelViewController: AddAlertViewControllerDelegate {
         
     }
     
-    func addAlertViewController(_ addAlertViewController: AddAlertViewController, didTabAddWithItem item: Inputable) {
+    func addAlertViewController(_ addAlertViewController: AddAlertViewController, didTabAddWithItem item: Inputable?) {
         guard
-            var label = item as? Label,
-            let index = labels.firstIndex(of: label),
             addAlertViewController.inputViews.count == 3,
             let name = addAlertViewController.inputViews[0].textField.text,
             let description = addAlertViewController.inputViews[1].textField.text,
@@ -111,11 +109,24 @@ extension LabelViewController: AddAlertViewControllerDelegate {
             return
         }
         
-        label.name = name
-        label.description = description
-        label.color = color
-        labels[index] = label
-        labelCollectionView.reloadData()
+        let newLabel = Label(id: -1, name: name, description: description, color: color)
+        var endPoint = LabelEndPoint.create(body: newLabel.jsonData)
+        
+        if let label = item as? Label {
+            endPoint = LabelEndPoint.update(id: label.id, body: newLabel.jsonData)
+        }
+        
+        interactor?.request(endPoint: endPoint, completionHandler: { [weak self] (response: APIResponse?) in
+            
+            guard let response = response else {
+                print("response is Empty")
+                return
+            }
+            
+            if response.success {
+                self?.request(for: .list)
+            }
+        })
     }
     
 }
