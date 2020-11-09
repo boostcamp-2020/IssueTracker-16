@@ -29,6 +29,18 @@ const issueController = {
     // labeling 피봇 테이블에 등록
     res.status(200).json({ success: true });
   },
+
+  update: async (req, res) => {
+    const {
+      params: { num },
+      body: payload,
+    } = req;
+    const [updated] = await issueService.update({ num, payload });
+    if (!updated) {
+      throw new Error(NO_CONTENTS);
+    }
+    res.status(200).json({ success: true });
+  },
 };
 
 module.exports = issueController;

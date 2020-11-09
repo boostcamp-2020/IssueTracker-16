@@ -3,8 +3,9 @@ const router = require('express').Router();
 const controller = require('../controllers/issues');
 const { errorHandler } = require('../common/errorHandler');
 
+router.post('', errorHandler(controller.add));
 router.get('', errorHandler(controller.getAll));
 router.get('/:num', errorHandler(controller.getOne));
-router.post('', errorHandler(controller.add));
+router.patch('/:num', errorHandler(controller.update));
 
 module.exports = router;

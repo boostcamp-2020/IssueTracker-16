@@ -97,6 +97,8 @@ const issueService = {
     }),
   add: async ({ title, userNum, milestoneNum }) =>
     Issue.create({ title, userNum, milestoneNum }),
+
+  update: async ({ num, payload }) => Issue.update(payload, { where: { num } }),
 };
 
 module.exports = issueService;

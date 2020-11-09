@@ -15,7 +15,10 @@ const milestoneService = {
   add: async ({ title, dueDate, description }) =>
     Milestone.create({ title, dueDate, description }),
 
-  findAll: async () => Milestone.findAll(option),
+  findAll: async ({ isClosed }) =>
+    Milestone.findAll({ ...option, where: { isClosed } }),
+
+  count: async () => Milestone.count(),
 
   findOneByNum: async ({ num }) => Milestone.findByPk(num, option),
 
