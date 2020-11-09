@@ -51,6 +51,8 @@ const issueService = {
     });
   },
 
+  count: async () => Issue.count(),
+
   findOneByNum: async ({ num }) =>
     Issue.findOne({
       attributes: ['num', 'title', 'createdAt', 'isClosed', 'isDeleted'],
@@ -95,6 +97,7 @@ const issueService = {
         },
       ],
     }),
+
   update: async ({ num, payload }) => Issue.update(payload, { where: { num } }),
 };
 
