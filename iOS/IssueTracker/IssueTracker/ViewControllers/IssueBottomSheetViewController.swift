@@ -19,9 +19,10 @@ class IssueBottomSheetViewController: UIViewController {
             authorLabel.text = author?.id
         }
     }
-    var milestone: MilestoneResponse? {
+    var milestone: Milestone? {
         didSet {
             milestoneLabel.text = milestone?.title
+            milestonePercentBar.progress = Float(milestone?.percentage ?? 0)
         }
     }
     var label: Label? {

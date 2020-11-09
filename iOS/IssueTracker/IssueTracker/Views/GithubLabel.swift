@@ -13,7 +13,7 @@ class GithubLabel: PaddingLabel {
             guard let label = label else { return }
             text = label.name
             backgroundColor = UIColor(hex: label.color)
-            
+            textColor = backgroundColor?.isDarkColor ?? true ? .white : .black
             setupInsets()
             
         }

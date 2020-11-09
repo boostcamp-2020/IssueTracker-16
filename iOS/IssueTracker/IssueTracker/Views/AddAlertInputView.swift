@@ -121,11 +121,6 @@ class AddAlertInputView: UIView {
 // MARK: TextField Delegate
 
 extension AddAlertInputView: UITextFieldDelegate {
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        beginEditingHandler?(textField)
-    }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         returnHandler?(textField)
         return true
