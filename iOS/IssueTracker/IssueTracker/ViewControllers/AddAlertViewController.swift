@@ -131,7 +131,15 @@ class AddAlertViewController: UIViewController {
     }
     
     @IBAction private func touchedAddButton(_ sender: UIButton) {
-        // TODO:
+        for inputView in inputViews {
+            guard inputView.isValid else {
+                UIAlertController.showSimpleAlert(title: "입력이 완료되지 않았습니다.",
+                                                  handler: { [weak self] alert in
+                    self?.present(alert, animated: true, completion: nil)
+                })
+                return
+            }
+        }
         delegate?.addAlertViewController(self, didTabAddWithItem: item)
         dismiss(animated: true, completion: nil)
     }

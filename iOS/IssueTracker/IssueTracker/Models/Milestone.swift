@@ -14,6 +14,14 @@ struct Milestone {
     var description: String
     var openedIssues: Int
     var closedIssues: Int
+    
+    var jsonData: [String: Any] {
+        return [
+            "title": title,
+            "dueDate": dueDate,
+            "description": description
+        ]
+    }
 }
 
 extension Milestone: Codable {

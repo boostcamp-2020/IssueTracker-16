@@ -23,10 +23,14 @@ class MilestoneCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Methods
     
-    func configure(title: String, dueDate: String, description: String, openIssues: Int, closedIssues: Int) {
-        milestoneName.text = title
-        
-        if !dueDate.isEmpty {
+    func configure(milestone: Milestone) {
+        milestoneName.text = milestone.title
+        milestoneDescription.text = milestone.description
+        milestoneOpenIssues.text = "\(milestone.openedIssues) open"
+        milestoneClosedIssues.text = "\(milestone.closedIssues) closed"
+        let percent = milestone.closedIssues != 0 ? Int(round(Float(milestone.openedIssues) / Float(milestone.openedIssues + milestone.closedIssues) * 100.0)) : 0
+        milestonePercent.text = "\(percent)%"
+        if let dueDate = milestone.dueDate, !dueDate.isEmpty {
             let formattedDate: String = {
                 let arr = dueDate.components(separatedBy: "-")
                 return "\(arr[0])년 \(arr[1])월 \(arr[2])일"
@@ -35,10 +39,5 @@ class MilestoneCollectionViewCell: UICollectionViewCell {
         } else {
             milestoneDueDate.text = ""
         }
-        milestoneDescription.text = description
-        milestoneOpenIssues.text = "\(openIssues) open"
-        milestoneClosedIssues.text = "\(closedIssues) closed"
-        let percent = closedIssues != 0 ? Int(round(Float(openIssues) / Float(openIssues + closedIssues) * 100.0)) : 0
-        milestonePercent.text = "\(percent)%"
     }
 }

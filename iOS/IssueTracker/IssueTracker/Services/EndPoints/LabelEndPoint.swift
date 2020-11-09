@@ -16,9 +16,7 @@ enum LabelEndPoint: EndPointType {
     case update(id: Int, body: Parameters)
     
     var baseURL: URL? {
-        switch self {
-            case .list, .create, .delete, .update: return URL(string: "http://issue-tracker.kro.kr:3000/api/")
-        }
+        return URL(string: "http://issue-tracker.kro.kr:3000/api/")
     }
     
     var path: String {

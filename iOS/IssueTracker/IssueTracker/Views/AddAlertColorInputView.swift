@@ -11,8 +11,6 @@ class AddAlertColorInputView: AddAlertInputView {
     
     // MARK: - Properties
     
-    var colorPicker: UIButton = UIButton()
-    private var randomColorGenerator: UIButton = UIButton(type: .system)
     var color: UIColor? {
         didSet {
             textField.text = color?.hexString
@@ -20,6 +18,24 @@ class AddAlertColorInputView: AddAlertInputView {
             picker.selectedColor = color ?? .random
         }
     }
+    var colorPicker: UIButton = {
+        let button = UIButton()
+        button.layer.borderWidth = 0.5
+        button.layer.borderColor = UIColor.label.cgColor
+        button.layer.cornerRadius = 5
+        button.clipsToBounds = false
+        return button
+    }()
+    private var randomColorGenerator: UIButton = {
+        let button = UIButton(type: .system)
+        button.layer.cornerRadius = 10
+        button.setTitle("↻", for: .normal)
+        button.tintColor = .label
+        button.backgroundColor = .systemGray2
+        button.tintColor = .label
+        button.addTarget(self, action: #selector(touchedRandomColor), for: .touchUpInside)
+        return button
+    }()
     lazy var picker: UIColorPickerViewController = {
         let picker = UIColorPickerViewController()
         picker.supportsAlpha = false
@@ -42,17 +58,6 @@ class AddAlertColorInputView: AddAlertInputView {
     }
     override func setUp() {
         super.setUp()
-        colorPicker.layer.borderWidth = 0.5
-        colorPicker.layer.borderColor = UIColor.label.cgColor
-        colorPicker.layer.cornerRadius = 5
-        colorPicker.clipsToBounds = false
-        randomColorGenerator.layer.cornerRadius = 10
-        randomColorGenerator.setTitle("↻", for: .normal)
-        randomColorGenerator.tintColor = .label
-        randomColorGenerator.backgroundColor = .systemGray2
-        randomColorGenerator.tintColor = .label
-        randomColorGenerator.addTarget(self, action: #selector(touchedRandomColor), for: .touchUpInside)
-        stackView.spacing = 10
         stackView.addArrangedSubview(colorPicker)
         stackView.addArrangedSubview(randomColorGenerator)
         NSLayoutConstraint.activate([

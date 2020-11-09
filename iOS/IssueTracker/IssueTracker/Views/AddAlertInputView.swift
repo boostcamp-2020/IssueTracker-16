@@ -13,9 +13,21 @@ class AddAlertInputView: UIView {
     
     let lineView = UIView()
     var contentView = UIView()
-    var titleLabel: UILabel = UILabel()
+    var titleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        return label
+    }()
     var textField: UITextField = UITextField()
-    var stackView: UIStackView = UIStackView()
+    var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.alignment = .center
+        stackView.distribution = .fill
+        stackView.spacing = 10
+        return stackView
+    }()
     var beginEditingHandler: ((UITextField) -> Void)?
     var returnHandler: ((UITextField) -> Void)?
     var isValid: Bool {
@@ -47,11 +59,6 @@ class AddAlertInputView: UIView {
         addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
         textField.delegate = self
-        titleLabel.textAlignment = .center
-        titleLabel.numberOfLines = 0
-        stackView.axis = .horizontal
-        stackView.alignment = .center
-        stackView.distribution = .fill
         stackView.addArrangedSubview(textField)
         contentView.addSubview(titleLabel)
         contentView.addSubview(stackView)
