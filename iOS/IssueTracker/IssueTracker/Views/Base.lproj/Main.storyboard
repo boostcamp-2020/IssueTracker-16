@@ -586,9 +586,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kz7-sJ-gGH">
-                                <rect key="frame" x="0.0" y="-736" width="414" height="736"/>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ej-f3-CFY">
                                 <rect key="frame" x="20" y="20" width="374" height="50"/>
                                 <subviews>
@@ -828,18 +825,14 @@
                         <viewLayoutGuide key="safeArea" id="rIE-z3-Ltl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="rIE-z3-Ltl" firstAttribute="trailing" secondItem="kz7-sJ-gGH" secondAttribute="trailing" id="75P-9U-roN"/>
                             <constraint firstItem="1Ej-f3-CFY" firstAttribute="leading" secondItem="rIE-z3-Ltl" secondAttribute="leading" constant="20" id="B9W-ge-S9Z"/>
                             <constraint firstItem="rIE-z3-Ltl" firstAttribute="bottom" secondItem="3Tv-bz-eVR" secondAttribute="bottom" constant="30" id="Gm4-md-pAH"/>
                             <constraint firstItem="1Ej-f3-CFY" firstAttribute="top" secondItem="rIE-z3-Ltl" secondAttribute="top" constant="20" id="GtF-RA-787"/>
                             <constraint firstItem="rIE-z3-Ltl" firstAttribute="trailing" secondItem="1Ej-f3-CFY" secondAttribute="trailing" constant="20" id="Z97-sf-BPj"/>
                             <constraint firstItem="WBy-nC-Znb" firstAttribute="top" secondItem="1Ej-f3-CFY" secondAttribute="bottom" constant="30" id="dQN-A2-WGY"/>
-                            <constraint firstItem="kz7-sJ-gGH" firstAttribute="height" secondItem="rIE-z3-Ltl" secondAttribute="height" id="dcB-tQ-CBh"/>
                             <constraint firstItem="WBy-nC-Znb" firstAttribute="leading" secondItem="rIE-z3-Ltl" secondAttribute="leading" constant="20" id="fjX-xA-frI"/>
-                            <constraint firstItem="rIE-z3-Ltl" firstAttribute="top" secondItem="kz7-sJ-gGH" secondAttribute="bottom" id="lKb-ew-t9t"/>
                             <constraint firstItem="rIE-z3-Ltl" firstAttribute="trailing" secondItem="3Tv-bz-eVR" secondAttribute="trailing" constant="20" id="lZM-ha-zlh"/>
                             <constraint firstItem="rIE-z3-Ltl" firstAttribute="trailing" secondItem="WBy-nC-Znb" secondAttribute="trailing" constant="20" id="p91-zK-1en"/>
-                            <constraint firstItem="kz7-sJ-gGH" firstAttribute="leading" secondItem="rIE-z3-Ltl" secondAttribute="leading" id="pub-O5-O7Y"/>
                             <constraint firstItem="3Tv-bz-eVR" firstAttribute="leading" secondItem="rIE-z3-Ltl" secondAttribute="leading" constant="20" id="vpz-qC-tzh"/>
                             <constraint firstItem="3Tv-bz-eVR" firstAttribute="top" secondItem="WBy-nC-Znb" secondAttribute="bottom" constant="30" id="wuO-Ov-fFh"/>
                         </constraints>
@@ -850,7 +843,6 @@
                         <outlet property="labelLabel" destination="wES-2X-4Sz" id="dao-AQ-m4p"/>
                         <outlet property="milestoneLabel" destination="L6H-q6-647" id="7ap-aX-x8t"/>
                         <outlet property="milestonePercentBar" destination="cSB-rm-APR" id="iM9-NW-Onv"/>
-                        <outlet property="shadowView" destination="kz7-sJ-gGH" id="iP1-h9-qDZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNM-uC-2jG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

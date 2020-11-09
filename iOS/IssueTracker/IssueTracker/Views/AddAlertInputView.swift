@@ -24,24 +24,23 @@ class AddAlertInputView: UIView {
     
     // MARK: - Initialize
     
-    required init(title: String, placeholder: String) {
+    required init(title: String, placeholder: String?, text: String?) {
         super.init(frame: .zero)
-        self.titleLabel.text = title
-        self.textField.placeholder = placeholder
+        configure(title: title, placeholder: placeholder, text: text)
         setUp()
     }
-    
     required init?(coder aDecorder: NSCoder) {
         super.init(coder: aDecorder)
         setUp()
     }
     
-    required override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUp()
+    func configure(title: String, placeholder: String?, text: String?) {
+        titleLabel.text = title
+        textField.placeholder = placeholder
+        textField.text = text
     }
     
-    private func setUp() {
+    internal func setUp() {
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.clear.cgColor
         self.layer.cornerRadius = 5
@@ -68,17 +67,14 @@ class AddAlertInputView: UIView {
             titleLabel.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor, constant: 10),
             titleLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: 10),
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            // titleLabel.heightAnchor.constraint(greaterThanOrEqualTo: self.heightAnchor, constant: 50),
             titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: -10),
             titleLabel.widthAnchor.constraint(equalToConstant: 40),
-//            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             stackView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            // stackView.heightAnchor.constraint(equalTo: self.titleLabel.heightAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
         addBottomLine()
+        validate()
     }
     
     // MARK: - 밑 줄 그리기
@@ -95,19 +91,24 @@ class AddAlertInputView: UIView {
         lineView.bottomAnchor.constraint(greaterThanOrEqualTo: self.bottomAnchor).isActive = true
     }
     
-    func configure(title: String, placeholder: String, text: String?) {
-        titleLabel.text = title
-        textField.placeholder = placeholder
-        guard let text = text,
-              text.trimmingCharacters(in: .whitespaces) != "" else {
-            if title == "제목" {
-                self.layer.borderColor = UIColor.systemRed.cgColor
-            }
-            return
-        }
-        textField.text = text
+    // MARK: - Methods
+    
+    internal func clear() {
+        textField.text = ""
+        validate()
     }
     
+    internal func validate() {
+        guard let title = titleLabel.text, title == "제목" else { return }
+        guard let text = textField.text,
+              !text.trimmingCharacters(in: .whitespaces).isEmpty else {
+            self.layer.borderColor = UIColor.systemRed.cgColor
+            self.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 0.1022848887)
+            return
+        }
+        self.layer.borderColor = UIColor.clear.cgColor
+        self.backgroundColor = nil
+    }
 }
 
 // MARK: TextField Delegate
@@ -124,16 +125,6 @@ extension AddAlertInputView: UITextFieldDelegate {
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        guard let title = titleLabel.text, title == "제목" else { return }
-        guard let text = textField.text,
-              text.trimmingCharacters(in: .whitespaces) != "" else {
-            self.layer.borderColor = UIColor.systemRed.cgColor
-            // self.lineView.backgroundColor = .systemRed
-            self.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 0.1022848887)
-            return
-        }
-        self.layer.borderColor = UIColor.clear.cgColor
-        self.backgroundColor = .clear
-        // self.lineView.backgroundColor = .clear
+        validate()
     }
 }

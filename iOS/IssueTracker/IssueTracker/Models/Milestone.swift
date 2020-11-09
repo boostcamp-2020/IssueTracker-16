@@ -22,3 +22,7 @@ extension Milestone: Codable {
         case title, dueDate, description, openedIssues, closedIssues
     }
 }
+
+extension Milestone: Inputable {
+    
+}

@@ -8,18 +8,14 @@
 import UIKit
 
 class AddAlertDateInputView: AddAlertInputView {
-    override func textFieldDidChangeSelection(_ textField: UITextField) {
-        super.textFieldDidChangeSelection(textField)
-        guard let title = titleLabel.text, title == "완료날짜" else { return }
-        guard let text = textField.text, text != "" else {
-            self.layer.borderColor = UIColor.clear.cgColor
-            return
-        }
-        guard let date = text.dateRegEx else {
+    override func validate() {
+        guard let text = textField.text else { return }
+        guard text.isEmpty || text.dateRegEx != nil else {
             self.layer.borderColor = UIColor.systemRed.cgColor
+            self.backgroundColor = #colorLiteral(red: 0.9254902005, green: 0.2352941185, blue: 0.1019607857, alpha: 0.1022848887)
             return
         }
         self.layer.borderColor = UIColor.clear.cgColor
-        debugPrint(date)
+        self.backgroundColor = nil
     }
 }
