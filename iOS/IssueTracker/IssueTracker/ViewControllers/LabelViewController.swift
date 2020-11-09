@@ -78,9 +78,7 @@ extension LabelViewController: UICollectionViewDataSource {
               indexPath.row < labels.count else {
             return UICollectionViewCell()
         }
-        
-        let label = labels[indexPath.item]
-        cell.configure(label: label)
+        cell.configure(label: labels[indexPath.item])
         return cell
     }
 }

@@ -14,6 +14,13 @@ struct Milestone {
     var description: String?
     var openedIssues: Int?
     var closedIssues: Int?
+    var jsonData: [String: Any] {
+        return [
+            "title": title,
+            "dueDate": dueDate,
+            "description": description
+        ]
+    }
     
     var percentage: Double {
         guard let closed = closedIssues else { return 0 }
