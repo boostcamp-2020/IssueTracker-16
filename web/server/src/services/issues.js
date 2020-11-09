@@ -9,12 +9,12 @@ const {
 const { countOpenedIssues, countClosedIssues } = require('../common/query');
 
 const issueService = {
-  findAll: async () => {
+  findAll: async ({ isClosed }) => {
     const issues = await Issue.findAll({
       attributes: ['num', 'title', 'createdAt', 'isClosed'],
       where: {
         isDeleted: false,
-        isClosed: false,
+        isClosed,
       },
       include: [
         {

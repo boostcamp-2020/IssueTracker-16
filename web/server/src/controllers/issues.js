@@ -3,8 +3,7 @@ const { NO_CONTENTS } = require('../common/errorHandler');
 
 const issueController = {
   getAll: async (req, res) => {
-    let { isClosed } = req.query;
-    isClosed = isClosed === 'true' ? true : false;
+    const isClosed = req.query.isClosed === 'true' ? true : false;
     const [issues, total] = await Promise.all([
       issueService.findAll({ isClosed }),
       issueService.count(),
