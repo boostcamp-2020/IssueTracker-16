@@ -13,10 +13,11 @@ struct Issue {
     var author: AuthorResponse
     var createdAt: String
     var isClosed: Bool
-    var labels: [LabelResponse]
-    var milestone: MilestoneResponse
+    var labels: [Label]
+    var milestone: Milestone
     var assignees: [Assignee]
-    var comment: Comment
+    var comment: Comment?
+    var comments: [Comment]?
 }
 
 struct Assignee: Codable {
@@ -35,7 +36,15 @@ struct Assignments: Codable {
 }
 
 struct Comment: Codable {
-    let content: String
+    var num: Int?
+    var content: String
+    var createdAt: String?
+    var writer: WriterResponse?
+}
+
+struct WriterResponse: Codable {
+    let num: Int
+    let id: String
 }
 
 /* {
@@ -45,12 +54,12 @@ struct Comment: Codable {
  "issues_labels":{"issue_num":3,"label_num":1}
  }
  */
-struct LabelResponse: Codable {
-    var num: Int
-    var name: String
-    var color: String
-    // var issues_labels: IssuesLabels
-}
+//struct LabelResponse: Codable {
+//    var num: Int
+//    var name: String
+//    var color: String
+//    // var issues_labels: IssuesLabels
+//}
 
 struct IssuesLabels: Codable {
     let issueNum, labelNum: Int
@@ -62,10 +71,12 @@ struct IssuesLabels: Codable {
 }
 
 // {"num":2,"title":"week 2"}
-struct MilestoneResponse: Codable {
-    var num: Int
-    var title: String
-}
+//struct MilestoneResponse: Codable {
+//    var num: Int
+//    var title: String
+//    var openedIssues: Int?
+//    var closedIssues: Int?
+//}
 
 // "author":{"num":1,"id":"user01"}
 struct AuthorResponse: Codable {
@@ -76,6 +87,6 @@ struct AuthorResponse: Codable {
 extension Issue: Codable {
     enum CodingKeys: String, CodingKey {
         case id = "num"
-        case title, author, createdAt, isClosed, labels, milestone, assignees, comment
+        case title, author, createdAt, isClosed, labels, milestone, assignees, comment, comments
     }
 }

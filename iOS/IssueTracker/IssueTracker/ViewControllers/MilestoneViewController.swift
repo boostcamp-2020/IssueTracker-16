@@ -68,8 +68,8 @@ extension MilestoneViewController: UICollectionViewDataSource {
             title: milestones[index].title,
             dueDate: milestones[index].dueDate ?? "",
             description: milestones[index].description,
-            openIssues: milestones[index].openedIssues,
-            closedIssues: milestones[index].closedIssues
+            openIssues: milestones[index].openedIssues ?? 0,
+            closedIssues: milestones[index].closedIssues ?? 0
         )
         return cell
     }

@@ -11,9 +11,15 @@ struct Milestone {
     var id: Int
     var title: String
     var dueDate: String?
-    var description: String
-    var openedIssues: Int
-    var closedIssues: Int
+    var description: String?
+    var openedIssues: Int?
+    var closedIssues: Int?
+    
+    var percentage: Double {
+        guard let closed = closedIssues else { return 0 }
+        let opened = openedIssues ?? 0
+        return Double(closed) / Double(opened + closed)
+    }
 }
 
 extension Milestone: Codable {

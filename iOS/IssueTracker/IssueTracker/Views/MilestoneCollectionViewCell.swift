@@ -23,7 +23,7 @@ class MilestoneCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Methods
     
-    func configure(title: String, dueDate: String, description: String, openIssues: Int, closedIssues: Int) {
+    func configure(title: String, dueDate: String, description: String?, openIssues: Int, closedIssues: Int) {
         milestoneName.text = title
         
         if !dueDate.isEmpty {

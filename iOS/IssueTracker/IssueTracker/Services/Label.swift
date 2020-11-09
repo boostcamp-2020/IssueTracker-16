@@ -10,7 +10,7 @@ import Foundation
 struct Label {
     var id: Int
     var name: String
-    var description: String
+    var description: String?
     var color: String
     
     var jsonData: [String: Any] {
