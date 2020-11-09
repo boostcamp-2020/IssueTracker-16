@@ -36,16 +36,22 @@ module.exports = class Issue extends Model {
   }
   static associate({ Issue, Comment, Milestone, User, Label }) {
     Issue.hasMany(Comment, {
-      foreignKey: 'issue_num',
+      foreignKey: {
+        name: 'issueNum',
+        allowNull: false,
+      },
       sourceKey: 'num',
       as: 'comments',
     });
     Issue.belongsTo(Milestone, {
-      foreignKey: 'milestone_num',
+      foreignKey: 'milestoneNum',
       targetKey: 'num',
     });
     Issue.belongsTo(User, {
-      foreignKey: 'userNum',
+      foreignKey: {
+        name: 'userNum',
+        allowNull: false,
+      },
       targetKey: 'num',
       as: 'author',
     });
