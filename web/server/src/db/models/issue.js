@@ -43,7 +43,6 @@ module.exports = class Issue extends Model {
     Issue.belongsTo(Milestone, {
       foreignKey: 'milestone_num',
       targetKey: 'num',
-      as: 'milestone',
     });
     Issue.belongsTo(User, {
       foreignKey: 'user_num',
@@ -58,7 +57,7 @@ module.exports = class Issue extends Model {
     });
     Issue.belongsToMany(Label, {
       foreignKey: 'issue_num',
-      through: 'issues_labels',
+      through: 'labelings',
       as: 'labels',
       timestamps: false,
     });

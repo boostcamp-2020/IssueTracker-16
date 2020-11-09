@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async queryInterface =>
-    queryInterface.bulkInsert('issues_labels', [
+    queryInterface.bulkInsert('labelings', [
       {
         issue_num: 1,
         label_num: 1,
@@ -20,5 +20,5 @@ module.exports = {
         label_num: 3,
       },
     ]),
-  down: async queryInterface => queryInterface.bulkDelete('issues_labels'),
+  down: async queryInterface => queryInterface.bulkDelete('labelings'),
 };
