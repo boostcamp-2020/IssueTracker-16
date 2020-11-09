@@ -27,13 +27,11 @@ const issueController = {
     }
     const issue = await issueService.add({ title, userNum, milestoneNum });
     await commentService.add({ content, userNum, issueNum: issue.num });
-    labels.forEach(
-      async labelNum =>
-        await labelingService.add({ issueNum: issue.num, labelNum }),
+    labels.forEach(labelNum =>
+      labelingService.add({ issueNum: issue.num, labelNum }),
     );
-    assignees.forEach(
-      async userNum =>
-        await assignmentService.add({ issueNum: issue.num, userNum }),
+    assignees.forEach(userNum =>
+      assignmentService.add({ issueNum: issue.num, userNum }),
     );
     res.status(200).json({ success: true });
   },
