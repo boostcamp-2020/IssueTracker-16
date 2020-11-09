@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct IssueAPI: Codable {
+    var open: Int
+    var closed: Int
+    var issues: [Issue]
+}
+
 struct Issue {
     var id: Int
     var title: String
@@ -61,15 +67,6 @@ struct WriterResponse: Codable {
 //    // var issues_labels: IssuesLabels
 //}
 
-struct IssuesLabels: Codable {
-    let issueNum, labelNum: Int
-
-    enum CodingKeys: String, CodingKey {
-        case issueNum = "issue_num"
-        case labelNum = "label_num"
-    }
-}
-
 // {"num":2,"title":"week 2"}
 //struct MilestoneResponse: Codable {
 //    var num: Int
@@ -87,6 +84,7 @@ struct AuthorResponse: Codable {
 extension Issue: Codable {
     enum CodingKeys: String, CodingKey {
         case id = "num"
-        case title, author, createdAt, isClosed, labels, milestone, assignees, comment, comments
+        case milestone = "Milestone"
+        case title, author, createdAt, isClosed, labels, assignees, comment, comments
     }
 }
