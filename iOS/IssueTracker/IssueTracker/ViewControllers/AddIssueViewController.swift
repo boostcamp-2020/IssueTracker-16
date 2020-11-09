@@ -20,6 +20,7 @@ class AddIssueViewController: UIViewController {
     
     @IBOutlet weak var issueID: UILabel!
     @IBOutlet weak var issueTitle: UITextField!
+    @IBOutlet weak var commentTextView: UITextView!
     
     // MARK: - View LifeCycle
     
@@ -31,9 +32,14 @@ class AddIssueViewController: UIViewController {
     // MARK: - initialize
     
     func configure() {
-        guard let issue = issue else { return }
+        guard let issue = issue else {
+            issueID.text = "새 이슈"
+            return
+        }
+        
         self.issueID.text = "#\(issue.id)"
         self.issueTitle.text = issue.title
+        self.commentTextView.text = issue.comments?.first?.content
     }
     
     // MARK: - Methods
