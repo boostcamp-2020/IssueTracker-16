@@ -36,12 +36,12 @@ module.exports = class User extends Model {
   static associate({ User, OAuthUser, Comment, Issue }) {
     [OAuthUser, Issue, Comment].forEach(model =>
       User.hasMany(model, {
-        foreignKey: 'user_num',
+        foreignKey: 'userNum',
         sourceKey: 'num',
       }),
     );
     User.belongsToMany(Issue, {
-      foreignKey: 'user_num',
+      foreignKey: 'userNum',
       through: 'assignments',
       timestamps: false,
     });

@@ -45,12 +45,12 @@ module.exports = class Issue extends Model {
       targetKey: 'num',
     });
     Issue.belongsTo(User, {
-      foreignKey: 'user_num',
+      foreignKey: 'userNum',
       targetKey: 'num',
       as: 'author',
     });
     Issue.belongsToMany(User, {
-      foreignKey: 'issue_num',
+      foreignKey: 'issueNum',
       through: 'assignments',
       as: 'assignees',
       timestamps: false,
