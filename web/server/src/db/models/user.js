@@ -37,7 +37,7 @@ module.exports = class User extends Model {
     [Issue, Comment].forEach(model =>
       User.hasMany(model, {
         foreignKey: {
-          name: 'user_num',
+          name: 'userNum',
           allowNull: false,
         },
         sourceKey: 'num',

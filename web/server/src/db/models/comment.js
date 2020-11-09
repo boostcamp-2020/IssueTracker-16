@@ -32,14 +32,14 @@ module.exports = class Comment extends Model {
   static associate({ Comment, Issue, User }) {
     Comment.belongsTo(Issue, {
       foreignKey: {
-        name: 'issue_num',
+        name: 'issueNum',
         allowNull: false,
       },
       targetKey: 'num',
     });
     Comment.belongsTo(User, {
       foreignKey: {
-        name: 'user_num',
+        name: 'userNum',
         allowNull: false,
       },
       targetKey: 'num',

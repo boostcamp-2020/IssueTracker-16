@@ -96,7 +96,7 @@ const issueService = {
       ],
     }),
   add: async ({ title, userNum, milestoneNum }) =>
-    Issue.create({ title, user_num: userNum, milestone_num: milestoneNum }),
+    Issue.create({ title, userNum, milestoneNum }),
 };
 
 module.exports = issueService;
