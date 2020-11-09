@@ -5,8 +5,6 @@ const commentService = {
     Comment.create({ content, userNum, issueNum }),
   update: async ({ num, content }) =>
     Comment.update({ content }, { where: { num } }),
-
-  delete: async (req, res) => {},
 };
 
 module.exports = commentService;

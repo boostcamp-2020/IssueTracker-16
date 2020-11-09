@@ -20,8 +20,6 @@ const commentController = {
     }
     res.status(200).json({ success: true });
   },
-
-  delete: async (req, res) => {},
 };
 
 module.exports = commentController;

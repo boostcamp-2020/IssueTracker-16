@@ -1,5 +1,7 @@
 const issueService = require('../services/issues');
 const commentService = require('../services/comments');
+const labelingService = require('../services/labelings');
+const assignmentService = require('../services/assignments');
 const { NO_CONTENTS, BAD_REQUEST } = require('../common/errorHandler');
 
 const issueController = {
@@ -25,8 +27,14 @@ const issueController = {
     }
     const issue = await issueService.add({ title, userNum, milestoneNum });
     await commentService.add({ content, userNum, issueNum: issue.num });
-    // assignees 피봇 테이블에 등록
-    // labeling 피봇 테이블에 등록
+    labels.forEach(
+      async labelNum =>
+        await labelingService.add({ issueNum: issue.num, labelNum }),
+    );
+    assignees.forEach(
+      async userNum =>
+        await assignmentService.add({ issueNum: issue.num, userNum }),
+    );
     res.status(200).json({ success: true });
   },
 
