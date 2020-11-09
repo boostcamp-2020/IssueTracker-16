@@ -7,11 +7,11 @@ const Option = styled.span`
   font-size: 10pt;
   margin-right: 5%;
 `;
-export default function MilestoneListHeader() {
+export default function MilestoneListHeader({ open, closed }) {
   return (
     <ListHeader isIssueList={false}>
-      <Option>✔︎Open </Option>
-      <Option>✔︎Closed </Option>
+      <Option>{open} Open </Option>
+      <Option>{closed} Closed </Option>
     </ListHeader>
   );
 }
