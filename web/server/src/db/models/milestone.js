@@ -38,7 +38,7 @@ module.exports = class Milestone extends Model {
   }
   static associate({ Milestone, Issue }) {
     Milestone.hasMany(Issue, {
-      foreignKey: 'milestone_num',
+      foreignKey: 'milestoneNum',
       sourceKey: 'num',
     });
   }
