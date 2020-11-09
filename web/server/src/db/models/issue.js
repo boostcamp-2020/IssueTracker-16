@@ -48,7 +48,10 @@ module.exports = class Issue extends Model {
       targetKey: 'num',
     });
     Issue.belongsTo(User, {
-      foreignKey: 'user_num',
+      foreignKey: {
+        name: 'user_num',
+        allowNull: false,
+      },
       targetKey: 'num',
       as: 'author',
     });
