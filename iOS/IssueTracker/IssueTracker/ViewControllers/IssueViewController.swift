@@ -7,30 +7,7 @@
 
 import UIKit
 
-protocol SwipeControllerDelegate {
-    func swipeController(_ cell: IssueListCollectionViewCell)
-}
-
-class IssueViewController: UIViewController, SwipeControllerDelegate {
-    func swipeController(_ cell: IssueListCollectionViewCell) {
-        switch cell.currentState {
-        case .swiped:
-            cell.currentState = .none
-            swipedIndex = nil
-            cell.changeNone()
-        case .none:
-            if let beforeIndex = swipedIndex,
-               let beforeCell = issueCollectionView.cellForItem(at: beforeIndex) as? IssueListCollectionViewCell {
-                beforeCell.currentState = .none
-                beforeCell.changeNone()
-            }
-            cell.currentState = .swiped
-            swipedIndex = cell.indexPath
-            cell.changeSwiped()
-        default:
-            return
-        }
-    }
+class IssueViewController: UIViewController {
     
     private var swipedIndex: IndexPath?
     
@@ -257,5 +234,33 @@ extension IssueViewController: UICollectionViewDelegate {
 extension IssueViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.bounds.width, height: 120)
+    }
+}
+
+// MARK: - Swipe Controller Delegate
+
+protocol SwipeControllerDelegate {
+    func swipeController(_ cell: IssueListCollectionViewCell)
+}
+
+extension IssueViewController: SwipeControllerDelegate {
+    func swipeController(_ cell: IssueListCollectionViewCell) {
+        switch cell.currentState {
+        case .swiped:
+            cell.currentState = .none
+            swipedIndex = nil
+            cell.changeNone()
+        case .none:
+            if let beforeIndex = swipedIndex,
+               let beforeCell = issueCollectionView.cellForItem(at: beforeIndex) as? IssueListCollectionViewCell {
+                beforeCell.currentState = .none
+                beforeCell.changeNone()
+            }
+            cell.currentState = .swiped
+            swipedIndex = cell.indexPath
+            cell.changeSwiped()
+        default:
+            return
+        }
     }
 }
