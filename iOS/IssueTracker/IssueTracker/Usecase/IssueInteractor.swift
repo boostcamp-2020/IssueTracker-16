@@ -13,7 +13,6 @@ protocol IssueBusinessLogic {
 }
 
 class IssueInteractor: IssueBusinessLogic {
-    
     func request<T>(endPoint: IssueEndPoint, completionHandler: @escaping (T?) -> Void) where T : Decodable, T : Encodable {
         NetworkManager.shared.request(endPoint: endPoint) { (data: T?, response: NetworkManager.Response?) in
             guard response == nil else {

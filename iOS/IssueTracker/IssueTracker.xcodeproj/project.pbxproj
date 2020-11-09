@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C2D05A82557ECA300FA787F /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05A72557ECA300FA787F /* APIResponse.swift */; };
+		4C2D05B4255852E200FA787F /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05B3255852E200FA787F /* TitleSupplementaryView.swift */; };
 		4C2D05DD25591E4500FA787F /* IssueDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05DC25591E4500FA787F /* IssueDetailInteractor.swift */; };
 		4C2D05E62559307500FA787F /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05E52559307500FA787F /* Date+.swift */; };
 		4C2D05EE25596C2500FA787F /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05ED25596C2500FA787F /* CommentViewController.swift */; };
@@ -99,6 +100,7 @@
 
 /* Begin PBXFileReference section */
 		4C2D05A72557ECA300FA787F /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		4C2D05B3255852E200FA787F /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
 		4C2D05DC25591E4500FA787F /* IssueDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailInteractor.swift; sourceTree = "<group>"; };
 		4C2D05E52559307500FA787F /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		4C2D05ED25596C2500FA787F /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				D4AEAB7A25528C9000AED514 /* CommentCollectionViewCell.swift */,
 				4CBA21D625529331002BDCC3 /* ActionCollectionViewCell.swift */,
 				4CBA21F52553E377002BDCC3 /* IssueDetailHeaderView.swift */,
+				4C2D05B3255852E200FA787F /* TitleSupplementaryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				D4DF604D254800C100765C0A /* AddAlertInputView.swift in Sources */,
 				4C5139A2254934D20084F65F /* LabelEndPoint.swift in Sources */,
 				4CBA21A5255002B8002BDCC3 /* PaddingLabel.swift in Sources */,
+				4C2D05B4255852E200FA787F /* TitleSupplementaryView.swift in Sources */,
 				4C51391D254847530084F65F /* BlockResponderView.swift in Sources */,
 				D42EC19D2549CEA600E57627 /* AddAlertColorInputView.swift in Sources */,
 				4C2D05F2255989BD00FA787F /* UIColor+isDarkColor.swift in Sources */,
