@@ -31,8 +31,7 @@ const milestoneController = {
       body: payload,
     } = req;
 
-    const { dueDate } = payload;
-    if (isNaN(new Date(dueDate))) {
+    if ('dueDate' in payload && isNaN(new Date(payload.dueDate))) {
       throw new Error(BAD_REQUEST);
     }
 
