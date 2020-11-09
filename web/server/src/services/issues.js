@@ -24,7 +24,6 @@ const issueService = {
         },
         {
           model: Milestone,
-          as: 'milestone',
           attributes: ['num', 'title'],
         },
         {
@@ -75,7 +74,6 @@ const issueService = {
         },
         {
           model: Milestone,
-          as: 'milestone',
           required: false,
           attributes: [
             'num',
