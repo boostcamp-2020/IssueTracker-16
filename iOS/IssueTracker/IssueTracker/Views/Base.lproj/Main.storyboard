@@ -43,6 +43,7 @@
                                                                 <constraint firstAttribute="width" constant="20" id="txi-z8-EsQ"/>
                                                                 <constraint firstAttribute="height" constant="20" id="zVn-Od-yTL"/>
                                                             </constraints>
+                                                            <color key="tintColor" systemColor="labelColor"/>
                                                             <state key="normal" image="uncheck"/>
                                                             <state key="selected" image="check"/>
                                                             <state key="highlighted" image="check"/>
