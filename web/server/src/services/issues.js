@@ -95,6 +95,7 @@ const issueService = {
         },
       ],
     }),
+  update: async ({ num, payload }) => Issue.update(payload, { where: { num } }),
 };
 
 module.exports = issueService;
