@@ -56,7 +56,7 @@ module.exports = class Issue extends Model {
       timestamps: false,
     });
     Issue.belongsToMany(Label, {
-      foreignKey: 'issue_num',
+      foreignKey: 'issueNum',
       through: 'labelings',
       as: 'labels',
       timestamps: false,
