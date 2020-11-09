@@ -28,7 +28,7 @@ export default function IssueItem({
   author,
   labels,
   assignees,
-  milestone,
+  Milestone,
   isClosed,
   createdAt,
 }) {
@@ -40,7 +40,7 @@ export default function IssueItem({
         <Description>
           <span>{author.id}</span>
           <span>{createdAt}</span>
-          <span>{milestone.title}</span>
+          <span>{Milestone.title}</span>
         </Description>
       </ItemInfo>
       <ItemTag>

@@ -7,7 +7,8 @@ const Div = styled.div`
   margin: 0 auto;
   margin-top: 10px;
   display: flex;
-  justify-content: ${props => (props.isIssueList ? 'flex-end' : 'flex-start')};
+  justify-content: ${props =>
+    props.isIssueList ? 'space-between' : 'flex-start'};
   align-items: center;
   border: 0.1px solid #e0e0e0;
   border-radius: 10px 10px 0px 0px;
