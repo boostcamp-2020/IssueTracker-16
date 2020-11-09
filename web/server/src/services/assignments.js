@@ -8,7 +8,7 @@ const assignmentService = {
     if (!issue || !user) {
       throw new Error(NO_CONTENTS);
     }
-    await issue.addAssignees(user);
+    return issue.addAssignees(user);
   },
 
   delete: async ({ issueNum, userNum }) => {
@@ -25,7 +25,7 @@ const assignmentService = {
     if (!issue) {
       throw new Error(NO_CONTENTS);
     }
-    await issue.removeAssignees(userNum);
+    return issue.removeAssignees(userNum);
   },
 };
 

@@ -8,7 +8,7 @@ const labelingService = {
     if (!issue || !label) {
       throw new Error(NO_CONTENTS);
     }
-    await issue.addLabel(label);
+    return issue.addLabel(label);
   },
 
   delete: async ({ issueNum, labelNum }) => {
@@ -25,7 +25,7 @@ const labelingService = {
     if (!issue) {
       throw new Error(NO_CONTENTS);
     }
-    await issue.removeLabel(labelNum);
+    return issue.removeLabel(labelNum);
   },
 };
 
