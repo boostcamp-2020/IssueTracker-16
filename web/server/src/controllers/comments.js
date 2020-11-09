@@ -1,5 +1,4 @@
 const commentService = require('../services/comments');
-// const {} = require('../common/errorHandler');
 
 const commentController = {
   add: async (req, res) => {
