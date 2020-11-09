@@ -30,7 +30,6 @@ class AddAlertViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var selectedTextFieldFrame: CGRect = .zero
     weak var delegate: AddAlertViewControllerDelegate?
     private(set) var inputViews = [InputView]()
     var item: Inputable?
@@ -47,10 +46,6 @@ class AddAlertViewController: UIViewController {
     private func setupViews() {
         inputViews.forEach { inputview in
             contentStackView.addArrangedSubview(inputview)
-            inputview.beginEditingHandler = { [weak self] (textField) in
-                let textFieldFrame = self?.view.convert(textField.frame, from: textField)
-                self?.selectedTextFieldFrame = textFieldFrame ?? .zero
-            }
             
             inputview.returnHandler = { [weak self] (textField) in
                 if let index = self?.inputViews.firstIndex(where: { $0.textField == textField }),

@@ -8,12 +8,14 @@
 import UIKit
 
 class IssueDetailViewController: UIViewController {
-    
+
     // MARK: - Properties
     
     var issue: Issue?
-    var titleYAnchor: NSLayoutConstraint?
     
+    private var refreshControl = UIRefreshControl()
+    private var titleYAnchor: NSLayoutConstraint?
+    private var interactor: IssueDetailInteractor?
     // MARK: - Views
     
     @IBOutlet weak var issueDetailCollectionView: UICollectionView!
@@ -31,9 +33,11 @@ class IssueDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureLogic()
+        configureCollectionView()
+        requestIssue()
         self.tabBarController?.tabBar.isHidden = true
         view.addSubview(shadowView)
-        addBottomSheetVC()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -41,25 +45,53 @@ class IssueDetailViewController: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-    // MARK: - Methods
+    // MARK: Initialize
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        guard let headerFrame = issueDetailCollectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(item: 0, section: 0))?.frame else { return }
-//
-//        let headerMaxY = view.convert(headerFrame, from: issueDetailCollectionView).maxY
-//        let ratio = headerMaxY / navigationController!.navigationBar.frame.height
-//        titleYAnchor?.constant = min(0, titleYAnchor!.constant - ratio)
-//        // print(titleYAnchor!.constant)
-        
+    private func configureLogic() {
+        interactor = IssueDetailInteractor()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let vc = segue.destination as? AddIssueViewController else { return }
-        let sender = sender as? Issue
-        vc.issue = sender
+    private func configureCollectionView() {
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
+        issueDetailCollectionView.refreshControl = refreshControl
+    }
+    
+    // MARK: - Methods
+    
+    private func requestIssue() {
+        guard let issue = issue else { return }
+        interactor?.request(endPoint: .issue(id: issue.id), completionHandler: { [weak self] (issue: Issue?) in
+            self?.issue = issue
+            print(issue)
+            DispatchQueue.main.async {
+                self?.issueDetailCollectionView.reloadData()
+                self?.addBottomSheetVC()
+            }
+        })
+    }
+    
+    private func presentMoreActionSheet() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let editAction = UIAlertAction(title: "Edit", style: .default) { (action) in
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            
+        }
+        
+        alert.addAction(editAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: Selectors
+    
+    @objc private func refresh(_ sender: AnyObject) {
+        requestIssue()
+        refreshControl.endRefreshing()
+    }
     
     @objc private func tappedShadowView() {
         UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: { [weak self] in
@@ -69,19 +101,35 @@ class IssueDetailViewController: UIViewController {
     
     // MARK: IBActions
     
-    @IBAction func touchedEditButton(_ sender: Any) {
+    @IBAction private func touchedEditButton(_ sender: Any) {
         performSegue(withIdentifier: segueIdentifier(to: AddIssueViewController.self), sender: issue)
+    }
+    
+    
+    // MARK: - Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let vc = segue.destination as? AddIssueViewController else { return }
+        let sender = sender as? Issue
+        vc.issue = sender
     }
     
 }
 
+// MARK: - UICollectionView Data Source
+
 extension IssueDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return issue?.comments?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommentCollectionViewCell.identifier, for: indexPath) as? CommentCollectionViewCell else { return UICollectionViewCell() }
+        
+        cell.comment = issue?.comments?[indexPath.item]
+        cell.moreHandler = { [weak self] cell in
+            self?.presentMoreActionSheet()
+        }
         return cell
     }
     
@@ -89,9 +137,7 @@ extension IssueDetailViewController: UICollectionViewDataSource {
         switch kind {
             case UICollectionView.elementKindSectionHeader:
                 guard let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: IssueDetailHeaderView.identifier, for: indexPath) as? IssueDetailHeaderView else { return UICollectionReusableView() }
-                headerView.titleLabel.text = issue?.title
-                headerView.numberLabel.text = "#\(issue?.id ?? 0)"
-                headerView.authorLabel.text = issue?.author.id
+                headerView.issue = issue
                 return headerView
             default:
                 return UICollectionReusableView()
@@ -99,9 +145,13 @@ extension IssueDetailViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: UICollectionView Delegate
+
 extension IssueDetailViewController: UICollectionViewDelegate {
     
 }
+
+// MARK: - UICollectionView Delegate FlowLayout
 
 extension IssueDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -124,6 +174,7 @@ extension IssueDetailViewController {
         guard let height = bottomSheetView?.frame.height else { return 150 }
         return view.frame.height - height
     }
+    
     private var partialViewPosition: CGFloat {
         UIScreen.main.bounds.height - 120
     }
@@ -192,6 +243,7 @@ protocol BottomSheetDelegate {
     func moveToUp()
     func moveToDown()
 }
+
 extension IssueDetailViewController: BottomSheetDelegate {
     func moveToUp() {
         guard

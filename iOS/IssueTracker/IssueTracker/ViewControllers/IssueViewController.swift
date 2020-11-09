@@ -99,8 +99,8 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
     }
     
     private func request(for endPoint: IssueEndPoint) {
-        interactor?.request(endPoint: endPoint, completionHandler: { [weak self] (issues: [Issue]?) in
-            self?.issues = issues ?? []
+        interactor?.request(endPoint: endPoint, completionHandler: { [weak self] (issueResponse: IssueAPI?) in
+            self?.issues = issueResponse?.issues ?? []
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self?.issueCollectionView.reloadData()
                 self?.activityIndicator.stopAnimating()
@@ -149,7 +149,6 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
         navigationItem.searchController?.searchBar.isHidden = false
         editingToolBar.isHidden = true
         tabBarController?.tabBar.isHidden = false
-        addIssueButton.layer.zPosition = 1
     }
     
     private func selectAllIssues() {

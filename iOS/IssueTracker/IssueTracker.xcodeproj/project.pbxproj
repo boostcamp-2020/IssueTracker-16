@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4C2D05A82557ECA300FA787F /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05A72557ECA300FA787F /* APIResponse.swift */; };
+		4C2D05B4255852E200FA787F /* TitleSupplementaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05B3255852E200FA787F /* TitleSupplementaryView.swift */; };
+		4C2D05DD25591E4500FA787F /* IssueDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05DC25591E4500FA787F /* IssueDetailInteractor.swift */; };
+		4C2D05E62559307500FA787F /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05E52559307500FA787F /* Date+.swift */; };
+		4C2D05EE25596C2500FA787F /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05ED25596C2500FA787F /* CommentViewController.swift */; };
+		4C2D05F2255989BD00FA787F /* UIColor+isDarkColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05F1255989BD00FA787F /* UIColor+isDarkColor.swift */; };
 		4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5138FF2547CA5A0084F65F /* LabelViewController.swift */; };
 		4C5139122548047A0084F65F /* AddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139112548047A0084F65F /* AddAlertViewController.swift */; };
 		4C51391D254847530084F65F /* BlockResponderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51391C254847530084F65F /* BlockResponderView.swift */; };
@@ -96,6 +101,11 @@
 
 /* Begin PBXFileReference section */
 		4C2D05A72557ECA300FA787F /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		4C2D05B3255852E200FA787F /* TitleSupplementaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSupplementaryView.swift; sourceTree = "<group>"; };
+		4C2D05DC25591E4500FA787F /* IssueDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailInteractor.swift; sourceTree = "<group>"; };
+		4C2D05E52559307500FA787F /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
+		4C2D05ED25596C2500FA787F /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		4C2D05F1255989BD00FA787F /* UIColor+isDarkColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+isDarkColor.swift"; sourceTree = "<group>"; };
 		4C5138FF2547CA5A0084F65F /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
 		4C5139112548047A0084F65F /* AddAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertViewController.swift; sourceTree = "<group>"; };
 		4C51391C254847530084F65F /* BlockResponderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockResponderView.swift; sourceTree = "<group>"; };
@@ -187,6 +197,8 @@
 				D4A060A72548877600FAF62B /* UIColor+hexString+random.swift */,
 				D476EB03254B28AC00CB4C09 /* String+dateRegEx.swift */,
 				4CBA21ED2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift */,
+				4C2D05E52559307500FA787F /* Date+.swift */,
+				4C2D05F1255989BD00FA787F /* UIColor+isDarkColor.swift */,
 				D413681B2559242A00A4AD55 /* UIAlertController+simpleAlert.swift */,
 			);
 			path = Utils;
@@ -252,6 +264,7 @@
 				4CBA21B425503B47002BDCC3 /* IssueInteractor.swift */,
 				4CBA21B525503B47002BDCC3 /* MilestoneInteractor.swift */,
 				4C5139A925494E7E0084F65F /* LabelInteractor.swift */,
+				4C2D05DC25591E4500FA787F /* IssueDetailInteractor.swift */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -346,6 +359,7 @@
 				D4AEAB7A25528C9000AED514 /* CommentCollectionViewCell.swift */,
 				4CBA21D625529331002BDCC3 /* ActionCollectionViewCell.swift */,
 				4CBA21F52553E377002BDCC3 /* IssueDetailHeaderView.swift */,
+				4C2D05B3255852E200FA787F /* TitleSupplementaryView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -361,6 +375,7 @@
 				4CBA21E92553D6D1002BDCC3 /* FilterViewController.swift */,
 				D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */,
 				D4F8FCBF25531713008C311E /* AddIssueViewController.swift */,
+				4C2D05ED25596C2500FA787F /* CommentViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -535,6 +550,7 @@
 			files = (
 				D4A598E02552A0DE00E825D3 /* IssueBottomSheetViewController.swift in Sources */,
 				D4DF60252547AEF200765C0A /* IssueViewController.swift in Sources */,
+				4C2D05DD25591E4500FA787F /* IssueDetailInteractor.swift in Sources */,
 				D44A9D09254FF1EC00ABA1A9 /* Issue.swift in Sources */,
 				4C5139A1254934D20084F65F /* MilestoneEndPoint.swift in Sources */,
 				4CBA21C925512FD7002BDCC3 /* GithubLabel.swift in Sources */,
@@ -555,14 +571,18 @@
 				D4DF604D254800C100765C0A /* AddAlertInputView.swift in Sources */,
 				4C5139A2254934D20084F65F /* LabelEndPoint.swift in Sources */,
 				4CBA21A5255002B8002BDCC3 /* PaddingLabel.swift in Sources */,
+				4C2D05B4255852E200FA787F /* TitleSupplementaryView.swift in Sources */,
 				4C51391D254847530084F65F /* BlockResponderView.swift in Sources */,
 				D42EC19D2549CEA600E57627 /* AddAlertColorInputView.swift in Sources */,
+				4C2D05F2255989BD00FA787F /* UIColor+isDarkColor.swift in Sources */,
 				4C5139122548047A0084F65F /* AddAlertViewController.swift in Sources */,
+				4C2D05EE25596C2500FA787F /* CommentViewController.swift in Sources */,
 				4C5139A625493BB20084F65F /* Label.swift in Sources */,
 				D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */,
 				4CBA21B725503B47002BDCC3 /* MilestoneInteractor.swift in Sources */,
 				4CBA21E62553CB4D002BDCC3 /* IssueDetailViewController.swift in Sources */,
 				4CBA21EA2553D6D1002BDCC3 /* FilterViewController.swift in Sources */,
+				4C2D05E62559307500FA787F /* Date+.swift in Sources */,
 				D4A060A82548877600FAF62B /* UIColor+hexString+random.swift in Sources */,
 				4CBA21EE2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift in Sources */,
 				D476EB04254B28AC00CB4C09 /* String+dateRegEx.swift in Sources */,
