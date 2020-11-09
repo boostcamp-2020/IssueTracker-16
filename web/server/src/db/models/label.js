@@ -34,7 +34,7 @@ module.exports = class Label extends Model {
   }
   static associate({ Label, Issue }) {
     Label.belongsToMany(Issue, {
-      foreignKey: 'label_num',
+      foreignKey: 'labelNum',
       through: 'labelings',
     });
   }

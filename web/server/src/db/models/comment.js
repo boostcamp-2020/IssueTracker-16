@@ -31,11 +31,17 @@ module.exports = class Comment extends Model {
   }
   static associate({ Comment, Issue, User }) {
     Comment.belongsTo(Issue, {
-      foreignKey: 'issue_num',
+      foreignKey: {
+        name: 'issueNum',
+        allowNull: false,
+      },
       targetKey: 'num',
     });
     Comment.belongsTo(User, {
-      foreignKey: 'user_num',
+      foreignKey: {
+        name: 'userNum',
+        allowNull: false,
+      },
       targetKey: 'num',
       as: 'writer',
     });

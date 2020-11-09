@@ -1,11 +1,10 @@
-const { sequelize, Comment, Issue, User } = require('../db/models');
+const { Comment } = require('../db/models');
 
 const commentService = {
-  add: async (req, res) => {},
-
-  update: async (req, res) => {},
-
-  delete: async (req, res) => {},
+  add: async ({ content, userNum, issueNum }) =>
+    Comment.create({ content, userNum, issueNum }),
+  update: async ({ num, content }) =>
+    Comment.update({ content }, { where: { num } }),
 };
 
 module.exports = commentService;

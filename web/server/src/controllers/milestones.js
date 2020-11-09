@@ -12,8 +12,16 @@ const milestoneController = {
   },
 
   getAll: async (req, res) => {
-    const milestones = await milestoneService.findAll();
-    res.status(200).json(milestones);
+    const isClosed = req.query.isClosed === 'true' ? true : false;
+    const [milestones, total] = await Promise.all([
+      milestoneService.findAll({ isClosed }),
+      milestoneService.count(),
+    ]);
+    const count = milestones.length;
+    const [open, closed] = isClosed
+      ? [total - count, count]
+      : [count, total - count];
+    res.status(200).json({ open, closed, milestones });
   },
 
   getOne: async (req, res) => {
@@ -31,8 +39,7 @@ const milestoneController = {
       body: payload,
     } = req;
 
-    const { dueDate } = payload;
-    if (isNaN(new Date(dueDate))) {
+    if ('dueDate' in payload && isNaN(new Date(payload.dueDate))) {
       throw new Error(BAD_REQUEST);
     }
 
