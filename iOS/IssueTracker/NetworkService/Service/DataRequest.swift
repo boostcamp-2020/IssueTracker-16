@@ -17,7 +17,7 @@ open class DataRequest: Request {
         
         session.dataTask(with: request, completionHandler: { (data, response, error) in
 
-            guard error != nil else {
+            guard error == nil else {
                 completionHandler(nil, .failed)
                 return
             }

@@ -10,14 +10,14 @@ import Foundation
 struct Label {
     var id: Int
     var name: String
-    var description: String
+    var description: String?
     var color: String
     
     var jsonData: [String: Any] {
         return [
             "name": name,
             "description": description,
-            "color": color
+            "color": color.replacingOccurrences(of: "#", with: "")
         ]
     }
 }
@@ -32,10 +32,13 @@ extension Label: Hashable {
     }
 }
 
-extension Label: Inputable {
-    
+extension Label: Codable {
+    enum CodingKeys: String, CodingKey {
+        case id = "num"
+        case name, description, color
+    }
 }
 
-extension Label: Codable {
+extension Label: Inputable {
     
 }

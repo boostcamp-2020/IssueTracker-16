@@ -12,22 +12,19 @@ enum MilestoneEndPoint: EndPointType {
     
     case list
     case create(body: Parameters)
-    case delete(body: Parameters)
+    case delete(id: Int, body: Parameters)
     case update(id: Int, body: Parameters)
     
     var baseURL: URL? {
-        switch self {
-            case .list: return URL(string: "http://localhost:3000/api/")
-            case.create, .delete, .update: return nil
-        }
+        return URL(string: "http://issue-tracker.kro.kr:3000/api/")
     }
     
     var path: String {
         switch self {
-            case .list: return "milestones"
-            case .create, .delete: return ""
-            case .update(let id, _):
-                return "milestones/\(id)"
+        case .list, .create:
+            return "milestones"
+        case .update(let id, _), .delete(let id, _):
+            return "milestones/\(id)"
         }
     }
     
@@ -42,11 +39,15 @@ enum MilestoneEndPoint: EndPointType {
     
     var task: HTTPTask {
         switch self {
-            case .list: return .request
-            case .create(let data), .delete(let data), .update(_, let data):
-                return .requestParameters(bodyParameters: data,
-                                        bodyEncoding: .jsonEncoding,
-                                        urlParameters: nil)
+        case .list: return .request
+        case .create(let data):
+            return .requestParameters(bodyParameters: data,
+                                      bodyEncoding: .jsonEncoding,
+                                      urlParameters: nil)
+        case .delete(_, let data), .update(_, let data):
+            return .requestParameters(bodyParameters: data,
+                                      bodyEncoding: .jsonEncoding,
+                                      urlParameters: nil)
         }
     }
     

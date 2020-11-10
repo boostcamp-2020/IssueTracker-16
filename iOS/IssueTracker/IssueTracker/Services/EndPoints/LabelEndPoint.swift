@@ -12,21 +12,18 @@ enum LabelEndPoint: EndPointType {
     
     case list
     case create(body: Parameters)
-    case delete(body: Parameters)
+    case delete(id: Int, body: Parameters)
     case update(id: Int, body: Parameters)
     
     var baseURL: URL? {
-        switch self {
-            case .list: return URL(string: "http://localhost:3000/api/")
-            case.create, .delete, .update: return nil
-        }
+        return URL(string: "http://issue-tracker.kro.kr:3000/api/")
     }
     
     var path: String {
         switch self {
-            case .list: return "labels"
-            case .create, .delete: return ""
-            case .update(let id, _):
+            case .list, .create:
+                return "labels"
+            case .delete(let id, _), .update(let id, _):
                 return "labels/\(id)"
         }
     }
@@ -43,11 +40,11 @@ enum LabelEndPoint: EndPointType {
     var task: HTTPTask {
         switch self {
             case .list: return .request
-            case .create(let data), .delete(let data):
+            case .create(let data):
                 return .requestParameters(bodyParameters: data,
                                         bodyEncoding: .jsonEncoding,
                                         urlParameters: nil)
-            case .update(_, let data):
+            case .update(_, let data), .delete(_, let data):
                 return .requestParameters(bodyParameters: data,
                                         bodyEncoding: .jsonEncoding,
                                         urlParameters: nil)

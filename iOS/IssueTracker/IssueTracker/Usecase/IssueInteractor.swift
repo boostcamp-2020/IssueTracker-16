@@ -6,16 +6,17 @@
 //
 
 import Foundation
+import NetworkService
 
 protocol IssueBusinessLogic {
-    func request(endPoint: IssueEndPoint, completionHandler: @escaping ([Issue]) -> Void)
+    func request<T: Codable>(endPoint: IssueEndPoint, completionHandler: @escaping (T?) -> Void)
 }
 
 class IssueInteractor: IssueBusinessLogic {
-    func request(endPoint: IssueEndPoint, completionHandler: @escaping ([Issue]) -> Void) {
-        APIManager.request(endPoint: endPoint) { (data: [Issue]?) in
-            guard let data = data else {
-                completionHandler([])
+    func request<T>(endPoint: IssueEndPoint, completionHandler: @escaping (T?) -> Void) where T : Decodable, T : Encodable {
+        NetworkManager.shared.request(endPoint: endPoint) { (data: T?, response: NetworkManager.Response?) in
+            guard response == nil else {
+                debugPrint(response)
                 return
             }
             completionHandler(data)

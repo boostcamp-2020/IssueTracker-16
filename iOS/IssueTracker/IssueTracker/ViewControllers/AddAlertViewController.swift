@@ -14,7 +14,7 @@ protocol Inputable {
 protocol AddAlertViewControllerDelegate: class {
     func addAlertViewControllerDidCancel(_ addAlertViewController: AddAlertViewController)
     
-    func addAlertViewController(_ addAlertViewController: AddAlertViewController, didTabAddWithItem item: Inputable)
+    func addAlertViewController(_ addAlertViewController: AddAlertViewController, didTabAddWithItem item: Inputable?)
 }
 
 class AddAlertViewController: UIViewController {
@@ -38,11 +38,24 @@ class AddAlertViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        inputViews.forEach { contentStackView.addArrangedSubview($0) }
+        
         setupViews()
+        addObservers()
     }
     
     private func setupViews() {
+        inputViews.forEach { inputview in
+            contentStackView.addArrangedSubview(inputview)
+            
+            inputview.returnHandler = { [weak self] (textField) in
+                if let index = self?.inputViews.firstIndex(where: { $0.textField == textField }),
+                   index+1 < self?.inputViews.count ?? 0 {
+                    self?.inputViews[index+1].textField.becomeFirstResponder()
+                } else {
+                    self?.view.endEditing(true)
+                }
+            }
+        }
         contentBackgroundView.layer.shadowColor = UIColor.black.cgColor
         contentBackgroundView.layer.shadowRadius = 10
         contentBackgroundView.layer.shadowOffset = .zero
@@ -58,26 +71,40 @@ class AddAlertViewController: UIViewController {
     
     // MARK: - Methods
     
-    func addInputView(title: String, placeholder: String, text: String?) {
+    func addInputView(title: String, placeholder: String?, text: String?) {
         var inputView: InputView
         if title == "색상" {
-            inputView = ColorInputView()
-            guard let inputView = inputView as? ColorInputView else { return }
-            inputView.colorPicker.addTarget(self, action: #selector(touchedColorPicker), for: .touchUpInside)
+            inputView = {
+                let colorInputView = ColorInputView(title: title, placeholder: placeholder, text: text)
+                colorInputView.colorPicker.addTarget(self, action: #selector(touchedColorPicker), for: .touchUpInside)
+                return colorInputView
+            }()
         } else if title == "완료날짜"{
-            inputView = AddAlertDateInputView()
+            inputView = AddAlertDateInputView(title: title, placeholder: placeholder, text: text)
         } else {
-            inputView = InputView()
+            inputView = InputView(title: title, placeholder: placeholder, text: text)
         }
-        inputView.configure(title: title, placeholder: placeholder, text: text)
         inputViews.append(inputView)
     }
     
-    func addInputView(_ inputView: InputView) {
-        
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChanged(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     // MARK: Selectors
+    
+    @objc private func keyboardWillChanged(_ notification: Notification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+        let keyboardRect =  keyboardFrame.cgRectValue
+
+        if contentBackgroundView.frame.maxY > keyboardRect.origin.y {
+            view.frame.origin.y = -(contentBackgroundView.frame.maxY - keyboardRect.origin.y + 20)
+        } else {
+            view.frame.origin.y = 0
+        }
+    }
     
     @objc private func touchedColorPicker() {
         for inputView in inputViews {
@@ -99,12 +126,22 @@ class AddAlertViewController: UIViewController {
     }
     
     @IBAction private func touchedAddButton(_ sender: UIButton) {
-        guard let item = item else { return }
+        for inputView in inputViews {
+            guard inputView.isValid else {
+                UIAlertController.showSimpleAlert(title: "입력이 완료되지 않았습니다.",
+                                                  handler: { [weak self] alert in
+                    self?.present(alert, animated: true, completion: nil)
+                })
+                return
+            }
+        }
         delegate?.addAlertViewController(self, didTabAddWithItem: item)
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction private func touchedClearButton(_ sender: UIButton) {
-        inputViews.forEach { $0.textField.text = "" }
+        inputViews.forEach {
+            $0.clear()
+        }
     }
 }
