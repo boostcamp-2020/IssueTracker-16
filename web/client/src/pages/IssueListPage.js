@@ -8,7 +8,7 @@ import IssueList from '../components/issueList/IssueList';
 
 export default function IssueListPage({ location }) {
   const query = queryString.parse(location.search);
-  const isClosed = query.isClosed === 'true';
+  const isClosed = query.is === 'closed';
 
   return (
     <>
