@@ -13,6 +13,7 @@
 		4C2D05E62559307500FA787F /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05E52559307500FA787F /* Date+.swift */; };
 		4C2D05EE25596C2500FA787F /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05ED25596C2500FA787F /* CommentViewController.swift */; };
 		4C2D05F2255989BD00FA787F /* UIColor+isDarkColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D05F1255989BD00FA787F /* UIColor+isDarkColor.swift */; };
+		4C2F095F255A3E4600ED5F06 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2F095E255A3E4600ED5F06 /* Comment.swift */; };
 		4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5138FF2547CA5A0084F65F /* LabelViewController.swift */; };
 		4C5139122548047A0084F65F /* AddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139112548047A0084F65F /* AddAlertViewController.swift */; };
 		4C51391D254847530084F65F /* BlockResponderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51391C254847530084F65F /* BlockResponderView.swift */; };
@@ -106,6 +107,7 @@
 		4C2D05E52559307500FA787F /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		4C2D05ED25596C2500FA787F /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		4C2D05F1255989BD00FA787F /* UIColor+isDarkColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+isDarkColor.swift"; sourceTree = "<group>"; };
+		4C2F095E255A3E4600ED5F06 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		4C5138FF2547CA5A0084F65F /* LabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelViewController.swift; sourceTree = "<group>"; };
 		4C5139112548047A0084F65F /* AddAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertViewController.swift; sourceTree = "<group>"; };
 		4C51391C254847530084F65F /* BlockResponderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockResponderView.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				D4EA0AA5254AB93C0000CF67 /* Milestone.swift */,
 				D44A9D08254FF1EC00ABA1A9 /* Issue.swift */,
 				4C2D05A72557ECA300FA787F /* APIResponse.swift */,
+				4C2F095E255A3E4600ED5F06 /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				4C2D05EE25596C2500FA787F /* CommentViewController.swift in Sources */,
 				4C5139A625493BB20084F65F /* Label.swift in Sources */,
 				D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */,
+				4C2F095F255A3E4600ED5F06 /* Comment.swift in Sources */,
 				4CBA21B725503B47002BDCC3 /* MilestoneInteractor.swift in Sources */,
 				4CBA21E62553CB4D002BDCC3 /* IssueDetailViewController.swift in Sources */,
 				4CBA21EA2553D6D1002BDCC3 /* FilterViewController.swift in Sources */,
