@@ -9,12 +9,12 @@ const {
 const { countOpenedIssues, countClosedIssues } = require('../common/query');
 
 const issueService = {
-  findAll: async () => {
+  findAll: async ({ isClosed }) => {
     const issues = await Issue.findAll({
       attributes: ['num', 'title', 'createdAt', 'isClosed'],
       where: {
         isDeleted: false,
-        isClosed: false,
+        isClosed,
       },
       include: [
         {
@@ -24,7 +24,6 @@ const issueService = {
         },
         {
           model: Milestone,
-          as: 'milestone',
           attributes: ['num', 'title'],
         },
         {
@@ -52,6 +51,8 @@ const issueService = {
     });
   },
 
+  count: async () => Issue.count(),
+
   findOneByNum: async ({ num }) =>
     Issue.findOne({
       attributes: ['num', 'title', 'createdAt', 'isClosed', 'isDeleted'],
@@ -75,7 +76,6 @@ const issueService = {
         },
         {
           model: Milestone,
-          as: 'milestone',
           required: false,
           attributes: [
             'num',
@@ -97,6 +97,11 @@ const issueService = {
         },
       ],
     }),
+
+  add: async ({ title, userNum, milestoneNum }) =>
+    Issue.create({ title, userNum, milestoneNum }),
+
+  update: async ({ num, payload }) => Issue.update(payload, { where: { num } }),
 };
 
 module.exports = issueService;

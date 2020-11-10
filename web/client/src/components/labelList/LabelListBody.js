@@ -1,11 +1,13 @@
 import React from 'react';
-import LabelItem from './LabelItem';
 
-export default function LabelListBody() {
+import LabelItem from './LabelItem';
+import ListBody from '../common/ListBody';
+
+export default function LabelListBody({ labels }) {
   return (
-    <div>
-      <LabelItem />
-      <LabelItem />
-    </div>
+    <ListBody>
+      {labels.length &&
+        labels.map(label => <LabelItem key={label.num} {...label} />)}
+    </ListBody>
   );
 }

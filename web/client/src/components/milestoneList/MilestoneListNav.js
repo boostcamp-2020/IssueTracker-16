@@ -1,13 +1,18 @@
 import React from 'react';
 
+import GreenButton from '../common/GreenButton';
+import LabelMilestoneNavigator from '../common/LabelMilestoneNavigator';
+import ListNav from '../common/ListNav';
+
 export default function MilestoneListNav() {
   return (
-    <div>
+    <ListNav>
       <div>
-        <button>Labels</button>
-        <button>Milestones</button>
+        <LabelMilestoneNavigator />
       </div>
-      <button>New Milestone</button>
-    </div>
+      <div>
+        <GreenButton>New Milestone</GreenButton>
+      </div>
+    </ListNav>
   );
 }

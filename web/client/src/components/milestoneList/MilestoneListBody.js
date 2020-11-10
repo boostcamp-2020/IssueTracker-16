@@ -1,11 +1,15 @@
 import React from 'react';
-import MilestoneItem from './MilestoneItem';
 
-export default function MilestoneListBody() {
+import MilestoneItem from './MilestoneItem';
+import ListBody from '../common/ListBody';
+
+export default function MilestoneListBody({ milestones }) {
   return (
-    <div>
-      <MilestoneItem />
-      <MilestoneItem />
-    </div>
+    <ListBody>
+      {milestones.length &&
+        milestones.map(milestone => (
+          <MilestoneItem key={milestone.num} {...milestone} />
+        ))}
+    </ListBody>
   );
 }

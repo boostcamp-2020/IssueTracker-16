@@ -1,5 +1,7 @@
 import React from 'react';
 
-export default function LabelListHeader() {
-  return <div>[The number of Labels]</div>;
+import ListHeader from '../common/ListHeader';
+
+export default function LabelListHeader({ count }) {
+  return <ListHeader isIssueList={false}>{count} labels</ListHeader>;
 }

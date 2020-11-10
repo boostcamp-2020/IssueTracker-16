@@ -1,21 +1,27 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
-import Header from './components/Header';
+import GlobalStyle from './GlobalStyle';
+import ErrorPage from './pages/ErrorPage';
 import IssueListPage from './pages/IssueListPage';
 import LabelListPage from './pages/LabelListPage';
 import MilestoneListPage from './pages/MilestoneListPage';
 
 function App() {
   return (
-    <div>
-      <Header />
+    <>
+      <GlobalStyle />
       <BrowserRouter>
-        <Route exact path="/" component={IssueListPage} />
-        <Route path="/labels" component={LabelListPage} />
-        <Route path="/milestones" component={MilestoneListPage} />
+        <Switch>
+          <Route exact path="/" component={IssueListPage} />
+          <Route path="/issues" component={IssueListPage} />
+          <Route path="/labels" component={LabelListPage} />
+          <Route path="/milestones" component={MilestoneListPage} />
+          <Route path="/error/:code" component={ErrorPage} />
+          <Redirect to="/error/404" />
+        </Switch>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 export default App;

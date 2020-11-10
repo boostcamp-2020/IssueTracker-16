@@ -19,6 +19,11 @@ module.exports = class Milestone extends Model {
         description: {
           type: DataTypes.STRING,
         },
+        isClosed: {
+          type: DataTypes.BOOLEAN,
+          allowNull: false,
+          defaultValue: false,
+        },
       },
       {
         sequelize,
@@ -33,7 +38,7 @@ module.exports = class Milestone extends Model {
   }
   static associate({ Milestone, Issue }) {
     Milestone.hasMany(Issue, {
-      foreignKey: 'milestone_num',
+      foreignKey: 'milestoneNum',
       sourceKey: 'num',
     });
   }
