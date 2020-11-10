@@ -27,10 +27,11 @@ const Button = styled.button`
 `;
 
 export default function LabelItem({ num, name, color, description }) {
+  const isLabelList = true;
   return (
     <ListItem>
       <LabelView>
-        <Label {...{ name, color }} />
+        <Label {...{ name, color, isLabelList }} />
       </LabelView>
       <Description>{description}</Description>
       <Buttons>

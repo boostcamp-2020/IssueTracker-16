@@ -14,6 +14,10 @@ const Div = styled.div`
   border: 0.1px solid #${COLOR.lightGray};
   border-radius: 10px 10px 0px 0px;
   background-color: #fafbfc;
+
+  span {
+    font-weight: 500;
+  }
 `;
 
 export default function ListHeader({ children, isIssueList }) {

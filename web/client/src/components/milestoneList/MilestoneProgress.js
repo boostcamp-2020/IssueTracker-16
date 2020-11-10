@@ -5,7 +5,6 @@ import COLOR from '../../utils/color';
 
 const ProgressBar = styled.div`
   height: 10px;
-  width: 90%;
   border-radius: 15px;
   background-color: #e1e4e8;
 `;

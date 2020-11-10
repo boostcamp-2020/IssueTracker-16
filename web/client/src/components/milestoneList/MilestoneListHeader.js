@@ -28,13 +28,13 @@ export default function MilestoneListHeader({ open, closed }) {
       <Option>
         <Link to={'/milestones?is=open'}>
           <MilestoneLogo />
-          {open} Open
+          <span>{open} Open</span>
         </Link>
       </Option>
       <Option>
         <Link to={'/milestones?is=closed'}>
           <CheckIcon />
-          {closed} Closed
+          <span>{closed} Closed</span>
         </Link>
       </Option>
     </ListHeader>

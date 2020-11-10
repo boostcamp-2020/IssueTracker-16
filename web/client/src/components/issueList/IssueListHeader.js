@@ -47,13 +47,13 @@ export default function IssueListHeader({ open, closed }) {
         <Filter>
           <Link to={'/issues?is=open'}>
             <OpenIssueLogo />
-            {open} Open{' '}
+            <span>{open} Open</span>
           </Link>
         </Filter>
         <Filter>
           <Link to={'/issues?is=closed'}>
             <CheckIcon />
-            {closed} Closed{' '}
+            <span>{closed} Closed</span>
           </Link>
         </Filter>
       </Filters>
