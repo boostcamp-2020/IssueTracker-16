@@ -1,5 +1,6 @@
 const milestoneService = require('../services/milestones');
-const { BAD_REQUEST, NO_CONTENTS } = require('../common/errorHandler');
+const { BAD_REQUEST, NOT_FOUND } = require('../common/errorHandler');
+const { CREATED, OK } = require('../common/status');
 
 const milestoneController = {
   add: async (req, res) => {
@@ -8,7 +9,7 @@ const milestoneController = {
       throw new Error(BAD_REQUEST);
     }
     await milestoneService.add({ title, dueDate, description });
-    res.status(200).json({ success: true });
+    res.status(CREATED).json({ success: true });
   },
 
   getAll: async (req, res) => {
@@ -21,16 +22,16 @@ const milestoneController = {
     const [open, closed] = isClosed
       ? [total - count, count]
       : [count, total - count];
-    res.status(200).json({ open, closed, milestones });
+    res.status(OK).json({ open, closed, milestones });
   },
 
   getOne: async (req, res) => {
     const { num } = req.params;
     const milestone = await milestoneService.findOneByNum({ num });
     if (!milestone) {
-      throw new Error(NO_CONTENTS);
+      throw new Error(NOT_FOUND);
     }
-    res.status(200).json(milestone);
+    res.status(OK).json(milestone);
   },
 
   update: async (req, res) => {
@@ -45,18 +46,18 @@ const milestoneController = {
 
     const [updated] = await milestoneService.update({ num, payload });
     if (!updated) {
-      throw new Error(NO_CONTENTS);
+      throw new Error(NOT_FOUND);
     }
-    res.status(200).json({ success: true });
+    res.status(OK).json({ success: true });
   },
 
   delete: async (req, res) => {
     const { num } = req.params;
     const deleted = await milestoneService.remove({ num });
     if (!deleted) {
-      throw new Error(NO_CONTENTS);
+      throw new Error(NOT_FOUND);
     }
-    res.status(200).json({ success: true });
+    res.status(OK).json({ success: true });
   },
 };
 
