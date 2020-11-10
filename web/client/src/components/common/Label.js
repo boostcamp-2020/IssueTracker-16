@@ -5,6 +5,7 @@ const Div = styled.div`
   background-color: #${props => props.color};
   display: inline;
   padding: 3px 8px;
+  margin: 0 2px;
   border-radius: 20px;
   font-size: 10pt;
   font-weight: 600;
