@@ -16,6 +16,12 @@ const userController = {
     delete user.dataValues.password;
     res.status(CREATED).json({ success: true, user });
   },
+
+  auth: async (req, res) => {
+    const { token } = req.query;
+    const decoded = await jwt.authentication(token);
+    res.status(OK).json({ success: true, user: decoded });
+  },
 };
 
 module.exports = userController;

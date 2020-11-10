@@ -1,9 +1,11 @@
 const jwt = require('jsonwebtoken');
 
+const { INVALID_TOKEN } = require('../common/errorHandler');
+const secret = process.env.JWT_SECRET;
+
 module.exports = {
-  sign: user => {
-    const secret = process.env.JWT_SECRET;
-    return new Promise((resolve, reject) => {
+  sign: user =>
+    new Promise((resolve, reject) => {
       jwt.sign(
         {
           num: user.num,
@@ -20,7 +22,13 @@ module.exports = {
           resolve(token);
         },
       );
-    });
-  },
-  authentication: {},
+    }),
+
+  authentication: token =>
+    new Promise((resolve, reject) => {
+      jwt.verify(token, secret, (err, decoded) => {
+        if (err) reject(new Error(INVALID_TOKEN));
+        resolve(decoded);
+      });
+    }),
 };
