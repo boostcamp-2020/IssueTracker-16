@@ -93,9 +93,12 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
     // MARK: - Methods
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let vc = segue.destination as? IssueDetailViewController else { return }
-        let sender = sender as? Issue
-        vc.issue = sender
+        if let vc = segue.destination as? IssueDetailViewController {
+            let sender = sender as? Issue
+            vc.issue = sender
+        } else if let vc = segue.destination as? AddIssueViewController {
+            vc.delegate = self
+        }
     }
     
     private func request(for endPoint: IssueEndPoint) {
@@ -241,5 +244,29 @@ extension IssueViewController: UICollectionViewDelegate {
 extension IssueViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.bounds.width, height: 120)
+    }
+}
+
+// MARK: - AddIssueViewControllerDelegate
+
+extension IssueViewController: AddIssueViewControllerDelegate {
+    func addIssueViewControllerDoned(_ addIssueViewController: AddIssueViewController) {
+        let title = addIssueViewController.issueTitle.text ?? ""
+        let content = addIssueViewController.commentTextView.text ?? ""
+        let newIssue = Issue(title: title, content: content)
+        
+        interactor?.request(endPoint: .create(body: newIssue.createData), completionHandler: { (response: APIResponse?) in
+            guard let response = response else {
+                debugPrint("response is empty")
+                return
+            }
+
+            if response.success {
+                DispatchQueue.main.async {
+                    addIssueViewController.dismiss(animated: true, completion: nil)
+                    self.request(for: .list)
+                }
+            }
+        })
     }
 }
