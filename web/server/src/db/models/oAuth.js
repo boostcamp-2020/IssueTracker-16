@@ -19,7 +19,7 @@ module.exports = class OAuth extends Model {
         underscored: true,
         timestamps: false,
         modelName: 'OAuth',
-        tableName: 'o_auths',
+        tableName: 'oauths',
         charset: 'utf8',
         collate: 'utf8_general_ci',
       },
