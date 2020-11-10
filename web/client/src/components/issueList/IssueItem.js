@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import getDiffTime from '../../utils/getDiffTime';
@@ -15,23 +16,37 @@ const ItemInfo = styled.div`
   width: 100%;
 `;
 const Info = styled.div`
+  height: 21px;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 `;
 const Status = styled.div`
   svg {
     fill: #${({ isClosed }) => (isClosed ? 'd73a49' : '22863a')};
   }
 `;
-const Title = styled.div``;
+const Title = styled.div`
+  > a {
+    color: #${COLOR.black};
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+  }
+`;
 const LabelTag = styled.div`
   display: flex;
+
+  > div {
+    margin-left: 3px;
+  }
 `;
 const AssigneeTag = styled.div`
   div {
     padding: 0 2px;
     border: 1px solid;
     border-radius: 15px;
+    color: #${COLOR.green};
     font-size: 10px;
   }
 `;
@@ -67,13 +82,15 @@ export default function IssueItem({
   createdAt,
 }) {
   return (
-    <ListItem>
+    <ListItem isIssue={true}>
       <Status {...{ isClosed }}>
         {isClosed ? <ClosedIssueLogo /> : <OpenIssueLogo />}
       </Status>
       <ItemInfo>
         <Info>
-          <Title>{title} </Title>
+          <Title>
+            <Link to={`/${num}`}>{title} </Link>
+          </Title>
           <LabelTag>
             {labels.map(label => (
               <Label key={label.num} {...label} />

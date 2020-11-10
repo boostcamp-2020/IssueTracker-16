@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import COLOR from '../../utils/color';
 
 const Button = styled.button`
+  height: 32px;
   padding: 7px 16px;
   background-color: #${COLOR.green};
   color: white;

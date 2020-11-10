@@ -9,14 +9,15 @@ const Div = styled.div`
   background-color: #${color};
   color: #${isLightColor(color) ? COLOR.black : COLOR.white};
   `}
-  display: inline;
-  padding: 3px 8px;
-  margin: 0 2px;
+  line-height:${({ isLabelList }) => (isLabelList ? '22px' : '18px')};
+  display: inline-block;
+  padding: 0 7px;
+  border: 1px solid transparent;
   border-radius: 20px;
-  font-size: 10pt;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 540;
 `;
 
-export default function Label({ name, color }) {
-  return <Div {...{ color }}>{name}</Div>;
+export default function Label({ name, color, isLabelList }) {
+  return <Div {...{ color, isLabelList }}>{name}</Div>;
 }

@@ -8,7 +8,7 @@ export default function MilestoneListNav() {
   return (
     <ListNav>
       <div>
-        <LabelMilestoneNavigator />
+        <LabelMilestoneNavigator page={'milestone'} />
       </div>
       <div>
         <GreenButton>New Milestone</GreenButton>

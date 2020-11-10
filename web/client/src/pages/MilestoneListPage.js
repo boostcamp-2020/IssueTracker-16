@@ -7,7 +7,10 @@ import Header from '../components/common/Header';
 import MilestoneListNav from '../components/milestoneList/MilestoneListNav';
 import MilestoneList from '../components/milestoneList/MilestoneList';
 
-export default function MilestoneListPage() {
+export default function MilestoneListPage({ location }) {
+  const query = new URLSearchParams(location.search);
+  const isClosed = query.get('is') === 'closed';
+
   return (
     <>
       <Helmet>
@@ -16,8 +19,7 @@ export default function MilestoneListPage() {
       <Header />
       <ListPage>
         <MilestoneListNav />
-        <br /> <br />
-        <MilestoneList />
+        <MilestoneList {...{ isClosed }} />
       </ListPage>
     </>
   );
