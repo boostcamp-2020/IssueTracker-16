@@ -13,12 +13,14 @@ class IssueDetailHeaderView: UICollectionReusableView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var statusButton: UIButton!
     
     var issue: Issue? {
         didSet {
             titleLabel.text = issue?.title
             numberLabel.text = "#\(issue?.id ?? 0)"
             authorLabel.text = issue?.author?.id
+            statusButton.backgroundColor = (issue?.isClosed ?? false) ? .systemPink : .systemGreen
         }
     }
 }

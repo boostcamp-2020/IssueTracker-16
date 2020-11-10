@@ -95,4 +95,8 @@ class IssueBottomSheetViewController: UIViewController {
     @IBAction func touchedAddCommentButton(_ sender: UIButton) {
         delegate?.bottomSheetTappedAddComment(self)
     }
+    
+    @IBAction func touchedCloseButton(_ sender: UIButton) {
+        delegate?.bottomSheetTappedClose(self)
+    }
 }
