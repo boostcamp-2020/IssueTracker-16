@@ -1,6 +1,5 @@
 const { User } = require('../db/models');
 const { LOGIN_FAILED, JOIN_FAILED } = require('../common/errorHandler');
-const jwt = require('../common/jwt');
 
 const userService = {
   login: async ({ id, password }) => {
@@ -13,7 +12,7 @@ const userService = {
     if (!verify(user, password)) {
       throw new Error(LOGIN_FAILED);
     }
-    return jwt.sign(user);
+    return user;
   },
 
   join: async ({ id, password, name, imageUrl }) => {
