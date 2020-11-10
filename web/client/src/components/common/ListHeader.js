@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const Div = styled.div`
   height: 50px;
-  padding: 10px 1%;
   margin: 0 auto;
   margin-top: 10px;
   display: flex;

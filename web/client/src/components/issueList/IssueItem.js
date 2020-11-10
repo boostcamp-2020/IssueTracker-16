@@ -7,6 +7,7 @@ import Label from '../common/Label';
 import ListItem from '../common/ListItem';
 import MilestoneLogo from '../../statics/svg/milestone';
 import OpenIssueLogo from '../../statics/svg/openIssue';
+import ClosedIssueLogo from '../../statics/svg/closedIssue';
 
 const ItemInfo = styled.div`
   padding: 8px;
@@ -20,7 +21,7 @@ const Status = styled.div`
   padding: 8px;
 
   svg {
-    fill: #22863a;
+    fill: #${({ isClosed }) => (isClosed ? 'd73a49' : '22863a')};
   }
 `;
 const Title = styled.div``;
@@ -63,7 +64,9 @@ export default function IssueItem({
 }) {
   return (
     <ListItem>
-      <Status>{isClosed ? 'X' : <OpenIssueLogo />}</Status>
+      <Status {...{ isClosed }}>
+        {isClosed ? <ClosedIssueLogo /> : <OpenIssueLogo />}
+      </Status>
       <ItemInfo>
         <Info>
           <Title>{title} </Title>
