@@ -46,7 +46,7 @@ struct Milestone {
     var percentage: Double {
         guard let closed = closedIssues, closed != 0 else { return 0 }
         let opened = openedIssues ?? 0
-        return round(Double(closed) / Double(opened + closed) * 100.0)
+        return Double(closed) / Double(opened + closed)
     }
 }
 
