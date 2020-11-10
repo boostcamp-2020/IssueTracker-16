@@ -33,7 +33,7 @@ enum MilestoneEndPoint: EndPointType {
             case .list: return .get
             case .create: return .post
             case .delete: return .delete
-            case .update: return .put
+            case .update: return .patch
         }
     }
     

@@ -20,10 +20,11 @@ struct Milestone {
     var isClosed: Bool?
     var openedIssues: Int?
     var closedIssues: Int?
+    
     var jsonData: [String: Any] {
         return [
             "title": title,
-            "dueDate": dueDate,
+            "dueDate": dueDate == "" ? NSNull() : dueDate,
             "description": description
         ]
     }
