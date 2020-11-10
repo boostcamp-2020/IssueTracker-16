@@ -157,7 +157,7 @@ extension LabelViewController: AddAlertViewControllerDelegate {
             return
         }
         
-        let newLabel = Label(id: -1, name: name, description: description, color: color)
+        let newLabel = Label(name: name, description: description, color: color)
         var endPoint = LabelEndPoint.create(body: newLabel.jsonData)
         
         if let label = item as? Label {

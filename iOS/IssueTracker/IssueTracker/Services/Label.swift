@@ -20,6 +20,17 @@ struct Label {
             "color": color.replacingOccurrences(of: "#", with: "")
         ]
     }
+    
+    /**
+    새로 생성을 위한 initializer
+     - id: -1
+     */
+    init(name: String, description: String, color: String) {
+        self.id = -1
+        self.name = name
+        self.description = description
+        self.color = color
+    }
 }
 
 extension Label: Hashable {

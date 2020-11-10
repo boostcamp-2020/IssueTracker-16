@@ -216,7 +216,7 @@ extension IssueDetailViewController {
         
         // FIXME: 수정수정!!!@#!@#!@#!@#
         let labelResponse = issue?.labels.first
-        let label = Label(id: 0, name: labelResponse?.name ?? "", description: "", color: labelResponse?.color ?? "")
+        let label = Label(name: labelResponse?.name ?? "", description: "", color: labelResponse?.color ?? "")
         bottomSheetVC?.label = label
         bottomSheetVC?.milestone = issue?.milestone
     }
