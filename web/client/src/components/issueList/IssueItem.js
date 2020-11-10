@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import getDiffTime from '../utils/getDiffTime';
+import getDiffTime from '../../utils/getDiffTime';
 
 import Label from '../common/Label';
 import ListItem from '../common/ListItem';
