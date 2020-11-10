@@ -445,7 +445,7 @@
                                             <color key="backgroundColor" red="0.93195015189999997" green="0.98528236150000004" blue="0.94393748040000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <inset key="contentEdgeInsets" minX="10" minY="5" maxX="10" maxY="5"/>
                                             <state key="normal" title="Open">
-                                                <color key="titleColor" red="0.16489574309999999" green="0.53770458700000001" blue="0.25426328180000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                         </button>
                                     </subviews>
@@ -465,6 +465,7 @@
                                     <connections>
                                         <outlet property="authorLabel" destination="Al5-yb-Fhf" id="tJJ-kB-p5Q"/>
                                         <outlet property="numberLabel" destination="5XQ-qw-TbB" id="YT2-4r-5fv"/>
+                                        <outlet property="statusButton" destination="PH3-Iq-1OW" id="7gN-LZ-qvc"/>
                                         <outlet property="titleLabel" destination="9Df-SP-LM3" id="sqT-5Q-mtK"/>
                                     </connections>
                                 </collectionReusableView>
@@ -854,6 +855,9 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="touchedCloseButton:" destination="eRL-eK-Xbz" eventType="touchUpInside" id="2Jy-HX-BTN"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rIE-z3-Ltl"/>
@@ -1556,7 +1560,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="0Xi-Du-NTR"/>
-        <segue reference="1mN-ca-cf2"/>
+        <segue reference="Dug-JU-RGo"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="check" width="512" height="512"/>
