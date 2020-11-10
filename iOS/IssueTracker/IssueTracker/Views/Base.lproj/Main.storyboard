@@ -630,7 +630,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="d0c-Lx-Rkh" kind="presentation" id="S4x-sg-vG2"/>
+                                            <action selector="touchedAddCommentButton:" destination="eRL-eK-Xbz" eventType="touchUpInside" id="E5c-GV-SOg"/>
                                         </connections>
                                     </button>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ef5-3r-d9T">
@@ -886,22 +886,30 @@
         <!--Comment View Controller-->
         <scene sceneID="2bV-TT-em9">
             <objects>
-                <viewController id="d0c-Lx-Rkh" customClass="CommentViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommentViewController" id="d0c-Lx-Rkh" customClass="CommentViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9mz-Ec-9l5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwK-gI-sK0">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <items>
                                     <navigationItem title="Title" id="IL9-WQ-eA5">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="jfU-Ic-15h"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Send" style="done" id="80l-Xa-4nz"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="jfU-Ic-15h">
+                                            <connections>
+                                                <action selector="touchedCancelButton:" destination="d0c-Lx-Rkh" id="tMi-w3-Q9k"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Send" style="done" id="80l-Xa-4nz">
+                                            <connections>
+                                                <action selector="touchedSendButton:" destination="d0c-Lx-Rkh" id="Vmc-cg-TMd"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="LHp-jE-O3i">
-                                <rect key="frame" x="0.0" y="56" width="414" height="660"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="692"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>

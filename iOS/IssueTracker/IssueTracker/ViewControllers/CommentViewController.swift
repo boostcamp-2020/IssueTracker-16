@@ -9,9 +9,11 @@ import UIKit
 
 class CommentViewController: UIViewController {
 
+    @IBOutlet weak private var scrollViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
-    var keyboardFrame: CGRect = .zero
+    private var keyboardFrame: CGRect = .zero
+    
+    var sendHandler: ((String) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,5 +35,13 @@ class CommentViewController: UIViewController {
             return
         }
         scrollViewBottomConstraint.constant = keyboardValue.cgRectValue.height
+    }
+    
+    @IBAction func touchedCancelButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func touchedSendButton(_ sender: UIBarButtonItem) {
+        sendHandler?(textView.text)
     }
 }
