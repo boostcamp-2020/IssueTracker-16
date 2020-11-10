@@ -26,8 +26,8 @@ class MilestoneCollectionViewCell: UICollectionViewCell {
     func configure(milestone: Milestone) {
         milestoneName.text = milestone.title
         milestoneDescription.text = milestone.description
-        milestoneOpenIssues.text = "\(milestone.openedIssues) open"
-        milestoneClosedIssues.text = "\(milestone.closedIssues) closed"
+        milestoneOpenIssues.text = "\(milestone.openedIssues ?? 0) open"
+        milestoneClosedIssues.text = "\(milestone.closedIssues ?? 0) closed"
         milestonePercent.text = "\(Int(milestone.percentage))%"
         if let dueDate = milestone.dueDate, !dueDate.isEmpty {
             let formattedDate: String = {

@@ -39,8 +39,9 @@ class MilestoneViewController: UIViewController {
     // MARK: - Methods
     
     private func request(for endPoint: LabelEndPoint) {
-        interactor?.request(endPoint: .list, completionHandler: { [weak self] (milestones: [Milestone]?) in
-            self?.milestones = milestones ?? []
+        interactor?.request(endPoint: .list, completionHandler: { [weak self] (milestoneResponse: MilestoneAPI?) in
+            
+            self?.milestones = milestoneResponse?.milestones ?? []
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self?.milestoneCollectionView.reloadData()
                 self?.activityIndicator.stopAnimating()
@@ -118,7 +119,7 @@ extension MilestoneViewController: AddAlertViewControllerDelegate {
             return
         }
         
-        let newMilestone = Milestone(id: -1, title: title, dueDate: dueDate, description: description, openedIssues: -1, closedIssues: -1)
+        let newMilestone = Milestone(title: title, dueDate: dueDate, description: description)
         let endPoint: MilestoneEndPoint
         if let milestone = item as? Milestone {
             endPoint = MilestoneEndPoint.update(id: milestone.id, body: newMilestone.jsonData)
