@@ -99,21 +99,21 @@ class IssueViewController: UIViewController {
         })
     }
     
-    private func delete(issueId: Int, cell: UICollectionViewCell) {
-        interactor?.request(endPoint: .delete(id: issueId), completionHandler: { [weak self] (response: APIResponse?) in
+    private func delete(issueID: Int, cell: UICollectionViewCell) {
+        interactor?.request(endPoint: .delete(id: issueID), completionHandler: { [weak self] (response: APIResponse?) in
             guard let response = response else {
                 debugPrint("response is Empty")
                 return
             }
             if response.success {
                 DispatchQueue.main.async {
-                    guard let index = self?.issueCollectionView.indexPath(for: cell) else {
+                    guard let indexPath = self?.issueCollectionView.indexPath(for: cell) else {
                         self?.request(for: .list)
                         return
                     }
-                    self?.issues.remove(at: index.item)
+                    self?.issues.remove(at: indexPath.item)
                     self?.swipedIndex = nil
-                    self?.issueCollectionView.deleteItems(at: [index])
+                    self?.issueCollectionView.deleteItems(at: [indexPath])
                 }
             }
         })
@@ -175,6 +175,7 @@ class IssueViewController: UIViewController {
                 as? IssueListCollectionViewCell else { return }
         self.swipedIndex = nil
         cell.currentState = .none
+        cell.changeNone()
     }
     
     // MARK: - Navigation

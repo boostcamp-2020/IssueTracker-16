@@ -92,8 +92,8 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
         }
     }
     @IBAction private func touchedDeleteButton(_ sender: Any) {
-        guard let issueId = issue?.id,
+        guard let issueID = issue?.id,
               let deleteHandler = deleteHandler else { return }
-        deleteHandler(issueId, self)
+        deleteHandler(issueID, self)
     }
 }
