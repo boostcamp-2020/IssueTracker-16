@@ -1447,6 +1447,7 @@
                                         <size key="customSize" width="414" height="93"/>
                                         <connections>
                                             <outlet property="containerView" destination="REM-uj-XeZ" id="fbG-Yh-frI"/>
+                                            <outlet property="deleteButton" destination="SjT-gb-wDN" id="zmg-yc-Y2C"/>
                                             <outlet property="milestoneClosedIssues" destination="fIg-vs-a2L" id="dz1-8G-xZN"/>
                                             <outlet property="milestoneDescription" destination="iDq-l0-B1L" id="b9L-fv-d04"/>
                                             <outlet property="milestoneDueDate" destination="em2-BQ-8xs" id="a2v-bO-SGU"/>
