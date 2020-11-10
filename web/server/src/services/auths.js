@@ -13,7 +13,7 @@ const config = {
 };
 
 const authService = {
-  getCodeUrl: ({ service }) => {
+  getCodeRequestUrl: ({ service }) => {
     const { codeUrl, client_id, redirect_uri, scope } = config[service];
     const query = new URLSearchParams({
       client_id,

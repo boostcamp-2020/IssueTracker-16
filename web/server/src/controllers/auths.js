@@ -5,13 +5,13 @@ const authService = require('../services/auths');
 const { OK } = require('../common/status');
 
 const authController = {
-  authByService: async (req, res) => {
+  requestOAuthCode: async (req, res) => {
     const { service } = req.params;
-    const requestCodeURI = authService.getCodeUrl({ service });
+    const requestCodeURI = authService.getCodeRequestUrl({ service });
     res.redirect(requestCodeURI);
   },
 
-  signInByService: async (req, res) => {
+  signInByOAuth: async (req, res) => {
     const { service } = req.params;
     const { code } = req.query;
     const accessToken = await authService.getAccessToken({ service, code });
@@ -28,11 +28,12 @@ const authController = {
     });
 
     // 2-2. 수집한 유저 정보로 유저 모델 생성
+    // user = await userService.createUser({ userData, service, accessToken });
     // }
 
-    // 3. 유저 모델로 웹 토큰 생성
-
+    // 3. 유저 모델로 JWT 생성
     const { login: id, name, avatar_url: imageUrl } = userData;
+
     res.status(OK).json({ id, name, imageUrl });
   },
 };
