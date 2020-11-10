@@ -1,8 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import isLightColor from '../../utils/isLightColor';
+import COLOR from '../../utils/color';
+
 const Div = styled.div`
-  background-color: #${props => props.color};
+  ${({ color }) => `
+  background-color: #${color};
+  color: #${isLightColor(color) ? COLOR.black : COLOR.white};
+  `}
   display: inline;
   padding: 3px 8px;
   border-radius: 20px;
@@ -11,5 +17,5 @@ const Div = styled.div`
 `;
 
 export default function Label({ name, color }) {
-  return <Div color={color}>{name}</Div>;
+  return <Div {...{ color }}>{name}</Div>;
 }
