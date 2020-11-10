@@ -10,14 +10,16 @@ import UIKit
 class CommentViewController: UIViewController {
 
     @IBOutlet weak private var scrollViewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak private(set) var textView: UITextView!
     private var keyboardFrame: CGRect = .zero
     
+    var comment: Comment?
     var sendHandler: ((String) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         addObservers()
+        textView.text = comment?.content
     }
     
     override func viewDidAppear(_ animated: Bool) {

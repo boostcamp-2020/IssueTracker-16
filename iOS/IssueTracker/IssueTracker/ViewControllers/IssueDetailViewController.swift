@@ -69,10 +69,24 @@ class IssueDetailViewController: UIViewController {
         })
     }
     
-    private func presentMoreActionSheet() {
+    private func presentMoreActionSheet(on comment: Comment) {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let editAction = UIAlertAction(title: "Edit", style: .default) { (action) in
+        let editAction = UIAlertAction(title: "Edit", style: .default) { [weak self] (action) in
+            guard let id = comment.num else { return }
+            guard let commentVC = self?.storyboard?.instantiateViewController(identifier: String(describing: CommentViewController.self)) as? CommentViewController else { return }
             
+            commentVC.comment = comment
+            commentVC.sendHandler = { text in
+                DispatchQueue.main.async {
+                    commentVC.dismiss(animated: true, completion: nil)
+                }
+                let commentUpdateData = ["content": text]
+                self?.interactor?.request(endPoint: .commentUpdate(id: id, body: commentUpdateData), completionHandler: { (response: APIResponse?) in
+                    self?.requestIssue()
+                })
+            }
+            
+            self?.present(commentVC, animated: true, completion: nil)
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
@@ -124,11 +138,16 @@ extension IssueDetailViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommentCollectionViewCell.identifier, for: indexPath) as? CommentCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommentCollectionViewCell.identifier, for: indexPath) as? CommentCollectionViewCell,
+            let comment = issue?.comments?[indexPath.item]
+        else {
+            return UICollectionViewCell()
+        }
         
-        cell.comment = issue?.comments?[indexPath.item]
+        
+        cell.comment = comment
         cell.moreHandler = { [weak self] cell in
-            self?.presentMoreActionSheet()
+            self?.presentMoreActionSheet(on: comment)
         }
         return cell
     }
