@@ -13,6 +13,7 @@ class MilestoneViewController: UIViewController {
     
     var interactor: MilestoneBusinessLogic?
     var milestones = [Milestone]()
+    var swipedIndex: IndexPath?
     
     // MARK: - Views
     
@@ -53,8 +54,18 @@ class MilestoneViewController: UIViewController {
         request(for: .list)
         refreshControl.endRefreshing()
     }
+    private func cancelSwipe() {
+        guard let beforeIndex = swipedIndex,
+           let beforeCell = milestoneCollectionView.cellForItem(at: beforeIndex)
+            as? ActionCollectionViewCell else { return }
+        beforeCell.currentState = .none
+        swipedIndex = nil
+    }
+    
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        cancelSwipe()
         guard let vc = segue.destination as? AddAlertViewController else { return }
         vc.delegate = self
         let milestone = sender as? Milestone
@@ -77,7 +88,10 @@ extension MilestoneViewController: UICollectionViewDataSource {
               indexPath.row < milestones.count else {
             return UICollectionViewCell()
         }
+        cell.containerView.transform = .identity
+        cell.currentState = .none
         cell.configure(milestone: milestones[indexPath.item])
+        cell.delegate = self
         return cell
     }
 }
@@ -136,7 +150,29 @@ extension MilestoneViewController: AddAlertViewControllerDelegate {
                 self?.request(for: .list)
             }
         })
-        
     }
     
+}
+
+extension MilestoneViewController: SwipeControllerDelegate {
+    func swipeController(_ cell: ActionCollectionViewCell) {
+        switch cell.currentState {
+        case .swiped:
+            cell.currentState = .none
+            swipedIndex = nil
+        case .none:
+            cancelSwipe()
+            cell.currentState = .swiped
+            guard let cell = cell as? UICollectionViewCell else { return }
+            swipedIndex = milestoneCollectionView.indexPath(for: cell)
+        default:
+            return
+        }
+    }
+}
+
+extension MilestoneViewController {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        cancelSwipe()
+    }
 }
