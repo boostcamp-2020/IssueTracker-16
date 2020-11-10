@@ -15,8 +15,10 @@ const ItemInfo = styled.div`
   width: 100%;
 `;
 const Info = styled.div`
+  height: 21px;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 `;
 const Status = styled.div`
   svg {

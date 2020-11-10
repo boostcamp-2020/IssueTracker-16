@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import COLOR from '../../utils/color';
+
 const ProgressBar = styled.div`
   height: 10px;
   width: 90%;
@@ -15,15 +17,16 @@ const Progress = styled.div`
   background-color: #28a745;
 `;
 const ProgressDesc = styled.div`
-  font-size: 10pt;
-  font-weight: 500;
-  color: #a0a0a0;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #${COLOR.darkGray};
 
   > span {
     margin-right: 10px;
 
     > span {
-      color: #404040;
+      color: #${COLOR.black};
+      font-weight: 600;
     }
   }
 `;

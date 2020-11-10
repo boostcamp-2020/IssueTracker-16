@@ -10,12 +10,26 @@ const Nav = styled.nav`
   margin-left: auto;
   display: flex;
 `;
-const Span = styled.div`
+const Span = styled.span`
   color: #${COLOR.black};
 `;
 const TabButton = styled.div`
-  border: 1px solid lightgrey;
-  background-color: white;
+  ${({ isSelected }) =>
+    isSelected
+      ? `border: 1px solid #0366d6;
+         background-color: #0366d6;
+         svg {
+          fill: #${COLOR.white}
+         }
+         span {
+           color: #${COLOR.white}
+         }`
+      : `border: 1px solid lightgrey;
+         background-color: #${COLOR.white};
+         &:hover {
+          background-color: #fafbfc;
+          cursor: pointer;
+        }`}
   display: flex;
   font-size: 14px;
   font-weight: 600;
@@ -32,9 +46,8 @@ const TabButton = styled.div`
     margin-right: 15px;
   }
 
-  &:hover {
-    background-color: #fafbfc;
-    cursor: pointer;
+  svg {
+    margin-right: 2px;
   }
 
   a {
@@ -44,20 +57,22 @@ const TabButton = styled.div`
   }
 `;
 
-export default function LabelMilestoneNavigator() {
+export default function LabelMilestoneNavigator({ page }) {
+  const isLabel = page === 'label';
+  const isMilestone = page === 'milestone';
   const URL = {
     labels: '/labels',
     milestones: '/milestones',
   };
   return (
     <Nav>
-      <TabButton>
+      <TabButton isSelected={isLabel}>
         <Link to={URL.labels}>
           <LabelLogo />
           <Span>Labels</Span>
         </Link>
       </TabButton>
-      <TabButton>
+      <TabButton isSelected={isMilestone}>
         <Link to={URL.milestones}>
           <MilestoneLogo />
           <Span>Milestones</Span>

@@ -3,21 +3,21 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const Div = styled.div`
-  margin: 2px;
   a {
     text-decoration: none;
     color: #000000;
   }
 `;
 const Span = styled.span`
-  font-size: 12px;
+  font-size: 14px;
+  color: #${({ color }) => color};
 `;
 
-export default function LinkButton({ name, url }) {
+export default function LinkButton({ color, name, url }) {
   return (
     <Div>
       <Link to={url}>
-        <Span>{name}</Span>
+        <Span {...{ color }}>{name}</Span>
       </Link>
     </Div>
   );
