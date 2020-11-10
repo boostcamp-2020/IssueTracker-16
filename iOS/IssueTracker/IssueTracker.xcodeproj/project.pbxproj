@@ -32,6 +32,7 @@
 		4C5139A2254934D20084F65F /* LabelEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51399F254934D20084F65F /* LabelEndPoint.swift */; };
 		4C5139A625493BB20084F65F /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139A525493BB20084F65F /* Label.swift */; };
 		4C5139AA25494E7E0084F65F /* LabelInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139A925494E7E0084F65F /* LabelInteractor.swift */; };
+		4C5139C12549A36F0084F65F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139C02549A36F0084F65F /* LoginViewController.swift */; };
 		4CBA21A5255002B8002BDCC3 /* PaddingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21A4255002B8002BDCC3 /* PaddingLabel.swift */; };
 		4CBA21A9255007E8002BDCC3 /* IssueListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21A8255007E8002BDCC3 /* IssueListCollectionViewCell.swift */; };
 		4CBA21B625503B47002BDCC3 /* IssueInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21B425503B47002BDCC3 /* IssueInteractor.swift */; };
@@ -127,6 +128,7 @@
 		4C51399F254934D20084F65F /* LabelEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelEndPoint.swift; sourceTree = "<group>"; };
 		4C5139A525493BB20084F65F /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Label.swift; path = IssueTracker/Services/Label.swift; sourceTree = SOURCE_ROOT; };
 		4C5139A925494E7E0084F65F /* LabelInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelInteractor.swift; sourceTree = "<group>"; };
+		4C5139C02549A36F0084F65F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4CBA21A4255002B8002BDCC3 /* PaddingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddingLabel.swift; sourceTree = "<group>"; };
 		4CBA21A8255007E8002BDCC3 /* IssueListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueListCollectionViewCell.swift; sourceTree = "<group>"; };
 		4CBA21B425503B47002BDCC3 /* IssueInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IssueInteractor.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 		D4DF601F2547AEF200765C0A /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
+				4C5139C72549B05C0084F65F /* IssueTracker.entitlements */,
 				4C513917254840480084F65F /* Utils */,
 				D4DF60372547AF7500765C0A /* Supporting Files */,
 				D4DF60352547AF5B00765C0A /* Entry */,
@@ -382,6 +385,7 @@
 				D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */,
 				D4F8FCBF25531713008C311E /* AddIssueViewController.swift */,
 				4C2D05ED25596C2500FA787F /* CommentViewController.swift */,
+				4C5139C02549A36F0084F65F /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -555,6 +559,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4A598E02552A0DE00E825D3 /* IssueBottomSheetViewController.swift in Sources */,
+				4C5139C12549A36F0084F65F /* LoginViewController.swift in Sources */,
 				D4DF60252547AEF200765C0A /* IssueViewController.swift in Sources */,
 				4C2D05DD25591E4500FA787F /* IssueDetailInteractor.swift in Sources */,
 				D44A9D09254FF1EC00ABA1A9 /* Issue.swift in Sources */,
@@ -563,6 +568,7 @@
 				D4660EA625487BE0002B392E /* LabelCollectionViewCell.swift in Sources */,
 				4CBA21B625503B47002BDCC3 /* IssueInteractor.swift in Sources */,
 				D4DF60212547AEF200765C0A /* AppDelegate.swift in Sources */,
+				4C34265A255AF8E7002B5960 /* FilterCollectionViewListCell.swift in Sources */,
 				D4AEAB7B25528C9000AED514 /* CommentCollectionViewCell.swift in Sources */,
 				D413681C2559242A00A4AD55 /* UIAlertController+simpleAlert.swift in Sources */,
 				4CBA21A9255007E8002BDCC3 /* IssueListCollectionViewCell.swift in Sources */,
@@ -849,6 +855,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = IssueTracker/IssueTracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B3PWYBKFUK;
 				INFOPLIST_FILE = "IssueTracker/Supporting Files/Info.plist";
