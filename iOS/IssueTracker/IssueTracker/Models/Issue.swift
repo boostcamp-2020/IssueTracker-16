@@ -16,14 +16,39 @@ struct IssueAPI: Codable {
 struct Issue {
     var id: Int
     var title: String
-    var author: AuthorResponse
+    var author: AuthorResponse?
     var createdAt: String
     var isClosed: Bool
     var labels: [Label]
-    var milestone: Milestone
+    var milestone: Milestone?
     var assignees: [Assignee]
     var comment: Comment?
     var comments: [Comment]?
+    
+    /**
+    새로 생성을 위한 initializer
+     - id: -1
+     - 나머지는 모두 nil or []
+     */
+    init(title: String, content: String) {
+        self.id = -1
+        self.title = title
+        self.comment = Comment(content: content)
+        self.createdAt = ""
+        self.isClosed = false
+        self.labels = []
+        self.assignees = []
+    }
+    
+    var createData: [String: Any] {
+        return [
+            "title": title,
+            "content": comment?.content ?? "",
+            "labels": labels.compactMap { $0.id },
+            "assignees": assignees.compactMap { $0.num },
+            "milestoneNum": milestone ?? NSNull()
+        ]
+    }
 }
 
 struct Assignee: Codable {

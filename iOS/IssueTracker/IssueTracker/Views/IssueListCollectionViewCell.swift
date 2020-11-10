@@ -22,7 +22,7 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
         didSet {
             nameLabel.text = issue?.title
             descriptionLabel.text = ""
-            milestoneLabel.text = issue?.milestone.title
+            milestoneLabel.text = issue?.milestone?.title
             descriptionLabel.text = issue?.comment?.content
             labelLabel.label = issue?.labels.first
             labelLabel.isHidden = labelLabel.label == nil

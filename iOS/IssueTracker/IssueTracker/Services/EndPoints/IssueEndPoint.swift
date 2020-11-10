@@ -24,7 +24,8 @@ enum IssueEndPoint: EndPointType {
         switch self {
             case .list: return "issues"
             case .issue(let id): return "issues/\(id)"
-            case .create, .delete: return ""
+            case .create: return "issues"
+            case .delete: return "issues"
             case .update(let id, _):
                 return "issues/\(id)"
         }
