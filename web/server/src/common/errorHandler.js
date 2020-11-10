@@ -1,21 +1,28 @@
 const createHttpError = require('http-errors');
 
+const {
+  BAD_REQUEST,
+  NOT_FOUND,
+  CONFLICT,
+  INTERNAL_SERVER_ERROR,
+} = require('../common/status');
+
 const errorMessages = {
   BAD_REQUEST: 'Bad request',
-  NO_CONTENTS: 'No contents',
+  NOT_FOUND: 'Not found',
   VALIDATION_ERROR: 'Validation error',
 };
 
 const errorStatus = {
-  [errorMessages.BAD_REQUEST]: 400,
-  [errorMessages.NO_CONTENTS]: 404,
-  [errorMessages.VALIDATION_ERROR]: 409,
+  [errorMessages.BAD_REQUEST]: BAD_REQUEST,
+  [errorMessages.NOT_FOUND]: NOT_FOUND,
+  [errorMessages.VALIDATION_ERROR]: CONFLICT,
 };
 
 const errorHandler = controller => async (req, res, next) =>
   await controller(req, res, next).catch(err => {
     const status = errorStatus[err.message];
-    next(createHttpError(status || 500, err.message));
+    next(createHttpError(status || INTERNAL_SERVER_ERROR, err.message));
   });
 
 module.exports = {

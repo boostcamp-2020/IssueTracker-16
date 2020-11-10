@@ -1,12 +1,13 @@
 const commentService = require('../services/comments');
-const { NO_CONTENTS } = require('../common/errorHandler');
+const { NOT_FOUND } = require('../common/errorHandler');
+const { CREATED, OK } = require('../common/status');
 
 const commentController = {
   add: async (req, res) => {
     const { content, issueNum } = req.body;
     const userNum = 1; // 인증 정보에서 userNum 값 빼오기
     await commentService.add({ content, issueNum, userNum });
-    res.status(200).json({ success: true });
+    res.status(CREATED).json({ success: true });
   },
 
   update: async (req, res) => {
@@ -16,9 +17,9 @@ const commentController = {
     } = req;
     const [updated] = await commentService.update({ num, content });
     if (!updated) {
-      throw new Error(NO_CONTENTS);
+      throw new Error(NOT_FOUND);
     }
-    res.status(200).json({ success: true });
+    res.status(OK).json({ success: true });
   },
 };
 

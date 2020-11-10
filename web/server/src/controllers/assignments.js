@@ -1,5 +1,6 @@
 const assignmentService = require('../services/assignments');
 const { VALIDATION_ERROR } = require('../common/errorHandler');
+const { CREATED, OK } = require('../common/status');
 
 const assignmentController = {
   add: async (req, res) => {
@@ -8,13 +9,13 @@ const assignmentController = {
     if (!result) {
       throw new Error(VALIDATION_ERROR);
     }
-    res.status(200).json({ success: true });
+    res.status(CREATED).json({ success: true });
   },
 
   delete: async (req, res) => {
     const { issueNum, userNum } = req.params;
     await assignmentService.delete({ issueNum, userNum });
-    res.status(200).json({ success: true });
+    res.status(OK).json({ success: true });
   },
 };
 
