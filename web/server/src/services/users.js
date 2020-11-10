@@ -1,5 +1,5 @@
 const { User } = require('../db/models');
-const { LOGIN_FAILED } = require('../common/errorHandler');
+const { LOGIN_FAILED, JOIN_FAILED } = require('../common/errorHandler');
 const jwt = require('../common/jwt');
 
 const userService = {
@@ -14,6 +14,15 @@ const userService = {
       throw new Error(LOGIN_FAILED);
     }
     return jwt.sign(user);
+  },
+
+  join: async ({ id, password, name, imageUrl }) => {
+    const user = await User.findOne({ where: { id } });
+
+    if (user) {
+      throw new Error(JOIN_FAILED);
+    }
+    return User.create({ id, password, name, imageUrl });
   },
 };
 

@@ -13,6 +13,7 @@ const errorMessages = {
   NOT_FOUND: 'Not found',
   VALIDATION_ERROR: 'Validation error',
   LOGIN_FAILED: 'Login failed',
+  JOIN_FAILED: 'This ID already exists',
 };
 
 const errorStatus = {
@@ -20,6 +21,7 @@ const errorStatus = {
   [errorMessages.NOT_FOUND]: NOT_FOUND,
   [errorMessages.VALIDATION_ERROR]: CONFLICT,
   [errorMessages.LOGIN_FAILED]: FORBIDDEN,
+  [errorMessages.JOIN_FAILED]: CONFLICT,
 };
 
 const errorHandler = controller => async (req, res, next) =>
