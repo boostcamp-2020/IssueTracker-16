@@ -5,6 +5,7 @@ const Div = styled.div`
   height: 50px;
   margin: 0 auto;
   margin-top: 10px;
+  padding: 8px;
   display: flex;
   justify-content: ${props =>
     props.isIssueList ? 'space-between' : 'flex-start'};

@@ -10,7 +10,7 @@ import OpenIssueLogo from '../../statics/svg/openIssue';
 import ClosedIssueLogo from '../../statics/svg/closedIssue';
 
 const ItemInfo = styled.div`
-  padding: 8px;
+  margin: 0 5px;
   width: 100%;
 `;
 const Info = styled.div`
@@ -18,8 +18,6 @@ const Info = styled.div`
   justify-content: flex-start;
 `;
 const Status = styled.div`
-  padding: 8px;
-
   svg {
     fill: #${({ isClosed }) => (isClosed ? 'd73a49' : '22863a')};
   }
@@ -28,9 +26,7 @@ const Title = styled.div``;
 const LabelTag = styled.div`
   display: flex;
 `;
-const AssigneeTag = styled.div`
-  padding: 8px;
-`;
+const AssigneeTag = styled.div``;
 const Description = styled.div`
   margin-top: 4px;
   display: flex;
