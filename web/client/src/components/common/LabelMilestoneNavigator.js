@@ -19,7 +19,6 @@ const TabButton = styled.div`
   display: flex;
   font-size: 14px;
   font-weight: 600;
-  padding: 7px 16px;
 
   &:first-child {
     border-top-left-radius: 6px;
@@ -39,6 +38,7 @@ const TabButton = styled.div`
   }
 
   a {
+    padding: 7px 16px;
     display: flex;
     text-decoration: none;
   }
