@@ -43,7 +43,7 @@ enum IssueEndPoint: EndPointType {
             case .issue: return .get
             case .create: return .post
             case .delete: return .delete
-            case .update: return .put
+            case .update: return .patch
             case .commentCreate: return .post
             case .commentUpdate: return .put
         }

@@ -263,9 +263,11 @@ protocol BottomSheetDelegate {
     func moveToUp()
     func moveToDown()
     func bottomSheetTappedAddComment(_ bottomSheet: IssueBottomSheetViewController)
+    func bottomSheetTappedClose(_ bottomSheet: IssueBottomSheetViewController)
 }
 
 extension IssueDetailViewController: BottomSheetDelegate {
+
     func moveToUp() {
         guard
             var minIndexPath = issueDetailCollectionView.indexPathsForVisibleItems.min(),
@@ -315,6 +317,14 @@ extension IssueDetailViewController: BottomSheetDelegate {
             })
         }
         present(commentVC, animated: true, completion: nil)
+    }
+    
+    func bottomSheetTappedClose(_ bottomSheet: IssueBottomSheetViewController) {
+        guard var issue = issue else { return }
+        issue.isClosed = true
+        interactor?.request(endPoint: .update(id: issue.id, body: issue.statusData), completionHandler: { [weak self] (response: APIResponse?) in
+            self?.requestIssue()
+        })
     }
 }
 

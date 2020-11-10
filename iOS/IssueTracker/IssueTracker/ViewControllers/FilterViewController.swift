@@ -61,6 +61,7 @@ class FilterViewController: UIViewController {
     
     func configureCollectionView() {
         filterCollectionView.collectionViewLayout = generateLayout()
+        filterCollectionView.allowsMultipleSelection = true
     }
     
     func configureDataSource() {
@@ -83,19 +84,14 @@ class FilterViewController: UIViewController {
             cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
         }
         
-        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, FilterItem> { cell, indexPath, filterItem in
+        let cellRegistration = UICollectionView.CellRegistration<FilterCollectionViewListCell, FilterItem> { cell, indexPath, filterItem in
             
-            var contentConfiguration = cell.defaultContentConfiguration()
-            contentConfiguration.text = filterItem.title
-            cell.contentConfiguration = contentConfiguration
-            cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
+            
+            cell.filterItem = filterItem
         }
         
         dataSource = UICollectionViewDiffableDataSource<Int, FilterItem>(collectionView: filterCollectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
             
-//            if indexPath.item == 0 {
-//                return collectionView.dequeueConfiguredReusableCell(using: headerRegistration, for: indexPath, item: item)
-//            } else
             if item.subItems.isEmpty {
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
             } else {
@@ -105,11 +101,8 @@ class FilterViewController: UIViewController {
         
         let sectionHeaderRegistration = UICollectionView.SupplementaryRegistration
         <TitleSupplementaryView>(elementKind: "Header") {
-            (supplementaryView, string, indexPath) in
-            supplementaryView.label.text = "\(string) for section \(indexPath.section)"
-            supplementaryView.backgroundColor = .lightGray
-            supplementaryView.layer.borderColor = UIColor.black.cgColor
-            supplementaryView.layer.borderWidth = 1.0
+            [weak self] (supplementaryView, string, indexPath) in
+            supplementaryView.label.text = self?.sectionTitle[indexPath.section]
         }
         
         dataSource.supplementaryViewProvider = { (view, kind, index) in
@@ -123,9 +116,9 @@ class FilterViewController: UIViewController {
     }
     
     func generateLayout() -> UICollectionViewLayout {
-        let listConfiguration = UICollectionLayoutListConfiguration(appearance: .sidebar)
+        var listConfiguration = UICollectionLayoutListConfiguration(appearance: .sidebar)
+        listConfiguration.headerMode = .supplementary
         let layout = UICollectionViewCompositionalLayout.list(using: listConfiguration)
-        // UICollectionViewCompositionalLayout(section: <#T##NSCollectionLayoutSection#>, configuration: <#T##UICollectionViewCompositionalLayoutConfiguration#>)
         return layout
     }
     
@@ -142,12 +135,10 @@ class FilterViewController: UIViewController {
         for (section, items) in filterItems.sorted(by: { $0.key < $1.key }) {
             snapshot = NSDiffableDataSourceSectionSnapshot<FilterItem>()
             
-            let headerItem = FilterItem(title: sectionTitle[section] ?? "", subItems: [])
-            snapshot.append([headerItem])
+//            let headerItem = FilterItem(title: sectionTitle[section] ?? "", subItems: [])
+            // snapshot.append([headerItem])
             addItems(items, to: nil)
-            // snapshot.expand([headerItem])
             dataSource.apply(snapshot, to: section, animatingDifferences: false, completion: nil)
-            
         }
     }
 }
