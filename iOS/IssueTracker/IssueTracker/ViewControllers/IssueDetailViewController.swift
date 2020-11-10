@@ -198,6 +198,8 @@ extension IssueDetailViewController {
         UIScreen.main.bounds.height - 120
     }
     private func addBottomSheetVC() {
+        bottomSheetView?.removeFromSuperview()
+        bottomSheetView = nil
         guard let bottomSheetVC: IssueBottomSheetViewController = storyboard?.instantiateViewController(identifier: IssueBottomSheetViewController.identifier) as? IssueBottomSheetViewController else { return }
         self.addChild(bottomSheetVC)
         let height = view.frame.height * 0.8
