@@ -27,10 +27,15 @@ class LabelCollectionViewCell: UICollectionViewCell, ActionCollectionViewCell {
         }
     }
     var delegate: SwipeControllerDelegate?
+    var deleteHandler: ((Int, UICollectionViewCell) -> ())?
+    var labelID: Int?
+    
+    // MARK: - Views
     
     @IBOutlet weak var labelName: GithubLabel!
     @IBOutlet weak var labelDescription: UILabel!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var deleteButton: UIButton!
     
     // MARK: - initialize
     override init(frame: CGRect) {
@@ -56,6 +61,7 @@ class LabelCollectionViewCell: UICollectionViewCell, ActionCollectionViewCell {
         self.transform = .identity
         labelName.label = label
         labelDescription.text = label.description
+        self.labelID = label.id
     }
     
     // MARK: - Methods
@@ -83,6 +89,12 @@ class LabelCollectionViewCell: UICollectionViewCell, ActionCollectionViewCell {
             || (sender.direction == .right && currentState == .swiped) {
             delegate?.swipeController(self)
         }
+    }
+    
+    @IBAction func touchedDeleteButton(_ sender: Any) {
+        guard let labelID = labelID,
+              let deleteHandler = deleteHandler else { return }
+        deleteHandler(labelID, self)
     }
     
 }

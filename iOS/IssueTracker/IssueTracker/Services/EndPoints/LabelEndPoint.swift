@@ -12,7 +12,7 @@ enum LabelEndPoint: EndPointType {
     
     case list
     case create(body: Parameters)
-    case delete(id: Int, body: Parameters)
+    case delete(id: Int)
     case update(id: Int, body: Parameters)
     
     var baseURL: URL? {
@@ -23,7 +23,7 @@ enum LabelEndPoint: EndPointType {
         switch self {
             case .list, .create:
                 return "labels"
-            case .delete(let id, _), .update(let id, _):
+            case .delete(let id), .update(let id, _):
                 return "labels/\(id)"
         }
     }
@@ -39,12 +39,12 @@ enum LabelEndPoint: EndPointType {
     
     var task: HTTPTask {
         switch self {
-            case .list: return .request
+            case .list, .delete(_): return .request
             case .create(let data):
                 return .requestParameters(bodyParameters: data,
                                         bodyEncoding: .jsonEncoding,
                                         urlParameters: nil)
-            case .update(_, let data), .delete(_, let data):
+            case .update(_, let data):
                 return .requestParameters(bodyParameters: data,
                                         bodyEncoding: .jsonEncoding,
                                         urlParameters: nil)

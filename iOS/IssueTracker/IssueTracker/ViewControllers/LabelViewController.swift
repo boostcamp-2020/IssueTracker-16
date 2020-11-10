@@ -39,6 +39,11 @@ class LabelViewController: UIViewController {
     
     // MARK: - Methods
     
+    @objc private func refresh(_ sender: AnyObject) {
+        request(for: .list)
+        refreshControl.endRefreshing()
+    }
+    
     private func request(for endPoint: LabelEndPoint) {
         interactor?.request(endPoint: .list, completionHandler: { [weak self] (labels: [Label]?) in
             self?.labels = labels ?? []
@@ -49,9 +54,28 @@ class LabelViewController: UIViewController {
         })
     }
     
-    @objc private func refresh(_ sender: AnyObject) {
-        request(for: .list)
-        refreshControl.endRefreshing()
+    private func delete(labelID: Int, cell: UICollectionViewCell) {
+        interactor?.request(endPoint: .delete(id: labelID), completionHandler: { [weak self] (response: APIResponse?) in
+            guard let response = response else {
+                debugPrint("response is Empty")
+                return
+            }
+            if response.success {
+                DispatchQueue.main.async {
+                    guard let indexPath = self?.labelCollectionView.indexPath(for: cell) else {
+                        self?.request(for: .list)
+                        return
+                    }
+                    guard let cell = cell as? ActionCollectionViewCell else { return }
+                    cell.currentState = .none
+                    self?.labels.remove(at: indexPath.item)
+                    self?.swipedIndex = nil
+                    self?.labelCollectionView.deleteItems(at: [indexPath])
+                }
+            }
+        })
+    }
+    
     private func cancelSwipe() {
         guard let beforeIndex = swipedIndex,
            let beforeCell = labelCollectionView.cellForItem(at: beforeIndex)
@@ -90,6 +114,7 @@ extension LabelViewController: UICollectionViewDataSource {
         cell.currentState = .none
         cell.configure(label: labels[indexPath.item])
         cell.delegate = self
+        cell.deleteHandler = delete
         return cell
     }
 }
