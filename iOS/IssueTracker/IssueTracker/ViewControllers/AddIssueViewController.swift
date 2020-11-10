@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol AddIssueViewControllerDelegate {
+    func addIssueViewControllerDoned(_ addIssueViewController: AddIssueViewController)
+}
+
 class AddIssueViewController: UIViewController {
     
     // MARK: - Constants
@@ -14,13 +18,14 @@ class AddIssueViewController: UIViewController {
     
     // MARK: - Properties
     
+    var delegate: AddIssueViewControllerDelegate?
     var issue: Issue?
     
     // MARK: - Views
     
-    @IBOutlet weak var issueID: UILabel!
-    @IBOutlet weak var issueTitle: UITextField!
-    @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak private(set) var issueID: UILabel!
+    @IBOutlet weak private(set) var issueTitle: UITextField!
+    @IBOutlet weak private(set) var commentTextView: UITextView!
     
     // MARK: - View LifeCycle
     
@@ -31,7 +36,7 @@ class AddIssueViewController: UIViewController {
     
     // MARK: - initialize
     
-    func configure() {
+    private func configure() {
         guard let issue = issue else {
             issueID.text = "새 이슈"
             return
@@ -46,9 +51,11 @@ class AddIssueViewController: UIViewController {
     
     // MARK: IBActions
     
-    @IBAction func closeButton(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    @IBAction private func touchedDone(_ sender: UIButton) {
+        delegate?.addIssueViewControllerDoned(self)
     }
     
-    
+    @IBAction private func closeButton(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 }

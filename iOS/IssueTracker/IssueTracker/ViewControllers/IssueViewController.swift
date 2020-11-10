@@ -9,8 +9,6 @@ import UIKit
 
 class IssueViewController: UIViewController {
     
-    private var swipedIndex: IndexPath?
-    
     // MARK: - Constants
     
     enum State {
@@ -32,6 +30,7 @@ class IssueViewController: UIViewController {
     }
     
     // MARK: - Properties
+    
     private let searchController = UISearchController(searchResultsController: nil)
     private var interactor: IssueBusinessLogic?
     private(set) var currentState: State = .none {
@@ -44,6 +43,7 @@ class IssueViewController: UIViewController {
             }
         }
     }
+    private var swipedIndex: IndexPath?
     
     // MARK: - Views
     
@@ -60,12 +60,17 @@ class IssueViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor = IssueInteractor()
-        navigationItem.searchController = searchController
+        setupViews()
         configureCollectionView()
         request(for: .list)
     }
     
     // MARK: - Initialize
+    
+    private func setupViews() {
+        navigationItem.searchController = searchController
+        addIssueButton.layer.cornerRadius = addIssueButton.bounds.height / 2
+    }
     
     private func configureCollectionView() {
         issueCollectionView.allowsMultipleSelection = true
@@ -76,9 +81,12 @@ class IssueViewController: UIViewController {
     // MARK: - Methods
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let vc = segue.destination as? IssueDetailViewController else { return }
-        let sender = sender as? Issue
-        vc.issue = sender
+        if let vc = segue.destination as? IssueDetailViewController {
+            let sender = sender as? Issue
+            vc.issue = sender
+        } else if let vc = segue.destination as? AddIssueViewController {
+            vc.delegate = self
+        }
     }
     
     private func request(for endPoint: IssueEndPoint) {
@@ -233,6 +241,30 @@ extension IssueViewController: UICollectionViewDelegate {
 extension IssueViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return .init(width: view.bounds.width, height: 120)
+    }
+}
+
+// MARK: - AddIssueViewControllerDelegate
+
+extension IssueViewController: AddIssueViewControllerDelegate {
+    func addIssueViewControllerDoned(_ addIssueViewController: AddIssueViewController) {
+        let title = addIssueViewController.issueTitle.text ?? ""
+        let content = addIssueViewController.commentTextView.text ?? ""
+        let newIssue = Issue(title: title, content: content)
+        
+        interactor?.request(endPoint: .create(body: newIssue.createData), completionHandler: { (response: APIResponse?) in
+            guard let response = response else {
+                debugPrint("response is empty")
+                return
+            }
+
+            if response.success {
+                DispatchQueue.main.async {
+                    addIssueViewController.dismiss(animated: true, completion: nil)
+                    self.request(for: .list)
+                }
+            }
+        })
     }
 }
 
