@@ -56,6 +56,15 @@ const issueController = {
     }
     res.status(OK).json({ success: true });
   },
+
+  delete: async (req, res) => {
+    const { num } = req.params;
+    const [deleted] = await issueService.delete({ num });
+    if (!deleted) {
+      throw new Error(NOT_FOUND);
+    }
+    res.status(OK).json({ success: true });
+  },
 };
 
 module.exports = issueController;

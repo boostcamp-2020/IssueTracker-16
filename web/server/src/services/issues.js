@@ -102,6 +102,9 @@ const issueService = {
     Issue.create({ title, userNum, milestoneNum }),
 
   update: async ({ num, payload }) => Issue.update(payload, { where: { num } }),
+
+  delete: async ({ num }) =>
+    Issue.update({ isDeleted: true }, { where: { num } }),
 };
 
 module.exports = issueService;
