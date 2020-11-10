@@ -242,6 +242,7 @@ extension IssueDetailViewController {
 protocol BottomSheetDelegate {
     func moveToUp()
     func moveToDown()
+    func bottomSheetTappedAddComment(_ bottomSheet: IssueBottomSheetViewController)
 }
 
 extension IssueDetailViewController: BottomSheetDelegate {
@@ -273,6 +274,27 @@ extension IssueDetailViewController: BottomSheetDelegate {
             maxIndexPath.item += 1
         }
         issueDetailCollectionView.scrollToItem(at: maxIndexPath, at: .bottom, animated: true)
+    }
+    
+    func bottomSheetTappedAddComment(_ bottomSheet: IssueBottomSheetViewController) {
+        guard let commentVC = storyboard?.instantiateViewController(identifier: String(describing: CommentViewController.self)) as? CommentViewController else { return }
+        
+        commentVC.sendHandler = { [weak self] text in
+            guard let issue = self?.issue else { return }
+            let commentCreateData: [String: Any] = [
+                "content": text,
+                "issueNum": issue.id
+            ]
+            
+            self?.interactor?.request(endPoint: .commentCreate(body: commentCreateData), completionHandler: { (response: APIResponse?) in
+                
+                DispatchQueue.main.async {
+                    bottomSheet.dismiss(animated: true, completion: nil)
+                }
+                self?.requestIssue()
+            })
+        }
+        present(commentVC, animated: true, completion: nil)
     }
 }
 

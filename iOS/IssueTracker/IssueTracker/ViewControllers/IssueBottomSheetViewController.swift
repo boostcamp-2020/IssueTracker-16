@@ -82,10 +82,17 @@ class IssueBottomSheetViewController: UIViewController {
         ])
     }
     
+    // MARK: Selectors
+    
     @IBAction func touchedUpButton(_ sender: Any) {
         delegate?.moveToUp()
     }
+    
     @IBAction func touchedDownButton(_ sender: Any) {
         delegate?.moveToDown()
+    }
+    
+    @IBAction func touchedAddCommentButton(_ sender: UIButton) {
+        delegate?.bottomSheetTappedAddComment(self)
     }
 }
