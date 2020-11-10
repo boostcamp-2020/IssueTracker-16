@@ -13,7 +13,7 @@ enum IssueEndPoint: EndPointType {
     case list
     case issue(id: Int)
     case create(body: Parameters)
-    case delete(body: Parameters)
+    case delete(id: Int)
     case update(id: Int, body: Parameters)
     case commentCreate(body: Parameters)
     case commentUpdate(id: Int, body: Parameters)
@@ -27,7 +27,7 @@ enum IssueEndPoint: EndPointType {
             case .list: return "issues"
             case .issue(let id): return "issues/\(id)"
             case .create: return "issues"
-            case .delete: return "issues"
+            case .delete(let id): return "issues/\(id)"
             case .update(let id, _):
                 return "issues/\(id)"
             case .commentCreate:
@@ -51,9 +51,8 @@ enum IssueEndPoint: EndPointType {
     
     var task: HTTPTask {
         switch self {
-            case .list, .issue: return .request
+            case .list, .issue, .delete(_): return .request
             case .create(let data),
-                 .delete(let data),
                  .update(_, let data),
                  .commentCreate(let data),
                  .commentUpdate(_, let data):

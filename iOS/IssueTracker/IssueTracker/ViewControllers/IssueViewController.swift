@@ -99,6 +99,26 @@ class IssueViewController: UIViewController {
         })
     }
     
+    private func delete(issueId: Int, cell: UICollectionViewCell) {
+        interactor?.request(endPoint: .delete(id: issueId), completionHandler: { [weak self] (response: APIResponse?) in
+            guard let response = response else {
+                debugPrint("response is Empty")
+                return
+            }
+            if response.success {
+                DispatchQueue.main.async {
+                    guard let index = self?.issueCollectionView.indexPath(for: cell) else {
+                        self?.request(for: .list)
+                        return
+                    }
+                    self?.issues.remove(at: index.item)
+                    self?.swipedIndex = nil
+                    self?.issueCollectionView.deleteItems(at: [index])
+                }
+            }
+        })
+    }
+    
     // MARK: Selectors
     
     @objc private func refresh(_ sender: AnyObject) {
@@ -203,10 +223,10 @@ extension IssueViewController: UICollectionViewDataSource {
             collectionView.deselectItem(at: indexPath, animated: false)
         }
         cell.addSwipeGestures()
-        cell.indexPath = indexPath
         cell.delegate = self
         cell.issue = issues[indexPath.item]
         cell.containerView.transform = .identity
+        cell.deleteHandler = delete
         
         return cell
     }
@@ -288,7 +308,7 @@ extension IssueViewController: SwipeControllerDelegate {
                 beforeCell.changeNone()
             }
             cell.currentState = .swiped
-            swipedIndex = cell.indexPath
+            swipedIndex = issueCollectionView.indexPath(for: cell)
             cell.changeSwiped()
         default:
             return

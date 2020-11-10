@@ -41,7 +41,7 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
     }
     var currentState: ActionState = .none
     var delegate: SwipeControllerDelegate?
-    var indexPath: IndexPath?
+    var deleteHandler: ((Int, UICollectionViewCell) -> ())?
     
     func addSwipeGestures() {
         let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler))
@@ -92,6 +92,8 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
         }
     }
     @IBAction private func touchedDeleteButton(_ sender: Any) {
-        debugPrint("delete")
+        guard let issueId = issue?.id,
+              let deleteHandler = deleteHandler else { return }
+        deleteHandler(issueId, self)
     }
 }
