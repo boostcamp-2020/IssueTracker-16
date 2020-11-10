@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import getDiffTime from '../../utils/getDiffTime';
+import COLOR from '../../utils/color';
 
 import Label from '../common/Label';
 import ListItem from '../common/ListItem';
@@ -38,7 +39,7 @@ const Description = styled.div`
   margin-top: 4px;
   display: flex;
   font-size: 12px;
-  color: #586069;
+  color: #${COLOR.darkGray};
 
   > span {
     margin-right: 5px;
@@ -49,7 +50,7 @@ const MilestoneTag = styled.div`
   align-items: center;
 
   svg {
-    fill: #586069;
+    fill: #${COLOR.darkGray};
   }
   span {
     margin-left: 3px;
