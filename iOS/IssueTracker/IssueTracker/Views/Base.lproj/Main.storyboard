@@ -202,8 +202,9 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="55g-4e-RFR">
                                 <rect key="frame" x="188.66666666666666" y="349.66666666666669" width="37" height="37"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Pl-3U-2ex">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Pl-3U-2ex">
                                 <rect key="frame" x="344" y="569" width="50" height="48.666666666666686"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Dp7-F2-Jcy"/>
                                     <constraint firstAttribute="width" constant="50" id="MJv-CW-j82"/>
@@ -211,7 +212,7 @@
                                 </constraints>
                                 <state key="normal" backgroundImage="plus.circle.fill" catalog="system"/>
                                 <connections>
-                                    <segue destination="cg3-T3-F2p" kind="presentation" identifier="" id="1mN-ca-cf2"/>
+                                    <segue destination="cg3-T3-F2p" kind="presentation" identifier="IssueViewControllerTo AddIssueViewController" id="1mN-ca-cf2"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -537,6 +538,9 @@
                                         <integer key="value" value="15"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="touchedDone:" destination="cg3-T3-F2p" eventType="touchUpInside" id="aCJ-74-kbp"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PdK-dO-fC6" userLabel="underLine">
                                 <rect key="frame" x="20" y="180" width="374" height="1"/>
@@ -774,7 +778,7 @@
                                                 <rect key="frame" x="0.0" y="376" width="374" height="300"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마일스톤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFc-rX-ODo">
-                                                        <rect key="frame" x="0.0" y="0.0" width="62.333333333333336" height="209.66666666666666"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="62.333333333333336" height="21.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -784,16 +788,16 @@
                                                         <state key="normal" title="Edit"/>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwk-9u-hQk">
-                                                        <rect key="frame" x="0.0" y="229.66666666666666" width="374" height="70.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="41.666666666666629" width="374" height="258.33333333333331"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6H-q6-647">
-                                                                <rect key="frame" x="15" y="14.999999999999998" width="344" height="20.333333333333329"/>
+                                                                <rect key="frame" x="15" y="15" width="344" height="208.33333333333334"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cSB-rm-APR">
-                                                                <rect key="frame" x="15" y="50.333333333333371" width="344" height="5"/>
+                                                                <rect key="frame" x="15" y="238.33333333333337" width="344" height="5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="5" id="D5h-iR-U7m"/>
                                                                 </constraints>
@@ -1544,7 +1548,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="0Xi-Du-NTR"/>
-        <segue reference="Dug-JU-RGo"/>
+        <segue reference="1mN-ca-cf2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="check" width="512" height="512"/>

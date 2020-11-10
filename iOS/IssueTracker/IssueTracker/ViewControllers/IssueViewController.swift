@@ -47,6 +47,7 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
     }
     
     // MARK: - Properties
+    
     private let searchController = UISearchController(searchResultsController: nil)
     private var interactor: IssueBusinessLogic?
     private(set) var currentState: State = .none {
@@ -75,7 +76,7 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor = IssueInteractor()
-        navigationItem.searchController = searchController
+        setupViews()
         configureCollectionView()
         request(for: .list)
         
@@ -83,6 +84,11 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
     }
     
     // MARK: - Initialize
+    
+    private func setupViews() {
+        navigationItem.searchController = searchController
+        addIssueButton.layer.cornerRadius = addIssueButton.bounds.height / 2
+    }
     
     private func configureCollectionView() {
         issueCollectionView.allowsMultipleSelection = true
