@@ -7,22 +7,29 @@ import ListHeader from '../common/ListHeader';
 import OpenIssueLogo from '../../statics/svg/openIssue';
 import CheckIcon from '../../statics/svg/checkIcon';
 
-const Left = styled.div`
-  width: 50%;
+const Filters = styled.div`
   display: flex;
-  justify-content: flex-start;
-`;
-const Right = styled.div`
-  width: 50%;
-  display: flex;
-  justify-content: flex-end;
+
+  &:first-child {
+    justify-content: flex-start;
+
+    > span {
+      margin-right: 10px;
+    }
+  }
+  &:last-child {
+    justify-content: flex-end;
+
+    > span {
+      margin-left: 16px;
+    }
+  }
 `;
 const Filter = styled.span`
   font-size: 14px;
-  padding: 8px;
 
   svg {
-    margin-right: 5px;
+    margin-right: 3px;
   }
 
   a {
@@ -36,7 +43,7 @@ const Filter = styled.span`
 export default function IssueListHeader({ open, closed }) {
   return (
     <ListHeader isIssueList={true}>
-      <Left>
+      <Filters>
         <Filter>
           <Link to={'/issues?is=open'}>
             <OpenIssueLogo />
@@ -49,13 +56,13 @@ export default function IssueListHeader({ open, closed }) {
             {closed} Closed{' '}
           </Link>
         </Filter>
-      </Left>
-      <Right>
+      </Filters>
+      <Filters>
         <Filter>Author▾ </Filter>
         <Filter>Label▾ </Filter>
         <Filter>Milestone▾ </Filter>
         <Filter>Assignee▾ </Filter>
-      </Right>
+      </Filters>
     </ListHeader>
   );
 }

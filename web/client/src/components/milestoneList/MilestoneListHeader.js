@@ -9,10 +9,10 @@ import CheckIcon from '../../statics/svg/checkIcon';
 
 const Option = styled.span`
   font-size: 14px;
-  padding: 8px;
+  margin-right: 10px;
 
   svg {
-    margin-right: 2px;
+    margin-right: 3px;
   }
 
   a {

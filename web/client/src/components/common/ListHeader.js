@@ -4,10 +4,9 @@ import styled from 'styled-components';
 import COLOR from '../../utils/color';
 
 const Div = styled.div`
-  height: 50px;
+  height: 55px;
   margin: 0 auto;
-  margin-top: 10px;
-  padding: 8px;
+  padding: 16px;
   display: flex;
   justify-content: ${props =>
     props.isIssueList ? 'space-between' : 'flex-start'};

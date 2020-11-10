@@ -20,7 +20,6 @@ export default function MilestoneListPage({ location }) {
       <Header />
       <ListPage>
         <MilestoneListNav />
-        <br /> <br />
         <MilestoneList {...{ isClosed }} />
       </ListPage>
     </>

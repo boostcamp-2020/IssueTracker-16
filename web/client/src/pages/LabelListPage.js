@@ -15,7 +15,6 @@ export default function LabelListPage() {
       <Header />
       <ListPage>
         <LabelListNav />
-        <br /> <br />
         <LabelList />
       </ListPage>
     </>

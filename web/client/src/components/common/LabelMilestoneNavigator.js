@@ -14,6 +14,7 @@ const Span = styled.span`
   color: #${COLOR.black};
 `;
 const TabButton = styled.div`
+  height: 32px;
   ${({ isSelected }) =>
     isSelected
       ? `border: 1px solid #0366d6;
