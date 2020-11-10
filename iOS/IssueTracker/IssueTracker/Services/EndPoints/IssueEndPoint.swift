@@ -15,6 +15,8 @@ enum IssueEndPoint: EndPointType {
     case create(body: Parameters)
     case delete(body: Parameters)
     case update(id: Int, body: Parameters)
+    case commentCreate(body: Parameters)
+    case commentUpdate(id: Int, body: Parameters)
     
     var baseURL: URL? {
         return URL(string: "http://issue-tracker.kro.kr:3000/api/")
@@ -28,6 +30,10 @@ enum IssueEndPoint: EndPointType {
             case .delete: return "issues"
             case .update(let id, _):
                 return "issues/\(id)"
+            case .commentCreate:
+                return "comments"
+            case .commentUpdate(let id, _):
+                return "comments/\(id)"
         }
     }
     
@@ -38,13 +44,19 @@ enum IssueEndPoint: EndPointType {
             case .create: return .post
             case .delete: return .delete
             case .update: return .put
+            case .commentCreate: return .post
+            case .commentUpdate: return .put
         }
     }
     
     var task: HTTPTask {
         switch self {
             case .list, .issue: return .request
-            case .create(let data), .delete(let data), .update(_, let data):
+            case .create(let data),
+                 .delete(let data),
+                 .update(_, let data),
+                 .commentCreate(let data),
+                 .commentUpdate(_, let data):
                 return .requestParameters(bodyParameters: data,
                                         bodyEncoding: .jsonEncoding,
                                         urlParameters: nil)
@@ -52,8 +64,6 @@ enum IssueEndPoint: EndPointType {
     }
     
     var headers: HTTPHeaders? {
-        switch self {
-            case .list, .issue, .create, .delete, .update: return nil
-        }
+        return nil
     }
 }

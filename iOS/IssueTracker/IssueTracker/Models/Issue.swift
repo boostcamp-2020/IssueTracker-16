@@ -49,6 +49,32 @@ struct Issue {
             "milestoneNum": milestone ?? NSNull()
         ]
     }
+    
+    var titleData: [String: Any] {
+        return [
+            "title": title
+        ]
+    }
+    
+    var milestoneData: [String: Any] {
+        return [
+            "milestoneNum": milestone?.id ?? NSNull()
+        ]
+    }
+    
+    var statusData: [String: Any] {
+        return [
+            "isClosed": isClosed
+        ]
+    }
+}
+
+extension Issue: Codable {
+    enum CodingKeys: String, CodingKey {
+        case id = "num"
+        case milestone = "Milestone"
+        case title, author, createdAt, isClosed, labels, assignees, comment, comments
+    }
 }
 
 struct Assignee: Codable {
@@ -66,50 +92,8 @@ struct Assignments: Codable {
     }
 }
 
-struct Comment: Codable {
-    var num: Int?
-    var content: String
-    var createdAt: String?
-    var writer: WriterResponse?
-}
-
-struct WriterResponse: Codable {
-    let num: Int
-    let id: String
-}
-
-/* {
- "num":1,
- "name":"feature",
- "color":"c4dafa",
- "issues_labels":{"issue_num":3,"label_num":1}
- }
- */
-//struct LabelResponse: Codable {
-//    var num: Int
-//    var name: String
-//    var color: String
-//    // var issues_labels: IssuesLabels
-//}
-
-// {"num":2,"title":"week 2"}
-//struct MilestoneResponse: Codable {
-//    var num: Int
-//    var title: String
-//    var openedIssues: Int?
-//    var closedIssues: Int?
-//}
-
-// "author":{"num":1,"id":"user01"}
 struct AuthorResponse: Codable {
     var num: Int
     var id: String
 }
 
-extension Issue: Codable {
-    enum CodingKeys: String, CodingKey {
-        case id = "num"
-        case milestone = "Milestone"
-        case title, author, createdAt, isClosed, labels, assignees, comment, comments
-    }
-}

@@ -62,7 +62,6 @@ class IssueDetailViewController: UIViewController {
         guard let issue = issue else { return }
         interactor?.request(endPoint: .issue(id: issue.id), completionHandler: { [weak self] (issue: Issue?) in
             self?.issue = issue
-            print(issue)
             DispatchQueue.main.async {
                 self?.issueDetailCollectionView.reloadData()
                 self?.addBottomSheetVC()
@@ -112,6 +111,7 @@ class IssueDetailViewController: UIViewController {
         guard let vc = segue.destination as? AddIssueViewController else { return }
         let sender = sender as? Issue
         vc.issue = sender
+        vc.delegate = self
     }
     
 }
@@ -273,5 +273,48 @@ extension IssueDetailViewController: BottomSheetDelegate {
             maxIndexPath.item += 1
         }
         issueDetailCollectionView.scrollToItem(at: maxIndexPath, at: .bottom, animated: true)
+    }
+}
+
+// MARK: AddIssueViewController Delegate
+extension IssueDetailViewController: AddIssueViewControllerDelegate {
+    func addIssueViewControllerDoned(_ addIssueViewController: AddIssueViewController) {
+        guard var issue = issue else { return }
+        let title = addIssueViewController.issueTitle.text ?? ""
+        let content = addIssueViewController.commentTextView.text ?? ""
+        issue.title = title
+        var comment = issue.comments?.first
+        comment?.content = content
+        
+        let queue = DispatchQueue(label: "update")
+        queue.async { [weak self] in
+            self?.interactor?.request(endPoint: .update(id: issue.id, body: issue.titleData), completionHandler: { (response: APIResponse?) in
+                
+            })
+            
+            let comments = issue.comments ?? []
+            if comments.isEmpty {
+                let createCommentData: [String: Any] = [
+                    "content": content,
+                    "issueNum": issue.id
+                ]
+                self?.interactor?.request(endPoint: .commentCreate(body: createCommentData), completionHandler: { (response: APIResponse?) in
+                    
+                })
+            } else {
+                let updateCommentData: [String: Any] = [
+                    "content": content
+                ]
+                self?.interactor?.request(endPoint: .commentUpdate(id: comments[0].num!, body: updateCommentData), completionHandler: { (response: APIResponse?) in
+                    
+                })
+            }
+            
+            DispatchQueue.main.async {
+                addIssueViewController.dismiss(animated: true, completion: {
+                    self?.requestIssue()
+                })
+            }
+        }
     }
 }
