@@ -11,6 +11,7 @@ const Div = styled.div`
   `}
   display: inline;
   padding: 3px 8px;
+  margin: 0 2px;
   border-radius: 20px;
   font-size: 10pt;
   font-weight: 600;

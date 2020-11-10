@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import COLOR from '../../utils/color';
+
 const Button = styled.button`
   padding: 7px 16px;
-  background-color: #2ea44f;
+  background-color: #${COLOR.green};
   color: white;
   border: 1px solid #268841;
   font-size: 14px;
