@@ -1,5 +1,6 @@
 const router = require('express').Router();
 
+const authRouter = require('./auths');
 const userRouter = require('./users');
 const labelRouter = require('./labels');
 const milestoneRouter = require('./milestones');
@@ -8,6 +9,7 @@ const commentRouter = require('./comments');
 const labelingRouter = require('./labelings');
 const assignmentRouter = require('./assignments');
 
+router.use('/auths', authRouter);
 router.use('/users', userRouter);
 router.use('/labels', labelRouter);
 router.use('/milestones', milestoneRouter);
