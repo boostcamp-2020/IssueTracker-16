@@ -1,16 +1,10 @@
 const { Model, DataTypes } = require('sequelize');
-module.exports = class OAuth extends Model {
+module.exports = class Authorization extends Model {
   static init(sequelize) {
     return super.init(
       {
-        num: {
-          type: DataTypes.INTEGER.UNSIGNED,
-          autoIncrement: true,
-          primaryKey: true,
-        },
-        name: {
+        accessToken: {
           type: DataTypes.STRING,
-          unique: true,
           allowNull: false,
         },
       },
@@ -18,12 +12,19 @@ module.exports = class OAuth extends Model {
         sequelize,
         underscored: true,
         timestamps: false,
-        modelName: 'OAuth',
-        tableName: 'oauths',
+        modelName: 'Authorization',
+        tableName: 'authorizations',
         charset: 'utf8',
         collate: 'utf8_general_ci',
       },
     );
   }
-  static associate() {}
+  static associate({ Authorization, User, OAuth }) {
+    User.belongsToMany(OAuth, {
+      through: Authorization,
+    });
+    OAuth.belongsToMany(User, {
+      through: Authorization,
+    });
+  }
 };
