@@ -26,7 +26,14 @@ const Title = styled.div``;
 const LabelTag = styled.div`
   display: flex;
 `;
-const AssigneeTag = styled.div``;
+const AssigneeTag = styled.div`
+  div {
+    padding: 0 2px;
+    border: 1px solid;
+    border-radius: 15px;
+    font-size: 10px;
+  }
+`;
 const Description = styled.div`
   margin-top: 4px;
   display: flex;

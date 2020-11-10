@@ -2,11 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 import ListItem from '../common/ListItem';
+import LinkButton from '../common/LinkButton';
 import MilestoneProgress from './MilestoneProgress';
 
-const Link = styled.a`
-  text-decoration: none;
-`;
 const ItemElement = styled.div`
   width: 48%;
 `;
@@ -17,16 +15,8 @@ const Description = styled.div`
   font-size: 10pt;
   color: #959da5;
 `;
-const Button = styled.button`
-  margin-right: 5px;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  cursor: pointer;
-
-  > a {
-    color: ${props => (props.isDelete ? 'red' : 'blue')};
-  }
+const Buttons = styled.div`
+  display: flex;
 `;
 
 export default function MilestoneItem({
@@ -45,17 +35,11 @@ export default function MilestoneItem({
       </ItemElement>
       <ItemElement>
         <MilestoneProgress {...{ openedIssues, closedIssues }} />
-        <div>
-          <Button isDelete={false}>
-            <Link href="/">Edit</Link>
-          </Button>
-          <Button isDelete={false}>
-            <Link href="/">Close</Link>
-          </Button>
-          <Button isDelete={true}>
-            <Link href="/">Delete</Link>
-          </Button>
-        </div>
+        <Buttons>
+          <LinkButton name={'Edit'} url={'/'}></LinkButton>
+          <LinkButton name={'Close'} url={'/'}></LinkButton>
+          <LinkButton name={'Delete'} url={'/'}></LinkButton>
+        </Buttons>
       </ItemElement>
     </ListItem>
   );
