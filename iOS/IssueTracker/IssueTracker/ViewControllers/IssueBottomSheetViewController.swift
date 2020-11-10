@@ -14,7 +14,7 @@ class IssueBottomSheetViewController: UIViewController {
     static let identifier: String = String(describing: IssueBottomSheetViewController.self)
     
     var delegate: BottomSheetDelegate?
-    var author: AuthorResponse? {
+    var author: User? {
         didSet {
             authorLabel.text = author?.id
         }

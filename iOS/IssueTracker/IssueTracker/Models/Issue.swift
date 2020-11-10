@@ -16,12 +16,12 @@ struct IssueAPI: Codable {
 struct Issue {
     var id: Int
     var title: String
-    var author: AuthorResponse?
+    var author: User?
     var createdAt: String
     var isClosed: Bool
     var labels: [Label]
     var milestone: Milestone?
-    var assignees: [Assignee]
+    var assignees: [User]
     var comment: Comment?
     var comments: [Comment]?
     
@@ -76,24 +76,3 @@ extension Issue: Codable {
         case title, author, createdAt, isClosed, labels, assignees, comment, comments
     }
 }
-
-struct Assignee: Codable {
-    let num: Int
-    let id: String
-    // let assignments: Assignments
-}
-
-struct Assignments: Codable {
-    let userNum, issueNum: Int
-
-    enum CodingKeys: String, CodingKey {
-        case userNum = "user_num"
-        case issueNum = "issue_num"
-    }
-}
-
-struct AuthorResponse: Codable {
-    var num: Int
-    var id: String
-}
-
