@@ -13,6 +13,7 @@ class LabelViewController: UIViewController {
     
     var labels = [Label]()
     var interactor: LabelBusinessLogic?
+    var swipedIndex: IndexPath?
     
     // MARK: - Views
     
@@ -51,11 +52,18 @@ class LabelViewController: UIViewController {
     @objc private func refresh(_ sender: AnyObject) {
         request(for: .list)
         refreshControl.endRefreshing()
+    private func cancelSwipe() {
+        guard let beforeIndex = swipedIndex,
+           let beforeCell = labelCollectionView.cellForItem(at: beforeIndex)
+            as? ActionCollectionViewCell else { return }
+        beforeCell.currentState = .none
+        swipedIndex = nil
     }
     
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        cancelSwipe()
         guard let vc = segue.destination as? AddAlertViewController else { return }
         vc.delegate = self
         let label = sender as? Label
@@ -78,7 +86,10 @@ extension LabelViewController: UICollectionViewDataSource {
               indexPath.row < labels.count else {
             return UICollectionViewCell()
         }
+        cell.containerView.transform = .identity
+        cell.currentState = .none
         cell.configure(label: labels[indexPath.item])
+        cell.delegate = self
         return cell
     }
 }
@@ -141,4 +152,27 @@ extension LabelViewController: AddAlertViewControllerDelegate {
         })
     }
     
+}
+
+extension LabelViewController: SwipeControllerDelegate {
+    func swipeController(_ cell: ActionCollectionViewCell) {
+        switch cell.currentState {
+        case .swiped:
+            cell.currentState = .none
+            swipedIndex = nil
+        case .none:
+            cancelSwipe()
+            cell.currentState = .swiped
+            guard let cell = cell as? UICollectionViewCell else { return }
+            swipedIndex = labelCollectionView.indexPath(for: cell)
+        default:
+            return
+        }
+    }
+}
+
+extension LabelViewController {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        cancelSwipe()
+    }
 }

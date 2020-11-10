@@ -14,12 +14,13 @@ class MilestoneCollectionViewCell: UICollectionViewCell {
     static var identifier: String {
         String(describing: self)
     }
-    @IBOutlet weak var milestoneName: UILabel!
+    @IBOutlet weak var milestoneName: PaddingLabel!
     @IBOutlet weak var milestoneDescription: UILabel!
     @IBOutlet weak var milestoneDueDate: UILabel!
     @IBOutlet weak var milestonePercent: UILabel!
     @IBOutlet weak var milestoneOpenIssues: UILabel!
     @IBOutlet weak var milestoneClosedIssues: UILabel!
+    @IBOutlet weak var containerView: UIView!
     
     // MARK: - Methods
     
