@@ -18,7 +18,7 @@ class IssueDetailHeaderView: UICollectionReusableView {
         didSet {
             titleLabel.text = issue?.title
             numberLabel.text = "#\(issue?.id ?? 0)"
-            authorLabel.text = issue?.author.id
+            authorLabel.text = issue?.author?.id
         }
     }
 }

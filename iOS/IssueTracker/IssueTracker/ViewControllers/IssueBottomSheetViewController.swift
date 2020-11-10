@@ -13,8 +13,8 @@ class IssueBottomSheetViewController: UIViewController {
     
     static let identifier: String = String(describing: IssueBottomSheetViewController.self)
     
-    var delegate: IssueDetailViewController?
-    var author: AuthorResponse? {
+    var delegate: BottomSheetDelegate?
+    var author: User? {
         didSet {
             authorLabel.text = author?.id
         }
@@ -82,10 +82,17 @@ class IssueBottomSheetViewController: UIViewController {
         ])
     }
     
+    // MARK: Selectors
+    
     @IBAction func touchedUpButton(_ sender: Any) {
         delegate?.moveToUp()
     }
+    
     @IBAction func touchedDownButton(_ sender: Any) {
         delegate?.moveToDown()
+    }
+    
+    @IBAction func touchedAddCommentButton(_ sender: UIButton) {
+        delegate?.bottomSheetTappedAddComment(self)
     }
 }
