@@ -12,7 +12,7 @@ enum MilestoneEndPoint: EndPointType {
     
     case list
     case create(body: Parameters)
-    case delete(id: Int, body: Parameters)
+    case delete(id: Int)
     case update(id: Int, body: Parameters)
     
     var baseURL: URL? {
@@ -23,7 +23,7 @@ enum MilestoneEndPoint: EndPointType {
         switch self {
         case .list, .create:
             return "milestones"
-        case .update(let id, _), .delete(let id, _):
+        case .update(let id, _), .delete(let id):
             return "milestones/\(id)"
         }
     }
@@ -39,12 +39,8 @@ enum MilestoneEndPoint: EndPointType {
     
     var task: HTTPTask {
         switch self {
-        case .list: return .request
-        case .create(let data):
-            return .requestParameters(bodyParameters: data,
-                                      bodyEncoding: .jsonEncoding,
-                                      urlParameters: nil)
-        case .delete(_, let data), .update(_, let data):
+        case .list, .delete(_): return .request
+        case .create(let data), .update(_, let data):
             return .requestParameters(bodyParameters: data,
                                       bodyEncoding: .jsonEncoding,
                                       urlParameters: nil)

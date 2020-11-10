@@ -39,9 +39,13 @@ class MilestoneViewController: UIViewController {
     
     // MARK: - Methods
     
+    @objc private func refresh(_ sender: AnyObject) {
+        request(for: .list)
+        refreshControl.endRefreshing()
+    }
+    
     private func request(for endPoint: LabelEndPoint) {
         interactor?.request(endPoint: .list, completionHandler: { [weak self] (milestoneResponse: MilestoneAPI?) in
-            
             self?.milestones = milestoneResponse?.milestones ?? []
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self?.milestoneCollectionView.reloadData()
@@ -50,9 +54,26 @@ class MilestoneViewController: UIViewController {
         })
     }
     
-    @objc private func refresh(_ sender: AnyObject) {
-        request(for: .list)
-        refreshControl.endRefreshing()
+    private func delete(milestoneID: Int, cell: UICollectionViewCell) {
+        interactor?.request(endPoint: .delete(id: milestoneID), completionHandler: { [weak self] (response: APIResponse?) in
+            guard let response = response else {
+                debugPrint("response is Empty")
+                return
+            }
+            if response.success {
+                DispatchQueue.main.async {
+                    guard let indexPath = self?.milestoneCollectionView.indexPath(for: cell) else {
+                        self?.request(for: .list)
+                        return
+                    }
+                    guard let cell = cell as? ActionCollectionViewCell else { return }
+                    cell.currentState = .none
+                    self?.milestones.remove(at: indexPath.item)
+                    self?.swipedIndex = nil
+                    self?.milestoneCollectionView.deleteItems(at: [indexPath])
+                }
+            }
+        })
     }
     private func cancelSwipe() {
         guard let beforeIndex = swipedIndex,
@@ -92,6 +113,7 @@ extension MilestoneViewController: UICollectionViewDataSource {
         cell.currentState = .none
         cell.configure(milestone: milestones[indexPath.item])
         cell.delegate = self
+        cell.deleteHandler = delete
         return cell
     }
 }

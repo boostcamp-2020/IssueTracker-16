@@ -28,6 +28,8 @@ class MilestoneCollectionViewCell: UICollectionViewCell, ActionCollectionViewCel
         }
     }
     var delegate: SwipeControllerDelegate?
+    var deleteHandler: ((Int, UICollectionViewCell) -> ())?
+    var milestoneID: Int?
     
     // MARK: - Views
     
@@ -38,6 +40,7 @@ class MilestoneCollectionViewCell: UICollectionViewCell, ActionCollectionViewCel
     @IBOutlet weak var milestoneOpenIssues: UILabel!
     @IBOutlet weak var milestoneClosedIssues: UILabel!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var deleteButton: UIButton!
     
     // MARK: - initialize
     
@@ -76,6 +79,7 @@ class MilestoneCollectionViewCell: UICollectionViewCell, ActionCollectionViewCel
         } else {
             milestoneDueDate.text = ""
         }
+        milestoneID = milestone.id
     }
     
     // MARK: - Methods
@@ -103,6 +107,12 @@ class MilestoneCollectionViewCell: UICollectionViewCell, ActionCollectionViewCel
             || (sender.direction == .right && currentState == .swiped) {
             delegate?.swipeController(self)
         }
+    }
+    
+    @IBAction func touchedDeleteButton(_ sender: Any) {
+        guard let milestoneID = milestoneID,
+              let deleteHandler = deleteHandler else { return }
+        deleteHandler(milestoneID, self)
     }
     
 }
