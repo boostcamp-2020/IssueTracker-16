@@ -7,7 +7,8 @@
 
 import UIKit
 
-class IssueListCollectionViewCell: ActionCollectionViewCell {
+class IssueListCollectionViewCell: UICollectionViewCell, ActionCollectionViewCell {
+    
     static let identfier = String(describing: IssueListCollectionViewCell.self)
     
     @IBOutlet private weak var nameLabel: UILabel!
@@ -62,7 +63,7 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
         }
     }
     
-    private func changeEditMode() {
+    func changeEditMode() {
         UIView.animate(withDuration: 0.4, delay: 0, options: [.allowAnimatedContent]) {
             self.containerView.transform = CGAffineTransform(translationX: self.editingView.frame.width, y: 0)
         }

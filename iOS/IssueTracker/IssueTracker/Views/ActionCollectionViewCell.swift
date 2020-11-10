@@ -5,12 +5,19 @@
 //  Created by woong on 2020/11/04.
 //
 
-import UIKit
+protocol ActionCollectionViewCell: class {
+    var currentState: ActionState { get set }
+    func changeNone()
+    func changeEditMode()
+    func changeSwiped()
+}
 
-class ActionCollectionViewCell: UICollectionViewCell {
-    enum ActionState {
-        case none
-        case edit
-        case swiped
-    }
+enum ActionState {
+    case none
+    case edit
+    case swiped
+}
+
+protocol SwipeControllerDelegate {
+    func swipeController(_ cell: ActionCollectionViewCell)
 }

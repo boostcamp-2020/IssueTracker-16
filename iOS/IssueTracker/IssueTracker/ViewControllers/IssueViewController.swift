@@ -291,12 +291,8 @@ extension IssueViewController: AddIssueViewControllerDelegate {
 
 // MARK: - Swipe Controller Delegate
 
-protocol SwipeControllerDelegate {
-    func swipeController(_ cell: IssueListCollectionViewCell)
-}
-
 extension IssueViewController: SwipeControllerDelegate {
-    func swipeController(_ cell: IssueListCollectionViewCell) {
+    func swipeController(_ cell: ActionCollectionViewCell) {
         switch cell.currentState {
         case .swiped:
             cell.currentState = .none
@@ -304,13 +300,14 @@ extension IssueViewController: SwipeControllerDelegate {
             cell.changeNone()
         case .none:
             if let beforeIndex = swipedIndex,
-               let beforeCell = issueCollectionView.cellForItem(at: beforeIndex) as? IssueListCollectionViewCell {
+               let beforeCell = issueCollectionView.cellForItem(at: beforeIndex) as? ActionCollectionViewCell {
                 beforeCell.currentState = .none
                 beforeCell.changeNone()
             }
             cell.currentState = .swiped
-            swipedIndex = issueCollectionView.indexPath(for: cell)
             cell.changeSwiped()
+            guard let cell = cell as? UICollectionViewCell else { return }
+            swipedIndex = issueCollectionView.indexPath(for: cell)
         default:
             return
         }
