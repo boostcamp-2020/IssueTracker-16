@@ -23,6 +23,7 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
             nameLabel.text = issue?.title
             descriptionLabel.text = ""
             milestoneLabel.text = issue?.milestone?.title
+            milestoneLabel.isHidden = issue?.milestone == nil
             descriptionLabel.text = issue?.comment?.content
             labelLabel.label = issue?.labels.first
             labelLabel.isHidden = labelLabel.label == nil
