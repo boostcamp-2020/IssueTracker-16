@@ -22,6 +22,11 @@ const userController = {
     const decoded = await jwt.authentication(token);
     res.status(OK).json({ success: true, user: decoded });
   },
+
+  getAll: async (req, res) => {
+    const users = await userService.findAll();
+    res.status(OK).json(users);
+  },
 };
 
 module.exports = userController;

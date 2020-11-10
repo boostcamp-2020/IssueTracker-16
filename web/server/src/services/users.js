@@ -23,6 +23,9 @@ const userService = {
     }
     return User.create({ id, password, name, imageUrl });
   },
+
+  findAll: async () =>
+    User.findAll({ attributes: ['num', 'id', 'name', 'imageUrl'] }),
 };
 
 module.exports = userService;
