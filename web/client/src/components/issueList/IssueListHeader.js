@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import COLOR from '../../utils/color';
 import ListHeader from '../common/ListHeader';
 import OpenIssueLogo from '../../statics/svg/openIssue';
 import CheckIcon from '../../statics/svg/checkIcon';
@@ -27,7 +28,7 @@ const Filter = styled.span`
   a {
     display: flex;
     align-items: center;
-    color: #000000;
+    color: #${COLOR.black};
     text-decoration: none;
   }
 `;

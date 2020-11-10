@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import COLOR from '../../utils/color';
 import LabelLogo from '../../statics/svg/label';
 import MilestoneLogo from '../../statics/svg/milestone';
 
@@ -13,7 +14,7 @@ const Nav = styled.nav`
   display: flex;
 `;
 const Span = styled.div`
-  color: #000000;
+  color: #${COLOR.black};
 `;
 const TabButton = styled.button`
   border: 1px solid lightgrey;
