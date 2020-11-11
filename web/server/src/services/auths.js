@@ -49,10 +49,11 @@ const authService = {
     return { id, name, imageUrl };
   },
 
-  getRedirectUrl: ({ userAgent, host, token }) => {
+  getRedirectUrl: ({ userAgent, token }) => {
     const isMobile = /iphone|ipad|ipod|android/i.test(userAgent.toLowerCase());
     const iOSSchema = process.env.IOS_APP_SCHEMA;
-    return isMobile ? `${iOSSchema}?token=${token}` : `http://${host}`;
+    const webDomain = process.env.WEB_DOMAIN;
+    return isMobile ? `${iOSSchema}?token=${token}` : webDomain;
   },
 };
 
