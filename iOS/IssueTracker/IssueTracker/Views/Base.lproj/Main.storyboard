@@ -740,6 +740,9 @@
                                     <segment title="마크다운"/>
                                     <segment title="미리보기"/>
                                 </segments>
+                                <connections>
+                                    <action selector="mdSegmentControlChanged:" destination="cg3-T3-F2p" eventType="valueChanged" id="Td0-Ya-hST"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Z5u-VO-E5k"/>
@@ -773,6 +776,7 @@
                         <outlet property="commentTextView" destination="5ig-xf-cfK" id="HAf-Fm-Mvp"/>
                         <outlet property="issueID" destination="son-tP-Ubg" id="cEe-03-PjT"/>
                         <outlet property="issueTitle" destination="kRU-Uo-sGC" id="3dJ-ez-BsE"/>
+                        <outlet property="mdSegmentControl" destination="CTT-ua-ToW" id="57g-xc-3qS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeW-8D-VL8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
