@@ -36,8 +36,8 @@ const authController = {
     const token = await jwt.sign(user);
     res.cookie('token', token);
 
-    const { host, ['user-agent']: userAgent } = req.headers;
-    const redirectUrl = authService.getRedirectUrl({ userAgent, host, token });
+    const { ['user-agent']: userAgent } = req.headers;
+    const redirectUrl = authService.getRedirectUrl({ userAgent, token });
     res.redirect(redirectUrl);
   },
 };
