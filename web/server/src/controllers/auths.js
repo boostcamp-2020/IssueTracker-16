@@ -1,5 +1,8 @@
 const authService = require('../services/auths');
-// const userService = require('../services/users');
+const userService = require('../services/users');
+const oAuthService = require('../services/oAuths');
+const authorizationService = require('../services/authorization');
+const jwt = require('../common/jwt');
 
 const authController = {
   requestOAuthCode: async (req, res) => {
@@ -13,23 +16,24 @@ const authController = {
     const { code } = req.query;
     const accessToken = await authService.getAccessToken({ service, code });
 
-    // 1. access token 으로 유저 모델 조회
-    // let user = await userService.getUser({ service, accessToken });
+    const oAuth = await oAuthService.findOne({ service });
+    let [user] = await oAuth.getUsers({ accessToken });
 
-    // 2. 유저 모델이 없을 때
-    // if (!user) {
-    // 2-1. access token 으로 유저 정보 수집
-    const userData = await authService.getUserDataByAccessToken({
-      service,
-      accessToken,
-    });
+    if (!user) {
+      const userData = await authService.getUserDataByAccessToken({
+        service,
+        accessToken,
+      });
 
-    // 2-2. 수집한 유저 정보로 유저 모델 생성
-    // user = await userService.createUser({ userData, service, accessToken });
-    // }
+      user = await userService.join({ ...userData, password: accessToken });
+      await authorizationService.add({
+        userNum: user.num,
+        oAuthNum: oAuth.num,
+        accessToken,
+      });
+    }
 
-    // 3. 유저 모델로 JWT 생성
-    const token = 'test123';
+    const token = await jwt.sign(user);
     res.cookie('token', token);
 
     const { host, ['user-agent']: userAgent } = req.headers;
