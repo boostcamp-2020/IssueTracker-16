@@ -20,7 +20,7 @@ class FilterViewController: UIViewController {
     // MARK: Properties
     
     static let sectionHeaderElementKind = "section-header-element-kind"
-    var filterItems: [Int: [FilterItem]] = [
+    private var filterItems: [Int: [FilterItem]] = [
         0: [
                 FilterItem(title: "열린 이슈들", subItems: []),
                 FilterItem(title: "내가 작성한 이슈들", subItems: []),
@@ -39,15 +39,14 @@ class FilterViewController: UIViewController {
             ])
         ]
     ]
-    var sectionTitle: [Int: String] = [
+    private let sectionTitle: [Int: String] = [
         0: "다음 조건 중에 고르세요",
         1: "세부 조건"
     ]
     private var dataSource: UICollectionViewDiffableDataSource<Int, FilterItem>! = nil
-
     // MARK: Views
     
-    @IBOutlet weak var filterCollectionView: UICollectionView!
+    @IBOutlet private weak var filterCollectionView: UICollectionView!
     
     // MARK: View Life Cycle
     
@@ -59,13 +58,12 @@ class FilterViewController: UIViewController {
     
     // MARK: Initialize
     
-    func configureCollectionView() {
+    private func configureCollectionView() {
         filterCollectionView.collectionViewLayout = generateLayout()
         filterCollectionView.allowsMultipleSelection = true
     }
     
-    func configureDataSource() {
-        
+    private func configureDataSource() {
         let headerRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, FilterItem> { (cell, indexPath, item) in
             var content = cell.defaultContentConfiguration()
             content.text = item.title
@@ -113,16 +111,17 @@ class FilterViewController: UIViewController {
         }
         
         applySnapshot()
+        filterCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .top)
     }
     
-    func generateLayout() -> UICollectionViewLayout {
-        var listConfiguration = UICollectionLayoutListConfiguration(appearance: .sidebar)
+    private func generateLayout() -> UICollectionViewLayout {
+        var listConfiguration = UICollectionLayoutListConfiguration(appearance: .insetGrouped)
         listConfiguration.headerMode = .supplementary
         let layout = UICollectionViewCompositionalLayout.list(using: listConfiguration)
         return layout
     }
     
-    func applySnapshot() {
+    private func applySnapshot() {
         var snapshot = NSDiffableDataSourceSectionSnapshot<FilterItem>()
         
         func addItems(_ filterItems: [FilterItem], to parent: FilterItem?) {
@@ -135,10 +134,21 @@ class FilterViewController: UIViewController {
         for (section, items) in filterItems.sorted(by: { $0.key < $1.key }) {
             snapshot = NSDiffableDataSourceSectionSnapshot<FilterItem>()
             
-//            let headerItem = FilterItem(title: sectionTitle[section] ?? "", subItems: [])
-            // snapshot.append([headerItem])
             addItems(items, to: nil)
             dataSource.apply(snapshot, to: section, animatingDifferences: false, completion: nil)
         }
+    // MARK: - Methods
+    
+    @IBAction private func touchedDone(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction private func touchedClose(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
 }
+                }
+    func filtering(issues: [Issue]) -> [Issue] {
+        return issues.filter({
+                if type.condition($0) { return true }
+            }

@@ -1133,8 +1133,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="108"/>
                                 <items>
                                     <navigationItem title="필터 선택" id="8YY-Ph-Ya1">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Nye-aa-EF1"/>
-                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="8Pc-z9-6Ns"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Nye-aa-EF1">
+                                            <connections>
+                                                <action selector="touchedClose:" destination="xwq-lx-Svw" id="IGV-km-bFP"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="8Pc-z9-6Ns">
+                                            <connections>
+                                                <action selector="touchedDone:" destination="xwq-lx-Svw" id="PsC-Az-9lu"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1795,7 +1803,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="0Xi-Du-NTR"/>
-        <segue reference="Dug-JU-RGo"/>
+        <segue reference="1mN-ca-cf2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="check" width="512" height="512"/>
