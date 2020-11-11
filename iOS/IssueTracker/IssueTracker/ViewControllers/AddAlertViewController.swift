@@ -100,9 +100,12 @@ class AddAlertViewController: UIViewController {
         let keyboardRect =  keyboardFrame.cgRectValue
 
         if contentBackgroundView.frame.maxY > keyboardRect.origin.y {
-            view.frame.origin.y = -(contentBackgroundView.frame.maxY - keyboardRect.origin.y + 20)
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut) {
+                self.view.transform = CGAffineTransform(translationX: 0, y: -(self.contentBackgroundView.frame.maxY - keyboardRect.origin.y + 20))
+            }
+            
         } else {
-            view.frame.origin.y = 0
+            view.transform = .identity
         }
     }
     
@@ -128,10 +131,7 @@ class AddAlertViewController: UIViewController {
     @IBAction private func touchedAddButton(_ sender: UIButton) {
         for inputView in inputViews {
             guard inputView.isValid else {
-                UIAlertController.showSimpleAlert(title: "입력이 완료되지 않았습니다.",
-                                                  handler: { [weak self] alert in
-                    self?.present(alert, animated: true, completion: nil)
-                })
+                inputView.shake()
                 return
             }
         }
