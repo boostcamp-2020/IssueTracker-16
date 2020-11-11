@@ -13,7 +13,6 @@ const userController = {
   join: async (req, res) => {
     const { id, password, name, imageUrl } = req.body;
     const user = await userService.join({ id, password, name, imageUrl });
-    delete user.dataValues.password;
     res.status(CREATED).json({ success: true, user });
   },
 

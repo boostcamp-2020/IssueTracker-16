@@ -4,13 +4,10 @@ const { INVALID_TOKEN } = require('../common/errorHandler');
 const secret = process.env.JWT_SECRET;
 
 module.exports = {
-  sign: user =>
+  sign: ({ num, id }) =>
     new Promise((resolve, reject) => {
       jwt.sign(
-        {
-          num: user.num,
-          id: user.id,
-        },
+        { num, id },
         secret,
         {
           expiresIn: '7d',
