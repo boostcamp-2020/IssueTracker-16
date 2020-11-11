@@ -118,7 +118,6 @@ class IssueDetailViewController: UIViewController {
         performSegue(withIdentifier: segueIdentifier(to: AddIssueViewController.self), sender: issue)
     }
     
-    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -143,7 +142,6 @@ extension IssueDetailViewController: UICollectionViewDataSource {
         else {
             return UICollectionViewCell()
         }
-        
         
         cell.comment = comment
         cell.moreHandler = { [weak self] cell in
@@ -197,6 +195,7 @@ extension IssueDetailViewController {
     private var partialViewPosition: CGFloat {
         UIScreen.main.bounds.height - 120
     }
+    
     private func initBottomSheetVC() {
         guard let bottomSheetVC: IssueBottomSheetViewController = storyboard?.instantiateViewController(identifier: IssueBottomSheetViewController.identifier) as? IssueBottomSheetViewController else { return }
         view.addSubview(shadowView)
