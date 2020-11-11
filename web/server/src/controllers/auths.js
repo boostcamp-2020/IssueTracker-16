@@ -1,7 +1,5 @@
 const authService = require('../services/auths');
-const userService = require('../services/users');
 const oAuthService = require('../services/oAuths');
-const authorizationService = require('../services/authorization');
 const jwt = require('../common/jwt');
 
 const authController = {
@@ -18,20 +16,8 @@ const authController = {
 
     const oAuth = await oAuthService.findOne({ service });
     let [user] = await oAuth.getUsers({ accessToken });
-
-    if (!user) {
-      const userData = await authService.getUserDataByAccessToken({
-        service,
-        accessToken,
-      });
-
-      user = await userService.join({ ...userData, password: accessToken });
-      await authorizationService.add({
-        userNum: user.num,
-        oAuthNum: oAuth.num,
-        accessToken,
-      });
-    }
+    user =
+      user || (await authService.joinUserByAccessToken({ oAuth, accessToken }));
 
     const token = await jwt.sign(user);
     res.cookie('token', token);
