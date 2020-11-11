@@ -16,6 +16,7 @@ const issueService = {
         isDeleted: false,
         isClosed,
       },
+      order: [['num', 'DESC']],
       include: [
         {
           model: User,
