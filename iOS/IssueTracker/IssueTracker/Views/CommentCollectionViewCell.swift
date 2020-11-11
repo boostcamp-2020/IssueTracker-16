@@ -6,26 +6,32 @@
 //
 
 import UIKit
+import MarkdownView
 
 class CommentCollectionViewCell: UICollectionViewCell {
     static let identifier: String = String(describing: CommentCollectionViewCell.self)
     
     // MARK: Views
     
+    @IBOutlet weak var textViewBackgroundView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var writerLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var emojiButton: UIButton!
+    private var mdView: MarkdownView?
     
     // MARK: Properties
     
     var moreHandler: ((CommentCollectionViewCell) -> Void)?
     var comment: Comment? {
         didSet {
-            writerLabel.text = comment?.writer?.id
+            
             contentLabel.text = comment?.content
+            mdView = generateMDView()
+            writerLabel.text = comment?.writer?.id
+            mdView?.load(markdown: comment?.content)
             
             let df = DateFormatter()
             df.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
@@ -34,12 +40,23 @@ class CommentCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configure() {
-        emojiButton.layer.cornerRadius = emojiButton.frame.width
-        imageView.layer.cornerRadius = 10
+    private func generateMDView() -> MarkdownView {
+        let mdView = MarkdownView()
+        mdView.backgroundColor = .systemBackground
+        mdView.frame = contentLabel.frame
+        mdView.frame.origin.x = 0
+        mdView.frame.size.width = moreButton.frame.maxX - imageView.frame.minX
+        
+        addSubview(mdView)
+        return mdView
     }
     
-    @IBAction func touchedMoreButton(_ sender: UIButton) {
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
+    
+    @IBAction private func touchedMoreButton(_ sender: UIButton) {
         moreHandler?(self)
     }
 }
