@@ -21,6 +21,9 @@ module.exports = class User extends Model {
           type: DataTypes.STRING,
           allowNull: false,
         },
+        imageUrl: {
+          type: DataTypes.STRING,
+        },
       },
       {
         sequelize,
