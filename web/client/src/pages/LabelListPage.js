@@ -18,7 +18,7 @@ export default function LabelListPage() {
       <Header />
       <ListPage>
         <LabelListNav {...{ ...state, setState }} />
-        {!state.isHidden && <LabelInput />}
+        {!state.isHidden && <LabelInput {...{ setState }} />}
         <LabelList />
       </ListPage>
     </>

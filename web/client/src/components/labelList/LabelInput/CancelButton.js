@@ -19,6 +19,10 @@ const Cancel = styled.button`
   }
 `;
 
-export default function CancelButton() {
-  return <Cancel>Cancel</Cancel>;
+export default function CancelButton({ setState }) {
+  const toggleInput = event => {
+    event.preventDefault();
+    setState({ isHidden: true });
+  };
+  return <Cancel onClick={toggleInput}>Cancel</Cancel>;
 }

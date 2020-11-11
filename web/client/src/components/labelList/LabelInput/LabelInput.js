@@ -67,7 +67,7 @@ const Form = styled.form`
   }
 `;
 
-export default function LabelInput() {
+export default function LabelInput({ setState }) {
   const isLabelList = true;
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -88,7 +88,7 @@ export default function LabelInput() {
           ></ColorInput>
         </div>
         <Buttons>
-          <CancelButton />
+          <CancelButton {...{ setState }} />
           <SubmitButton {...{ name, description, color, colorInput }} />
         </Buttons>
       </Form>
