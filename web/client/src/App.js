@@ -16,12 +16,12 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={IssueListPage} />
-          <Route path="/signin" component={SignInPage} />
-          <Route path="/auth/:service" component={AuthPage} />
-          <Route path="/issues" component={IssueListPage} />
-          <Route path="/labels" component={LabelListPage} />
-          <Route path="/milestones" component={MilestoneListPage} />
-          <Route path="/error/:code" component={ErrorPage} />
+          <Route exact path="/signin" component={SignInPage} />
+          <Route exact path="/auth/:service" component={AuthPage} />
+          <Route exact path="/issues" component={IssueListPage} />
+          <Route exact path="/labels" component={LabelListPage} />
+          <Route exact path="/milestones" component={MilestoneListPage} />
+          <Route exact path="/error/:code" component={ErrorPage} />
           <Redirect to="/error/404" />
         </Switch>
       </BrowserRouter>
