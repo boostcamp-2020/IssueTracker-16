@@ -271,7 +271,7 @@ extension IssueViewController: AddIssueViewControllerDelegate {
     func addIssueViewControllerDoned(_ addIssueViewController: AddIssueViewController) {
         let title = addIssueViewController.issueTitle.text ?? ""
         let content = addIssueViewController.commentTextView.text ?? ""
-        let newIssue = Issue(title: title, content: content)
+        let newIssue = Issue(title: title, comment: Comment(content: content))
         
         interactor?.request(endPoint: .create(body: newIssue.createData), completionHandler: { (response: APIResponse?) in
             guard let response = response else {
