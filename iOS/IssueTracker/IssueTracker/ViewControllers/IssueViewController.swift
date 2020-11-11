@@ -7,25 +7,7 @@
 
 import UIKit
 
-protocol SwipeControllerDelegate {
-    func swipeController(_ cell: IssueListCollectionViewCell)
-}
-
-class IssueViewController: UIViewController, SwipeControllerDelegate {
-    func swipeController( _ cell: IssueListCollectionViewCell) {
-        if let swipedIndex = swipedIndex,
-              let beforeCell = issueCollectionView.cellForItem(at: swipedIndex) as? IssueListCollectionViewCell {
-        
-            beforeCell.currentState = .none
-            beforeCell.changeNone()
-        }
-        
-        cell.currentState = .swiped
-        cell.changeSwiped()
-        swipedIndex = cell.indexPath
-    }
-    
-    private var swipedIndex: IndexPath?
+class IssueViewController: UIViewController {
     
     // MARK: - Constants
     
@@ -38,10 +20,11 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
     
     private var selectedIssues = Set<IndexPath>() {
         didSet {
-            if currentState == .none {
-                title = "이슈"
-            } else {
-                title = "\(selectedIssues.count)개 선택"
+            switch currentState {
+                case .edit:
+                    title = "\(selectedIssues.count)개 선택"
+                case .none:
+                    title = "이슈"
             }
         }
     }
@@ -60,6 +43,7 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
             }
         }
     }
+    private var swipedIndex: IndexPath?
     
     // MARK: - Views
     
@@ -79,8 +63,6 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
         setupViews()
         configureCollectionView()
         request(for: .list)
-        
-        
     }
     
     // MARK: - Initialize
@@ -117,6 +99,26 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
         })
     }
     
+    private func delete(issueID: Int, cell: UICollectionViewCell) {
+        interactor?.request(endPoint: .delete(id: issueID), completionHandler: { [weak self] (response: APIResponse?) in
+            guard let response = response else {
+                debugPrint("response is Empty")
+                return
+            }
+            if response.success {
+                DispatchQueue.main.async {
+                    guard let indexPath = self?.issueCollectionView.indexPath(for: cell) else {
+                        self?.request(for: .list)
+                        return
+                    }
+                    self?.issues.remove(at: indexPath.item)
+                    self?.swipedIndex = nil
+                    self?.issueCollectionView.deleteItems(at: [indexPath])
+                }
+            }
+        })
+    }
+    
     // MARK: Selectors
     
     @objc private func refresh(_ sender: AnyObject) {
@@ -127,7 +129,7 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
     // MARK: IBActions
     
     @IBAction private func touchedEditButton(_ sender: UIBarButtonItem) {
-        
+        swipedIndex = nil
         if currentState == .edit {
             currentState = .none
         } else if currentState == .none {
@@ -142,7 +144,7 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
     private func updateEditingMode() {
         addIssueButton.isHidden = true
         navigationItem.searchController?.searchBar.isHidden = true
-        navigationItem.title = "\(selectedIssues.count)개 선택"
+        selectedIssues = []
         tabBarController?.tabBar.isHidden = true
         editBarButton.title = "Cancel"
         filterBarButton.title = "Select All"
@@ -151,7 +153,6 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
     
     private func updateDefaultMode() {
         addIssueButton.isHidden = false
-        navigationItem.title = "이슈"
         selectedIssues.removeAll()
         editBarButton.title = "Edit"
         filterBarButton.title = "Filter"
@@ -168,9 +169,14 @@ class IssueViewController: UIViewController, SwipeControllerDelegate {
         issueCollectionView.reloadData()
     }
     
-    
-    
-    
+    private func cancelSwipe() {
+        guard let swipedIndex = swipedIndex,
+              let cell = issueCollectionView.cellForItem(at: swipedIndex)
+                as? IssueListCollectionViewCell else { return }
+        self.swipedIndex = nil
+        cell.currentState = .none
+        cell.changeNone()
+    }
     
     // MARK: - Navigation
     
@@ -199,6 +205,7 @@ extension IssueViewController: UICollectionViewDataSource {
         switch currentState {
             case .edit:
                 cell.currentState = .edit
+                
             default:
                 if indexPath == swipedIndex {
                     cell.currentState = .swiped
@@ -217,10 +224,10 @@ extension IssueViewController: UICollectionViewDataSource {
             collectionView.deselectItem(at: indexPath, animated: false)
         }
         cell.addSwipeGestures()
-        cell.indexPath = indexPath
         cell.delegate = self
         cell.issue = issues[indexPath.item]
-        
+        cell.containerView.transform = .identity
+        cell.deleteHandler = delete
         
         return cell
     }
@@ -243,6 +250,11 @@ extension IssueViewController: UICollectionViewDelegate {
             selectedIssues.remove(indexPath)
         }
     }
+    
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        cancelSwipe()
+    }
+    
 }
 
 // MARK: - UICollectionView Delegate FlowLayout
@@ -274,5 +286,30 @@ extension IssueViewController: AddIssueViewControllerDelegate {
                 }
             }
         })
+    }
+}
+
+// MARK: - Swipe Controller Delegate
+
+extension IssueViewController: SwipeControllerDelegate {
+    func swipeController(_ cell: ActionCollectionViewCell) {
+        switch cell.currentState {
+        case .swiped:
+            cell.currentState = .none
+            swipedIndex = nil
+            cell.changeNone()
+        case .none:
+            if let beforeIndex = swipedIndex,
+               let beforeCell = issueCollectionView.cellForItem(at: beforeIndex) as? ActionCollectionViewCell {
+                beforeCell.currentState = .none
+                beforeCell.changeNone()
+            }
+            cell.currentState = .swiped
+            cell.changeSwiped()
+            guard let cell = cell as? UICollectionViewCell else { return }
+            swipedIndex = issueCollectionView.indexPath(for: cell)
+        default:
+            return
+        }
     }
 }

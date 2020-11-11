@@ -13,6 +13,7 @@ class MilestoneViewController: UIViewController {
     
     var interactor: MilestoneBusinessLogic?
     var milestones = [Milestone]()
+    var swipedIndex: IndexPath?
     
     // MARK: - Views
     
@@ -38,9 +39,14 @@ class MilestoneViewController: UIViewController {
     
     // MARK: - Methods
     
+    @objc private func refresh(_ sender: AnyObject) {
+        request(for: .list)
+        refreshControl.endRefreshing()
+    }
+    
     private func request(for endPoint: LabelEndPoint) {
-        interactor?.request(endPoint: .list, completionHandler: { [weak self] (milestones: [Milestone]?) in
-            self?.milestones = milestones ?? []
+        interactor?.request(endPoint: .list, completionHandler: { [weak self] (milestoneResponse: MilestoneAPI?) in
+            self?.milestones = milestoneResponse?.milestones ?? []
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self?.milestoneCollectionView.reloadData()
                 self?.activityIndicator.stopAnimating()
@@ -48,12 +54,39 @@ class MilestoneViewController: UIViewController {
         })
     }
     
-    @objc private func refresh(_ sender: AnyObject) {
-        request(for: .list)
-        refreshControl.endRefreshing()
+    private func delete(milestoneID: Int, cell: UICollectionViewCell) {
+        interactor?.request(endPoint: .delete(id: milestoneID), completionHandler: { [weak self] (response: APIResponse?) in
+            guard let response = response else {
+                debugPrint("response is Empty")
+                return
+            }
+            if response.success {
+                DispatchQueue.main.async {
+                    guard let indexPath = self?.milestoneCollectionView.indexPath(for: cell) else {
+                        self?.request(for: .list)
+                        return
+                    }
+                    guard let cell = cell as? ActionCollectionViewCell else { return }
+                    cell.currentState = .none
+                    self?.milestones.remove(at: indexPath.item)
+                    self?.swipedIndex = nil
+                    self?.milestoneCollectionView.deleteItems(at: [indexPath])
+                }
+            }
+        })
+    }
+    private func cancelSwipe() {
+        guard let beforeIndex = swipedIndex,
+           let beforeCell = milestoneCollectionView.cellForItem(at: beforeIndex)
+            as? ActionCollectionViewCell else { return }
+        beforeCell.currentState = .none
+        swipedIndex = nil
     }
     
+    // MARK: - Navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        cancelSwipe()
         guard let vc = segue.destination as? AddAlertViewController else { return }
         vc.delegate = self
         let milestone = sender as? Milestone
@@ -76,7 +109,11 @@ extension MilestoneViewController: UICollectionViewDataSource {
               indexPath.row < milestones.count else {
             return UICollectionViewCell()
         }
+        cell.containerView.transform = .identity
+        cell.currentState = .none
         cell.configure(milestone: milestones[indexPath.item])
+        cell.delegate = self
+        cell.deleteHandler = delete
         return cell
     }
 }
@@ -118,7 +155,7 @@ extension MilestoneViewController: AddAlertViewControllerDelegate {
             return
         }
         
-        let newMilestone = Milestone(id: -1, title: title, dueDate: dueDate, description: description, openedIssues: -1, closedIssues: -1)
+        let newMilestone = Milestone(title: title, dueDate: dueDate, description: description)
         let endPoint: MilestoneEndPoint
         if let milestone = item as? Milestone {
             endPoint = MilestoneEndPoint.update(id: milestone.id, body: newMilestone.jsonData)
@@ -135,7 +172,29 @@ extension MilestoneViewController: AddAlertViewControllerDelegate {
                 self?.request(for: .list)
             }
         })
-        
     }
     
+}
+
+extension MilestoneViewController: SwipeControllerDelegate {
+    func swipeController(_ cell: ActionCollectionViewCell) {
+        switch cell.currentState {
+        case .swiped:
+            cell.currentState = .none
+            swipedIndex = nil
+        case .none:
+            cancelSwipe()
+            cell.currentState = .swiped
+            guard let cell = cell as? UICollectionViewCell else { return }
+            swipedIndex = milestoneCollectionView.indexPath(for: cell)
+        default:
+            return
+        }
+    }
+}
+
+extension MilestoneViewController {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        cancelSwipe()
+    }
 }

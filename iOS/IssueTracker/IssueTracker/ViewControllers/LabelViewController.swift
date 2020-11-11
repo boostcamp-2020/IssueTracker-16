@@ -13,6 +13,7 @@ class LabelViewController: UIViewController {
     
     var labels = [Label]()
     var interactor: LabelBusinessLogic?
+    var swipedIndex: IndexPath?
     
     // MARK: - Views
     
@@ -38,6 +39,11 @@ class LabelViewController: UIViewController {
     
     // MARK: - Methods
     
+    @objc private func refresh(_ sender: AnyObject) {
+        request(for: .list)
+        refreshControl.endRefreshing()
+    }
+    
     private func request(for endPoint: LabelEndPoint) {
         interactor?.request(endPoint: .list, completionHandler: { [weak self] (labels: [Label]?) in
             self?.labels = labels ?? []
@@ -48,14 +54,40 @@ class LabelViewController: UIViewController {
         })
     }
     
-    @objc private func refresh(_ sender: AnyObject) {
-        request(for: .list)
-        refreshControl.endRefreshing()
+    private func delete(labelID: Int, cell: UICollectionViewCell) {
+        interactor?.request(endPoint: .delete(id: labelID), completionHandler: { [weak self] (response: APIResponse?) in
+            guard let response = response else {
+                debugPrint("response is Empty")
+                return
+            }
+            if response.success {
+                DispatchQueue.main.async {
+                    guard let indexPath = self?.labelCollectionView.indexPath(for: cell) else {
+                        self?.request(for: .list)
+                        return
+                    }
+                    guard let cell = cell as? ActionCollectionViewCell else { return }
+                    cell.currentState = .none
+                    self?.labels.remove(at: indexPath.item)
+                    self?.swipedIndex = nil
+                    self?.labelCollectionView.deleteItems(at: [indexPath])
+                }
+            }
+        })
+    }
+    
+    private func cancelSwipe() {
+        guard let beforeIndex = swipedIndex,
+           let beforeCell = labelCollectionView.cellForItem(at: beforeIndex)
+            as? ActionCollectionViewCell else { return }
+        beforeCell.currentState = .none
+        swipedIndex = nil
     }
     
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        cancelSwipe()
         guard let vc = segue.destination as? AddAlertViewController else { return }
         vc.delegate = self
         let label = sender as? Label
@@ -78,7 +110,11 @@ extension LabelViewController: UICollectionViewDataSource {
               indexPath.row < labels.count else {
             return UICollectionViewCell()
         }
+        cell.containerView.transform = .identity
+        cell.currentState = .none
         cell.configure(label: labels[indexPath.item])
+        cell.delegate = self
+        cell.deleteHandler = delete
         return cell
     }
 }
@@ -121,7 +157,7 @@ extension LabelViewController: AddAlertViewControllerDelegate {
             return
         }
         
-        let newLabel = Label(id: -1, name: name, description: description, color: color)
+        let newLabel = Label(name: name, description: description, color: color)
         var endPoint = LabelEndPoint.create(body: newLabel.jsonData)
         
         if let label = item as? Label {
@@ -141,4 +177,27 @@ extension LabelViewController: AddAlertViewControllerDelegate {
         })
     }
     
+}
+
+extension LabelViewController: SwipeControllerDelegate {
+    func swipeController(_ cell: ActionCollectionViewCell) {
+        switch cell.currentState {
+        case .swiped:
+            cell.currentState = .none
+            swipedIndex = nil
+        case .none:
+            cancelSwipe()
+            cell.currentState = .swiped
+            guard let cell = cell as? UICollectionViewCell else { return }
+            swipedIndex = labelCollectionView.indexPath(for: cell)
+        default:
+            return
+        }
+    }
+}
+
+extension LabelViewController {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        cancelSwipe()
+    }
 }

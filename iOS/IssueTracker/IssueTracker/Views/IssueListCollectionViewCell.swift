@@ -7,16 +7,18 @@
 
 import UIKit
 
-class IssueListCollectionViewCell: ActionCollectionViewCell {
+class IssueListCollectionViewCell: UICollectionViewCell, ActionCollectionViewCell {
+    
     static let identfier = String(describing: IssueListCollectionViewCell.self)
     
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var milestoneLabel: PaddingLabel!
+    @IBOutlet private weak var labelLabel: GithubLabel!
+    @IBOutlet weak var editingButton: UIButton!
+    @IBOutlet private weak var deleteButton: UIButton!
     @IBOutlet private weak var editingView: UIView!
-    @IBOutlet private weak var editingButton: UIButton!
-    @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var milestoneLabel: PaddingLabel!
-    @IBOutlet weak var labelLabel: GithubLabel!
+    @IBOutlet weak var containerView: UIView!
     
     var issue: Issue? {
         didSet {
@@ -40,15 +42,7 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
     }
     var currentState: ActionState = .none
     var delegate: SwipeControllerDelegate?
-    var indexPath: IndexPath?
-    
-    func cancelSwiped() {
-        if currentState == .none { return }
-        currentState = .none
-        UIView.animate(withDuration: 0.4, delay: 0, options: [.allowAnimatedContent]) {
-            self.contentView.bounds.origin.x -= self.deleteButton.frame.width
-        }
-    }
+    var deleteHandler: ((Int, UICollectionViewCell) -> ())?
     
     func addSwipeGestures() {
         let swipeLeftGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeHandler))
@@ -62,7 +56,6 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
     @objc private func swipeHandler(sender: UISwipeGestureRecognizer) {
         guard currentState != .edit,
               sender.direction == .left || sender.direction == .right else { return }
-        print(sender.direction)
         if sender.direction == .left && currentState == .none {
             delegate?.swipeController(self)
         } else if sender.direction == .right && currentState == .swiped {
@@ -70,23 +63,22 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
         }
     }
     
-    private func changeEditMode() {
+    func changeEditMode() {
         UIView.animate(withDuration: 0.4, delay: 0, options: [.allowAnimatedContent]) {
-            
-            self.contentView.transform = CGAffineTransform(translationX: self.editingView.frame.width, y: 0)
+            self.containerView.transform = CGAffineTransform(translationX: self.editingView.frame.width, y: 0)
         }
     }
     
     func changeNone() {
         UIView.animate(withDuration: 0.4, delay: 0, options: [.allowAnimatedContent]) {
-            self.contentView.transform = .identity
+            self.containerView.transform = .identity
         }
     }
     
     func changeSwiped() {
-        UIView.animate(withDuration: 0.4, delay: 0, options: [.allowAnimatedContent]) {
-            self.contentView.transform = CGAffineTransform(translationX: self.deleteButton.frame.width * -1, y: 0)
-        }
+        UIView.animate(withDuration: 0.4, delay: 0, options: [.allowAnimatedContent], animations: {
+            self.containerView.transform = CGAffineTransform(translationX: self.deleteButton.frame.width * -1, y: 0)
+        })
     }
     
     override func layoutSubviews() {
@@ -101,6 +93,8 @@ class IssueListCollectionViewCell: ActionCollectionViewCell {
         }
     }
     @IBAction private func touchedDeleteButton(_ sender: Any) {
-        debugPrint("delete")
+        guard let issueID = issue?.id,
+              let deleteHandler = deleteHandler else { return }
+        deleteHandler(issueID, self)
     }
 }

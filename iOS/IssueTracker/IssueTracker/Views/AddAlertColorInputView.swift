@@ -72,6 +72,7 @@ class AddAlertColorInputView: AddAlertInputView {
     
     @objc private func touchedRandomColor() {
         color = UIColor.random
+        validate()
     }
     
     override func clear() {
@@ -97,5 +98,6 @@ class AddAlertColorInputView: AddAlertInputView {
 extension AddAlertColorInputView: UIColorPickerViewControllerDelegate {
     func colorPickerViewControllerDidFinish(_ viewController: UIColorPickerViewController) {
         color = viewController.selectedColor
+        validate()
     }
 }
