@@ -5,32 +5,32 @@ const config = {
     codeUrl: 'https://github.com/login/oauth/authorize',
     accessTokenUrl: 'https://github.com/login/oauth/access_token',
     userInfoUrl: 'https://api.github.com/user',
-    client_id: process.env.GITHUB_CLIENT_ID,
-    client_secret: process.env.GITHUB_CLIENT_SECRET,
-    redirect_uri: process.env.GITHUB_REDIRECT_URL,
+    clientId: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    redirectUri: process.env.GITHUB_REDIRECT_URL,
     scope: 'read:user',
   },
 };
 
 const authService = {
   getCodeRequestUrl: ({ service }) => {
-    const { codeUrl, client_id, redirect_uri, scope } = config[service];
+    const { codeUrl, clientId, redirectUri, scope } = config[service];
     const query = new URLSearchParams({
-      client_id,
-      redirect_uri,
+      client_id: clientId,
+      redirect_uri: redirectUri,
       scope,
     }).toString();
     return `${codeUrl}?${query}`;
   },
 
   getAccessToken: async ({ service, code }) => {
-    const { accessTokenUrl, client_id, client_secret, redirect_uri } = config[
+    const { accessTokenUrl, clientId, clientSecret, redirectUri } = config[
       service
     ];
     const query = new URLSearchParams({
-      client_id,
-      client_secret,
-      redirect_uri,
+      client_id: clientId,
+      client_secret: clientSecret,
+      redirect_uri: redirectUri,
       code,
     }).toString();
     const { data: tokenData } = await axios.post(`${accessTokenUrl}?${query}`);
