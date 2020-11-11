@@ -18,15 +18,11 @@ module.exports = class Issue extends Model {
           allowNull: false,
           defaultValue: false,
         },
-        isDeleted: {
-          type: DataTypes.BOOLEAN,
-          allowNull: false,
-          defaultValue: false,
-        },
       },
       {
         sequelize,
         underscored: true,
+        paranoid: true,
         modelName: 'Issue',
         tableName: 'issues',
         charset: 'utf8',

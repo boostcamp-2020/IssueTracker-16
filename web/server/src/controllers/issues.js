@@ -59,7 +59,7 @@ const issueController = {
 
   delete: async (req, res) => {
     const { num } = req.params;
-    const [deleted] = await issueService.delete({ num });
+    const deleted = await issueService.delete({ num });
     if (!deleted) {
       throw new Error(NOT_FOUND);
     }

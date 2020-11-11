@@ -103,8 +103,7 @@ const issueService = {
 
   update: async ({ num, payload }) => Issue.update(payload, { where: { num } }),
 
-  delete: async ({ num }) =>
-    Issue.update({ isDeleted: true }, { where: { num } }),
+  delete: async ({ num }) => Issue.destroy({ where: { num } }),
 };
 
 module.exports = issueService;
