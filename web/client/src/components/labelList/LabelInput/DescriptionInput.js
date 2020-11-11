@@ -14,7 +14,12 @@ const Description = styled.div`
   }
 `;
 
-export default function DescriptionInput() {
+export default function DescriptionInput({ setDescription }) {
+  const handleChange = event => {
+    const { value } = event.target;
+
+    setDescription(value);
+  };
   return (
     <Description>
       <div>Description</div>
@@ -22,6 +27,7 @@ export default function DescriptionInput() {
         type="text"
         name="description"
         placeholder="Description (optional)"
+        onChange={handleChange}
       ></input>
     </Description>
   );

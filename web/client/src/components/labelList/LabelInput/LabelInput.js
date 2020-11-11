@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import COLOR from '../../../utils/color';
 import getRandomColor from '../../../utils/getRandomColor';
 import Label from '../../common/Label';
 import NameInput from './NameInput';
 import DescriptionInput from './DescriptionInput';
 import ColorInput from './ColorInput';
-import GreenButton from '../../common/GreenButton';
 import CancelButton from './CancelButton';
+import SubmitButton from './SubmitButton';
 
 const Wrapper = styled.div`
   margin-bottom: 16px;
@@ -70,24 +69,27 @@ const Form = styled.form`
 
 export default function LabelInput() {
   const isLabelList = true;
-  const [name, setName] = useState('Label preview');
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
   const [color, setColor] = useState(getRandomColor);
   const [colorInput, setColorInput] = useState(`#${color}`);
 
   return (
     <Wrapper>
-      <Label {...{ name, color, isLabelList }}></Label>
+      <Label
+        {...{ name: name ? name : 'Label preview', color, isLabelList }}
+      ></Label>
       <Form>
         <div>
           <NameInput {...{ setName }}></NameInput>
-          <DescriptionInput></DescriptionInput>
+          <DescriptionInput {...{ setDescription }}></DescriptionInput>
           <ColorInput
             {...{ color, setColor, colorInput, setColorInput }}
           ></ColorInput>
         </div>
         <Buttons>
           <CancelButton />
-          <GreenButton>Create label</GreenButton>
+          <SubmitButton {...{ name, description, color, colorInput }} />
         </Buttons>
       </Form>
     </Wrapper>

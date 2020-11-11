@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import isValidColor from '../../../utils/isValidColor';
@@ -19,6 +19,7 @@ const Color = styled.div`
 
   input[type='text'] {
     width: 80%;
+    color: #${({ isValid }) => (isValid ? '000000' : 'cb2431')};
   }
 `;
 
@@ -28,12 +29,13 @@ export default function ColorInput({
   colorInput,
   setColorInput,
 }) {
+  const [state, setState] = useState({ isValid: 'true' });
   const handleChange = event => {
-    const { name, value } = event.target;
-    if (name === 'color') {
-      setColorInput(value.length ? value : '#');
-      if (isValidColor(value)) setColor(value.substring(1));
-    }
+    const { value } = event.target;
+
+    setColorInput(value.length ? value : '#');
+    if (isValidColor(value)) setColor(value.substring(1));
+    setState({ isValid: isValidColor(value) });
   };
 
   const handleClick = event => {
@@ -42,7 +44,7 @@ export default function ColorInput({
     setColorInput(`#${color}`);
   };
   return (
-    <Color>
+    <Color {...state}>
       <div>Color</div>
       <div>
         <RefreshButton {...{ color }} onClick={handleClick} />

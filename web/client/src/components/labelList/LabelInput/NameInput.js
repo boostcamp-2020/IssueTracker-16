@@ -16,10 +16,9 @@ const Name = styled.div`
 
 export default function NameInput({ setName }) {
   const handleChange = event => {
-    const { name, value } = event.target;
-    if (name === 'name') {
-      setName(value.length ? value : 'Label preview');
-    }
+    const { value } = event.target;
+
+    setName(value);
   };
   return (
     <Name>
