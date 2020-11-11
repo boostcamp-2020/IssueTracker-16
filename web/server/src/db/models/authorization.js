@@ -22,9 +22,11 @@ module.exports = class Authorization extends Model {
   static associate({ Authorization, User, OAuth }) {
     User.belongsToMany(OAuth, {
       through: Authorization,
+      foreignKey: 'userNum',
     });
     OAuth.belongsToMany(User, {
       through: Authorization,
+      foreignKey: 'oAuthNum',
     });
   }
 };

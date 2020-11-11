@@ -39,12 +39,14 @@ const authService = {
 
   getUserDataByAccessToken: async ({ service, accessToken }) => {
     const { userInfoUrl } = config[service];
-    const { data: userData } = await axios.get(userInfoUrl, {
+    const {
+      data: { login: id, name, avatar_url: imageUrl },
+    } = await axios.get(userInfoUrl, {
       headers: {
         Authorization: `token ${accessToken}`,
       },
     });
-    return userData;
+    return { id, name, imageUrl };
   },
 
   getRedirectUrl: ({ userAgent, host, token }) => {
