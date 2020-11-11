@@ -1,8 +1,5 @@
-const axios = require('axios');
-
 const authService = require('../services/auths');
 // const userService = require('../services/users');
-const { OK } = require('../common/status');
 
 const authController = {
   requestOAuthCode: async (req, res) => {
@@ -32,9 +29,12 @@ const authController = {
     // }
 
     // 3. 유저 모델로 JWT 생성
-    const { login: id, name, avatar_url: imageUrl } = userData;
+    const token = 'test123';
+    res.cookie('token', token);
 
-    res.status(OK).json({ id, name, imageUrl });
+    const { host, ['user-agent']: userAgent } = req.headers;
+    const redirectUrl = authService.getRedirectUrl({ userAgent, host, token });
+    res.redirect(redirectUrl);
   },
 };
 

@@ -46,6 +46,12 @@ const authService = {
     });
     return userData;
   },
+
+  getRedirectUrl: ({ userAgent, host, token }) => {
+    const isMobile = /iphone|ipad|ipod|android/i.test(userAgent.toLowerCase());
+    const iOSSchema = process.env.IOS_APP_SCHEMA;
+    return isMobile ? `${iOSSchema}?token=${token}` : `http://${host}`;
+  },
 };
 
 module.exports = authService;
