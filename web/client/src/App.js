@@ -6,6 +6,8 @@ import ErrorPage from './pages/ErrorPage';
 import IssueListPage from './pages/IssueListPage';
 import LabelListPage from './pages/LabelListPage';
 import MilestoneListPage from './pages/MilestoneListPage';
+import SignInPage from './pages/SignInPage';
+import AuthPage from './pages/AuthPage';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={IssueListPage} />
+          <Route path="/signin" component={SignInPage} />
+          <Route path="/auth/:service" component={AuthPage} />
           <Route path="/issues" component={IssueListPage} />
           <Route path="/labels" component={LabelListPage} />
           <Route path="/milestones" component={MilestoneListPage} />
