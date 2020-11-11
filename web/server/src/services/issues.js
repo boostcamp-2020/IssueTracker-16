@@ -12,10 +12,7 @@ const issueService = {
   findAll: async ({ isClosed }) => {
     const issues = await Issue.findAll({
       attributes: ['num', 'title', 'createdAt', 'isClosed'],
-      where: {
-        isDeleted: false,
-        isClosed,
-      },
+      where: { isClosed },
       order: [['num', 'DESC']],
       include: [
         {
