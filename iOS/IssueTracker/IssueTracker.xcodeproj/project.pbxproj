@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,7 @@
 		4C2F095F255A3E4600ED5F06 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2F095E255A3E4600ED5F06 /* Comment.swift */; };
 		4C2F0969255A675400ED5F06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2F0968255A675400ED5F06 /* User.swift */; };
 		4C34265A255AF8E7002B5960 /* FilterCollectionViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C342659255AF8E7002B5960 /* FilterCollectionViewListCell.swift */; };
+		4C3426B8255BC569002B5960 /* MarkdownView in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3426B7255BC569002B5960 /* MarkdownView */; };
 		4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5138FF2547CA5A0084F65F /* LabelViewController.swift */; };
 		4C5139122548047A0084F65F /* AddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139112548047A0084F65F /* AddAlertViewController.swift */; };
 		4C51391D254847530084F65F /* BlockResponderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51391C254847530084F65F /* BlockResponderView.swift */; };
@@ -193,6 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C3426B8255BC569002B5960 /* MarkdownView in Frameworks */,
 				4C513983254934760084F65F /* NetworkService.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,6 +202,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C3426BB255BC57E002B5960 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		4C513917254840480084F65F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,6 +319,7 @@
 		D4DF601F2547AEF200765C0A /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
+				4C3426BB255BC57E002B5960 /* New Group */,
 				4C5139C72549B05C0084F65F /* IssueTracker.entitlements */,
 				4C513917254840480084F65F /* Utils */,
 				D4DF60372547AF7500765C0A /* Supporting Files */,
@@ -459,6 +469,9 @@
 				4C513982254934760084F65F /* PBXTargetDependency */,
 			);
 			name = IssueTracker;
+			packageProductDependencies = (
+				4C3426B7255BC569002B5960 /* MarkdownView */,
+			);
 			productName = IssueTracker;
 			productReference = D4DF601D2547AEF200765C0A /* IssueTracker.app */;
 			productType = "com.apple.product-type.application";
@@ -493,6 +506,9 @@
 				Base,
 			);
 			mainGroup = D4DF60142547AEF200765C0A;
+			packageReferences = (
+				4C3426B6255BC569002B5960 /* XCRemoteSwiftPackageReference "MarkdownView" */,
+			);
 			productRefGroup = D4DF601E2547AEF200765C0A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -935,6 +951,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4C3426B6255BC569002B5960 /* XCRemoteSwiftPackageReference "MarkdownView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/keitaoouchi/MarkdownView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4C3426B7255BC569002B5960 /* MarkdownView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4C3426B6255BC569002B5960 /* XCRemoteSwiftPackageReference "MarkdownView" */;
+			productName = MarkdownView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D4DF60152547AEF200765C0A /* Project object */;
 }
