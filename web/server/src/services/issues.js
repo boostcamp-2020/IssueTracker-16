@@ -53,7 +53,7 @@ const issueService = {
 
   findOneByNum: async ({ num }) =>
     Issue.findOne({
-      attributes: ['num', 'title', 'createdAt', 'isClosed', 'isDeleted'],
+      attributes: ['num', 'title', 'createdAt', 'isClosed'],
       where: { num },
       include: [
         {
