@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={IssueListPage} />
-          <Route path="/signIn" component={SignInPage} />
+          <Route path="/signin" component={SignInPage} />
           <Route path="/auth/:service" component={AuthPage} />
           <Route path="/issues" component={IssueListPage} />
           <Route path="/labels" component={LabelListPage} />

@@ -4,6 +4,6 @@ const controller = require('../controllers/auths');
 const { errorHandler } = require('../common/errorHandler');
 
 router.get('/oauth/:service', errorHandler(controller.requestOAuthCode));
-router.get('/signIn/:service', errorHandler(controller.signInByOAuth));
+router.get('/signin/:service', errorHandler(controller.signInByOAuth));
 
 module.exports = router;

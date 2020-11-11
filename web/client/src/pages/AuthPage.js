@@ -15,7 +15,7 @@ export default function AuthPage({ match, location }) {
 
     const signIn = async ({ service, code }) => {
       const { data: jwt } = await axios.get(
-        `/api/auths/signIn/${service}?code=${code}`,
+        `/api/auths/signin/${service}?code=${code}`,
       );
       setUser(jwt);
     };
