@@ -16,7 +16,30 @@ class IssueViewController: UIViewController {
         case edit
     }
     
-    private var issues = [Issue]()
+    var filter = Filter() {
+        didSet {
+            filteredIssues = filter.filtering(issues: issues)
+        }
+    }
+    var anyIssues: [Issue] {
+        if isFiltering() {
+            return filteredIssues
+        } else {
+            return issues
+        }
+    }
+    private var issues = [Issue]() {
+        didSet {
+            filter = Filter()
+        }
+    }
+    private var filteredIssues = [Issue]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.issueCollectionView.reloadData()
+            }
+        }
+    }
     
     private var selectedIssues = Set<IndexPath>() {
         didSet {
@@ -68,7 +91,7 @@ class IssueViewController: UIViewController {
     // MARK: - Initialize
     
     private func setupViews() {
-        navigationItem.searchController = searchController
+        setUpSearchController()
         addIssueButton.layer.cornerRadius = addIssueButton.bounds.height / 2
     }
     
@@ -86,10 +109,15 @@ class IssueViewController: UIViewController {
             vc.issue = sender
         } else if let vc = segue.destination as? AddIssueViewController {
             vc.delegate = self
+        } else if let vc = segue.destination as? FilterViewController {
+            vc.delegate = self
+            let authorNames = Array(Set(issues.compactMap{ $0.author?.id }))
+            let labelNames = Array(Set(issues.flatMap{ $0.labels.map{ $0.name }}))
+            vc.loadItems(authors: authorNames, labels: labelNames)
         }
     }
     
-    private func request(for endPoint: IssueEndPoint) {
+    func request(for endPoint: IssueEndPoint) {
         interactor?.request(endPoint: endPoint, completionHandler: { [weak self] (issueResponse: IssueAPI?) in
             self?.issues = issueResponse?.issues ?? []
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -111,12 +139,25 @@ class IssueViewController: UIViewController {
                         self?.request(for: .list)
                         return
                     }
-                    self?.issues.remove(at: indexPath.item)
-                    self?.swipedIndex = nil
-                    self?.issueCollectionView.deleteItems(at: [indexPath])
+                    self?.removeIssueFromCollection(indexPath: indexPath)
                 }
             }
         })
+    }
+    private func removeIssueFromCollection(indexPath: IndexPath) {
+        if isFiltering() {
+            for i in 0..<issues.count {
+                if issues[i].id == filteredIssues[indexPath.item].id {
+                    issues.remove(at: i)
+                    break
+                }
+            }
+            debugPrint("셀 삭제 오류")
+        } else {
+            issues.remove(at: indexPath.item)
+        }
+        swipedIndex = nil
+        issueCollectionView.deleteItems(at: [indexPath])
     }
     
     // MARK: Selectors
@@ -162,7 +203,7 @@ class IssueViewController: UIViewController {
     }
     
     private func selectAllIssues() {
-        for item in 0..<issues.count {
+        for item in 0..<anyIssues.count {
             selectedIssues.insert(IndexPath(item: item, section: 0))
         }
         
@@ -197,7 +238,7 @@ class IssueViewController: UIViewController {
 
 extension IssueViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return issues.count
+        return anyIssues.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -205,17 +246,14 @@ extension IssueViewController: UICollectionViewDataSource {
         switch currentState {
             case .edit:
                 cell.currentState = .edit
-                
             default:
                 if indexPath == swipedIndex {
                     cell.currentState = .swiped
                 } else {
                     cell.currentState = .none
                 }
-                
-                break
         }
-        
+        cell.issue = anyIssues[indexPath.row]
         if selectedIssues.contains(indexPath) {
             cell.isSelected = true
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
@@ -225,10 +263,8 @@ extension IssueViewController: UICollectionViewDataSource {
         }
         cell.addSwipeGestures()
         cell.delegate = self
-        cell.issue = issues[indexPath.item]
         cell.containerView.transform = .identity
         cell.deleteHandler = delete
-        
         return cell
     }
 }
@@ -236,7 +272,7 @@ extension IssueViewController: UICollectionViewDataSource {
 extension IssueViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard currentState == .edit else {
-            performSegue(withIdentifier: segueIdentifier(to: IssueDetailViewController.self), sender: issues[indexPath.row])
+            performSegue(withIdentifier: segueIdentifier(to: IssueDetailViewController.self), sender: anyIssues[indexPath.row])
             return
         }
         if !selectedIssues.contains(indexPath) {
@@ -311,5 +347,44 @@ extension IssueViewController: SwipeControllerDelegate {
         default:
             return
         }
+    }
+}
+
+// MARK: - Filter Delegate
+
+extension IssueViewController: FilterDelegate {
+    func filterUpdate(types: [FilterType]) {
+        filter.types = types
+    }
+}
+
+// MARK: - Search Delegate 
+
+extension IssueViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        search(text)
+    }
+    func setUpSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.searchBar.placeholder = "Search Issues"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+      
+    func search(_ searchText: String, scope: String = "All") {
+        filteredIssues = filteredIssues.filter({
+            return $0.title.lowercased().contains(searchText.lowercased())
+        })
+        issueCollectionView.reloadData()
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty() && !filter.isFiltering
     }
 }

@@ -24,21 +24,13 @@ class FilterViewController: UIViewController {
     static private let sectionHeaderElementKind = "section-header-element-kind"
     private var filterItems: [Int: [FilterItem]] = [
         0: [
-                FilterItem(title: "열린 이슈들", subItems: []),
-                FilterItem(title: "내가 작성한 이슈들", subItems: []),
-                FilterItem(title: "나한테 할당된 이슈들", subItems: []),
-                FilterItem(title: "내가 댓글을 남긴 이슈들", subItems: []),
-                FilterItem(title: "닫힌 이슈들", subItems: []),
+            FilterItem(title: "열린 이슈들", subItems: [], type: .isClosed(false)),
+            FilterItem(title: "내가 작성한 이슈들", subItems: [], type: .author(me)),
+            FilterItem(title: "나한테 할당된 이슈들", subItems: [], type: .assignee(me)),
+            FilterItem(title: "내가 댓글을 남긴 이슈들", subItems: [], type: .commented(me)),
+            FilterItem(title: "닫힌 이슈들", subItems: [], type: .isClosed(true)),
         ],
         1: [
-            FilterItem(title: "작성자", subItems: [
-                FilterItem(title: "웅스", subItems: []),
-                FilterItem(title: "피오", subItems: [])
-            ]),
-            FilterItem(title: "레이블", subItems: [
-                FilterItem(title: "iOS", subItems: []),
-                FilterItem(title: "BE", subItems: [])
-            ])
         ]
     ]
     private let sectionTitle: [Int: String] = [
@@ -46,6 +38,8 @@ class FilterViewController: UIViewController {
         1: "세부 조건"
     ]
     private var dataSource: UICollectionViewDiffableDataSource<Int, FilterItem>! = nil
+    var delegate: FilterDelegate?
+    
     // MARK: Views
     
     @IBOutlet private weak var filterCollectionView: UICollectionView!
@@ -59,6 +53,14 @@ class FilterViewController: UIViewController {
     }
     
     // MARK: Initialize
+    
+    func loadItems(authors: [String], labels: [String]) {
+        let authors = authors.map{FilterItem(title: $0, subItems: [], type: .author($0))}
+        let authorFilter = FilterItem(title: "작성자", subItems: authors)
+        let labels = labels.map{FilterItem(title: $0, subItems: [], type: .label($0))}
+        let labelFilter = FilterItem(title: "레이블", subItems: labels)
+        filterItems[1] = [authorFilter, labelFilter]
+    }
     
     private func configureCollectionView() {
         filterCollectionView.collectionViewLayout = generateLayout()
@@ -139,6 +141,15 @@ class FilterViewController: UIViewController {
     // MARK: - Methods
     
     @IBAction private func touchedDone(_ sender: Any) {
+        guard let indexPaths = filterCollectionView.indexPathsForSelectedItems else { return }
+        var types: [FilterType] = []
+        for indexPath in indexPaths {
+            if let cell = filterCollectionView.cellForItem(at: indexPath) as? FilterCollectionViewListCell,
+               let type = cell.filterItem?.type {
+                types.append(type)
+            }
+        }
+        delegate?.filterUpdate(types: types)
         self.dismiss(animated: true, completion: nil)
     }
     
