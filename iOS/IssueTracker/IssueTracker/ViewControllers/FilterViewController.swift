@@ -15,11 +15,13 @@ class FilterViewController: UIViewController {
         let title: String
         var subItems: [FilterItem]
         private let identifier = UUID()
+        var type: FilterType?
     }
+    static private let me = "seokju2ng"
     
     // MARK: Properties
     
-    static let sectionHeaderElementKind = "section-header-element-kind"
+    static private let sectionHeaderElementKind = "section-header-element-kind"
     private var filterItems: [Int: [FilterItem]] = [
         0: [
                 FilterItem(title: "열린 이슈들", subItems: []),
@@ -68,7 +70,6 @@ class FilterViewController: UIViewController {
             var content = cell.defaultContentConfiguration()
             content.text = item.title
             cell.contentConfiguration = content
-            
         }
         
         let containerCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, FilterItem> { (cell, indexPath, menuItem) in
@@ -76,20 +77,15 @@ class FilterViewController: UIViewController {
             contentConfiguration.text = menuItem.title
             contentConfiguration.textProperties.font = .preferredFont(forTextStyle: .headline)
             cell.contentConfiguration = contentConfiguration
-            
             let disclosureOptions = UICellAccessory.OutlineDisclosureOptions(style: .header)
             cell.accessories = [.outlineDisclosure(options:disclosureOptions)]
-            cell.backgroundConfiguration = UIBackgroundConfiguration.clear()
         }
         
         let cellRegistration = UICollectionView.CellRegistration<FilterCollectionViewListCell, FilterItem> { cell, indexPath, filterItem in
-            
-            
             cell.filterItem = filterItem
         }
         
         dataSource = UICollectionViewDiffableDataSource<Int, FilterItem>(collectionView: filterCollectionView, cellProvider: { (collectionView, indexPath, item) -> UICollectionViewCell? in
-            
             if item.subItems.isEmpty {
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
             } else {
@@ -137,6 +133,9 @@ class FilterViewController: UIViewController {
             addItems(items, to: nil)
             dataSource.apply(snapshot, to: section, animatingDifferences: false, completion: nil)
         }
+        
+    }
+    
     // MARK: - Methods
     
     @IBAction private func touchedDone(_ sender: Any) {
@@ -147,8 +146,68 @@ class FilterViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 }
+
+// MARK: - Filter
+enum FilterType: Hashable {
+    case label(String)
+    case author(String)
+    case isClosed(Bool)
+    case assignee(String)
+    case commented(String)
+    var condition: (Issue) -> Bool {
+        switch self {
+        case .label(let name):
+            return { (issue) in
+                for label in issue.labels {
+                    if label.name == name { return true }
                 }
+                return false
+            }
+        case .author(let id):
+            return { (issue) in
+                issue.author?.id == id
+            }
+        case .isClosed(let isClosed):
+            return { (issue) in
+                return issue.isClosed == isClosed
+            }
+        case .assignee(let id):
+            return { (issue) in
+                for assignee in issue.assignees {
+                    if assignee.id == id { return true }
+                }
+                return false
+            }
+        case .commented(let id):
+            return { (issue) in
+                for comment in issue.comments ?? [] {
+                    if comment.writer?.id == id { return true}
+                }
+                return false
+            }
+        }
+    }
+    
+}
+// TODO: 필터 조건 조합 로직 수정!!!!!!!
+struct Filter {
+    var types: [FilterType]
     func filtering(issues: [Issue]) -> [Issue] {
         return issues.filter({
+            for type in types {
                 if type.condition($0) { return true }
             }
+            return false
+        })
+    }
+    var isFiltering: Bool {
+        guard types.count == 1, types[0] == .isClosed(false) else { return true }
+        return false
+    }
+    init() {
+        types = [FilterType.isClosed(false)]
+    }
+}
+protocol FilterDelegate {
+    func filterUpdate(types: [FilterType])
+}
