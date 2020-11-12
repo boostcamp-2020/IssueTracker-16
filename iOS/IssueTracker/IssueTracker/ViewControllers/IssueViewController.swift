@@ -28,11 +28,7 @@ class IssueViewController: UIViewController {
             return issues
         }
     }
-    private var issues = [Issue]() {
-        didSet {
-            filter = Filter()
-        }
-    }
+    private var issues = [Issue]()
     private var filteredIssues = [Issue]() {
         didSet {
             DispatchQueue.main.async {
@@ -107,6 +103,7 @@ class IssueViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         cancelSwipe()
+        resetSearch()
         if let vc = segue.destination as? IssueDetailViewController {
             let sender = sender as? Issue
             vc.issue = sender
@@ -123,6 +120,7 @@ class IssueViewController: UIViewController {
     func request(for endPoint: IssueEndPoint) {
         interactor?.request(endPoint: endPoint, completionHandler: { [weak self] (issueResponse: IssueAPI?) in
             self?.issues = issueResponse?.issues ?? []
+            self?.filter = Filter()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 self?.issueCollectionView.reloadData()
                 self?.activityIndicator.stopAnimating()
@@ -152,10 +150,10 @@ class IssueViewController: UIViewController {
             for i in 0..<issues.count {
                 if issues[i].id == filteredIssues[indexPath.item].id {
                     issues.remove(at: i)
+                    filteredIssues.remove(at: indexPath.item)
                     break
                 }
             }
-            debugPrint("셀 삭제 오류")
         } else {
             issues.remove(at: indexPath.item)
         }
@@ -368,30 +366,44 @@ extension IssueViewController: FilterDelegate {
 
 // MARK: - Search Delegate
 
-extension IssueViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        search(text)
-    }
-    func setUpSearchController() {
+extension IssueViewController: UISearchResultsUpdating, UISearchBarDelegate {
+    
+    private func setUpSearchController() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Issues"
+        searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }
     
-    func searchBarIsEmpty() -> Bool {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+//        searchController.searchBar.setShowsCancelButton(true, animated: true)
+        cancelSwipe()
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else { return }
+        search(text)
+    }
+    
+    private func searchBarIsEmpty() -> Bool {
         return searchController.searchBar.text?.isEmpty ?? true
     }
       
-    func search(_ searchText: String, scope: String = "All") {
+    private func search(_ searchText: String, scope: String = "All") {
         filteredIssues = filter.filtering(issues: issues, searchText: searchText)
         issueCollectionView.reloadData()
     }
     
-    func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty() || filter.isFiltering
+    private func isFiltering() -> Bool {
+        return !searchBarIsEmpty() || filter.isFiltering
+    }
+    
+    private func resetSearch() {
+        searchController.searchBar.text = nil
+        searchController.searchBar.endEditing(true)
+        searchController.searchBar.resignFirstResponder()
     }
     
 }
