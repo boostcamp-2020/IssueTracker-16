@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MilestoneItem from './MilestoneItem';
+import MilestoneItem from './MilestoneItem/MilestoneItem';
 import ListBody from '../common/ListBody';
 
 export default function MilestoneListBody({ milestones }) {

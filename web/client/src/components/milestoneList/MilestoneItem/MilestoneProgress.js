@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import COLOR from '../../utils/color';
+import COLOR from '../../../utils/color';
 
 const ProgressBar = styled.div`
   height: 10px;
