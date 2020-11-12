@@ -25,12 +25,19 @@ const Button = styled.button`
     fill: #${COLOR.red};
     margin-right: 5px;
   }
+
+  &:disabled {
+    border: 1px solid #87c195;
+    background-color: #94d3a2;
+    cursor: default;
+  }
 `;
 
-export default function GreenButton({ children, onClick, isNotGreen }) {
-  return (
-    <Button isNotGreen={isNotGreen} onClick={onClick}>
-      {children}
-    </Button>
-  );
+export default function GreenButton({
+  children,
+  disabled,
+  onClick,
+  isNotGreen,
+}) {
+  return <Button {...{ isNotGreen, onClick, disabled }}>{children}</Button>;
 }

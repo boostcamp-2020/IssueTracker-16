@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import COLOR from '../../utils/color';
-import GreenButton from '../common/GreenButton';
 import IssueOpenClosedButton from './IssueOpenClosedButton';
+import SubmitButton from './SubmitButton';
 
 const Div = styled.div`
   display: flex;
@@ -75,6 +75,8 @@ export default function CommentInput({ num, isClosed }) {
     num: 1,
     id: 'test-seokju2ng',
   };
+  const [content, setContent] = useState('');
+  const changeContent = ({ target }) => setContent(target.value);
   return (
     <Div>
       <ImageWrap>
@@ -85,11 +87,15 @@ export default function CommentInput({ num, isClosed }) {
           <Tap>Write</Tap>
         </Top>
         <Middle>
-          <TextArea placeholder="Leave a comment"></TextArea>
+          <TextArea
+            placeholder="Leave a comment"
+            defaultValue={content}
+            onChange={changeContent}
+          ></TextArea>
         </Middle>
         <Bottom>
           <IssueOpenClosedButton {...{ num, isClosed }} />
-          <GreenButton>Comment</GreenButton>
+          <SubmitButton {...{ num, content }} />
         </Bottom>
       </Body>
     </Div>
