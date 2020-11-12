@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import COLOR from '../../utils/color';
-import ProgressBar from '../common/ProgressBar';
+import COLOR from '../../../utils/color';
+import ProgressBar from '../../common/ProgressBar';
 
 const ProgressDesc = styled.div`
   margin-top: 5px;
