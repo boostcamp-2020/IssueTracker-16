@@ -29,6 +29,7 @@ class AddIssueViewController: UIViewController {
     @IBOutlet weak private(set) var issueTitle: UITextField!
     @IBOutlet weak private(set) var commentTextView: UITextView!
     @IBOutlet weak private var mdSegmentControl: UISegmentedControl!
+    @IBOutlet weak var textViewBottmConstraint: NSLayoutConstraint!
     private var mdPreview: MarkdownView?
     private var isPreviewMode = false {
         didSet {
@@ -40,6 +41,7 @@ class AddIssueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addObservers()
         configure()
     }
     
@@ -54,6 +56,17 @@ class AddIssueViewController: UIViewController {
         self.issueID.text = "#\(issue.id)"
         self.issueTitle.text = issue.title
         self.commentTextView.text = issue.comments?.first?.content
+    }
+    
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChanged(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+    }
+    
+    @objc func keyboardWillChanged(_ notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+        textViewBottmConstraint.constant = keyboardValue.cgRectValue.height
     }
     
     // MARK: - Methods

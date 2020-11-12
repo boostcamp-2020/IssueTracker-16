@@ -1134,6 +1134,7 @@
                         <outlet property="issueID" destination="son-tP-Ubg" id="cEe-03-PjT"/>
                         <outlet property="issueTitle" destination="kRU-Uo-sGC" id="3dJ-ez-BsE"/>
                         <outlet property="mdSegmentControl" destination="CTT-ua-ToW" id="57g-xc-3qS"/>
+                        <outlet property="textViewBottmConstraint" destination="gf4-cf-jOv" id="12i-3l-AET"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeW-8D-VL8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
