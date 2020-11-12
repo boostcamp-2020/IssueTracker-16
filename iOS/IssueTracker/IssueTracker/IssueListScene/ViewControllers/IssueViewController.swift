@@ -191,8 +191,6 @@ class IssueViewController: UIViewController {
         
         return true
     }
-    
-    
 }
 
 extension IssueViewController: UICollectionViewDataSource {
@@ -202,6 +200,11 @@ extension IssueViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IssueListCollectionViewCell.identfier, for: indexPath) as? IssueListCollectionViewCell else { return UICollectionViewCell() }
+        
+        
+//        cell.contentView.translatesAutoresizingMaskIntoConstraints = false
+//        cell.widthAnchor.constraint(equalTo: cell.superview?.topAnchor).isActive = true
+//        
         switch currentState {
             case .edit:
                 cell.currentState = .edit
@@ -228,6 +231,13 @@ extension IssueViewController: UICollectionViewDataSource {
         cell.issue = issues[indexPath.item]
         cell.containerView.transform = .identity
         cell.deleteHandler = delete
+        cell.layer.shadowColor = UIColor.darkGray.cgColor
+        cell.layer.shadowRadius = 3
+        cell.layer.shadowOffset = .init(width: 2, height: 2)
+        cell.layer.shadowOpacity = 0.3
+        
+        cell.contentView.layer.cornerRadius = 10
+        cell.contentView.clipsToBounds = true
         
         return cell
     }
@@ -255,13 +265,23 @@ extension IssueViewController: UICollectionViewDelegate {
         cancelSwipe()
     }
     
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.alpha = 0.5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.alpha = 1
+    }
+    
 }
 
 // MARK: - UICollectionView Delegate FlowLayout
 
 extension IssueViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.bounds.width, height: 120)
+        return .init(width: view.bounds.width - 20, height: 120)
     }
 }
 

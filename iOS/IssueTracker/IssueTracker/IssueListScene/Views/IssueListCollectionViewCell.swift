@@ -11,14 +11,16 @@ class IssueListCollectionViewCell: UICollectionViewCell, ActionCollectionViewCel
     
     static let identfier = String(describing: IssueListCollectionViewCell.self)
     
+    // MARK: Views
+    
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var milestoneLabel: PaddingLabel!
-    @IBOutlet private weak var labelLabel: GithubLabel!
     @IBOutlet weak var editingButton: UIButton!
     @IBOutlet private weak var deleteButton: UIButton!
     @IBOutlet private weak var editingView: UIView!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var labelStackView: UIStackView!
     
     var issue: Issue? {
         didSet {
@@ -27,12 +29,36 @@ class IssueListCollectionViewCell: UICollectionViewCell, ActionCollectionViewCel
             milestoneLabel.text = issue?.milestone?.title
             milestoneLabel.isHidden = issue?.milestone == nil
             descriptionLabel.text = issue?.comment?.content
-            labelLabel.label = issue?.labels.first
-            labelLabel.isHidden = labelLabel.label == nil
-            #warning("코너레디우스가 제대로 안 먹혀서 임의로 넣어둠!!")
-            labelLabel.layer.cornerRadius = 6
-            labelLabel.clipsToBounds = true
+            
+            configure(labels: issue?.labels ?? [])
         }
+    }
+    
+    private func configure(labels: [Label]) {
+        labelStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fill
+        stackView.spacing = 10
+        labels.forEach {
+            stackView.addArrangedSubview(githubLabel(for: $0))
+        }
+        labelStackView.addArrangedSubview(stackView)
+    }
+    
+    private func githubLabel(for label: Label) -> UIView {
+        let view = UIView()
+        
+        let githubLabel = GithubLabel()
+        githubLabel.translatesAutoresizingMaskIntoConstraints = false
+        githubLabel.label = label
+        view.addSubview(githubLabel)
+        githubLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+        githubLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        githubLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
+        githubLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
+        
+        return view
     }
     
     override var isSelected: Bool {
@@ -40,6 +66,7 @@ class IssueListCollectionViewCell: UICollectionViewCell, ActionCollectionViewCel
             editingButton.isSelected = isSelected
         }
     }
+    
     var currentState: ActionState = .none
     var delegate: SwipeControllerDelegate?
     var deleteHandler: ((Int, UICollectionViewCell) -> ())?
@@ -83,6 +110,7 @@ class IssueListCollectionViewCell: UICollectionViewCell, ActionCollectionViewCel
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         switch currentState {
         case .none:
             changeNone()
@@ -92,6 +120,7 @@ class IssueListCollectionViewCell: UICollectionViewCell, ActionCollectionViewCel
             changeSwiped()
         }
     }
+    
     @IBAction private func touchedDeleteButton(_ sender: Any) {
         guard let issueID = issue?.id,
               let deleteHandler = deleteHandler else { return }
