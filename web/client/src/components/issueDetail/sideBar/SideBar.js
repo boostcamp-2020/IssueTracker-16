@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 import COLOR from '../../../utils/color';
 import SideItem from './SideItem';
-import Assignee from './Assignee';
 import Label from './Label';
 import Milestone from './Milestone';
+import AssigneesTap from './assignees/AssigneesTap';
 
 const Div = styled.div`
   margin-left: 15px;
@@ -20,21 +20,20 @@ const NothingItem = styled.div`
 `;
 
 export default function SideBar({ assignees, labels, Milestone: milestone }) {
+  const state = { isHidden: true };
+  const popTitle = 'title';
+  const onClick = () => console.log('click');
+  const Component = () => <div></div>;
   return (
     <Div>
-      <SideItem title="Assignees" {...assignees}>
-        {(assignees.length &&
-          assignees.map(assignee => (
-            <Assignee key={assignee.num} {...assignee} />
-          ))) || <NothingItem>No one--assign yourself</NothingItem>}
-      </SideItem>
-      <SideItem title="Labels">
+      <AssigneesTap {...{ assignees }}></AssigneesTap>
+      <SideItem {...{ title: 'Labels', onClick }}>
         {(labels.length &&
           labels.map(label => <Label key={label.num} {...label} />)) || (
           <NothingItem>None yet</NothingItem>
         )}
       </SideItem>
-      <SideItem title="Milestone">
+      <SideItem {...{ title: 'Milestone', onClick }}>
         {(milestone && <Milestone {...milestone} />) || (
           <NothingItem>No milestone</NothingItem>
         )}
