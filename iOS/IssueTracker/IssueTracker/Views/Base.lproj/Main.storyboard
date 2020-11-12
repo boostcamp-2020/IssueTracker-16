@@ -801,13 +801,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vrw-dD-ae6">
-                                <rect key="frame" x="0.0" y="44" width="414" height="594"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="572"/>
                                 <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="20" minimumInteritemSpacing="10" id="cU7-gO-K2Y">
                                     <size key="itemSize" width="414" height="142"/>
                                     <size key="headerReferenceSize" width="50" height="172"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="20" maxX="0.0" maxY="30"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="CommentCollectionViewCell" id="9UO-a1-tMa" customClass="CommentCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
@@ -1002,10 +1002,10 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Hv5-MY-v27"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Hv5-MY-v27" firstAttribute="bottom" secondItem="vrw-dD-ae6" secondAttribute="bottom" id="95R-Fe-pxs"/>
                             <constraint firstItem="vrw-dD-ae6" firstAttribute="top" secondItem="Hv5-MY-v27" secondAttribute="top" id="JY8-i9-xnv"/>
+                            <constraint firstAttribute="bottom" secondItem="vrw-dD-ae6" secondAttribute="bottom" constant="120" id="KaT-wu-I7d"/>
                             <constraint firstItem="vrw-dD-ae6" firstAttribute="leading" secondItem="Hv5-MY-v27" secondAttribute="leading" id="g5x-SC-2mD"/>
                             <constraint firstItem="Hv5-MY-v27" firstAttribute="trailing" secondItem="vrw-dD-ae6" secondAttribute="trailing" id="u0t-yz-GRq"/>
                         </constraints>
@@ -2163,7 +2163,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="0Xi-Du-NTR"/>
-        <segue reference="1mN-ca-cf2"/>
+        <segue reference="Dug-JU-RGo"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="check" width="512" height="512"/>
