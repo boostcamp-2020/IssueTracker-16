@@ -8,14 +8,14 @@ import LabelLogo from '../../statics/svg/label';
 export default function LabelListBody({ labels }) {
   return (
     <ListBody>
-      {!labels.length && (
+      {labels.length ? (
+        labels.map(label => <LabelItem key={label.num} {...label} />)
+      ) : (
         <NoResult>
           <LabelLogo />
           <h3>We couldn’t find anything!</h3>
         </NoResult>
       )}
-      {!!labels.length &&
-        labels.map(label => <LabelItem key={label.num} {...label} />)}
     </ListBody>
   );
 }

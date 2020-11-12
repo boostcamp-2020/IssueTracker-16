@@ -8,14 +8,14 @@ import OpenIssueLogo from '../../statics/svg/openIssue';
 export default function IssueListBody({ issues }) {
   return (
     <ListBody>
-      {!issues.length && (
+      {issues.length ? (
+        issues.map(issue => <IssueItem key={issue.num} {...issue} />)
+      ) : (
         <NoResult>
           <OpenIssueLogo />
           <h3>No results matched your search.</h3>
         </NoResult>
       )}
-      {!!issues.length &&
-        issues.map(issue => <IssueItem key={issue.num} {...issue} />)}
     </ListBody>
   );
 }
