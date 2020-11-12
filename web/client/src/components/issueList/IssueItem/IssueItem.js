@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import getDiffTime from '../../../utils/getDiffTime';
 import COLOR from '../../../utils/color';
+
+import { CheckItemsContext } from '../IssueList';
 
 import Label from '../../common/Label';
 import ListItem from '../../common/ListItem';
@@ -63,6 +65,10 @@ const MilestoneTag = styled.div`
   }
 `;
 
+const CheckBox = styled.div`
+  margin-right: 16px;
+`;
+
 export default function IssueItem({
   num,
   title,
@@ -72,9 +78,18 @@ export default function IssueItem({
   Milestone,
   isClosed,
   createdAt,
+  handleSingleCheck,
 }) {
+  const checkItems = useContext(CheckItemsContext);
   return (
     <ListItem isIssue={true}>
+      <CheckBox>
+        <input
+          type="checkbox"
+          onChange={event => handleSingleCheck(event.target.checked, num)}
+          checked={checkItems.includes(num) ? true : false}
+        />
+      </CheckBox>
       <Status {...{ isClosed }}>
         {isClosed ? <ClosedIssueLogo /> : <OpenIssueLogo />}
       </Status>
