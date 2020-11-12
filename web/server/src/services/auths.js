@@ -1,5 +1,8 @@
 const axios = require('axios');
 
+const userService = require('../services/users');
+const authorizationService = require('../services/authorization');
+
 const config = {
   gitHub: {
     codeUrl: 'https://github.com/login/oauth/authorize',
@@ -54,6 +57,22 @@ const authService = {
     const iOSSchema = process.env.IOS_APP_SCHEMA;
     const webDomain = process.env.WEB_DOMAIN;
     return isMobile ? `${iOSSchema}?token=${token}` : webDomain;
+  },
+
+  joinUserByAccessToken: async ({ oAuth, accessToken }) => {
+    const userData = await authService.getUserDataByAccessToken({
+      service: oAuth.name,
+      accessToken,
+    });
+
+    const user = await userService.join({ ...userData, password: accessToken });
+    await authorizationService.add({
+      userNum: user.num,
+      oAuthNum: oAuth.num,
+      accessToken,
+    });
+
+    return user;
   },
 };
 
