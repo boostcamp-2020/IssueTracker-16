@@ -1,3 +1,4 @@
+const Op = require('Sequelize').Op;
 const {
   sequelize,
   Issue,
@@ -9,7 +10,7 @@ const {
 const { countOpenedIssues, countClosedIssues } = require('../common/query');
 
 const issueService = {
-  findAll: async ({ isClosed }) => {
+  findAll: async ({ isClosed, author, milestone, label, assignee }) => {
     const issues = await Issue.findAll({
       attributes: ['num', 'title', 'createdAt', 'isClosed'],
       where: { isClosed },
@@ -19,10 +20,12 @@ const issueService = {
           model: User,
           as: 'author',
           attributes: ['num', 'id'],
+          where: author && { id: author },
         },
         {
           model: Milestone,
           attributes: ['num', 'title'],
+          where: milestone && { title: milestone },
         },
         {
           model: Comment,
@@ -34,11 +37,21 @@ const issueService = {
           model: Label,
           as: 'labels',
           attributes: ['num', 'name', 'color'],
+          where: label && {
+            name: {
+              [Op.or]: [label],
+            },
+          },
         },
         {
           model: User,
           as: 'assignees',
           attributes: ['num', 'id', 'imageUrl'],
+          where: assignee && {
+            id: {
+              [Op.or]: [assignee],
+            },
+          },
         },
       ],
     });
@@ -49,7 +62,39 @@ const issueService = {
     });
   },
 
-  count: async () => Issue.count(),
+  count: async ({ author, milestone, label, assignee }) =>
+    Issue.count({
+      distinct: true,
+      include: [
+        {
+          model: User,
+          as: 'author',
+          where: author && { id: author },
+        },
+        {
+          model: Milestone,
+          where: milestone && { title: milestone },
+        },
+        {
+          model: Label,
+          as: 'labels',
+          where: label && {
+            name: {
+              [Op.or]: [label],
+            },
+          },
+        },
+        {
+          model: User,
+          as: 'assignees',
+          where: assignee && {
+            id: {
+              [Op.or]: [assignee],
+            },
+          },
+        },
+      ],
+    }),
 
   findOneByNum: async ({ num }) =>
     Issue.findOne({
