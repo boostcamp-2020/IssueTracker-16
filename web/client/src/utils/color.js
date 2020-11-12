@@ -7,6 +7,7 @@ const COLOR = {
   green: '2ea44f',
   red: 'd73a49',
   lightBlue: 'f1f8ff',
+  blue: '0366d6',
 };
 
 export default COLOR;
