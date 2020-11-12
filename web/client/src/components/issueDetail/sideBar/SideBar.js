@@ -35,7 +35,7 @@ export default function SideBar({ assignees, labels, Milestone: milestone }) {
         )}
       </SideItem>
       <SideItem title="Milestone">
-        {(Milestone && <Milestone {...milestone} />) || (
+        {(milestone && <Milestone {...milestone} />) || (
           <NothingItem>No milestone</NothingItem>
         )}
       </SideItem>
