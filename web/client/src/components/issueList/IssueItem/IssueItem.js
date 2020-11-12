@@ -2,15 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import getDiffTime from '../../utils/getDiffTime';
-import COLOR from '../../utils/color';
+import getDiffTime from '../../../utils/getDiffTime';
+import COLOR from '../../../utils/color';
 
-import Label from '../common/Label';
-import ListItem from '../common/ListItem';
-import MilestoneLogo from '../../statics/svg/milestone';
-import OpenIssueLogo from '../../statics/svg/openIssue';
-import ClosedIssueLogo from '../../statics/svg/closedIssue';
-
+import Label from '../../common/Label';
+import ListItem from '../../common/ListItem';
+import MilestoneLogo from '../../../statics/svg/milestone';
+import OpenIssueLogo from '../../../statics/svg/openIssue';
+import ClosedIssueLogo from '../../../statics/svg/closedIssue';
+import AssigneeTag from './AssigneeTag';
 const ItemInfo = styled.div`
   margin: 0 5px;
   width: 100%;
@@ -41,13 +41,6 @@ const LabelTag = styled.div`
     margin-left: 3px;
   }
 `;
-const AssigneeTag = styled.div`
-  display: flex;
-  position: relative;
-  div {
-    border: none;
-  }
-`;
 const Description = styled.div`
   margin-top: 4px;
   display: flex;
@@ -69,11 +62,7 @@ const MilestoneTag = styled.div`
     margin-left: 3px;
   }
 `;
-const ProfileImage = styled.img`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-`;
+
 export default function IssueItem({
   num,
   title,
@@ -112,13 +101,7 @@ export default function IssueItem({
           )}
         </Description>
       </ItemInfo>
-      <AssigneeTag>
-        {assignees.map(a => (
-          <div key={a.num}>
-            <ProfileImage src={a.imageUrl} alt={a.id} />
-          </div>
-        ))}
-      </AssigneeTag>
+      <AssigneeTag assignees={assignees} />
     </ListItem>
   );
 }
