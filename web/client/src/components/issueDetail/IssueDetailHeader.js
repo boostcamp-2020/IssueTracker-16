@@ -5,6 +5,7 @@ import COLOR from '../../utils/color';
 import getDiffTime from '../../utils/getDiffTime';
 import OpenIssueLogo from '../../statics/svg/openIssue';
 import ClosedIssueLogo from '../../statics/svg/closedIssue';
+import IssueDetailTitle from './IssueDetailTitle';
 
 const IssueDetailHeaderElement = styled.div`
   border-bottom: 2px solid #${COLOR.lightGray};
@@ -20,20 +21,6 @@ const FlexHorizontalDiv = styled.div`
   > * {
     margin-right: 5px;
   }
-`;
-
-const Title = styled.div`
-  font-size: 23pt;
-`;
-
-const IssueNum = styled.div`
-  font-size: 23pt;
-  color: #${COLOR.darkGray};
-`;
-const Button = styled.button`
-  margin-left: auto;
-  padding: 0 10px;
-  height: 30px;
 `;
 
 const Status = styled.div`
@@ -73,13 +60,7 @@ export default function IssueDetailHeader({
 }) {
   return (
     <IssueDetailHeaderElement>
-      <FlexHorizontalDiv>
-        <FlexHorizontalDiv>
-          <Title>{title}</Title>
-          <IssueNum>#{num}</IssueNum>
-        </FlexHorizontalDiv>
-        <Button>Edit</Button>
-      </FlexHorizontalDiv>
+      <IssueDetailTitle {...{ num, title }} />
       <FlexHorizontalDiv>
         <Status {...{ isClosed }}>
           {isClosed ? (
