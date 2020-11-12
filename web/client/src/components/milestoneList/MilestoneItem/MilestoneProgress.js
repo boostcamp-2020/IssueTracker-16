@@ -1,20 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import COLOR from '../../../utils/color';
+import COLOR from '../../utils/color';
+import ProgressBar from '../common/ProgressBar';
 
-const ProgressBar = styled.div`
-  height: 10px;
-  border-radius: 15px;
-  background-color: #e1e4e8;
-`;
-const Progress = styled.div`
-  height: 10px;
-  width: ${props => props.percentage}%;
-  border-radius: ${props =>
-    props.percentage === 100 ? '15px' : '15px 0px 0px 15px'};
-  background-color: #28a745;
-`;
 const ProgressDesc = styled.div`
   margin-top: 5px;
   font-size: 14px;
@@ -30,25 +19,23 @@ const ProgressDesc = styled.div`
   }
 `;
 
-export default function MilestoneProgress({ openedIssues, closedIssues }) {
-  const percentage = closedIssues
-    ? Math.floor((openedIssues / (openedIssues + closedIssues)) * 100)
-    : 0;
-
+export default function MilestoneProgress({
+  openedIssues: open,
+  closedIssues: closed,
+}) {
+  const percentage = closed ? Math.floor((open / (open + closed)) * 100) : 0;
   return (
     <div>
-      <ProgressBar>
-        <Progress percentage={percentage}></Progress>
-      </ProgressBar>
+      <ProgressBar {...{ open, closed, color: COLOR.green }} />
       <ProgressDesc>
         <span>
           <span>{`${percentage}% `}</span>complete
         </span>
         <span>
-          <span>{`${openedIssues} `}</span>open
+          <span>{`${open} `}</span>open
         </span>
         <span>
-          <span>{`${closedIssues} `}</span>closed
+          <span>{`${closed} `}</span>closed
         </span>
       </ProgressDesc>
     </div>

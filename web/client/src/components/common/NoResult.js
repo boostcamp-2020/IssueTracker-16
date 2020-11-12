@@ -2,9 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 import COLOR from '../../utils/color';
-import MilestoneLogo from '../../statics/svg/milestone';
-import LabelLogo from '../../statics/svg/label';
-import OpenIssueLogo from '../../statics/svg/openIssue';
 
 const Div = styled.div`
   height: 300px;
@@ -28,25 +25,6 @@ const Div = styled.div`
   }
 `;
 
-export default function NoResult({ page }) {
-  return (
-    <Div>
-      {page === 'issue' ? (
-        <>
-          <OpenIssueLogo />
-          <h3>No results matched your search.</h3>
-        </>
-      ) : page === 'label' ? (
-        <>
-          <LabelLogo />
-          <h3>We couldn’t find anything!</h3>
-        </>
-      ) : (
-        <>
-          <MilestoneLogo />
-          <h3>We couldn’t find anything!</h3>
-        </>
-      )}
-    </Div>
-  );
+export default function NoResult({ children }) {
+  return <Div>{children}</Div>;
 }

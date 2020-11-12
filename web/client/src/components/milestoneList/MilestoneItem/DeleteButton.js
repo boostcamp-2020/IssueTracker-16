@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import EventButton from '../../common/EventButton';
 
-export default function CancelButton({ num, isClosed }) {
+export default function DeleteButton({ num, isClosed }) {
   const deleteMilestone = num => axios.delete(`/api/milestones/${num}`);
   const handleClick = event => {
     event.preventDefault();
