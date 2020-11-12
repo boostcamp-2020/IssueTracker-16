@@ -38,7 +38,7 @@ const issueService = {
         {
           model: User,
           as: 'assignees',
-          attributes: ['num', 'id'],
+          attributes: ['num', 'id', 'imageUrl'],
         },
       ],
     });

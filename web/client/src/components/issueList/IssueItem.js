@@ -42,12 +42,10 @@ const LabelTag = styled.div`
   }
 `;
 const AssigneeTag = styled.div`
+  display: flex;
+  position: relative;
   div {
-    padding: 0 2px;
-    border: 1px solid;
-    border-radius: 15px;
-    color: #${COLOR.green};
-    font-size: 10px;
+    border: none;
   }
 `;
 const Description = styled.div`
@@ -70,6 +68,11 @@ const MilestoneTag = styled.div`
   span {
     margin-left: 3px;
   }
+`;
+const ProfileImage = styled.img`
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
 `;
 export default function IssueItem({
   num,
@@ -111,7 +114,9 @@ export default function IssueItem({
       </ItemInfo>
       <AssigneeTag>
         {assignees.map(a => (
-          <div key={a.num}>{a.id}</div>
+          <div key={a.num}>
+            <ProfileImage src={a.imageUrl} alt={a.id} />
+          </div>
         ))}
       </AssigneeTag>
     </ListItem>
