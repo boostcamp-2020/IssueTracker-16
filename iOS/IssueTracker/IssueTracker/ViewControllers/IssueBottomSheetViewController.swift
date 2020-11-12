@@ -97,6 +97,8 @@ class IssueBottomSheetViewController: UIViewController {
     }
     
     @IBAction func touchedCloseButton(_ sender: UIButton) {
+        sender.isSelected.toggle()
+        sender.tintColor = sender.isSelected ? .systemBlue : .systemPink
         delegate?.bottomSheetTappedClose(self)
     }
 }

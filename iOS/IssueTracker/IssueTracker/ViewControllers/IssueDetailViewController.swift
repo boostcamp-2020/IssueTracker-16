@@ -320,7 +320,7 @@ extension IssueDetailViewController: BottomSheetDelegate {
     
     func bottomSheetTappedClose(_ bottomSheet: IssueBottomSheetViewController) {
         guard var issue = issue else { return }
-        issue.isClosed = true
+        issue.isClosed.toggle()
         interactor?.request(endPoint: .update(id: issue.id, body: issue.statusData), completionHandler: { [weak self] (response: APIResponse?) in
             self?.requestIssue()
         })

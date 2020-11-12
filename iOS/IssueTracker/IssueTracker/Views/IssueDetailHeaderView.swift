@@ -20,7 +20,14 @@ class IssueDetailHeaderView: UICollectionReusableView {
             titleLabel.text = issue?.title
             numberLabel.text = "#\(issue?.id ?? 0)"
             authorLabel.text = issue?.author?.id
-            statusButton.backgroundColor = (issue?.isClosed ?? false) ? .systemPink : .systemGreen
+            
+            if issue?.isClosed ?? false {
+                statusButton.backgroundColor = .systemPink
+                statusButton.setTitle("Close", for: .normal)
+            } else {
+                statusButton.backgroundColor = .systemGreen
+                statusButton.setTitle("Open", for: .normal)
+            }
         }
     }
 }
