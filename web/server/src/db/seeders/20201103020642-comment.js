@@ -51,6 +51,22 @@ module.exports = {
         created_at: new Date(),
         updated_at: new Date(),
       },
+      {
+        content: '이슈에 달린 코멘트입니다',
+        issue_num: 3,
+        user_num: 3,
+        is_deleted: false,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        content: '코멘트가 또 달렸네요',
+        issue_num: 3,
+        user_num: 2,
+        is_deleted: false,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
     ]),
   down: async queryInterface => queryInterface.bulkDelete('comments'),
 };
