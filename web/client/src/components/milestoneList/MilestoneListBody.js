@@ -5,7 +5,7 @@ import ListBody from '../common/ListBody';
 
 export default function MilestoneListBody({ milestones }) {
   return (
-    <ListBody>
+    <ListBody page={'milestone'}>
       {milestones.length &&
         milestones.map(milestone => (
           <MilestoneItem key={milestone.num} {...milestone} />

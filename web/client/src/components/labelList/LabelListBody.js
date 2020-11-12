@@ -5,7 +5,7 @@ import ListBody from '../common/ListBody';
 
 export default function LabelListBody({ labels }) {
   return (
-    <ListBody>
+    <ListBody page={'label'}>
       {labels.length &&
         labels.map(label => <LabelItem key={label.num} {...label} />)}
     </ListBody>
