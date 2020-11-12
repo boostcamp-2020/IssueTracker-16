@@ -46,6 +46,8 @@ class IssueViewController: UIViewController {
             switch currentState {
                 case .edit:
                     title = "\(selectedIssues.count)개 선택"
+                    filterBarButton.title = selectedIssues.count != anyIssues.count
+                        ? "Select All" : "Deselect All"
                 case .none:
                     title = "이슈"
             }
@@ -104,6 +106,7 @@ class IssueViewController: UIViewController {
     // MARK: - Methods
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        cancelSwipe()
         if let vc = segue.destination as? IssueDetailViewController {
             let sender = sender as? Issue
             vc.issue = sender
@@ -176,7 +179,6 @@ class IssueViewController: UIViewController {
         } else if currentState == .none {
             currentState = .edit
         }
-        
         issueCollectionView.reloadData()
     }
         
@@ -203,11 +205,20 @@ class IssueViewController: UIViewController {
     }
     
     private func selectAllIssues() {
-        for item in 0..<anyIssues.count {
-            selectedIssues.insert(IndexPath(item: item, section: 0))
+        guard selectedIssues.count <= anyIssues.count else { return }
+        if selectedIssues.count < anyIssues.count {
+            selectedIssues = Set((0..<anyIssues.count).map {
+                IndexPath(item: $0, section: 0)
+            })
+            selectedIssues.forEach {
+                issueCollectionView.selectItem(at: $0, animated: true, scrollPosition: .init())
+            }
+        } else {
+            selectedIssues = []
+            issueCollectionView.indexPathsForSelectedItems?.forEach {
+                issueCollectionView.deselectItem(at: $0, animated: true)
+            }
         }
-        
-        issueCollectionView.reloadData()
     }
     
     private func cancelSwipe() {
@@ -222,17 +233,14 @@ class IssueViewController: UIViewController {
     // MARK: - Navigation
     
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-        
         guard currentState != .edit else {
             if identifier == self.segueIdentifier(to: FilterViewController.self) {
                 selectAllIssues()
             }
             return false
         }
-        
         return true
     }
-    
     
 }
 
@@ -255,10 +263,10 @@ extension IssueViewController: UICollectionViewDataSource {
         }
         cell.issue = anyIssues[indexPath.row]
         if selectedIssues.contains(indexPath) {
-            cell.isSelected = true
+//            cell.isSelected = true
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
         } else {
-            cell.isSelected = false
+//            cell.isSelected = false
             collectionView.deselectItem(at: indexPath, animated: false)
         }
         cell.addSwipeGestures()
@@ -358,7 +366,7 @@ extension IssueViewController: FilterDelegate {
     }
 }
 
-// MARK: - Search Delegate 
+// MARK: - Search Delegate
 
 extension IssueViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
@@ -367,7 +375,7 @@ extension IssueViewController: UISearchResultsUpdating {
     }
     func setUpSearchController() {
         searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = true
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Issues"
         navigationItem.searchController = searchController
         definesPresentationContext = true
@@ -378,13 +386,13 @@ extension IssueViewController: UISearchResultsUpdating {
     }
       
     func search(_ searchText: String, scope: String = "All") {
-        filteredIssues = filteredIssues.filter({
-            return $0.title.lowercased().contains(searchText.lowercased())
-        })
+        filteredIssues = filter.filtering(issues: issues, searchText: searchText)
         issueCollectionView.reloadData()
     }
     
     func isFiltering() -> Bool {
-        return searchController.isActive && !searchBarIsEmpty() && !filter.isFiltering
+        return searchController.isActive && !searchBarIsEmpty() || filter.isFiltering
     }
+    
 }
+

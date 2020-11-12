@@ -203,10 +203,13 @@ enum FilterType: Hashable {
 // TODO: 필터 조건 조합 로직 수정!!!!!!!
 struct Filter {
     var types: [FilterType]
-    func filtering(issues: [Issue]) -> [Issue] {
+    func filtering(issues: [Issue], searchText: String = "") -> [Issue] {
         return issues.filter({
             for type in types {
-                if type.condition($0) { return true }
+                if type.condition($0) {
+                    return searchText.isEmpty
+                        || $0.title.lowercased().contains(searchText.lowercased())
+                }
             }
             return false
         })
