@@ -47,6 +47,7 @@
 		4CBA21EA2553D6D1002BDCC3 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21E92553D6D1002BDCC3 /* FilterViewController.swift */; };
 		4CBA21EE2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21ED2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift */; };
 		4CBA21F62553E377002BDCC3 /* IssueDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21F52553E377002BDCC3 /* IssueDetailHeaderView.swift */; };
+		4CF52D31255C4C5700CBB4D6 /* IssueLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF52D30255C4C5700CBB4D6 /* IssueLabelCollectionViewCell.swift */; };
 		D413681C2559242A00A4AD55 /* UIAlertController+simpleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413681B2559242A00A4AD55 /* UIAlertController+simpleAlert.swift */; };
 		D42EC1912549180A00E57627 /* MilestoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC1902549180A00E57627 /* MilestoneViewController.swift */; };
 		D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */; };
@@ -146,6 +147,7 @@
 		4CBA21E92553D6D1002BDCC3 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		4CBA21ED2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+segueIdentifier.swift"; sourceTree = "<group>"; };
 		4CBA21F52553E377002BDCC3 /* IssueDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailHeaderView.swift; sourceTree = "<group>"; };
+		4CF52D30255C4C5700CBB4D6 /* IssueLabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueLabelCollectionViewCell.swift; sourceTree = "<group>"; };
 		D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBottomSheetViewController.swift; sourceTree = "<group>"; };
 		D413681B2559242A00A4AD55 /* UIAlertController+simpleAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+simpleAlert.swift"; sourceTree = "<group>"; };
 		D42EC1902549180A00E57627 /* MilestoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneViewController.swift; sourceTree = "<group>"; };
@@ -282,12 +284,47 @@
 		4C5139A825494E700084F65F /* Usecase */ = {
 			isa = PBXGroup;
 			children = (
-				4CBA21B425503B47002BDCC3 /* IssueInteractor.swift */,
 				4CBA21B525503B47002BDCC3 /* MilestoneInteractor.swift */,
 				4C5139A925494E7E0084F65F /* LabelInteractor.swift */,
 				4C2D05DC25591E4500FA787F /* IssueDetailInteractor.swift */,
 			);
 			path = Usecase;
+			sourceTree = "<group>";
+		};
+		4CF52D2C255C4BB000CBB4D6 /* IssueListScene */ = {
+			isa = PBXGroup;
+			children = (
+				4CF52D2D255C4BBE00CBB4D6 /* Models */,
+				4CF52D2E255C4BC100CBB4D6 /* ViewControllers */,
+				4CF52D2F255C4BC500CBB4D6 /* Views */,
+				4CBA21B425503B47002BDCC3 /* IssueInteractor.swift */,
+			);
+			path = IssueListScene;
+			sourceTree = "<group>";
+		};
+		4CF52D2D255C4BBE00CBB4D6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D44A9D08254FF1EC00ABA1A9 /* Issue.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4CF52D2E255C4BC100CBB4D6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D4DF60242547AEF200765C0A /* IssueViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4CF52D2F255C4BC500CBB4D6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4CBA21A8255007E8002BDCC3 /* IssueListCollectionViewCell.swift */,
+				4CF52D30255C4C5700CBB4D6 /* IssueLabelCollectionViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D45459DB254B2AA50094E69D /* IssueTrackerTests */ = {
@@ -332,6 +369,7 @@
 				4C5139A825494E700084F65F /* Usecase */,
 				D4DF603A2547AFA800765C0A /* ViewControllers */,
 				D4DF60392547AF9700765C0A /* Views */,
+				4CF52D2C255C4BB000CBB4D6 /* IssueListScene */,
 			);
 			path = IssueTracker;
 			sourceTree = "<group>";
@@ -360,7 +398,6 @@
 			children = (
 				4C5139A525493BB20084F65F /* Label.swift */,
 				D4EA0AA5254AB93C0000CF67 /* Milestone.swift */,
-				D44A9D08254FF1EC00ABA1A9 /* Issue.swift */,
 				4C2D05A72557ECA300FA787F /* APIResponse.swift */,
 				4C2F095E255A3E4600ED5F06 /* Comment.swift */,
 				4C2F0968255A675400ED5F06 /* User.swift */,
@@ -379,7 +416,6 @@
 				4C51391C254847530084F65F /* BlockResponderView.swift */,
 				D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */,
 				4CBA21A4255002B8002BDCC3 /* PaddingLabel.swift */,
-				4CBA21A8255007E8002BDCC3 /* IssueListCollectionViewCell.swift */,
 				4CBA21C825512FD7002BDCC3 /* GithubLabel.swift */,
 				D4AEAB7A25528C9000AED514 /* CommentCollectionViewCell.swift */,
 				4CBA21D625529331002BDCC3 /* ActionCollectionViewCell.swift */,
@@ -393,7 +429,6 @@
 		D4DF603A2547AFA800765C0A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D4DF60242547AEF200765C0A /* IssueViewController.swift */,
 				4CBA21E52553CB4D002BDCC3 /* IssueDetailViewController.swift */,
 				4C5138FF2547CA5A0084F65F /* LabelViewController.swift */,
 				4C5139112548047A0084F65F /* AddAlertViewController.swift */,
@@ -585,6 +620,7 @@
 				4C5139C12549A36F0084F65F /* LoginViewController.swift in Sources */,
 				D4DF60252547AEF200765C0A /* IssueViewController.swift in Sources */,
 				4C2D05DD25591E4500FA787F /* IssueDetailInteractor.swift in Sources */,
+				4CF52D31255C4C5700CBB4D6 /* IssueLabelCollectionViewCell.swift in Sources */,
 				D44A9D09254FF1EC00ABA1A9 /* Issue.swift in Sources */,
 				4C5139A1254934D20084F65F /* MilestoneEndPoint.swift in Sources */,
 				4CBA21C925512FD7002BDCC3 /* GithubLabel.swift in Sources */,
