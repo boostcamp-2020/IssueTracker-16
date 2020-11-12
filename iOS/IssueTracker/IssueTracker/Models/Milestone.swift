@@ -12,6 +12,7 @@ struct MilestoneAPI: Codable {
     var closed: Int
     var milestones: [Milestone]
 }
+
 struct Milestone {
     var id: Int
     var title: String
