@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import COLOR from '../../utils/color';
 import getDiffTime from '../../utils/getDiffTime';
+import GreenButton from '../common/GreenButton';
 
 const CommentItemElement = styled.div`
   display: flex;
@@ -46,6 +47,25 @@ const Time = styled.div`
 const Content = styled.div``;
 const Right = styled.div`
   margin-left: auto;
+  display: flex;
+  * {
+    margin-left: 5px;
+  }
+
+  > button {
+    height: auto;
+    padding: 1px 7px;
+    font-size: 14px;
+    font-weight: inherit;
+    color: #${COLOR.darkGray};
+  }
+`;
+
+const Author = styled.div`
+  color: #${COLOR.darkGray};
+  border: 1px solid #${COLOR.lightGray};
+  padding: 0 5px;
+  border-radius: 15px;
 `;
 
 export default function CommentItem({
@@ -68,8 +88,8 @@ export default function CommentItem({
             <Time>commented {getDiffTime(createdAt)}</Time>
           </Left>
           <Right>
-            {isAuthor ? 'Author' : ''}
-            {isMine ? 'Edit' : ''}
+            {isAuthor && <Author>Author</Author>}
+            {isMine && <GreenButton isNotGreen={true}>Edit</GreenButton>}
           </Right>
         </Top>
         <Content>{content}</Content>
