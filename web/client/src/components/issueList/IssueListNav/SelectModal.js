@@ -1,11 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 
 import COLOR from '../../../utils/color';
+import CloseIcon from '../../../statics/svg/closeIcon';
+import FilterList from './FilterList';
 
 const Modal = styled.div`
   position: absolute;
+  top: 30px;
+  left: 0px;
+  width: max-content;
   margin: 8px 0 16px;
   display: flex;
   flex-direction: column;
@@ -31,35 +35,22 @@ const ModalHeader = styled.div`
     }
   }
 `;
-const SelectList = styled.div`
-  display: flex;
-  flex-direction: column;
 
-  a {
-    padding: 7px 16px;
-    border-top: 1px solid #${COLOR.lightGray};
-    color: #${COLOR.black};
-    text-decoration: none;
-    font-size: 12px;
-  }
-`;
-export default function SelectModal({ setIsOpen }) {
+export default function SelectModal({ setIsOpen, setSearchInput }) {
+  const handleClickClose = event => {
+    event.preventDefault();
+    setIsOpen(false);
+  };
+
   return (
     <Modal>
       <ModalHeader>
         <h3>Filter Issues</h3>
+        <button onClick={handleClickClose}>
+          <CloseIcon />
+        </button>
       </ModalHeader>
-      <SelectList>
-        <Link to={'/issues?is=open'}>Open issues</Link>
-        <Link to={'/issues?is=open+author=@me'}>Your issues</Link>
-        <Link to={'/issues?is=open+assignee=@me'}>
-          Everything assigned to you
-        </Link>
-        <Link to={'/issues?is=open+commenter=@me'}>
-          Everything commented by you
-        </Link>
-        <Link to={'/issues?is=close'}>Closed Issues</Link>
-      </SelectList>
+      <FilterList {...{ setIsOpen, setSearchInput }} />
     </Modal>
   );
 }
