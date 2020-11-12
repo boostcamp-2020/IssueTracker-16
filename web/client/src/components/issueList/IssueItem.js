@@ -89,7 +89,7 @@ export default function IssueItem({
       <ItemInfo>
         <Info>
           <Title>
-            <Link to={`/${num}`}>{title} </Link>
+            <Link to={`/issues/${num}`}>{title} </Link>
           </Title>
           <LabelTag>
             {labels.map(label => (
@@ -101,10 +101,12 @@ export default function IssueItem({
           <span>{`#${num} opened`}</span>
           <span>{getDiffTime(createdAt)}</span>
           <span>{`by ${author.id}`}</span>
-          <MilestoneTag>
-            <MilestoneLogo />
-            <span>{Milestone.title}</span>
-          </MilestoneTag>
+          {Milestone && (
+            <MilestoneTag>
+              <MilestoneLogo />
+              <span>{Milestone.title}</span>
+            </MilestoneTag>
+          )}
         </Description>
       </ItemInfo>
       <AssigneeTag>

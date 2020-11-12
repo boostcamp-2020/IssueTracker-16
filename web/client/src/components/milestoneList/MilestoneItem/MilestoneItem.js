@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import COLOR from '../../utils/color';
-import formatDate from '../../utils/formatDate';
-import ListItem from '../common/ListItem';
-import LinkButton from '../common/LinkButton';
+import COLOR from '../../../utils/color';
+import formatDate from '../../../utils/formatDate';
+import ListItem from '../../common/ListItem';
+import EventButton from '../../common/EventButton';
 import MilestoneProgress from './MilestoneProgress';
-import CalendarIcon from '../../statics/svg/calendarIcon';
+import CalendarIcon from '../../../statics/svg/calendarIcon';
+import DeleteButton from './DeleteButton';
+import CloseButton from './CloseButton';
 
 const ItemElement = styled.div`
   width: 48%;
@@ -40,6 +42,7 @@ const Buttons = styled.div`
 `;
 
 export default function MilestoneItem({
+  num,
   title,
   dueDate,
   description,
@@ -53,21 +56,21 @@ export default function MilestoneItem({
         <Title>{title}</Title>
         <DueDate>
           {isClosed && <span>Closed</span>}
-          {dueDate && <CalendarIcon />}
-          {dueDate && <span>Due by {formatDate(dueDate)}</span>}
+          {dueDate && (
+            <>
+              <CalendarIcon />
+              <span>Due by {formatDate(dueDate)}</span>
+            </>
+          )}
         </DueDate>
         {description && <Description>{description}</Description>}
       </ItemElement>
       <ItemElement>
         <MilestoneProgress {...{ openedIssues, closedIssues }} />
         <Buttons>
-          <LinkButton color={'0366d6'} name={'Edit'} url={'/'}></LinkButton>
-          <LinkButton
-            color={'0366d6'}
-            name={isClosed ? 'Reopen' : 'Close'}
-            url={'/'}
-          ></LinkButton>
-          <LinkButton color={'cb2431'} name={'Delete'} url={'/'}></LinkButton>
+          <EventButton color={'0366d6'} name={'Edit'}></EventButton>
+          <CloseButton {...{ num, isClosed }}></CloseButton>
+          <DeleteButton {...{ num, isClosed }}></DeleteButton>
         </Buttons>
       </ItemElement>
     </ListItem>

@@ -65,7 +65,7 @@ const issueService = {
           model: User,
           as: 'assignees',
           required: false,
-          attributes: ['num', 'id'],
+          attributes: ['num', 'id', 'imageUrl'],
         },
         {
           model: Label,
@@ -90,7 +90,7 @@ const issueService = {
           include: {
             model: User,
             as: 'writer',
-            attributes: ['num', 'id'],
+            attributes: ['num', 'id', 'imageUrl'],
           },
         },
       ],

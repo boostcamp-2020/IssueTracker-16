@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import GlobalStyle from './GlobalStyle';
 import ErrorPage from './pages/ErrorPage';
 import IssueListPage from './pages/IssueListPage';
+import IssueDetailPage from './pages/IssueDetailPage';
 import LabelListPage from './pages/LabelListPage';
 import MilestoneListPage from './pages/MilestoneListPage';
 import SignInPage from './pages/SignInPage';
@@ -15,19 +16,22 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Switch>
-          <Route path="/signin" component={SignInPage} />
-          <Route path="/error/:code" component={ErrorPage} />
+          <Route exact path="/signin" component={SignInPage} />
+          <Route exact path="/error/:code" component={ErrorPage} />
 
           <PrivateRoute exact path="/">
             <IssueListPage />
           </PrivateRoute>
-          <PrivateRoute path="/issues">
+          <PrivateRoute exact path="/issues/:num">
+            <IssueDetailPage />
+          </PrivateRoute>
+          <PrivateRoute exact path="/issues">
             <IssueListPage />
           </PrivateRoute>
-          <PrivateRoute path="/labels">
+          <PrivateRoute exact path="/labels">
             <LabelListPage />
           </PrivateRoute>
-          <PrivateRoute path="/milestones">
+          <PrivateRoute exact path="/milestones">
             <MilestoneListPage />
           </PrivateRoute>
 
