@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import COLOR from '../../utils/color';
 import GreenButton from '../common/GreenButton';
-import ClosedIssueLogo from '../../statics/svg/closedIssue';
+import IssueOpenClosedButton from './IssueOpenClosedButton';
 
 const Div = styled.div`
   display: flex;
@@ -32,6 +32,7 @@ const Top = styled.div`
   border-bottom: 1px solid #${COLOR.lightGray};
   display: flex;
 `;
+
 const Tap = styled.div`
   background-color: white;
   margin: 10px 10px 0 10px;
@@ -47,6 +48,7 @@ const Tap = styled.div`
 const Middle = styled.div`
   padding: 15px 10px 5px 10px;
 `;
+
 const TextArea = styled.textarea`
   width: 100%;
   border: 1px solid #${COLOR.lightGray};
@@ -56,6 +58,7 @@ const TextArea = styled.textarea`
   min-height: 100px;
   resize: vertical;
 `;
+
 const Bottom = styled.div`
   display: flex;
   justify-content: flex-end;
@@ -66,7 +69,7 @@ const Bottom = styled.div`
   }
 `;
 
-export default function CommentInput({ isClosed }) {
+export default function CommentInput({ num, isClosed }) {
   const writer = {
     imageUrl: 'https://avatars3.githubusercontent.com/u/43347250?s=40&v=4',
     num: 1,
@@ -85,16 +88,7 @@ export default function CommentInput({ isClosed }) {
           <TextArea placeholder="Leave a comment"></TextArea>
         </Middle>
         <Bottom>
-          <GreenButton isNotGreen={true}>
-            {isClosed ? (
-              <>Reopen issue</>
-            ) : (
-              <>
-                <ClosedIssueLogo />
-                Close issue
-              </>
-            )}
-          </GreenButton>
+          <IssueOpenClosedButton {...{ num, isClosed }} />
           <GreenButton>Comment</GreenButton>
         </Bottom>
       </Body>

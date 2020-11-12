@@ -17,6 +17,7 @@ const Div = styled.div`
 `;
 
 export default function IssueDetailBody({
+  num,
   comments,
   author,
   assignees,
@@ -28,7 +29,7 @@ export default function IssueDetailBody({
     <Div>
       <div className="left">
         <CommentList {...{ comments, author }} />
-        <CommentInput {...{ isClosed }}></CommentInput>
+        <CommentInput {...{ num, isClosed }}></CommentInput>
       </div>
       <SideBar {...{ assignees, Milestone, labels }} />
     </Div>
