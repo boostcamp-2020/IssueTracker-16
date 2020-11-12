@@ -20,7 +20,7 @@ class IssueListCollectionViewCell: UICollectionViewCell, ActionCollectionViewCel
     @IBOutlet private weak var deleteButton: UIButton!
     @IBOutlet private weak var editingView: UIView!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var labelStackView: UIStackView!
+    @IBOutlet weak var labelStackView: LabelStackView!
     
     var issue: Issue? {
         didSet {
@@ -36,29 +36,8 @@ class IssueListCollectionViewCell: UICollectionViewCell, ActionCollectionViewCel
     
     private func configure(labels: [Label]) {
         labelStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.distribution = .fill
-        stackView.spacing = 10
-        labels.forEach {
-            stackView.addArrangedSubview(githubLabel(for: $0))
-        }
-        labelStackView.addArrangedSubview(stackView)
-    }
-    
-    private func githubLabel(for label: Label) -> UIView {
-        let view = UIView()
         
-        let githubLabel = GithubLabel()
-        githubLabel.translatesAutoresizingMaskIntoConstraints = false
-        githubLabel.label = label
-        view.addSubview(githubLabel)
-        githubLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-        githubLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
-        githubLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
-        githubLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
-        
-        return view
+        labelStackView.configure(labels: labels)
     }
     
     override var isSelected: Bool {

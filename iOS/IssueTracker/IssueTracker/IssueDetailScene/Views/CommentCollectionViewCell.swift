@@ -12,8 +12,7 @@ class CommentCollectionViewCell: UICollectionViewCell {
     static let identifier: String = String(describing: CommentCollectionViewCell.self)
     
     // MARK: Views
-    
-    @IBOutlet weak private var textViewBackgroundView: UIView!
+
     @IBOutlet weak private var imageView: UIImageView!
     @IBOutlet weak private var writerLabel: UILabel!
     @IBOutlet weak private var timeLabel: UILabel!

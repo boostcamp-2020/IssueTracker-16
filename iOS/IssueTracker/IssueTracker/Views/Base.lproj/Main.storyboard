@@ -178,7 +178,7 @@
                                     <size key="itemSize" width="414" height="98"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="70"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="0Ff-T7-98o" customClass="IssueListCollectionViewCell" customModule="IssueTracker" customModuleProvider="target">
@@ -480,7 +480,7 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSt-Mc-6hy">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="300" verticalHuggingPriority="251" text="LabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabelLabel" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OSt-Mc-6hy">
                                                             <rect key="frame" x="16" y="35" width="212" height="42.333333333333343"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
@@ -618,7 +618,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="baB-kg-PO7">
                                                     <rect key="frame" x="0.0" y="0.0" width="364" height="138"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="99r-0l-lc8" userLabel="labelBackgroundView">
+                                                        <view contentMode="scaleToFill" horizontalHuggingPriority="260" horizontalCompressionResistancePriority="760" translatesAutoresizingMaskIntoConstraints="NO" id="99r-0l-lc8" userLabel="labelBackgroundView">
                                                             <rect key="frame" x="228" y="15.999999999999998" width="120" height="20.333333333333329"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="스프린트" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RFB-zM-jOn" customClass="PaddingLabel" customModule="IssueTracker" customModuleProvider="target">
@@ -670,7 +670,7 @@
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="f6V-CL-uGK">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="f6V-CL-uGK" customClass="LabelStackView" customModule="IssueTracker" customModuleProvider="target">
                                                             <rect key="frame" x="16" y="106.33333333333333" width="332" height="21.666666666666671"/>
                                                         </stackView>
                                                     </subviews>
@@ -1310,7 +1310,7 @@
                                                 <rect key="frame" x="0.0" y="376" width="374" height="300"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마일스톤" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFc-rX-ODo">
-                                                        <rect key="frame" x="0.0" y="0.0" width="62.333333333333336" height="209.66666666666666"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="62.333333333333336" height="21.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1320,16 +1320,16 @@
                                                         <state key="normal" title="Edit"/>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwk-9u-hQk">
-                                                        <rect key="frame" x="0.0" y="229.66666666666666" width="374" height="70.333333333333343"/>
+                                                        <rect key="frame" x="0.0" y="41.666666666666629" width="374" height="258.33333333333331"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6H-q6-647">
-                                                                <rect key="frame" x="15" y="14.999999999999998" width="344" height="20.333333333333329"/>
+                                                                <rect key="frame" x="15" y="15" width="344" height="208.33333333333334"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="cSB-rm-APR">
-                                                                <rect key="frame" x="15" y="50.333333333333371" width="344" height="5"/>
+                                                                <rect key="frame" x="15" y="238.33333333333337" width="344" height="5"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="5" id="D5h-iR-U7m"/>
                                                                 </constraints>
@@ -2164,7 +2164,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="0Xi-Du-NTR"/>
-        <segue reference="Dug-JU-RGo"/>
+        <segue reference="1mN-ca-cf2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="check" width="512" height="512"/>
