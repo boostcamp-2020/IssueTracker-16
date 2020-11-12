@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import EventButton from '../../common/EventButton';
 
-export default function CancelButton({ num, isClosed }) {
+export default function CloseButton({ num, isClosed }) {
   const closeMilestone = (num, body) =>
     axios.patch(`/api/milestones/${num}`, body);
 
