@@ -10,8 +10,7 @@ const Container = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  // background-color: #${COLOR.lightGray};
-  background-color: #fafbfc;
+  background-color: #${COLOR.backGray};
 `;
 
 const Contents = styled.div`
@@ -47,7 +46,7 @@ const GitHubButtonContainer = styled.a`
   width: 80%;
   padding: 10px 0;
   border-radius: 5px;
-  background-color: #${888888};
+  background-color: #888888;
   text-align: center;
   text-decoration: none;
 `;

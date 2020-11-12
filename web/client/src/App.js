@@ -19,21 +19,15 @@ function App() {
           <Route exact path="/signin" component={SignInPage} />
           <Route exact path="/error/:code" component={ErrorPage} />
 
-          <PrivateRoute exact path="/">
-            <IssueListPage />
-          </PrivateRoute>
-          <PrivateRoute exact path="/issues/:num">
-            <IssueDetailPage />
-          </PrivateRoute>
-          <PrivateRoute exact path="/issues">
-            <IssueListPage />
-          </PrivateRoute>
-          <PrivateRoute exact path="/labels">
-            <LabelListPage />
-          </PrivateRoute>
-          <PrivateRoute exact path="/milestones">
-            <MilestoneListPage />
-          </PrivateRoute>
+          <PrivateRoute exact path="/" Component={IssueListPage} />
+          <PrivateRoute exact path="/issues/:num" Component={IssueDetailPage} />
+          <PrivateRoute exact path="/issues" Component={IssueListPage} />
+          <PrivateRoute exact path="/labels" Component={LabelListPage} />
+          <PrivateRoute
+            exact
+            path="/milestones"
+            Component={MilestoneListPage}
+          />
 
           <Redirect to="/error/404" />
         </Switch>

@@ -3,7 +3,7 @@ import { Route, Redirect, useHistory, useLocation } from 'react-router-dom';
 
 import { useAuth } from './ProvideAuth';
 
-function PrivateRoute({ children, ...rest }) {
+function PrivateRoute({ Component, ...rest }) {
   const history = useHistory();
   const location = useLocation();
   const { user, signIn } = useAuth();
@@ -17,7 +17,7 @@ function PrivateRoute({ children, ...rest }) {
 
   const render = ({ location }) => {
     return user?.token ? (
-      children
+      <Component />
     ) : (
       <Redirect
         to={{

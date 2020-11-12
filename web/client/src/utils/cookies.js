@@ -1,8 +1,8 @@
 const cookies = {
   getCookies() {
-    return document.cookie.split('; ').reduce((coockies, keyVal) => {
+    return document.cookie.split('; ').reduce((cookies, keyVal) => {
       const [key, val] = keyVal.split('=');
-      return keyVal ? { ...coockies, [key]: val } : coockies;
+      return keyVal ? { ...cookies, [key]: val } : cookies;
     }, {});
   },
   setCookie(key, val) {
