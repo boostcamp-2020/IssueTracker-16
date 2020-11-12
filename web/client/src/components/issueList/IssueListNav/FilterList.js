@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 import COLOR from '../../../utils/color';
+import { SetSearchInputContext } from '../../../pages/IssueListPage';
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,7 +18,8 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function FilterList({ setIsOpen, setSearchInput }) {
+export default function FilterList({ setIsOpen }) {
+  const setSearchInput = useContext(SetSearchInputContext);
   const handleClickSelect = input => {
     setSearchInput(input);
     setIsOpen(false);
@@ -28,19 +30,19 @@ export default function FilterList({ setIsOpen, setSearchInput }) {
         Open issues
       </Link>
       <Link
-        to={'/issues?is=open+author=@me'}
+        to={'/issues?is=open&author=@me'}
         onClick={() => handleClickSelect('is:open author:@me')}
       >
         Your issues
       </Link>
       <Link
-        to={'/issues?is=open+assignee=@me'}
+        to={'/issues?is=open&assignee=@me'}
         onClick={() => handleClickSelect('is:open assignee:@me')}
       >
         Everything assigned to you
       </Link>
       <Link
-        to={'/issues?is=open+commenter=@me'}
+        to={'/issues?is=open&commenter=@me'}
         onClick={() => handleClickSelect('is:open commenter:@me')}
       >
         Everything commented by you

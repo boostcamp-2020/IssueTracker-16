@@ -1,20 +1,37 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 
 import ListPage from '../components/common/ListPage';
 import Header from '../components/common/Header';
 import IssueListNav from '../components/issueList/IssueListNav/IssueListNav';
 import IssueList from '../components/issueList/IssueList';
 
+export const QueryContext = createContext({});
+export const SearchInputContext = createContext('');
+export const SetSearchInputContext = createContext(() => {});
+
 export default function IssueListPage({ location }) {
   const query = new URLSearchParams(location.search);
-  const isClosed = query.get('is') === 'closed';
+
+  let queryInput = '';
+  for (const [key, value] of query) {
+    queryInput += `${key}:${value} `;
+  }
+  queryInput = queryInput ? queryInput : 'is:open ';
+
+  const [searchInput, setSearchInput] = useState(queryInput);
 
   return (
     <>
       <Header />
       <ListPage>
-        <IssueListNav />
-        <IssueList {...{ isClosed }} />
+        <QueryContext.Provider value={query}>
+          <SetSearchInputContext.Provider value={setSearchInput}>
+            <SearchInputContext.Provider value={searchInput}>
+              <IssueListNav />
+            </SearchInputContext.Provider>
+          </SetSearchInputContext.Provider>
+          <IssueList />
+        </QueryContext.Provider>
       </ListPage>
     </>
   );

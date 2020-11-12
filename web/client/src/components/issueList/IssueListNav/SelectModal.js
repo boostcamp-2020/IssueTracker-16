@@ -36,7 +36,7 @@ const ModalHeader = styled.div`
   }
 `;
 
-export default function SelectModal({ setIsOpen, setSearchInput }) {
+export default function SelectModal({ setIsOpen }) {
   const handleClickClose = event => {
     event.preventDefault();
     setIsOpen(false);
@@ -50,7 +50,7 @@ export default function SelectModal({ setIsOpen, setSearchInput }) {
           <CloseIcon />
         </button>
       </ModalHeader>
-      <FilterList {...{ setIsOpen, setSearchInput }} />
+      <FilterList {...{ setIsOpen }} />
     </Modal>
   );
 }

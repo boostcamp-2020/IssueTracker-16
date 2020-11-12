@@ -9,7 +9,9 @@ export default function IssueListBody({ issues, handleSingleCheck }) {
   return (
     <ListBody>
       {issues.length ? (
-        issues.map(issue => <IssueItem key={issue.num} {...issue} />)
+        issues.map(issue => (
+          <IssueItem key={issue.num} {...{ ...issue, handleSingleCheck }} />
+        ))
       ) : (
         <NoResult>
           <OpenIssueLogo />
