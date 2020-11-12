@@ -6,8 +6,8 @@ import COLOR from '../../../utils/color';
 const Cancel = styled.button`
   margin-right: 5px;
   padding: 5px 16px;
-  background-color: #${COLOR.lightGray};
-  border: 1px solid #${COLOR.darkGray};
+  background-color: #${COLOR.white};
+  border: 1px solid #${COLOR.lightGray};
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;

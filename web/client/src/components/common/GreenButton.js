@@ -21,5 +21,5 @@ const Button = styled.button`
 `;
 
 export default function GreenButton({ children, onClick }) {
-  return <Button onClick={e => onClick(e)}>{children}</Button>;
+  return <Button onClick={onClick}>{children}</Button>;
 }

@@ -22,7 +22,7 @@ const Refresh = styled.button`
 
 export default function RefreshButton({ color, onClick }) {
   return (
-    <Refresh {...{ color }} onClick={e => onClick(e)}>
+    <Refresh {...{ color }} onClick={onClick}>
       <RefreshIcon />
     </Refresh>
   );

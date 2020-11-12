@@ -22,6 +22,7 @@ const Button = styled.button`
   }
 
   &:disabled {
+    border: 1px solid #87c195;
     background-color: #94d3a2;
   }
 `;
