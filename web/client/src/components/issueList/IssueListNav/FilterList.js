@@ -30,7 +30,7 @@ export default function FilterList({ setIsOpen }) {
         Open issues
       </Link>
       <Link
-        to={'/issues?is=open&author=@me'}
+        to={'/issues?is=open&author=@me&author=ahrimy'}
         onClick={() => handleClickSelect('is:open author:@me')}
       >
         Your issues

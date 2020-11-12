@@ -11,7 +11,6 @@ export default function IssueList() {
   const [states, setStates] = useState({ open: 0, closed: 0, issues: [] });
   const [checkItems, setCheckItems] = useState([]);
   const query = useContext(QueryContext);
-  const isClosed = query.get('is') === 'closed';
 
   const handleSingleCheck = (checked, num) => {
     if (checked) {
@@ -31,9 +30,11 @@ export default function IssueList() {
 
   useEffect(() => {
     const getIssues = () =>
-      axios(`/api/issues${isClosed ? '?isClosed=true' : ''}`);
+      axios(
+        `/api/issues${query.toString().length ? getQueryString(query) : ``}`,
+      );
     getIssues().then(({ data }) => setStates(data));
-  }, [isClosed]);
+  }, [query]);
 
   return (
     <div>
@@ -44,3 +45,28 @@ export default function IssueList() {
     </div>
   );
 }
+const getQueryString = query => {
+  const isClosed = query.get('is') === 'closed';
+  let newQuery = `?isClosed=${isClosed}`;
+
+  const author = query.get('author') === '@me' ? 'ahrimy' : query.get('author');
+  newQuery += author ? `&author=${author}` : ``;
+
+  const milestone = query.get('milestone');
+  newQuery += milestone ? `&milestone=${milestone}` : ``;
+
+  const label = query.getAll('label');
+  newQuery += label.length
+    ? label.reduce((str, l) => `${str}&label=${l}`, ``)
+    : ``;
+
+  const assignee = query.getAll('assignee');
+  if (assignee.includes('@me')) {
+    assignee[assignee.indexOf('@me')] = 'ahrimy';
+  }
+  newQuery += assignee.length
+    ? assignee.reduce((str, a) => `${str}&assignee=${a}`, ``)
+    : ``;
+
+  return newQuery;
+};

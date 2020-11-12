@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import COLOR from '../../../utils/color';
 import OpenIssueLogo from '../../../statics/svg/openIssue';
@@ -38,32 +38,47 @@ const OpenClosed = styled.div`
     fill: #${({ isClosed }) => (isClosed ? `${COLOR.black}` : `${COLOR.darkGray}`)};
   }
 
-  a {
+  button {
     display: flex;
     align-items: center;
+    border: none;
+    outline: none;
+    background-color: transparent;
     color: #${({ isClosed }) => (isClosed ? `${COLOR.black}` : `${COLOR.darkGray}`)};
-    text-decoration: none;
+    cursor: pointer;
   }
 `;
 
 export default function MainOption({ open, closed }) {
+  const history = useHistory();
   const query = useContext(QueryContext);
   const isClosed = query.get('is') === 'closed';
+
+  const handleClickOpen = event => {
+    event.preventDefault();
+    query.set('is', 'open');
+    history.push(`/issues?${query.toString()}`);
+  };
+  const handleClickClosed = event => {
+    event.preventDefault();
+    query.set('is', 'closed');
+    history.push(`/issues?${query.toString()}`);
+  };
 
   return (
     <>
       <Filters>
         <OpenClosed isClosed={!isClosed}>
-          <Link to={'/issues?is=open'}>
+          <button onClick={handleClickOpen}>
             <OpenIssueLogo />
             <span>{open} Open</span>
-          </Link>
+          </button>
         </OpenClosed>
         <OpenClosed isClosed={isClosed}>
-          <Link to={'/issues?is=closed'}>
+          <button onClick={handleClickClosed}>
             <CheckIcon />
             <span>{closed} Closed</span>
-          </Link>
+          </button>
         </OpenClosed>
       </Filters>
       <Filters>
