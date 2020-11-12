@@ -16,6 +16,10 @@ class FilterViewController: UIViewController {
         var subItems: [FilterItem]
         private let identifier = UUID()
         var type: FilterType?
+        var isSelected: Bool = false
+        mutating func toggle() {
+            isSelected = !isSelected
+        }
     }
     static private let me = "seokju2ng"
     
@@ -53,13 +57,23 @@ class FilterViewController: UIViewController {
     }
     
     // MARK: Initialize
-    
-    func loadItems(authors: [String], labels: [String]) {
+    private lazy var tempTypes: [FilterType] = []
+    private var temptemp = [IndexPath]()
+    func loadItems(types: [FilterType], authors: [String], labels: [String]) {
         let authors = authors.map{FilterItem(title: $0, subItems: [], type: .author($0))}
         let authorFilter = FilterItem(title: "작성자", subItems: authors)
         let labels = labels.map{FilterItem(title: $0, subItems: [], type: .label($0))}
         let labelFilter = FilterItem(title: "레이블", subItems: labels)
         filterItems[1] = [authorFilter, labelFilter]
+        self.tempTypes = types
+        for k in 0..<filterItems.count {
+            for i in 0..<(filterItems[k]?.count ?? 0) {
+                if let type = filterItems[k]?[i].type,
+                   tempTypes.contains(type) {
+                    filterItems[k]?[i].toggle()
+                }
+            }
+        }
     }
     
     private func configureCollectionView() {
@@ -84,6 +98,10 @@ class FilterViewController: UIViewController {
         }
         
         let cellRegistration = UICollectionView.CellRegistration<FilterCollectionViewListCell, FilterItem> { cell, indexPath, filterItem in
+            
+            if filterItem.isSelected {
+                self.temptemp.append(indexPath)
+            }
             cell.filterItem = filterItem
         }
         
@@ -91,6 +109,9 @@ class FilterViewController: UIViewController {
             if item.subItems.isEmpty {
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: item)
             } else {
+                if self.temptemp.contains(indexPath) {
+                    self.filterCollectionView.selectItem(at: indexPath, animated: true, scrollPosition: .init())
+                }
                 return collectionView.dequeueConfiguredReusableCell(using: containerCellRegistration, for: indexPath, item: item)
             }
         })

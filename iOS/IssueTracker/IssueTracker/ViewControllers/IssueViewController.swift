@@ -113,7 +113,7 @@ class IssueViewController: UIViewController {
             vc.delegate = self
             let authorNames = Array(Set(issues.compactMap{ $0.author?.id }))
             let labelNames = Array(Set(issues.flatMap{ $0.labels.map{ $0.name }}))
-            vc.loadItems(authors: authorNames, labels: labelNames)
+            vc.loadItems(types: filter.types, authors: authorNames, labels: labelNames)
         }
     }
     

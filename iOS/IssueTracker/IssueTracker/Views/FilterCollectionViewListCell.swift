@@ -11,6 +11,11 @@ class FilterCollectionViewListCell: UICollectionViewListCell {
     
     var filterItem: FilterViewController.FilterItem?
     
+    override var isSelected: Bool {
+        didSet {
+            filterItem?.toggle()
+        }
+    }
     override func updateConfiguration(using state: UICellConfigurationState) {
         var backgroundConfig = UIBackgroundConfiguration.listGroupedHeaderFooter().updated(for: state)
         var content = defaultContentConfiguration().updated(for: state)
