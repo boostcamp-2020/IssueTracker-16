@@ -16,7 +16,7 @@ function PrivateRoute({ Component, ...rest }) {
   }, []);
 
   const render = ({ location }) => {
-    return user?.token ? (
+    return user ? (
       <Component />
     ) : (
       <Redirect

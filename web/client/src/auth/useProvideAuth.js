@@ -6,18 +6,20 @@ import cookies from '../utils/cookies';
 function useProvideAuth() {
   const [user, setUser] = useState(null);
 
-  const validateToken = async token => {
+  const getUserByToken = async token => {
     if (!token) return false;
-    const { data: success } = await axios.get(`/api/users/auth?token=${token}`);
-    return success;
+    const {
+      data: { success, user },
+    } = await axios.get(`/api/users/auth?token=${token}`);
+    return success ? user : null;
   };
 
   const signIn = async callback => {
     const { token } = cookies.getCookies('token');
-    const isTokenValid = await validateToken(token);
-    if (!isTokenValid) return;
+    const user = await getUserByToken(token);
+    if (!user) return;
 
-    setUser({ token });
+    setUser(user);
     callback?.();
   };
 
