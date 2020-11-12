@@ -332,7 +332,8 @@ extension IssueDetailViewController: AddIssueViewControllerDelegate {
     func addIssueViewControllerDoned(_ addIssueViewController: AddIssueViewController) {
         guard var issue = issue else { return }
         let title = addIssueViewController.issueTitle.text ?? ""
-        let content = addIssueViewController.commentTextView.text ?? ""
+        let isMarkdown = addIssueViewController.mdSegmentControl.selectedSegmentIndex == 1
+        let content = (isMarkdown ? addIssueViewController.originText : addIssueViewController.commentTextView.text) ?? ""
         issue.title = title
         var comment = issue.comments?.first
         comment?.content = content

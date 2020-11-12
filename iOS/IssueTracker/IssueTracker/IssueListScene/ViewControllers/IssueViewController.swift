@@ -290,7 +290,7 @@ extension IssueViewController: UICollectionViewDelegateFlowLayout {
 extension IssueViewController: AddIssueViewControllerDelegate {
     func addIssueViewControllerDoned(_ addIssueViewController: AddIssueViewController) {
         let title = addIssueViewController.issueTitle.text ?? ""
-        let content = addIssueViewController.commentTextView.text ?? ""
+        let content = addIssueViewController.originText ?? ""
         let newIssue = Issue(title: title, comment: Comment(content: content))
         
         interactor?.request(endPoint: .create(body: newIssue.createData), completionHandler: { (response: APIResponse?) in
@@ -298,7 +298,7 @@ extension IssueViewController: AddIssueViewControllerDelegate {
                 debugPrint("response is empty")
                 return
             }
-
+            
             if response.success {
                 DispatchQueue.main.async {
                     addIssueViewController.dismiss(animated: true, completion: nil)

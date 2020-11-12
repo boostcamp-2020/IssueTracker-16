@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import MarkdownView
+import SwiftyMarkdown
 
 protocol AddIssueViewControllerDelegate {
     func addIssueViewControllerDoned(_ addIssueViewController: AddIssueViewController)
@@ -28,9 +28,10 @@ class AddIssueViewController: UIViewController {
     @IBOutlet weak private(set) var issueID: UILabel!
     @IBOutlet weak private(set) var issueTitle: UITextField!
     @IBOutlet weak private(set) var commentTextView: UITextView!
-    @IBOutlet weak private var mdSegmentControl: UISegmentedControl!
+    @IBOutlet weak private(set) var mdSegmentControl: UISegmentedControl!
     @IBOutlet weak var textViewBottmConstraint: NSLayoutConstraint!
-    private var mdPreview: MarkdownView?
+
+    private(set) var originText: String?
     private var isPreviewMode = false {
         didSet {
             isPreviewMode ? openPreview() : closePreview()
@@ -71,28 +72,15 @@ class AddIssueViewController: UIViewController {
     
     // MARK: - Methods
     
-    private func generateMDView(on superView: UIView) -> MarkdownView {
-        let mdView = MarkdownView()
-        mdView.backgroundColor = superView.backgroundColor
-        mdView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(mdView)
-        
-        mdView.topAnchor.constraint(equalTo: superView.topAnchor).isActive = true
-        mdView.leadingAnchor.constraint(equalTo: superView.leadingAnchor).isActive = true
-        mdView.trailingAnchor.constraint(equalTo: superView.trailingAnchor).isActive = true
-        mdView.bottomAnchor.constraint(equalTo: superView.bottomAnchor).isActive = true
-        
-        return mdView
-    }
-    
     private func openPreview() {
-        mdPreview = generateMDView(on: commentTextView)
-        mdPreview?.load(markdown: commentTextView.text)
+        originText = commentTextView.text
+        let md = SwiftyMarkdown(string: originText ?? "")
+        commentTextView.attributedText = md.attributedString()
     }
     
     private func closePreview() {
-        self.mdPreview?.removeFromSuperview()
-        mdPreview = nil
+        commentTextView.typingAttributes.removeAll()
+        commentTextView.text = originText
     }
     
     // MARK: IBActions

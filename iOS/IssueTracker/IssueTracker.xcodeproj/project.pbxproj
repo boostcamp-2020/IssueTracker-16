@@ -16,7 +16,6 @@
 		4C2F095F255A3E4600ED5F06 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2F095E255A3E4600ED5F06 /* Comment.swift */; };
 		4C2F0969255A675400ED5F06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2F0968255A675400ED5F06 /* User.swift */; };
 		4C34265A255AF8E7002B5960 /* FilterCollectionViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C342659255AF8E7002B5960 /* FilterCollectionViewListCell.swift */; };
-		4C3426B8255BC569002B5960 /* MarkdownView in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3426B7255BC569002B5960 /* MarkdownView */; };
 		4C3426C5255C2DC6002B5960 /* UIView+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3426C4255C2DC6002B5960 /* UIView+Shake.swift */; };
 		4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5138FF2547CA5A0084F65F /* LabelViewController.swift */; };
 		4C5139122548047A0084F65F /* AddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139112548047A0084F65F /* AddAlertViewController.swift */; };
@@ -48,6 +47,7 @@
 		4CBA21EE2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21ED2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift */; };
 		4CBA21F62553E377002BDCC3 /* IssueDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21F52553E377002BDCC3 /* IssueDetailHeaderView.swift */; };
 		4CF52D31255C4C5700CBB4D6 /* IssueLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF52D30255C4C5700CBB4D6 /* IssueLabelCollectionViewCell.swift */; };
+		4CF52D5A255DA10800CBB4D6 /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF52D59255DA10800CBB4D6 /* SwiftyMarkdown */; };
 		D413681C2559242A00A4AD55 /* UIAlertController+simpleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413681B2559242A00A4AD55 /* UIAlertController+simpleAlert.swift */; };
 		D42EC1912549180A00E57627 /* MilestoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC1902549180A00E57627 /* MilestoneViewController.swift */; };
 		D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */; };
@@ -198,8 +198,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C3426B8255BC569002B5960 /* MarkdownView in Frameworks */,
 				4C513983254934760084F65F /* NetworkService.framework in Frameworks */,
+				4CF52D5A255DA10800CBB4D6 /* SwiftyMarkdown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,7 +588,7 @@
 			);
 			name = IssueTracker;
 			packageProductDependencies = (
-				4C3426B7255BC569002B5960 /* MarkdownView */,
+				4CF52D59255DA10800CBB4D6 /* SwiftyMarkdown */,
 			);
 			productName = IssueTracker;
 			productReference = D4DF601D2547AEF200765C0A /* IssueTracker.app */;
@@ -625,7 +625,7 @@
 			);
 			mainGroup = D4DF60142547AEF200765C0A;
 			packageReferences = (
-				4C3426B6255BC569002B5960 /* XCRemoteSwiftPackageReference "MarkdownView" */,
+				4CF52D58255DA10800CBB4D6 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
 			);
 			productRefGroup = D4DF601E2547AEF200765C0A /* Products */;
 			projectDirPath = "";
@@ -1073,21 +1073,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4C3426B6255BC569002B5960 /* XCRemoteSwiftPackageReference "MarkdownView" */ = {
+		4CF52D58255DA10800CBB4D6 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/keitaoouchi/MarkdownView.git";
+			repositoryURL = "https://github.com/SimonFairbairn/SwiftyMarkdown";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.7.1;
+				minimumVersion = 1.2.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4C3426B7255BC569002B5960 /* MarkdownView */ = {
+		4CF52D59255DA10800CBB4D6 /* SwiftyMarkdown */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4C3426B6255BC569002B5960 /* XCRemoteSwiftPackageReference "MarkdownView" */;
-			productName = MarkdownView;
+			package = 4CF52D58255DA10800CBB4D6 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */;
+			productName = SwiftyMarkdown;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
