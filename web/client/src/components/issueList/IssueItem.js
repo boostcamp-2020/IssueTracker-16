@@ -101,10 +101,12 @@ export default function IssueItem({
           <span>{`#${num} opened`}</span>
           <span>{getDiffTime(createdAt)}</span>
           <span>{`by ${author.id}`}</span>
-          <MilestoneTag>
-            <MilestoneLogo />
-            <span>{Milestone.title}</span>
-          </MilestoneTag>
+          {Milestone && (
+            <MilestoneTag>
+              <MilestoneLogo />
+              <span>{Milestone.title}</span>
+            </MilestoneTag>
+          )}
         </Description>
       </ItemInfo>
       <AssigneeTag>
