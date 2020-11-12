@@ -10,6 +10,10 @@ const Div = styled.div`
   display: flex;
   align-items: center;
   justify-content: ${props => props.justifyContent};
+  ${props =>
+    props.state?.isEdit &&
+    `padding-bottom: 4px;
+    padding-top: 6px;`}
 
   > * {
     margin-right: 5px;
@@ -59,7 +63,7 @@ export default function IssueDetailTitle({ num, title }) {
       .catch(({ response }) => alert(response.data.message));
   };
   return (
-    <Div justifyContent="space-between">
+    <Div justifyContent="space-between" state={state}>
       {state.isEdit ? (
         <>
           <Input

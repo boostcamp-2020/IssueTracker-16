@@ -18,6 +18,7 @@ const Button = styled.button`
 
   &:hover {
     background-color: #${({ isNotGreen }) => (isNotGreen ? COLOR.lightGray : '2a9847')};
+    border-color: #${({ isNotGreen }) => isNotGreen && 'bdbfbf'};
   }
 
   > svg {
