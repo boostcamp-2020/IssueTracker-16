@@ -13,7 +13,7 @@ const Div = styled.div`
   align-items: center;
   border: 0.1px solid #${COLOR.lightGray};
   border-radius: 10px 10px 0px 0px;
-  background-color: #fafbfc;
+  background-color: #${COLOR.backGray};
 
   span {
     font-weight: 500;

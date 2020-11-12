@@ -89,7 +89,7 @@ export default function IssueItem({
       <ItemInfo>
         <Info>
           <Title>
-            <Link to={`/${num}`}>{title} </Link>
+            <Link to={`/issues/${num}`}>{title} </Link>
           </Title>
           <LabelTag>
             {labels.map(label => (
