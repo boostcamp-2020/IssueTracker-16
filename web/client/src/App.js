@@ -16,9 +16,7 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Switch>
-          <Route exact path="/">
-            <Redirect to="/issues" />
-          </Route>
+          <Route exact path="/" component={IssueListPage} />
           <Route exact path="/signin" component={SignInPage} />
           <Route exact path="/auth/:service" component={AuthPage} />
           <Route exact path="/issues/:num" component={IssueDetailPage} />
