@@ -2,10 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import COLOR from '../../utils/color';
-import ListHeader from '../common/ListHeader';
-import OpenIssueLogo from '../../statics/svg/openIssue';
-import CheckIcon from '../../statics/svg/checkIcon';
+import COLOR from '../../../utils/color';
+import OpenIssueLogo from '../../../statics/svg/openIssue';
+import CheckIcon from '../../../statics/svg/checkIcon';
 
 const Filters = styled.div`
   display: flex;
@@ -17,6 +16,7 @@ const Filters = styled.div`
       margin-right: 10px;
     }
   }
+
   &:last-child {
     justify-content: flex-end;
 
@@ -40,9 +40,9 @@ const Filter = styled.span`
   }
 `;
 
-export default function IssueListHeader({ open, closed }) {
+export default function MainOption({ open, closed }) {
   return (
-    <ListHeader isIssueList={true}>
+    <>
       <Filters>
         <Filter>
           <Link to={'/issues?is=open'}>
@@ -63,6 +63,6 @@ export default function IssueListHeader({ open, closed }) {
         <Filter>Milestone▾ </Filter>
         <Filter>Assignee▾ </Filter>
       </Filters>
-    </ListHeader>
+    </>
   );
 }
