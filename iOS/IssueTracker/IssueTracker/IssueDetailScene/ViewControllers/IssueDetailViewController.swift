@@ -291,7 +291,7 @@ extension IssueDetailViewController: BottomSheetDelegate {
         }
         
         let isCompletlyVisible = issueDetailCollectionView.bounds.contains(cell.frame)
-        if isCompletlyVisible, maxIndexPath.item < 20 {
+        if isCompletlyVisible, maxIndexPath.item < issue?.labels.count ?? 0 {
             maxIndexPath.item += 1
         }
         issueDetailCollectionView.scrollToItem(at: maxIndexPath, at: .bottom, animated: true)
