@@ -12,13 +12,8 @@ class FilterCollectionViewListCell: UICollectionViewListCell {
     var filterItem: FilterViewController.FilterItem?
     
     override func updateConfiguration(using state: UICellConfigurationState) {
-        // selectedBackgroundView?.backgroundColor = .blue
-        
         var backgroundConfig = UIBackgroundConfiguration.listGroupedHeaderFooter().updated(for: state)
         var content = defaultContentConfiguration().updated(for: state)
-        
-        // var contentConfig = contentConfiguration?.updated(for: state)
-        
         if state.isSelected {
             content.textProperties.color = .black
             backgroundConfig.backgroundColor = .clear
@@ -26,11 +21,8 @@ class FilterCollectionViewListCell: UICollectionViewListCell {
         } else {
             accessories = []
         }
-        
-        
         content.text = filterItem?.title
         contentConfiguration = content
         backgroundConfiguration = backgroundConfig
-        //contentConfiguration = contentConfig
     }
 }
