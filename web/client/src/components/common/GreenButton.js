@@ -5,7 +5,7 @@ import COLOR from '../../utils/color';
 
 const Button = styled.button`
   height: 32px;
-  padding: 7px 16px;
+  padding: 5px 16px;
   background-color: #${COLOR.green};
   color: white;
   border: 1px solid #268841;
@@ -13,12 +13,13 @@ const Button = styled.button`
   font-weight: 500;
   cursor: pointer;
   border-radius: 6px;
+  outline: none;
 
   &:hover {
     background-color: #2a9847;
   }
 `;
 
-export default function GreenButton({ children }) {
-  return <Button>{children}</Button>;
+export default function GreenButton({ children, onClick }) {
+  return <Button onClick={onClick}>{children}</Button>;
 }
