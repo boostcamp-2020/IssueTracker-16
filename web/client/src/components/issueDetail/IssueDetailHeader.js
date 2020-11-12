@@ -82,8 +82,17 @@ export default function IssueDetailHeader({
       </FlexHorizontalDiv>
       <FlexHorizontalDiv>
         <Status {...{ isClosed }}>
-          {isClosed ? <ClosedIssueLogo /> : <OpenIssueLogo />}
-          {isClosed ? 'Closed' : 'Open'}
+          {isClosed ? (
+            <>
+              <ClosedIssueLogo />
+              Closed
+            </>
+          ) : (
+            <>
+              <OpenIssueLogo />
+              Open
+            </>
+          )}
         </Status>
         <Description>
           <Author>{author.id}</Author>

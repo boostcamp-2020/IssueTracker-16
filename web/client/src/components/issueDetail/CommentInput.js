@@ -86,8 +86,14 @@ export default function CommentInput({ isClosed }) {
         </Middle>
         <Bottom>
           <GreenButton isNotGreen={true}>
-            {isClosed ? '' : <ClosedIssueLogo />}
-            {isClosed ? 'Reopen issue' : 'Close issue'}
+            {isClosed ? (
+              <>Reopen issue</>
+            ) : (
+              <>
+                <ClosedIssueLogo />
+                Close issue
+              </>
+            )}
           </GreenButton>
           <GreenButton>Comment</GreenButton>
         </Bottom>

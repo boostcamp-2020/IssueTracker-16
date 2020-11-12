@@ -13,13 +13,16 @@ export default function IssueDetailPage({ match }) {
   useEffect(() => {
     axios(`/api/issues/${num}`).then(({ data }) => setIssue(data));
   }, [num]);
-  console.log(issue);
   return (
     <>
       <Header />
       <ListPage>
-        {issue && <IssueDetailHeader {...issue} />}
-        {issue && <IssueDetailBody {...issue} />}
+        {issue && (
+          <>
+            <IssueDetailHeader {...issue} />
+            <IssueDetailBody {...issue} />
+          </>
+        )}
       </ListPage>
     </>
   );
