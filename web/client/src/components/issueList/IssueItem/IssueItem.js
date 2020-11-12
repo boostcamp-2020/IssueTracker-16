@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import getDiffTime from '../../../utils/getDiffTime';
 import COLOR from '../../../utils/color';
 
-import { CheckItemsContext } from '../IssueList';
+import { CheckItemsContext } from '../../../pages/IssueListPage';
 
 import Label from '../../common/Label';
 import ListItem from '../../common/ListItem';
@@ -13,6 +13,7 @@ import MilestoneLogo from '../../../statics/svg/milestone';
 import OpenIssueLogo from '../../../statics/svg/openIssue';
 import ClosedIssueLogo from '../../../statics/svg/closedIssue';
 import AssigneeTag from './AssigneeTag';
+
 const ItemInfo = styled.div`
   margin: 0 5px;
   width: 100%;

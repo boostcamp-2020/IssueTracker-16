@@ -1,16 +1,19 @@
-import React, { useState, useEffect, createContext, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 
 import IssueListHeader from './IssueListHeader/IssueListHeader';
 import IssueListBody from './IssueListBody';
-import { QueryContext } from '../../pages/IssueListPage';
-
-export const CheckItemsContext = createContext([]);
+import {
+  QueryContext,
+  SetCheckItemsContext,
+  CheckItemsContext,
+} from '../../pages/IssueListPage';
 
 export default function IssueList() {
   const [states, setStates] = useState({ open: 0, closed: 0, issues: [] });
-  const [checkItems, setCheckItems] = useState([]);
   const query = useContext(QueryContext);
+  const setCheckItems = useContext(SetCheckItemsContext);
+  const checkItems = useContext(CheckItemsContext);
 
   const handleSingleCheck = (checked, num) => {
     if (checked) {
@@ -38,10 +41,8 @@ export default function IssueList() {
 
   return (
     <div>
-      <CheckItemsContext.Provider value={checkItems}>
-        <IssueListHeader {...{ ...states, handleAllCheck }} />
-        <IssueListBody {...{ ...states, handleSingleCheck }} />
-      </CheckItemsContext.Provider>
+      <IssueListHeader {...{ ...states, handleAllCheck }} />
+      <IssueListBody {...{ ...states, handleSingleCheck }} />
     </div>
   );
 }
