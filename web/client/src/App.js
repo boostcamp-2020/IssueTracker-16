@@ -8,7 +8,7 @@ import IssueDetailPage from './pages/IssueDetailPage';
 import LabelListPage from './pages/LabelListPage';
 import MilestoneListPage from './pages/MilestoneListPage';
 import SignInPage from './pages/SignInPage';
-import AuthPage from './pages/AuthPage';
+import PrivateRoute from './auth/PrivateRoute';
 
 function App() {
   return (
@@ -16,18 +16,24 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={IssueListPage} />
           <Route exact path="/signin" component={SignInPage} />
-          <Route exact path="/auth/:service" component={AuthPage} />
-          <Route exact path="/issues/:num" component={IssueDetailPage} />
-          <Route exact path="/issues" component={IssueListPage} />
-          <Route exact path="/labels" component={LabelListPage} />
-          <Route exact path="/milestones" component={MilestoneListPage} />
           <Route exact path="/error/:code" component={ErrorPage} />
+
+          <PrivateRoute exact path="/" Component={IssueListPage} />
+          <PrivateRoute exact path="/issues/:num" Component={IssueDetailPage} />
+          <PrivateRoute exact path="/issues" Component={IssueListPage} />
+          <PrivateRoute exact path="/labels" Component={LabelListPage} />
+          <PrivateRoute
+            exact
+            path="/milestones"
+            Component={MilestoneListPage}
+          />
+
           <Redirect to="/error/404" />
         </Switch>
       </BrowserRouter>
     </>
   );
 }
+
 export default App;

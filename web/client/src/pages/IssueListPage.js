@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import ListPage from '../components/common/ListPage';
 import Header from '../components/common/Header';
@@ -9,7 +10,8 @@ export const QueryContext = createContext({});
 export const SearchInputContext = createContext('');
 export const SetSearchInputContext = createContext(() => {});
 
-export default function IssueListPage({ location }) {
+export default function IssueListPage() {
+  const location = useLocation();
   const query = new URLSearchParams(location.search);
 
   let queryInput = '';
