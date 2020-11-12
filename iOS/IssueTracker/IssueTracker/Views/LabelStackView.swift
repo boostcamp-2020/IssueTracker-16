@@ -7,6 +7,8 @@
 
 import UIKit
 
+
+/// 반드시 axis를 Vertical로 설정
 class LabelStackView: UIStackView {
     
     var horizontalSpacing: CGFloat = 10
@@ -16,6 +18,7 @@ class LabelStackView: UIStackView {
     /// 기존의 뷰를 모두 제거하고 새롭게 구성할 때 사용
     func configure(labels: [Label]) {
         self.labels = labels
+        labelWidth = 0
         
         labels.map({ githubLabel(for: $0) }).forEach { labelView in
             append(labelView: labelView)
@@ -39,7 +42,7 @@ class LabelStackView: UIStackView {
             return
         }
         
-        guard labelWidth + labelView.intrinsicContentSize.width + horizontalSpacing > frame.width else {
+        guard labelWidth + labelView.subviews[0].intrinsicContentSize.width + horizontalSpacing > frame.width else {
             horizotalStackView.addArrangedSubview(labelView)
             labelWidth += labelView.subviews[0].intrinsicContentSize.width + horizontalSpacing
             return

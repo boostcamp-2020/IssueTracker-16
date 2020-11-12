@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6QH-xA-ZVv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XC1-mJ-IyE">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
@@ -23,7 +23,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="l36-DN-3rS">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="l36-DN-3rS">
                                 <rect key="frame" x="40" y="140.66666666666666" width="334" height="106"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jj8-Jx-IQo">
@@ -96,7 +96,7 @@
                                     </view>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="D9I-ll-QyM">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="D9I-ll-QyM">
                                 <rect key="frame" x="40" y="279.66666666666669" width="334" height="45"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="svL-RY-Anh">
@@ -114,8 +114,15 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="PVo-gu-guA">
                                 <rect key="frame" x="40" y="367.66666666666669" width="334" height="106"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMO-q9-Ecs">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P17-Pv-A6J">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="44"/>
+                                        <state key="normal" title="테스트 로그인"/>
+                                        <connections>
+                                            <action selector="touchedTestLoginButton:" destination="XC1-mJ-IyE" eventType="touchUpInside" id="UYF-Ac-dog"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMO-q9-Ecs">
+                                        <rect key="frame" x="0.0" y="62" width="334" height="44"/>
                                         <color key="backgroundColor" red="0.69411764705882351" green="0.69411764705882351" blue="0.69411764705882351" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="9" maxX="0.0" maxY="11"/>
@@ -130,10 +137,6 @@
                                         <connections>
                                             <action selector="touchedSignInWithGitHubButton:" destination="XC1-mJ-IyE" eventType="touchUpInside" id="xw7-tA-K1I"/>
                                         </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P17-Pv-A6J">
-                                        <rect key="frame" x="0.0" y="62" width="334" height="44"/>
-                                        <state key="normal" title="🍎"/>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -504,7 +507,7 @@
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <subviews>
                                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MHr-yn-RDx" customClass="GithubLabel" customModule="IssueTracker" customModuleProvider="target">
-                                                                                <rect key="frame" x="40" y="8.6666666666666643" width="42" height="21"/>
+                                                                                <rect key="frame" x="40.333333333333329" y="8.9999999999999982" width="41.333333333333329" height="20.333333333333329"/>
                                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                                 <nil key="textColor"/>
                                                                                 <nil key="highlightedColor"/>
@@ -670,8 +673,8 @@
                                                             <color key="textColor" systemColor="secondaryLabelColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="f6V-CL-uGK" customClass="LabelStackView" customModule="IssueTracker" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="106.33333333333333" width="332" height="21.666666666666671"/>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="260" horizontalCompressionResistancePriority="800" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="f6V-CL-uGK" customClass="LabelStackView" customModule="IssueTracker" customModuleProvider="target">
+                                                            <rect key="frame" x="16" y="106.33333333333333" width="340" height="21.666666666666671"/>
                                                         </stackView>
                                                     </subviews>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1436,7 +1439,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dwK-gI-sK0">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                 <items>
-                                    <navigationItem title="Title" id="IL9-WQ-eA5">
+                                    <navigationItem title="Comment" id="IL9-WQ-eA5">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="jfU-Ic-15h">
                                             <connections>
                                                 <action selector="touchedCancelButton:" destination="d0c-Lx-Rkh" id="tMi-w3-Q9k"/>
