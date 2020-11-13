@@ -292,7 +292,7 @@ extension IssueDetailViewController: BottomSheetDelegate {
         }
         
         let isCompletlyVisible = issueDetailCollectionView.bounds.contains(cell.frame)
-        if isCompletlyVisible, maxIndexPath.item < 20 {
+        if isCompletlyVisible, maxIndexPath.item < issue?.labels.count ?? 0 {
             maxIndexPath.item += 1
         }
         issueDetailCollectionView.scrollToItem(at: maxIndexPath, at: .bottom, animated: true)
@@ -321,7 +321,7 @@ extension IssueDetailViewController: BottomSheetDelegate {
     
     func bottomSheetTappedClose(_ bottomSheet: IssueBottomSheetViewController) {
         guard var issue = issue else { return }
-        issue.isClosed = true
+        issue.isClosed.toggle()
         interactor?.request(endPoint: .update(id: issue.id, body: issue.statusData), completionHandler: { [weak self] (response: APIResponse?) in
             self?.requestIssue()
         })
@@ -333,7 +333,8 @@ extension IssueDetailViewController: AddIssueViewControllerDelegate {
     func addIssueViewControllerDoned(_ addIssueViewController: AddIssueViewController) {
         guard var issue = issue else { return }
         let title = addIssueViewController.issueTitle.text ?? ""
-        let content = addIssueViewController.commentTextView.text ?? ""
+        let isMarkdown = addIssueViewController.mdSegmentControl.selectedSegmentIndex == 1
+        let content = (isMarkdown ? addIssueViewController.originText : addIssueViewController.commentTextView.text) ?? ""
         issue.title = title
         var comment = issue.comments?.first
         comment?.content = content

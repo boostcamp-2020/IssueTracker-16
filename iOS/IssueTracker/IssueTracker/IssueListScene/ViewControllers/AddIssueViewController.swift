@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import MarkdownView
+import SwiftyMarkdown
 
 protocol AddIssueViewControllerDelegate {
     func addIssueViewControllerDoned(_ addIssueViewController: AddIssueViewController)
@@ -28,8 +28,10 @@ class AddIssueViewController: UIViewController {
     @IBOutlet weak private(set) var issueID: UILabel!
     @IBOutlet weak private(set) var issueTitle: UITextField!
     @IBOutlet weak private(set) var commentTextView: UITextView!
-    @IBOutlet weak private var mdSegmentControl: UISegmentedControl!
-    private var mdPreview: MarkdownView?
+    @IBOutlet weak private(set) var mdSegmentControl: UISegmentedControl!
+    @IBOutlet weak var textViewBottmConstraint: NSLayoutConstraint!
+
+    private(set) var originText: String?
     private var isPreviewMode = false {
         didSet {
             isPreviewMode ? openPreview() : closePreview()
@@ -40,6 +42,7 @@ class AddIssueViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        addObservers()
         configure()
     }
     
@@ -56,30 +59,28 @@ class AddIssueViewController: UIViewController {
         self.commentTextView.text = issue.comments?.first?.content
     }
     
-    // MARK: - Methods
-    
-    private func generateMDView(on superView: UIView) -> MarkdownView {
-        let mdView = MarkdownView()
-        mdView.backgroundColor = superView.backgroundColor
-        mdView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(mdView)
-        
-        mdView.topAnchor.constraint(equalTo: superView.topAnchor).isActive = true
-        mdView.leadingAnchor.constraint(equalTo: superView.leadingAnchor).isActive = true
-        mdView.trailingAnchor.constraint(equalTo: superView.trailingAnchor).isActive = true
-        mdView.bottomAnchor.constraint(equalTo: superView.bottomAnchor).isActive = true
-        
-        return mdView
+    private func addObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChanged(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
+    @objc func keyboardWillChanged(_ notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
+            return
+        }
+        textViewBottmConstraint.constant = keyboardValue.cgRectValue.height
+    }
+    
+    // MARK: - Methods
+    
     private func openPreview() {
-        mdPreview = generateMDView(on: commentTextView)
-        mdPreview?.load(markdown: commentTextView.text)
+        originText = commentTextView.text
+        let md = SwiftyMarkdown(string: originText ?? "")
+        commentTextView.attributedText = md.attributedString()
     }
     
     private func closePreview() {
-        self.mdPreview?.removeFromSuperview()
-        mdPreview = nil
+        commentTextView.typingAttributes.removeAll()
+        commentTextView.text = originText
     }
     
     // MARK: IBActions

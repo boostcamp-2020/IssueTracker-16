@@ -249,6 +249,11 @@ extension IssueViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IssueListCollectionViewCell.identfier, for: indexPath) as? IssueListCollectionViewCell else { return UICollectionViewCell() }
+        
+        
+//        cell.contentView.translatesAutoresizingMaskIntoConstraints = false
+//        cell.widthAnchor.constraint(equalTo: cell.superview?.topAnchor).isActive = true
+//        
         switch currentState {
             case .edit:
                 cell.currentState = .edit
@@ -271,6 +276,14 @@ extension IssueViewController: UICollectionViewDataSource {
         cell.delegate = self
         cell.containerView.transform = .identity
         cell.deleteHandler = delete
+        cell.layer.shadowColor = UIColor.darkGray.cgColor
+        cell.layer.shadowRadius = 3
+        cell.layer.shadowOffset = .init(width: 2, height: 2)
+        cell.layer.shadowOpacity = 0.3
+        
+        cell.contentView.layer.cornerRadius = 10
+        cell.contentView.clipsToBounds = true
+        
         return cell
     }
 }
@@ -297,13 +310,23 @@ extension IssueViewController: UICollectionViewDelegate {
         cancelSwipe()
     }
     
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.alpha = 0.5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.alpha = 1
+    }
+    
 }
 
 // MARK: - UICollectionView Delegate FlowLayout
 
 extension IssueViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.bounds.width, height: 120)
+        return .init(width: view.bounds.width - 20, height: 120)
     }
 }
 
@@ -312,7 +335,7 @@ extension IssueViewController: UICollectionViewDelegateFlowLayout {
 extension IssueViewController: AddIssueViewControllerDelegate {
     func addIssueViewControllerDoned(_ addIssueViewController: AddIssueViewController) {
         let title = addIssueViewController.issueTitle.text ?? ""
-        let content = addIssueViewController.commentTextView.text ?? ""
+        let content = addIssueViewController.originText ?? ""
         let newIssue = Issue(title: title, comment: Comment(content: content))
         
         interactor?.request(endPoint: .create(body: newIssue.createData), completionHandler: { (response: APIResponse?) in
@@ -320,7 +343,7 @@ extension IssueViewController: AddIssueViewControllerDelegate {
                 debugPrint("response is empty")
                 return
             }
-
+            
             if response.success {
                 DispatchQueue.main.async {
                     addIssueViewController.dismiss(animated: true, completion: nil)

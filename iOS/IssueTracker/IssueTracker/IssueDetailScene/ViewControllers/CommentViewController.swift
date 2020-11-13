@@ -32,18 +32,18 @@ class CommentViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChanged(_:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
-    @objc func keyboardWillChanged(_ notification: Notification) {
+    @objc private func keyboardWillChanged(_ notification: Notification) {
         guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {
             return
         }
         scrollViewBottomConstraint.constant = keyboardValue.cgRectValue.height
     }
     
-    @IBAction func touchedCancelButton(_ sender: UIBarButtonItem) {
+    @IBAction private func touchedCancelButton(_ sender: UIBarButtonItem) {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func touchedSendButton(_ sender: UIBarButtonItem) {
+    @IBAction private func touchedSendButton(_ sender: UIBarButtonItem) {
         sendHandler?(textView.text)
     }
 }
