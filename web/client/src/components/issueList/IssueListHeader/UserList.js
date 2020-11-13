@@ -55,7 +55,7 @@ export default function UserList({ setIsOpen, type }) {
     setCheckItems([]);
     setSearchInput(`is:open author:${id}`);
     setIsOpen(false);
-    history.push(`/issues?isClosed=false&author=${id}`);
+    history.push(`/issues?is=open&author=${id}`);
   };
   const handleClickAssignee = (event, id) => {
     event.preventDefault();
@@ -65,7 +65,7 @@ export default function UserList({ setIsOpen, type }) {
     history.push(
       `/issues${
         location.search.length ? `${location.search}&` : '?'
-      }label=${id}`,
+      }assignee=${id}`,
     );
   };
 

@@ -39,7 +39,7 @@ export default function MilestoneList({ setIsOpen }) {
     setCheckItems([]);
     setSearchInput(`is:open milestone:${title}`);
     setIsOpen(false);
-    history.push(`/issues?isClosed=false&milestone=${title}`);
+    history.push(`/issues?is=open&milestone=${title}`);
   };
 
   useEffect(() => {

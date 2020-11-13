@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 import ListPage from '../components/common/ListPage';
 import Header from '../components/common/Header';
@@ -12,16 +12,18 @@ export const CheckItemsContext = createContext([]);
 export const SetCheckItemsContext = createContext(() => {});
 
 export default function IssueListPage({ location }) {
+  const [searchInput, setSearchInput] = useState('');
+  const [checkItems, setCheckItems] = useState([]);
   const query = new URLSearchParams(location.search);
-
   let queryInput = '';
   for (const [key, value] of query) {
     queryInput += `${key}:${value} `;
   }
   queryInput = queryInput ? queryInput : 'is:open ';
 
-  const [searchInput, setSearchInput] = useState(queryInput);
-  const [checkItems, setCheckItems] = useState([]);
+  useEffect(() => {
+    setSearchInput(queryInput);
+  }, [queryInput]);
 
   return (
     <>

@@ -54,7 +54,7 @@ export default function SelectModal({ setIsOpen, type }) {
         </button>
       </ModalHeader>
       {(type === 'Author' || type === 'Assignee') && (
-        <UserList {...{ setIsOpen }} />
+        <UserList {...{ setIsOpen, type }} />
       )}
       {type === 'Label' && <LabelList {...{ setIsOpen }} />}
       {type === 'Milestone' && <MilestoneList {...{ setIsOpen }} />}

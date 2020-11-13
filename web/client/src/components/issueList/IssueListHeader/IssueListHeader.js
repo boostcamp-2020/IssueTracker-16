@@ -29,7 +29,13 @@ export default function IssueListHeader({
         <input
           type="checkbox"
           onChange={event => handleAllCheck(event.target.checked)}
-          checked={issues.length === checkItems.length ? true : false}
+          checked={
+            issues.length
+              ? issues.length === checkItems.length
+                ? true
+                : false
+              : false
+          }
         />
       </CheckBox>
       <Options>
