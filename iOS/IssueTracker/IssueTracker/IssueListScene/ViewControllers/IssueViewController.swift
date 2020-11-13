@@ -28,6 +28,9 @@ class IssueViewController: UIViewController {
             return issues
         }
     }
+    
+    /// 한 번에 여러 request 요청를 요청할 때 사용
+    private var successedRequestCount = 0
     private var issues = [Issue]()
     private var filteredIssues = [Issue]() {
         didSet {
@@ -170,6 +173,24 @@ class IssueViewController: UIViewController {
     
     // MARK: IBActions
     
+    @IBAction func touchedCloseSelectedIssuesButton(_ sender: UIBarButtonItem) {
+        successedRequestCount = 0
+        selectedIssues.map { $0.item }.forEach { index in
+            var issue = anyIssues[index]
+            issue.isClosed.toggle()
+            interactor?.request(endPoint: .update(id: issue.id, body: issue.statusData), completionHandler: { [weak self] (response: APIResponse?) in
+                self?.successedRequestCount += 1
+                
+                guard self?.successedRequestCount == self?.selectedIssues.count else { return }
+                
+                DispatchQueue.main.async {
+                    self?.currentState = .none
+                    self?.request(for: .list)
+                }
+            })
+        }
+    }
+    
     @IBAction private func touchedEditButton(_ sender: UIBarButtonItem) {
         swipedIndex = nil
         if currentState == .edit {
@@ -250,10 +271,6 @@ extension IssueViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IssueListCollectionViewCell.identfier, for: indexPath) as? IssueListCollectionViewCell else { return UICollectionViewCell() }
         
-        
-//        cell.contentView.translatesAutoresizingMaskIntoConstraints = false
-//        cell.widthAnchor.constraint(equalTo: cell.superview?.topAnchor).isActive = true
-//        
         switch currentState {
             case .edit:
                 cell.currentState = .edit
@@ -264,6 +281,7 @@ extension IssueViewController: UICollectionViewDataSource {
                     cell.currentState = .none
                 }
         }
+        
         cell.issue = anyIssues[indexPath.row]
         if selectedIssues.contains(indexPath) {
 //            cell.isSelected = true
@@ -335,7 +353,8 @@ extension IssueViewController: UICollectionViewDelegateFlowLayout {
 extension IssueViewController: AddIssueViewControllerDelegate {
     func addIssueViewControllerDoned(_ addIssueViewController: AddIssueViewController) {
         let title = addIssueViewController.issueTitle.text ?? ""
-        let content = addIssueViewController.originText ?? ""
+        let isMarkdown = addIssueViewController.mdSegmentControl.selectedSegmentIndex == 1
+        let content = (isMarkdown ? addIssueViewController.originText : addIssueViewController.commentTextView.text) ?? ""
         let newIssue = Issue(title: title, comment: Comment(content: content))
         
         interactor?.request(endPoint: .create(body: newIssue.createData), completionHandler: { (response: APIResponse?) in
@@ -349,6 +368,8 @@ extension IssueViewController: AddIssueViewControllerDelegate {
                     addIssueViewController.dismiss(animated: true, completion: nil)
                     self.request(for: .list)
                 }
+            } else {
+                debugPrint(response)
             }
         })
     }

@@ -731,7 +731,11 @@
                                 <rect key="frame" x="0.0" y="589" width="414" height="49"/>
                                 <items>
                                     <barButtonItem systemItem="flexibleSpace" id="3N2-09-ClM"/>
-                                    <barButtonItem title="선택 이슈 닫기" id="PbK-e4-RaH"/>
+                                    <barButtonItem title="선택 이슈 닫기" id="PbK-e4-RaH">
+                                        <connections>
+                                            <action selector="touchedCloseSelectedIssuesButton:" destination="BYZ-38-t0r" id="12b-wK-Yu9"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="55g-4e-RFR">

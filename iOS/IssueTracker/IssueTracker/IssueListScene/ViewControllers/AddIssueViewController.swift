@@ -86,6 +86,21 @@ class AddIssueViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction private func touchedDone(_ sender: UIButton) {
+        
+        guard !(issueTitle.text?.isEmpty ?? true) else {
+            issueTitle.shake()
+            return
+        }
+        
+        guard !(commentTextView.text?.isEmpty ?? true) else {
+            commentTextView.text = "코멘트를 입력해주세요 !!"
+            commentTextView.shake()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.commentTextView.text = ""
+            }
+            return
+        }
+        
         delegate?.addIssueViewControllerDoned(self)
     }
     
