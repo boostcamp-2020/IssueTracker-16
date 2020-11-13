@@ -213,11 +213,7 @@ extension IssueDetailViewController {
     }
     private func refreshBottomSheetVC() {
         bottomSheetVC?.author = issue?.author
-        
-        // FIXME: 수정수정!!!@#!@#!@#!@#
-        let labelResponse = issue?.labels.first
-        let label = Label(name: labelResponse?.name ?? "", description: "", color: labelResponse?.color ?? "")
-        bottomSheetVC?.label = label
+        bottomSheetVC?.labels = issue?.labels
         bottomSheetVC?.milestone = issue?.milestone
     }
     

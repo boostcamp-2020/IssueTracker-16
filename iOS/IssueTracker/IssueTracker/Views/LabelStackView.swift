@@ -19,7 +19,7 @@ class LabelStackView: UIStackView {
     func configure(labels: [Label]) {
         self.labels = labels
         labelWidth = 0
-        
+        self.arrangedSubviews.forEach({$0.removeFromSuperview()})
         labels.map({ githubLabel(for: $0) }).forEach { labelView in
             append(labelView: labelView)
         }
