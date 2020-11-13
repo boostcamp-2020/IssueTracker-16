@@ -25,7 +25,7 @@ export default function AssigneesTap({ assignees }) {
   return (
     <SideItem {...{ title, onClick }}>
       <Popup {...{ popTitle, state }}>
-        <Assignees {...{ assignees }}></Assignees>
+        <Assignees {...{ assignees }} />
       </Popup>
       {(assignees.length &&
         assignees.map(assignee => (

@@ -3,28 +3,27 @@ import styled from 'styled-components';
 
 import SideItem from '../SideItem';
 import Popup from '../Popup';
-import LabelEl from './LabelEl';
-import LabelsPop from './LabelsPop';
+import MilestoneEl from './MilestoneEl';
+import MilestonesPop from './MilestonesPop';
 
 const NothingItem = styled.div`
   font-size: 13px;
 `;
 
-export default function LabelsTap({ labels }) {
+export default function MilestonesTap({ milestone }) {
   const [state, setState] = useState({ isHidden: true });
-  const title = 'Labels';
-  const popTitle = 'Apply labels to this issue';
+  const title = 'Milestone';
+  const popTitle = 'Set milestone';
 
   const toggleState = () => setState({ isHidden: !state.isHidden });
   const onClick = () => toggleState();
   return (
     <SideItem {...{ title, onClick }}>
       <Popup {...{ popTitle, state }}>
-        <LabelsPop {...{ labels }} />
+        <MilestonesPop {...{ milestone }} />
       </Popup>
-      {(labels.length &&
-        labels.map(label => <LabelEl key={label.num} {...label} />)) || (
-        <NothingItem>None yet</NothingItem>
+      {(milestone && <MilestoneEl {...milestone} />) || (
+        <NothingItem>No milestone</NothingItem>
       )}
     </SideItem>
   );
