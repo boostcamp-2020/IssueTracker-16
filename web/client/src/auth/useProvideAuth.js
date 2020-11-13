@@ -10,7 +10,7 @@ function useProvideAuth() {
     if (!token) return false;
     const {
       data: { success, user },
-    } = await axios.get(`/api/users/auth?token=${token}`);
+    } = await axios.get(`/api/users/auth`);
     return success ? user : null;
   };
 

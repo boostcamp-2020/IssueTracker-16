@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Redirect, useHistory, useLocation } from 'react-router-dom';
 
 import { useAuth } from './ProvideAuth';
+// import cookies from '../utils/cookies';
 
 function PrivateRoute({ Component, ...rest }) {
   const history = useHistory();
@@ -9,7 +10,8 @@ function PrivateRoute({ Component, ...rest }) {
   const { user, signIn } = useAuth();
 
   useEffect(() => {
-    const { from } = location.state || { from: { pathname: '/' } };
+    const { pathname: from } = location || { pathname: '/' };
+    // cookies.setCookie('from', from);
     signIn(() => {
       history.replace(from);
     });
