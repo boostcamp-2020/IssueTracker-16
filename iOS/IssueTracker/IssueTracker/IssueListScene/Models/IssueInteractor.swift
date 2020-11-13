@@ -17,6 +17,7 @@ class IssueInteractor: IssueBusinessLogic {
         NetworkManager.shared.request(endPoint: endPoint) { (data: T?, response: NetworkManager.Response?) in
             guard response == nil else {
                 debugPrint(response)
+                completionHandler(nil)
                 return
             }
             completionHandler(data)
