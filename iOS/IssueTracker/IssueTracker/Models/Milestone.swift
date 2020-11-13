@@ -62,3 +62,11 @@ extension Milestone: Codable {
 extension Milestone: Inputable {
     
 }
+extension Milestone: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+    static func == (lhs: Milestone, rhs: Milestone) -> Bool {
+        lhs.id == rhs.id
+    }
+}

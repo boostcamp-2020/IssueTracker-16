@@ -48,6 +48,9 @@
 		4CBA21EE2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21ED2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift */; };
 		4CBA21F62553E377002BDCC3 /* IssueDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21F52553E377002BDCC3 /* IssueDetailHeaderView.swift */; };
 		D413681C2559242A00A4AD55 /* UIAlertController+simpleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413681B2559242A00A4AD55 /* UIAlertController+simpleAlert.swift */; };
+		D414F3CA255D457500646E39 /* UserEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D414F3C9255D457500646E39 /* UserEndPoint.swift */; };
+		D414F3D2255D49DF00646E39 /* AssignmentInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D414F3D1255D49DF00646E39 /* AssignmentInteractor.swift */; };
+		D414F3DA255D543C00646E39 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = D414F3D9255D543C00646E39 /* Assignment.swift */; };
 		D42EC1912549180A00E57627 /* MilestoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC1902549180A00E57627 /* MilestoneViewController.swift */; };
 		D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */; };
 		D42EC19D2549CEA600E57627 /* AddAlertColorInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC19C2549CEA600E57627 /* AddAlertColorInputView.swift */; };
@@ -148,6 +151,9 @@
 		4CBA21F52553E377002BDCC3 /* IssueDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailHeaderView.swift; sourceTree = "<group>"; };
 		D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBottomSheetViewController.swift; sourceTree = "<group>"; };
 		D413681B2559242A00A4AD55 /* UIAlertController+simpleAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+simpleAlert.swift"; sourceTree = "<group>"; };
+		D414F3C9255D457500646E39 /* UserEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserEndPoint.swift; sourceTree = "<group>"; };
+		D414F3D1255D49DF00646E39 /* AssignmentInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssignmentInteractor.swift; sourceTree = "<group>"; };
+		D414F3D9255D543C00646E39 /* Assignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
 		D42EC1902549180A00E57627 /* MilestoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneViewController.swift; sourceTree = "<group>"; };
 		D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneCollectionViewCell.swift; sourceTree = "<group>"; };
 		D42EC19C2549CEA600E57627 /* AddAlertColorInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertColorInputView.swift; sourceTree = "<group>"; };
@@ -275,6 +281,7 @@
 				4CBA21BA25503B63002BDCC3 /* IssueEndPoint.swift */,
 				4C51399F254934D20084F65F /* LabelEndPoint.swift */,
 				4C51399E254934D20084F65F /* MilestoneEndPoint.swift */,
+				D414F3C9255D457500646E39 /* UserEndPoint.swift */,
 			);
 			path = EndPoints;
 			sourceTree = "<group>";
@@ -286,6 +293,7 @@
 				4CBA21B525503B47002BDCC3 /* MilestoneInteractor.swift */,
 				4C5139A925494E7E0084F65F /* LabelInteractor.swift */,
 				4C2D05DC25591E4500FA787F /* IssueDetailInteractor.swift */,
+				D414F3D1255D49DF00646E39 /* AssignmentInteractor.swift */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -364,6 +372,7 @@
 				4C2D05A72557ECA300FA787F /* APIResponse.swift */,
 				4C2F095E255A3E4600ED5F06 /* Comment.swift */,
 				4C2F0968255A675400ED5F06 /* User.swift */,
+				D414F3D9255D543C00646E39 /* Assignment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -581,6 +590,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D414F3DA255D543C00646E39 /* Assignment.swift in Sources */,
 				D4A598E02552A0DE00E825D3 /* IssueBottomSheetViewController.swift in Sources */,
 				4C5139C12549A36F0084F65F /* LoginViewController.swift in Sources */,
 				D4DF60252547AEF200765C0A /* IssueViewController.swift in Sources */,
@@ -596,6 +606,7 @@
 				D413681C2559242A00A4AD55 /* UIAlertController+simpleAlert.swift in Sources */,
 				4CBA21A9255007E8002BDCC3 /* IssueListCollectionViewCell.swift in Sources */,
 				4CBA21F62553E377002BDCC3 /* IssueDetailHeaderView.swift in Sources */,
+				D414F3D2255D49DF00646E39 /* AssignmentInteractor.swift in Sources */,
 				D4DF60232547AEF200765C0A /* SceneDelegate.swift in Sources */,
 				4CBA21D725529331002BDCC3 /* ActionCollectionViewCell.swift in Sources */,
 				4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */,
@@ -621,6 +632,7 @@
 				4C3426C5255C2DC6002B5960 /* UIView+Shake.swift in Sources */,
 				4C2D05E62559307500FA787F /* Date+.swift in Sources */,
 				D4A060A82548877600FAF62B /* UIColor+hexString+random.swift in Sources */,
+				D414F3CA255D457500646E39 /* UserEndPoint.swift in Sources */,
 				4CBA21EE2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift in Sources */,
 				D476EB04254B28AC00CB4C09 /* String+dateRegEx.swift in Sources */,
 				4CBA21BB25503B63002BDCC3 /* IssueEndPoint.swift in Sources */,
