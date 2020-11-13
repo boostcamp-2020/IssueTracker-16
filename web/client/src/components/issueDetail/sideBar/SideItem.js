@@ -7,7 +7,9 @@ import SettingLogo from '../../../statics/svg/setting';
 const Div = styled.div`
   border-bottom: 1px solid #${COLOR.lightGray};
   padding: 15px 0;
+  position: relative;
 `;
+
 const Title = styled.div`
   color: #${COLOR.darkGray};
   font-weight: 700;
@@ -29,10 +31,10 @@ const Title = styled.div`
   }
 `;
 
-export default function SideItem({ children, title }) {
+export default function SideItem({ children, title, onClick }) {
   return (
     <Div>
-      <Title>
+      <Title onClick={onClick}>
         <div>{title}</div>
         <SettingLogo />
       </Title>
