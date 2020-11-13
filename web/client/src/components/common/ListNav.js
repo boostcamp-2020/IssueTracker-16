@@ -10,6 +10,6 @@ const Div = styled.div`
   }
 `;
 
-export default function ListPage({ children }) {
+export default function ListNav({ children }) {
   return <Div>{children}</Div>;
 }
