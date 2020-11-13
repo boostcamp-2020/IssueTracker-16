@@ -21,6 +21,9 @@ module.exports = class User extends Model {
           type: DataTypes.STRING,
           allowNull: false,
         },
+        imageUrl: {
+          type: DataTypes.STRING,
+        },
       },
       {
         sequelize,
@@ -33,7 +36,7 @@ module.exports = class User extends Model {
       },
     );
   }
-  static associate({ User, OAuthUser, Comment, Issue }) {
+  static associate({ User, Comment, Issue }) {
     [Issue, Comment].forEach(model =>
       User.hasMany(model, {
         foreignKey: {
@@ -43,10 +46,6 @@ module.exports = class User extends Model {
         sourceKey: 'num',
       }),
     );
-    User.hasMany(OAuthUser, {
-      foreignKey: 'user_num',
-      sourceKey: 'num',
-    });
     User.belongsToMany(Issue, {
       foreignKey: 'userNum',
       through: 'assignments',

@@ -7,7 +7,7 @@ const { database, username, password, ...rest } = config;
 const db = {
   User: require('./user'),
   OAuth: require('./oAuth'),
-  OAuthUser: require('./oAuthUser'),
+  Authorization: require('./authorization'),
   Issue: require('./issue'),
   Comment: require('./comment'),
   Label: require('./label'),

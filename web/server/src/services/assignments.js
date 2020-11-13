@@ -1,12 +1,12 @@
 const { Issue, User } = require('../db/models');
-const { NO_CONTENTS } = require('../common/errorHandler');
+const { NOT_FOUND } = require('../common/errorHandler');
 
 const assignmentService = {
   add: async ({ issueNum, userNum }) => {
     const issue = await Issue.findByPk(issueNum);
     const user = await User.findByPk(userNum);
     if (!issue || !user) {
-      throw new Error(NO_CONTENTS);
+      throw new Error(NOT_FOUND);
     }
     return issue.addAssignees(user);
   },
@@ -23,7 +23,7 @@ const assignmentService = {
       ],
     });
     if (!issue) {
-      throw new Error(NO_CONTENTS);
+      throw new Error(NOT_FOUND);
     }
     return issue.removeAssignees(userNum);
   },

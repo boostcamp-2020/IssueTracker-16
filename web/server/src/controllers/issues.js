@@ -2,29 +2,31 @@ const issueService = require('../services/issues');
 const commentService = require('../services/comments');
 const labelingService = require('../services/labelings');
 const assignmentService = require('../services/assignments');
-const { NO_CONTENTS, BAD_REQUEST } = require('../common/errorHandler');
+const { NOT_FOUND, BAD_REQUEST } = require('../common/errorHandler');
+const { CREATED, OK } = require('../common/status');
 
 const issueController = {
   getAll: async (req, res) => {
-    const isClosed = req.query.isClosed === 'true' ? true : false;
+    const query = req.query;
+    query.isClosed = query.isClosed === 'true' ? true : false;
     const [issues, total] = await Promise.all([
-      issueService.findAll({ isClosed }),
-      issueService.count(),
+      issueService.findAll(query),
+      issueService.count(query),
     ]);
     const count = issues.length;
-    const [open, closed] = isClosed
+    const [open, closed] = query.isClosed
       ? [total - count, count]
       : [count, total - count];
-    res.status(200).json({ open, closed, issues });
+    res.status(OK).json({ total, open, closed, issues });
   },
 
   getOne: async (req, res) => {
     const { num } = req.params;
     const issue = await issueService.findOneByNum({ num });
     if (!issue) {
-      throw new Error(NO_CONTENTS);
+      throw new Error(NOT_FOUND);
     }
-    res.status(200).json(issue);
+    res.status(OK).json(issue);
   },
 
   add: async (req, res) => {
@@ -41,7 +43,7 @@ const issueController = {
     assignees.forEach(userNum =>
       assignmentService.add({ issueNum: issue.num, userNum }),
     );
-    res.status(200).json({ success: true });
+    res.status(CREATED).json({ success: true });
   },
 
   update: async (req, res) => {
@@ -51,9 +53,18 @@ const issueController = {
     } = req;
     const [updated] = await issueService.update({ num, payload });
     if (!updated) {
-      throw new Error(NO_CONTENTS);
+      throw new Error(NOT_FOUND);
     }
-    res.status(200).json({ success: true });
+    res.status(OK).json({ success: true });
+  },
+
+  delete: async (req, res) => {
+    const { num } = req.params;
+    const deleted = await issueService.delete({ num });
+    if (!deleted) {
+      throw new Error(NOT_FOUND);
+    }
+    res.status(OK).json({ success: true });
   },
 };
 

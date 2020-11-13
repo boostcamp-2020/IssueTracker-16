@@ -25,10 +25,5 @@ module.exports = class OAuth extends Model {
       },
     );
   }
-  static associate({ OAuth, OAuthUser }) {
-    OAuth.hasMany(OAuthUser, {
-      foreignKey: 'oauth_num',
-      sourceKey: 'num',
-    });
-  }
+  static associate() {}
 };

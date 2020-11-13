@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
+  margin-bottom: 16px;
   display: flex;
-  margin-top: 50px;
 
   div:last-child {
     margin-left: auto;
   }
 `;
 
-export default function ListPage({ children }) {
+export default function ListNav({ children }) {
   return <Div>{children}</Div>;
 }

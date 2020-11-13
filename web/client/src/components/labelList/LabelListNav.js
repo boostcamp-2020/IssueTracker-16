@@ -4,14 +4,18 @@ import GreenButton from '../common/GreenButton';
 import LabelMilestoneNavigator from '../common/LabelMilestoneNavigator';
 import ListNav from '../common/ListNav';
 
-export default function LabelListNav() {
+export default function LabelListNav({ isHidden, setState }) {
+  const toggleInput = event => {
+    event.preventDefault();
+    setState({ isHidden: !isHidden });
+  };
   return (
     <ListNav>
       <div>
-        <LabelMilestoneNavigator />
+        <LabelMilestoneNavigator page={'label'} />
       </div>
       <div>
-        <GreenButton>New Label</GreenButton>
+        <GreenButton onClick={toggleInput}>New Label</GreenButton>
       </div>
     </ListNav>
   );

@@ -1,12 +1,12 @@
 const { Issue, Label } = require('../db/models');
-const { NO_CONTENTS } = require('../common/errorHandler');
+const { NOT_FOUND } = require('../common/errorHandler');
 
 const labelingService = {
   add: async ({ issueNum, labelNum }) => {
     const issue = await Issue.findByPk(issueNum);
     const label = await Label.findByPk(labelNum);
     if (!issue || !label) {
-      throw new Error(NO_CONTENTS);
+      throw new Error(NOT_FOUND);
     }
     return issue.addLabel(label);
   },
@@ -23,7 +23,7 @@ const labelingService = {
       ],
     });
     if (!issue) {
-      throw new Error(NO_CONTENTS);
+      throw new Error(NOT_FOUND);
     }
     return issue.removeLabel(labelNum);
   },
