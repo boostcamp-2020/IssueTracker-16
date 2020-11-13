@@ -16,6 +16,7 @@ class IssueDetailViewController: UIViewController {
     private var refreshControl = UIRefreshControl()
     private var titleYAnchor: NSLayoutConstraint?
     private var interactor: IssueDetailInteractor?
+    
     // MARK: - Views
     
     @IBOutlet weak var issueDetailCollectionView: UICollectionView!

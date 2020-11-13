@@ -37,7 +37,7 @@ class IssueListCollectionViewCell: UICollectionViewCell, ActionCollectionViewCel
     private func configure(labels: [Label]) {
         labelStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
-        labelStackView.frame.size.width = frame.width
+        labelStackView.frame.size.width = frame.width - 20
         labelStackView.configure(labels: labels)
     }
     
