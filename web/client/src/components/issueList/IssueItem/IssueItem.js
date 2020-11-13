@@ -2,16 +2,17 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import getDiffTime from '../../utils/getDiffTime';
-import COLOR from '../../utils/color';
+import getDiffTime from '../../../utils/getDiffTime';
+import COLOR from '../../../utils/color';
 
-import { CheckItemsContext } from './IssueList';
+import { CheckItemsContext } from '../../../pages/IssueListPage';
 
-import Label from '../common/Label';
-import ListItem from '../common/ListItem';
-import MilestoneLogo from '../../statics/svg/milestone';
-import OpenIssueLogo from '../../statics/svg/openIssue';
-import ClosedIssueLogo from '../../statics/svg/closedIssue';
+import Label from '../../common/Label';
+import ListItem from '../../common/ListItem';
+import MilestoneLogo from '../../../statics/svg/milestone';
+import OpenIssueLogo from '../../../statics/svg/openIssue';
+import ClosedIssueLogo from '../../../statics/svg/closedIssue';
+import AssigneeTag from './AssigneeTag';
 
 const ItemInfo = styled.div`
   margin: 0 5px;
@@ -43,15 +44,6 @@ const LabelTag = styled.div`
     margin-left: 3px;
   }
 `;
-const AssigneeTag = styled.div`
-  div {
-    padding: 0 2px;
-    border: 1px solid;
-    border-radius: 15px;
-    color: #${COLOR.green};
-    font-size: 10px;
-  }
-`;
 const Description = styled.div`
   margin-top: 4px;
   display: flex;
@@ -73,6 +65,7 @@ const MilestoneTag = styled.div`
     margin-left: 3px;
   }
 `;
+
 const CheckBox = styled.div`
   margin-right: 16px;
 `;
@@ -124,11 +117,7 @@ export default function IssueItem({
           )}
         </Description>
       </ItemInfo>
-      <AssigneeTag>
-        {assignees.map(a => (
-          <div key={a.num}>{a.id}</div>
-        ))}
-      </AssigneeTag>
+      <AssigneeTag assignees={assignees} />
     </ListItem>
   );
 }

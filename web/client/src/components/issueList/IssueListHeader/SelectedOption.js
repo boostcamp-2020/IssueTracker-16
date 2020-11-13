@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import { CheckItemsContext } from '../IssueList';
+import { CheckItemsContext } from '../../../pages/IssueListPage';
 
 import COLOR from '../../../utils/color';
 

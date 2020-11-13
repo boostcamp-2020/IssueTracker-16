@@ -7,16 +7,17 @@ const { CREATED, OK } = require('../common/status');
 
 const issueController = {
   getAll: async (req, res) => {
-    const isClosed = req.query.isClosed === 'true' ? true : false;
+    const query = req.query;
+    query.isClosed = query.isClosed === 'true' ? true : false;
     const [issues, total] = await Promise.all([
-      issueService.findAll({ isClosed }),
-      issueService.count(),
+      issueService.findAll(query),
+      issueService.count(query),
     ]);
     const count = issues.length;
-    const [open, closed] = isClosed
+    const [open, closed] = query.isClosed
       ? [total - count, count]
       : [count, total - count];
-    res.status(OK).json({ open, closed, issues });
+    res.status(OK).json({ total, open, closed, issues });
   },
 
   getOne: async (req, res) => {

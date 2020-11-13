@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import COLOR from '../../../utils/color';
 import OpenIssueLogo from '../../../statics/svg/openIssue';
 import CheckIcon from '../../../statics/svg/checkIcon';
 import { QueryContext } from '../../../pages/IssueListPage';
+import FilterButton from './FilterButton';
 
 const Filters = styled.div`
   display: flex;
@@ -21,13 +22,10 @@ const Filters = styled.div`
   &:last-child {
     justify-content: flex-end;
 
-    > span {
+    > div {
       margin-left: 16px;
     }
   }
-`;
-const Filter = styled.span`
-  font-size: 14px;
 `;
 
 const OpenClosed = styled.div`
@@ -38,39 +36,54 @@ const OpenClosed = styled.div`
     fill: #${({ isClosed }) => (isClosed ? `${COLOR.black}` : `${COLOR.darkGray}`)};
   }
 
-  a {
+  button {
     display: flex;
     align-items: center;
+    border: none;
+    outline: none;
+    background-color: transparent;
     color: #${({ isClosed }) => (isClosed ? `${COLOR.black}` : `${COLOR.darkGray}`)};
-    text-decoration: none;
+    cursor: pointer;
   }
 `;
 
 export default function MainOption({ open, closed }) {
+  const history = useHistory();
   const query = useContext(QueryContext);
   const isClosed = query.get('is') === 'closed';
+
+  const handleClickOpen = event => {
+    event.preventDefault();
+    query.set('is', 'open');
+    history.push(`/issues?${query.toString()}`);
+  };
+  const handleClickClosed = event => {
+    event.preventDefault();
+    query.set('is', 'closed');
+    history.push(`/issues?${query.toString()}`);
+  };
 
   return (
     <>
       <Filters>
         <OpenClosed isClosed={!isClosed}>
-          <Link to={'/issues?is=open'}>
+          <button onClick={handleClickOpen}>
             <OpenIssueLogo />
             <span>{open} Open</span>
-          </Link>
+          </button>
         </OpenClosed>
         <OpenClosed isClosed={isClosed}>
-          <Link to={'/issues?is=closed'}>
+          <button onClick={handleClickClosed}>
             <CheckIcon />
             <span>{closed} Closed</span>
-          </Link>
+          </button>
         </OpenClosed>
       </Filters>
       <Filters>
-        <Filter>Author▾ </Filter>
-        <Filter>Label▾ </Filter>
-        <Filter>Milestone▾ </Filter>
-        <Filter>Assignee▾ </Filter>
+        <FilterButton type="Author" />
+        <FilterButton type="Label" />
+        <FilterButton type="Milestone" />
+        <FilterButton type="Assignee" />
       </Filters>
     </>
   );

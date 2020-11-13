@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import ListPage from '../components/common/ListPage';
@@ -9,30 +9,40 @@ import IssueList from '../components/issueList/IssueList';
 export const QueryContext = createContext({});
 export const SearchInputContext = createContext('');
 export const SetSearchInputContext = createContext(() => {});
+export const CheckItemsContext = createContext([]);
+export const SetCheckItemsContext = createContext(() => {});
 
 export default function IssueListPage() {
   const location = useLocation();
-  const query = new URLSearchParams(location.search);
+  const [searchInput, setSearchInput] = useState('');
+  const [checkItems, setCheckItems] = useState([]);
 
+  const query = new URLSearchParams(location.search);
   let queryInput = '';
   for (const [key, value] of query) {
     queryInput += `${key}:${value} `;
   }
   queryInput = queryInput ? queryInput : 'is:open ';
 
-  const [searchInput, setSearchInput] = useState(queryInput);
+  useEffect(() => {
+    setSearchInput(queryInput);
+  }, [queryInput]);
 
   return (
     <>
       <Header />
       <ListPage>
         <QueryContext.Provider value={query}>
-          <SetSearchInputContext.Provider value={setSearchInput}>
-            <SearchInputContext.Provider value={searchInput}>
-              <IssueListNav />
-            </SearchInputContext.Provider>
-          </SetSearchInputContext.Provider>
-          <IssueList />
+          <SetCheckItemsContext.Provider value={setCheckItems}>
+            <CheckItemsContext.Provider value={checkItems}>
+              <SetSearchInputContext.Provider value={setSearchInput}>
+                <SearchInputContext.Provider value={searchInput}>
+                  <IssueListNav />
+                  <IssueList />
+                </SearchInputContext.Provider>
+              </SetSearchInputContext.Provider>
+            </CheckItemsContext.Provider>
+          </SetCheckItemsContext.Provider>
         </QueryContext.Provider>
       </ListPage>
     </>

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import { CheckItemsContext } from '../IssueList';
+import { CheckItemsContext } from '../../../pages/IssueListPage';
 
 import ListHeader from '../../common/ListHeader';
 import MainOption from './MainOption';
@@ -29,7 +29,13 @@ export default function IssueListHeader({
         <input
           type="checkbox"
           onChange={event => handleAllCheck(event.target.checked)}
-          checked={issues.length === checkItems.length ? true : false}
+          checked={
+            issues.length
+              ? issues.length === checkItems.length
+                ? true
+                : false
+              : false
+          }
         />
       </CheckBox>
       <Options>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import IssueItem from './IssueItem';
+import IssueItem from './IssueItem/IssueItem';
 import ListBody from '../common/ListBody';
 import NoResult from '../common/NoResult';
 import OpenIssueLogo from '../../statics/svg/openIssue';

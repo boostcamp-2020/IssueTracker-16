@@ -1,58 +1,69 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import COLOR from '../../../utils/color';
-import { SetSearchInputContext } from '../../../pages/IssueListPage';
+import {
+  SetSearchInputContext,
+  SetCheckItemsContext,
+} from '../../../pages/IssueListPage';
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 
-  a {
+  button {
     padding: 7px 16px;
+    border: none;
     border-top: 1px solid #${COLOR.lightGray};
+    background-color: transparent;
     color: #${COLOR.black};
-    text-decoration: none;
+    outline: none;
     font-size: 12px;
+    cursor: pointer;
   }
 `;
 
 export default function FilterList({ setIsOpen }) {
+  const history = useHistory();
+  const setCheckItems = useContext(SetCheckItemsContext);
   const setSearchInput = useContext(SetSearchInputContext);
-  const handleClickSelect = input => {
+
+  const handleClickSelect = (event, input, query) => {
+    event.preventDefault();
+    setCheckItems([]);
     setSearchInput(input);
     setIsOpen(false);
+    history.push(`/issues?${query}`);
   };
   return (
     <Wrapper>
-      <Link to={'/issues?is=open'} onClick={() => handleClickSelect('is:open')}>
+      <button onClick={event => handleClickSelect(event, 'is:open', 'is=open')}>
         Open issues
-      </Link>
-      <Link
-        to={'/issues?is=open&author=@me'}
-        onClick={() => handleClickSelect('is:open author:@me')}
+      </button>
+      <button
+        onClick={event =>
+          handleClickSelect(event, 'is:open author:@me', 'is=open&author=@me')
+        }
       >
         Your issues
-      </Link>
-      <Link
-        to={'/issues?is=open&assignee=@me'}
-        onClick={() => handleClickSelect('is:open assignee:@me')}
+      </button>
+      <button
+        onClick={event =>
+          handleClickSelect(
+            event,
+            'is:open assignee:@me',
+            'is=open&assignee=@me',
+          )
+        }
       >
         Everything assigned to you
-      </Link>
-      <Link
-        to={'/issues?is=open&commenter=@me'}
-        onClick={() => handleClickSelect('is:open commenter:@me')}
-      >
-        Everything commented by you
-      </Link>
-      <Link
-        to={'/issues?is=closed'}
-        onClick={() => handleClickSelect('is:closed')}
+      </button>
+      <button
+        onClick={event => handleClickSelect(event, 'is:closed', 'is=closed')}
       >
         Closed Issues
-      </Link>
+      </button>
     </Wrapper>
   );
 }
