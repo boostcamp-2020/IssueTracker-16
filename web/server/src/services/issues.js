@@ -39,7 +39,7 @@ const issueService = {
           attributes: ['num', 'name', 'color'],
           where: label && {
             name: {
-              [Op.or]: [label],
+              [Op.and]: [label],
             },
           },
         },
@@ -80,7 +80,7 @@ const issueService = {
           as: 'labels',
           where: label && {
             name: {
-              [Op.or]: [label],
+              [Op.and]: [label],
             },
           },
         },

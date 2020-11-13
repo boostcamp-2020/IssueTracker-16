@@ -6,6 +6,7 @@ import COLOR from '../../../utils/color';
 import OpenIssueLogo from '../../../statics/svg/openIssue';
 import CheckIcon from '../../../statics/svg/checkIcon';
 import { QueryContext } from '../../../pages/IssueListPage';
+import FilterButton from './FilterButton';
 
 const Filters = styled.div`
   display: flex;
@@ -21,13 +22,10 @@ const Filters = styled.div`
   &:last-child {
     justify-content: flex-end;
 
-    > span {
+    > div {
       margin-left: 16px;
     }
   }
-`;
-const Filter = styled.span`
-  font-size: 14px;
 `;
 
 const OpenClosed = styled.div`
@@ -82,10 +80,10 @@ export default function MainOption({ open, closed }) {
         </OpenClosed>
       </Filters>
       <Filters>
-        <Filter>Author▾ </Filter>
-        <Filter>Label▾ </Filter>
-        <Filter>Milestone▾ </Filter>
-        <Filter>Assignee▾ </Filter>
+        <FilterButton type="Author" />
+        <FilterButton type="Label" />
+        <FilterButton type="Milestone" />
+        <FilterButton type="Assignee" />
       </Filters>
     </>
   );

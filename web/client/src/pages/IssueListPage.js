@@ -33,9 +33,9 @@ export default function IssueListPage({ location }) {
               <SetSearchInputContext.Provider value={setSearchInput}>
                 <SearchInputContext.Provider value={searchInput}>
                   <IssueListNav />
+                  <IssueList />
                 </SearchInputContext.Provider>
               </SetSearchInputContext.Provider>
-              <IssueList />
             </CheckItemsContext.Provider>
           </SetCheckItemsContext.Provider>
         </QueryContext.Provider>

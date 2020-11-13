@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import COLOR from '../../../utils/color';
@@ -9,7 +9,6 @@ const Wrapper = styled.div`
   min-width: 90px;
 
   > button {
-    height: 30px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -17,18 +16,17 @@ const Wrapper = styled.div`
     cursor: pointer;
     outline: none;
     font-size: 14px;
-    border: 1px solid #e1e4e8;
-    border-radius: 6px 0 0 6px;
+    border: none;
     background-color: #${COLOR.backGray};
     color: #${COLOR.darkGray};
 
     &:hover {
-      background-color: #${COLOR.lightGray};
+      color: #${COLOR.black};
     }
   }
 `;
 
-export default function FilterButton() {
+export default function FilterButton({ type }) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
 
@@ -51,8 +49,8 @@ export default function FilterButton() {
 
   return (
     <Wrapper ref={ref}>
-      <button onClick={handleClick}>Filter ▾</button>
-      {isOpen && <SelectModal {...{ setIsOpen }} />}
+      <button onClick={handleClick}>{type} ▾</button>
+      {isOpen && <SelectModal {...{ setIsOpen, type }} />}
     </Wrapper>
   );
 }
