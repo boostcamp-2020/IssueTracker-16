@@ -351,6 +351,7 @@ extension AssignmentViewController {
                 self?.selectedUsers.removeLast()
                 if self?.selectedUsers.isEmpty ?? true {
                     DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: Notification.Name("Assigned"), object: nil)
                         self?.dismiss(animated: true, completion: nil)
                     }
                 }
@@ -370,6 +371,7 @@ extension AssignmentViewController {
                 self?.selectedLabels.removeLast()
                 if self?.selectedLabels.isEmpty ?? true {
                     DispatchQueue.main.async {
+                        NotificationCenter.default.post(name: Notification.Name("Assigned"), object: nil)
                         self?.dismiss(animated: true, completion: nil)
                     }
                 }
@@ -386,6 +388,7 @@ extension AssignmentViewController {
             }
             if response.success {
                 DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: Notification.Name("Assigned"), object: nil)
                     self?.dismiss(animated: true, completion: nil)
                 }
             }

@@ -1352,7 +1352,7 @@
                                                 <rect key="frame" x="0.0" y="146" width="374" height="200"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="레이블" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lkm-Vi-V3V">
-                                                        <rect key="frame" x="0.0" y="0.0" width="47" height="149.66666666666666"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="47" height="21.666666666666668"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -1364,24 +1364,21 @@
                                                             <action selector="touchedEditLabel:" destination="eRL-eK-Xbz" eventType="touchUpInside" id="OLO-Ay-VIY"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wES-2X-4Sz" customClass="GithubLabel" customModule="IssueTracker" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="169.66666666666669" width="41.333333333333336" height="20.333333333333343"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="06D-hg-C5U" customClass="LabelStackView" customModule="IssueTracker" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="31.666666666666686" width="374" height="168.33333333333334"/>
+                                                    </stackView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="YFH-Cq-RGT" firstAttribute="top" secondItem="f6D-f0-z4k" secondAttribute="top" id="Ax9-Hx-aaM"/>
-                                                    <constraint firstItem="wES-2X-4Sz" firstAttribute="leading" secondItem="f6D-f0-z4k" secondAttribute="leading" id="BbB-gJ-MJO"/>
-                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wES-2X-4Sz" secondAttribute="trailing" id="Ecc-83-X7u"/>
                                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="YFH-Cq-RGT" secondAttribute="bottom" id="HHa-46-Li2"/>
                                                     <constraint firstItem="YFH-Cq-RGT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Lkm-Vi-V3V" secondAttribute="trailing" id="S7F-0f-XsU"/>
-                                                    <constraint firstItem="wES-2X-4Sz" firstAttribute="top" secondItem="Lkm-Vi-V3V" secondAttribute="bottom" constant="20" id="UWd-33-jii"/>
+                                                    <constraint firstAttribute="bottom" secondItem="06D-hg-C5U" secondAttribute="bottom" id="SsB-NM-2XG"/>
+                                                    <constraint firstAttribute="trailing" secondItem="06D-hg-C5U" secondAttribute="trailing" id="XSD-Bk-WDr"/>
                                                     <constraint firstItem="Lkm-Vi-V3V" firstAttribute="top" secondItem="f6D-f0-z4k" secondAttribute="top" id="YXA-Hm-0aN"/>
                                                     <constraint firstItem="Lkm-Vi-V3V" firstAttribute="leading" secondItem="f6D-f0-z4k" secondAttribute="leading" id="jCe-lt-yea"/>
                                                     <constraint firstAttribute="trailing" secondItem="YFH-Cq-RGT" secondAttribute="trailing" constant="3" id="svk-AZ-EBR"/>
-                                                    <constraint firstAttribute="bottom" secondItem="wES-2X-4Sz" secondAttribute="bottom" constant="10" id="zsb-3w-Nqa"/>
+                                                    <constraint firstItem="06D-hg-C5U" firstAttribute="leading" secondItem="f6D-f0-z4k" secondAttribute="leading" id="wyt-Ab-dDQ"/>
+                                                    <constraint firstItem="06D-hg-C5U" firstAttribute="top" secondItem="Lkm-Vi-V3V" secondAttribute="bottom" constant="10" id="y6i-OO-4yS"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wlh-cc-EX1">
@@ -1497,7 +1494,7 @@
                     <connections>
                         <outlet property="authorLabel" destination="Je4-Ue-hma" id="500-sZ-3IB"/>
                         <outlet property="issueCloseButton" destination="3Tv-bz-eVR" id="TG0-mM-e70"/>
-                        <outlet property="labelLabel" destination="wES-2X-4Sz" id="dao-AQ-m4p"/>
+                        <outlet property="labelStackView" destination="06D-hg-C5U" id="60J-gv-TpG"/>
                         <outlet property="milestoneLabel" destination="L6H-q6-647" id="7ap-aX-x8t"/>
                         <outlet property="milestonePercentBar" destination="cSB-rm-APR" id="iM9-NW-Onv"/>
                         <segue destination="KmR-f8-hwU" kind="presentation" identifier="IssueBottomSheetViewControllerToAssignmentViewController" id="CZu-cb-arT"/>

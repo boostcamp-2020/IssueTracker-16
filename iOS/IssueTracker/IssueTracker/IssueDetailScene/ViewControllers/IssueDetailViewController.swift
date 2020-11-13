@@ -38,6 +38,7 @@ class IssueDetailViewController: UIViewController {
         initBottomSheetVC()
         requestIssue()
         self.tabBarController?.tabBar.isHidden = true
+        NotificationCenter.default.addObserver(self, selector: #selector(didAssign), name: Notification.Name.init("Assigned"), object: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -110,6 +111,10 @@ class IssueDetailViewController: UIViewController {
         UIView.animate(withDuration: 0.5, delay: 0.0, options: [], animations: { [weak self] in
             self?.moveView(state: .partial)
         })
+    }
+    
+    @objc private func didAssign(_ notification: Notification) {
+        requestIssue()
     }
     
     // MARK: IBActions
@@ -213,11 +218,7 @@ extension IssueDetailViewController {
     }
     private func refreshBottomSheetVC() {
         bottomSheetVC?.author = issue?.author
-        
-        // FIXME: 수정수정!!!@#!@#!@#!@#
-        let labelResponse = issue?.labels.first
-        let label = Label(name: labelResponse?.name ?? "", description: "", color: labelResponse?.color ?? "")
-        bottomSheetVC?.label = label
+        bottomSheetVC?.labels = issue?.labels
         bottomSheetVC?.milestone = issue?.milestone
     }
     

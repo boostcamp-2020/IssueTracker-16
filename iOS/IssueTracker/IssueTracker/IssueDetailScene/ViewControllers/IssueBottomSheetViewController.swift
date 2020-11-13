@@ -25,9 +25,9 @@ class IssueBottomSheetViewController: UIViewController {
             milestonePercentBar.progress = Float(milestone?.percentage ?? 0)
         }
     }
-    var label: Label? {
+    var labels: [Label]? {
         didSet {
-            labelLabel.label = label
+            labelStackView.configure(labels: labels ?? [])
         }
     }
     var issueID: Int?
@@ -35,11 +35,10 @@ class IssueBottomSheetViewController: UIViewController {
     // MARK: Views
     
     @IBOutlet weak var authorLabel: UILabel!
-    @IBOutlet weak var labelLabel: GithubLabel!
     @IBOutlet weak var milestoneLabel: UILabel!
     @IBOutlet weak var milestonePercentBar: UIProgressView!
-    @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var issueCloseButton: UIButton!
+    @IBOutlet weak var labelStackView: LabelStackView!
     
     // MARK: - View Life Cycle
     
