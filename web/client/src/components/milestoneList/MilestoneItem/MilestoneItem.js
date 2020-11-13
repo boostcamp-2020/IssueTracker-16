@@ -56,10 +56,15 @@ export default function MilestoneItem({
         <Title>{title}</Title>
         <DueDate>
           {isClosed && <span>Closed</span>}
-          {dueDate && (
+          {dueDate ? (
             <>
               <CalendarIcon />
               <span>Due by {formatDate(dueDate)}</span>
+            </>
+          ) : (
+            <>
+              <CalendarIcon />
+              <span>No due date</span>
             </>
           )}
         </DueDate>

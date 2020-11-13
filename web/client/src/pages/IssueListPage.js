@@ -1,4 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import ListPage from '../components/common/ListPage';
 import Header from '../components/common/Header';
@@ -11,9 +12,11 @@ export const SetSearchInputContext = createContext(() => {});
 export const CheckItemsContext = createContext([]);
 export const SetCheckItemsContext = createContext(() => {});
 
-export default function IssueListPage({ location }) {
+export default function IssueListPage() {
+  const location = useLocation();
   const [searchInput, setSearchInput] = useState('');
   const [checkItems, setCheckItems] = useState([]);
+
   const query = new URLSearchParams(location.search);
   let queryInput = '';
   for (const [key, value] of query) {

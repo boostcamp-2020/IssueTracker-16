@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import isLightColor from '../../../utils/isLightColor';
-import COLOR from '../../../utils/color';
+import isLightColor from '../../../../utils/isLightColor';
+import COLOR from '../../../../utils/color';
 
 const Div = styled.div`
   font-size: 13px;
