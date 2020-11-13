@@ -235,9 +235,18 @@ class AssignmentViewController: UIViewController {
         sender.isEnabled = false
         switch assignType {
         case .assignee:
-            selectedUsers.forEach{ user in
-                requestAssignAssignee(userNum: user.num)
+            let alert = UIAlertController(title: "준비 중 ⚠️", message: "다음 버전에서 뵈어요 😅\n레이블 마일스톤은 준비되었습니다 👇", preferredStyle: .alert)
+            
+            let ok = UIAlertAction(title: "확인", style: .default) { (action) in
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: nil)
+                }
             }
+            alert.addAction(ok)
+            present(alert, animated: true, completion: nil)
+//            selectedUsers.forEach{ user in
+//                requestAssignAssignee(userNum: user.num)
+//            }
         case .label:
             selectedLabels.forEach{ label in
                 requestAssignLabel(labelNum: label.id)
@@ -366,16 +375,18 @@ extension AssignmentViewController {
                 debugPrint("response is Empty")
                 return
             }
-            if response.success {
-                print("assignment succeeded")
-                self?.selectedLabels.removeLast()
-                if self?.selectedLabels.isEmpty ?? true {
-                    DispatchQueue.main.async {
-                        NotificationCenter.default.post(name: Notification.Name("Assigned"), object: nil)
-                        self?.dismiss(animated: true, completion: nil)
-                    }
+            self?.selectedLabels.popLast()
+            if self?.selectedLabels.isEmpty ?? true {
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: Notification.Name("Assigned"), object: nil)
+                    self?.dismiss(animated: true, completion: nil)
                 }
             }
+//            if response.success {
+//                print("assignment succeeded")
+//            } else {
+//                self?.selectedLabels.popLast()
+//            }
         })
     }
     private func requestAssignMilestone(milestoneNum: Int) {

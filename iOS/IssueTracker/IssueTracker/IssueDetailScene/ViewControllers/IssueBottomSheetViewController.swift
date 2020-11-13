@@ -103,8 +103,8 @@ class IssueBottomSheetViewController: UIViewController {
     }
     
     @IBAction func touchedEditAssignee(_ sender: Any) {
-        guard issueID != nil else { return }
-        performSegue(withIdentifier: segueIdentifier(to: AssignmentViewController.self), sender: Assign.assignee)
+         guard issueID != nil else { return }
+         performSegue(withIdentifier: segueIdentifier(to: AssignmentViewController.self), sender: Assign.assignee)
     }
     @IBAction func touchedEditLabel(_ sender: Any) {
         guard issueID != nil else { return }

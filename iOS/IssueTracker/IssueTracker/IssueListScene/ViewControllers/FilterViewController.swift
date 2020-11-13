@@ -31,8 +31,8 @@ class FilterViewController: UIViewController {
             FilterItem(title: "열린 이슈들", subItems: [], type: .isClosed(false)),
             FilterItem(title: "내가 작성한 이슈들", subItems: [], type: .author(me)),
             FilterItem(title: "나한테 할당된 이슈들", subItems: [], type: .assignee(me)),
-            FilterItem(title: "내가 댓글을 남긴 이슈들", subItems: [], type: .commented(me)),
-            FilterItem(title: "닫힌 이슈들", subItems: [], type: .isClosed(true)),
+//            FilterItem(title: "내가 댓글을 남긴 이슈들", subItems: [], type: .commented(me)),
+//            FilterItem(title: "닫힌 이슈들", subItems: [], type: .isClosed(true)),
         ],
         1: [
         ]
@@ -225,6 +225,9 @@ enum FilterType: Hashable {
 struct Filter {
     var types: [FilterType]
     func filtering(issues: [Issue], searchText: String = "") -> [Issue] {
+        
+        // 선택 조건은 AND
+        // 작성자는 중복가능
         return issues.filter({
             for type in types {
                 if type.condition($0) {

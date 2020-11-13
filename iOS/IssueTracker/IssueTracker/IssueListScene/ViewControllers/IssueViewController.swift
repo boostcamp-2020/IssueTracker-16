@@ -122,6 +122,18 @@ class IssueViewController: UIViewController {
     
     func request(for endPoint: IssueEndPoint) {
         interactor?.request(endPoint: endPoint, completionHandler: { [weak self] (issueResponse: IssueAPI?) in
+            
+            guard let response = issueResponse else {
+                UIAlertController.showSimpleAlert(title: "네트워크 에러!") { [weak self] (alert) -> (Void) in
+                    DispatchQueue.main.async {
+                        self?.present(alert, animated: true, completion: {
+                            self?.activityIndicator.stopAnimating()
+                        })
+                    }
+                }
+                return
+            }
+            
             self?.issues = issueResponse?.issues ?? []
             self?.filter = Filter()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -359,7 +371,6 @@ extension IssueViewController: AddIssueViewControllerDelegate {
         
         interactor?.request(endPoint: .create(body: newIssue.createData), completionHandler: { (response: APIResponse?) in
             guard let response = response else {
-                debugPrint("response is empty")
                 return
             }
             
@@ -370,6 +381,7 @@ extension IssueViewController: AddIssueViewControllerDelegate {
                 }
             } else {
                 debugPrint(response)
+                
             }
         })
     }
