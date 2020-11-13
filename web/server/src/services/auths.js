@@ -52,11 +52,11 @@ const authService = {
     return { id, name, imageUrl };
   },
 
-  getRedirectUrl: ({ userAgent, token }) => {
+  getRedirectUrl: ({ userAgent, token, from }) => {
     const isMobile = /iphone|ipad|ipod|android/i.test(userAgent.toLowerCase());
     const iOSSchema = process.env.IOS_APP_SCHEMA;
     const webDomain = process.env.WEB_DOMAIN;
-    return isMobile ? `${iOSSchema}?token=${token}` : webDomain;
+    return isMobile ? `${iOSSchema}?token=${token}` : `${webDomain}${from}`;
   },
 
   joinUserByAccessToken: async ({ oAuth, accessToken }) => {

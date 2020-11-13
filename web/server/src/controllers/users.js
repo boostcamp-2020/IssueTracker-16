@@ -17,7 +17,7 @@ const userController = {
   },
 
   auth: async (req, res) => {
-    const { token } = req.query;
+    const { token } = req.cookies;
     const decoded = await jwt.authentication(token);
     res.status(OK).json({ success: true, user: decoded });
   },
