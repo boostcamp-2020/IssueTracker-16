@@ -22,7 +22,7 @@ class IssueDetailViewController: UIViewController {
     private var bottomSheetVC: IssueBottomSheetViewController?
     private lazy var shadowView: UIView = {
         let shadowView = UIView(frame: self.view.frame)
-        shadowView.backgroundColor = .label
+        shadowView.backgroundColor = .black
         shadowView.alpha = 0
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tappedShadowView))
         shadowView.addGestureRecognizer(tapGesture)
@@ -208,6 +208,7 @@ extension IssueDetailViewController {
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(panGesture))
         bottomSheetVC.view.addGestureRecognizer(gesture)
         bottomSheetVC.delegate = self
+        bottomSheetVC.issueID = issue?.id
         self.bottomSheetVC = bottomSheetVC
     }
     private func refreshBottomSheetVC() {

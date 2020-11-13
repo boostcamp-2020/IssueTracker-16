@@ -30,6 +30,7 @@ class IssueBottomSheetViewController: UIViewController {
             labelLabel.label = label
         }
     }
+    var issueID: Int?
     
     // MARK: Views
     
@@ -100,5 +101,26 @@ class IssueBottomSheetViewController: UIViewController {
         sender.isSelected.toggle()
         sender.tintColor = sender.isSelected ? .systemBlue : .systemPink
         delegate?.bottomSheetTappedClose(self)
+    }
+    
+    @IBAction func touchedEditAssignee(_ sender: Any) {
+        guard issueID != nil else { return }
+        performSegue(withIdentifier: segueIdentifier(to: AssignmentViewController.self), sender: Assign.assignee)
+    }
+    @IBAction func touchedEditLabel(_ sender: Any) {
+        guard issueID != nil else { return }
+        performSegue(withIdentifier: segueIdentifier(to: AssignmentViewController.self), sender: Assign.label)
+    }
+    @IBAction func touchedEditMilestone(_ sender: Any) {
+        guard issueID != nil else { return }
+        performSegue(withIdentifier: segueIdentifier(to: AssignmentViewController.self), sender: Assign.milestone)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let sender = sender as? Assign else { return }
+        if let vc = segue.destination as? AssignmentViewController {
+            vc.issueID = issueID
+            vc.assignType = sender
+        }
     }
 }
