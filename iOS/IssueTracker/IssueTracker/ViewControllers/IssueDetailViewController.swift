@@ -208,6 +208,7 @@ extension IssueDetailViewController {
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(panGesture))
         bottomSheetVC.view.addGestureRecognizer(gesture)
         bottomSheetVC.delegate = self
+        bottomSheetVC.issueID = issue?.id
         self.bottomSheetVC = bottomSheetVC
     }
     private func refreshBottomSheetVC() {

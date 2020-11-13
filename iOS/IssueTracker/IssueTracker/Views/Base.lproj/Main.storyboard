@@ -776,6 +776,75 @@
             </objects>
             <point key="canvasLocation" x="2424.6376811594205" y="-887.77173913043487"/>
         </scene>
+        <!--Assignment View Controller-->
+        <scene sceneID="M7U-Re-g9A">
+            <objects>
+                <viewController id="KmR-f8-hwU" customClass="AssignmentViewController" customModule="IssueTracker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aF4-cK-atC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nzb-qy-dlf">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                <items>
+                                    <navigationItem title="Assignment" id="fNx-DM-dNv">
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="KzT-TR-cTg">
+                                            <connections>
+                                                <action selector="touchedClose:" destination="KmR-f8-hwU" id="WA2-qn-E5L"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" enabled="NO" style="done" systemItem="done" id="ULH-AU-JMb">
+                                            <connections>
+                                                <action selector="touchedDone:" destination="KmR-f8-hwU" id="gyn-zn-XPx"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="SoN-jb-nOz">
+                                <rect key="frame" x="0.0" y="56" width="414" height="611"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="N5u-qV-fDV">
+                                    <size key="itemSize" width="414" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="KmR-f8-hwU" id="pAY-Rp-aEC"/>
+                                    <outlet property="delegate" destination="KmR-f8-hwU" id="nEf-C7-qmd"/>
+                                </connections>
+                            </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" id="maL-ND-FxY">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="zEl-pc-CBd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zEl-pc-CBd" firstAttribute="bottom" secondItem="SoN-jb-nOz" secondAttribute="bottom" id="CUu-S4-6cV"/>
+                            <constraint firstItem="zEl-pc-CBd" firstAttribute="trailing" secondItem="nzb-qy-dlf" secondAttribute="trailing" id="R6R-cP-0Vp"/>
+                            <constraint firstItem="SoN-jb-nOz" firstAttribute="leading" secondItem="zEl-pc-CBd" secondAttribute="leading" id="bHR-Mh-iEF"/>
+                            <constraint firstItem="SoN-jb-nOz" firstAttribute="top" secondItem="nzb-qy-dlf" secondAttribute="bottom" id="eiD-be-aFb"/>
+                            <constraint firstItem="nzb-qy-dlf" firstAttribute="top" secondItem="zEl-pc-CBd" secondAttribute="top" id="guP-sP-dLA"/>
+                            <constraint firstItem="zEl-pc-CBd" firstAttribute="trailing" secondItem="SoN-jb-nOz" secondAttribute="trailing" id="rdj-Wd-VWw"/>
+                            <constraint firstItem="nzb-qy-dlf" firstAttribute="leading" secondItem="zEl-pc-CBd" secondAttribute="leading" id="xAl-FI-AhW"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="activityIndicator" destination="maL-ND-FxY" id="DIe-Bv-CCd"/>
+                        <outlet property="collectionView" destination="SoN-jb-nOz" id="awq-a8-obG"/>
+                        <outlet property="doneButton" destination="ULH-AU-JMb" id="Dso-Cb-mRf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="I9u-ic-7JB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3211.594202898551" y="-1576.6304347826087"/>
+        </scene>
         <!--Issue Bottom Sheet View Controller-->
         <scene sceneID="w1V-4g-0wO">
             <objects>
@@ -873,6 +942,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j47-qa-Ln5">
                                                         <rect key="frame" x="341" y="0.0" width="30" height="30"/>
                                                         <state key="normal" title="Edit"/>
+                                                        <connections>
+                                                            <action selector="touchedEditAssignee:" destination="eRL-eK-Xbz" eventType="touchUpInside" id="b7V-MZ-ewQ"/>
+                                                        </connections>
                                                     </button>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WOP-aL-p5C">
                                                         <rect key="frame" x="0.0" y="36.666666666666657" width="50" height="50"/>
@@ -888,7 +960,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Je4-Ue-hma">
-                                                        <rect key="frame" x="5.3333333333333321" y="91.666666666666657" width="39.666666666666671" height="19.333333333333329"/>
+                                                        <rect key="frame" x="0.0" y="91.666666666666657" width="39.666666666666664" height="19.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                                         <nil key="highlightedColor"/>
@@ -898,13 +970,13 @@
                                                     <constraint firstItem="j47-qa-Ln5" firstAttribute="top" secondItem="yk4-aC-KAx" secondAttribute="top" id="0qH-HL-ZiP"/>
                                                     <constraint firstAttribute="bottom" secondItem="Je4-Ue-hma" secondAttribute="bottom" constant="5" id="1j5-BM-l1K"/>
                                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="j47-qa-Ln5" secondAttribute="bottom" id="80F-kE-XXN"/>
+                                                    <constraint firstItem="Je4-Ue-hma" firstAttribute="leading" secondItem="WOP-aL-p5C" secondAttribute="leading" id="DDF-5W-RZT"/>
                                                     <constraint firstItem="j47-qa-Ln5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OxZ-5O-46Q" secondAttribute="trailing" id="DiI-9f-P58"/>
                                                     <constraint firstItem="WOP-aL-p5C" firstAttribute="leading" secondItem="yk4-aC-KAx" secondAttribute="leading" id="Hyz-GD-i4K"/>
                                                     <constraint firstAttribute="trailing" secondItem="j47-qa-Ln5" secondAttribute="trailing" constant="3" id="Rpg-Db-7eq"/>
                                                     <constraint firstItem="Je4-Ue-hma" firstAttribute="top" secondItem="WOP-aL-p5C" secondAttribute="bottom" constant="5" id="aJo-in-2hh"/>
                                                     <constraint firstItem="OxZ-5O-46Q" firstAttribute="leading" secondItem="yk4-aC-KAx" secondAttribute="leading" id="cgZ-76-Coe"/>
                                                     <constraint firstItem="WOP-aL-p5C" firstAttribute="top" secondItem="OxZ-5O-46Q" secondAttribute="bottom" constant="10.000000000000011" id="dxg-Mg-bUo"/>
-                                                    <constraint firstItem="Je4-Ue-hma" firstAttribute="centerX" secondItem="WOP-aL-p5C" secondAttribute="centerX" id="qGB-0l-6ee"/>
                                                     <constraint firstItem="OxZ-5O-46Q" firstAttribute="top" secondItem="yk4-aC-KAx" secondAttribute="top" id="sTz-lt-1A6"/>
                                                 </constraints>
                                             </view>
@@ -920,6 +992,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFH-Cq-RGT">
                                                         <rect key="frame" x="341" y="0.0" width="30" height="30"/>
                                                         <state key="normal" title="Edit"/>
+                                                        <connections>
+                                                            <action selector="touchedEditLabel:" destination="eRL-eK-Xbz" eventType="touchUpInside" id="OLO-Ay-VIY"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wES-2X-4Sz" customClass="GithubLabel" customModule="IssueTracker" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="169.66666666666669" width="41.333333333333336" height="20.333333333333343"/>
@@ -953,6 +1028,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ubS-JT-lfL">
                                                         <rect key="frame" x="341" y="0.0" width="30" height="30"/>
                                                         <state key="normal" title="Edit"/>
+                                                        <connections>
+                                                            <action selector="touchedEditMilestone:" destination="eRL-eK-Xbz" eventType="touchUpInside" id="wbO-xy-TjR"/>
+                                                        </connections>
                                                     </button>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwk-9u-hQk">
                                                         <rect key="frame" x="0.0" y="41.666666666666629" width="374" height="258.33333333333331"/>
@@ -1047,6 +1125,7 @@
                         <outlet property="labelLabel" destination="wES-2X-4Sz" id="dao-AQ-m4p"/>
                         <outlet property="milestoneLabel" destination="L6H-q6-647" id="7ap-aX-x8t"/>
                         <outlet property="milestonePercentBar" destination="cSB-rm-APR" id="iM9-NW-Onv"/>
+                        <segue destination="KmR-f8-hwU" kind="presentation" identifier="IssueBottomSheetViewControllerToAssignmentViewController" id="CZu-cb-arT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNM-uC-2jG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
