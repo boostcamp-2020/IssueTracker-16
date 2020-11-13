@@ -16,7 +16,6 @@
 		4C2F095F255A3E4600ED5F06 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2F095E255A3E4600ED5F06 /* Comment.swift */; };
 		4C2F0969255A675400ED5F06 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2F0968255A675400ED5F06 /* User.swift */; };
 		4C34265A255AF8E7002B5960 /* FilterCollectionViewListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C342659255AF8E7002B5960 /* FilterCollectionViewListCell.swift */; };
-		4C3426B8255BC569002B5960 /* MarkdownView in Frameworks */ = {isa = PBXBuildFile; productRef = 4C3426B7255BC569002B5960 /* MarkdownView */; };
 		4C3426C5255C2DC6002B5960 /* UIView+Shake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3426C4255C2DC6002B5960 /* UIView+Shake.swift */; };
 		4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5138FF2547CA5A0084F65F /* LabelViewController.swift */; };
 		4C5139122548047A0084F65F /* AddAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5139112548047A0084F65F /* AddAlertViewController.swift */; };
@@ -47,6 +46,9 @@
 		4CBA21EA2553D6D1002BDCC3 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21E92553D6D1002BDCC3 /* FilterViewController.swift */; };
 		4CBA21EE2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21ED2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift */; };
 		4CBA21F62553E377002BDCC3 /* IssueDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA21F52553E377002BDCC3 /* IssueDetailHeaderView.swift */; };
+		4CF52D31255C4C5700CBB4D6 /* IssueLabelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF52D30255C4C5700CBB4D6 /* IssueLabelCollectionViewCell.swift */; };
+		4CF52D5A255DA10800CBB4D6 /* SwiftyMarkdown in Frameworks */ = {isa = PBXBuildFile; productRef = 4CF52D59255DA10800CBB4D6 /* SwiftyMarkdown */; };
+		4CF52D60255DB8C500CBB4D6 /* LabelStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF52D5F255DB8C500CBB4D6 /* LabelStackView.swift */; };
 		D413681C2559242A00A4AD55 /* UIAlertController+simpleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D413681B2559242A00A4AD55 /* UIAlertController+simpleAlert.swift */; };
 		D42EC1912549180A00E57627 /* MilestoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC1902549180A00E57627 /* MilestoneViewController.swift */; };
 		D42EC1942549306500E57627 /* MilestoneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */; };
@@ -131,7 +133,7 @@
 		4C5139922549348B0084F65F /* EndPointType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
 		4C51399E254934D20084F65F /* MilestoneEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MilestoneEndPoint.swift; sourceTree = "<group>"; };
 		4C51399F254934D20084F65F /* LabelEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelEndPoint.swift; sourceTree = "<group>"; };
-		4C5139A525493BB20084F65F /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Label.swift; path = IssueTracker/Services/Label.swift; sourceTree = SOURCE_ROOT; };
+		4C5139A525493BB20084F65F /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Label.swift; path = IssueTracker/LabelScene/Models/Label.swift; sourceTree = SOURCE_ROOT; };
 		4C5139A925494E7E0084F65F /* LabelInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelInteractor.swift; sourceTree = "<group>"; };
 		4C5139C02549A36F0084F65F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4C5139C72549B05C0084F65F /* IssueTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IssueTracker.entitlements; sourceTree = "<group>"; };
@@ -146,6 +148,8 @@
 		4CBA21E92553D6D1002BDCC3 /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		4CBA21ED2553D8B9002BDCC3 /* UIViewController+segueIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+segueIdentifier.swift"; sourceTree = "<group>"; };
 		4CBA21F52553E377002BDCC3 /* IssueDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueDetailHeaderView.swift; sourceTree = "<group>"; };
+		4CF52D30255C4C5700CBB4D6 /* IssueLabelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueLabelCollectionViewCell.swift; sourceTree = "<group>"; };
+		4CF52D5F255DB8C500CBB4D6 /* LabelStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelStackView.swift; sourceTree = "<group>"; };
 		D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueBottomSheetViewController.swift; sourceTree = "<group>"; };
 		D413681B2559242A00A4AD55 /* UIAlertController+simpleAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+simpleAlert.swift"; sourceTree = "<group>"; };
 		D42EC1902549180A00E57627 /* MilestoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MilestoneViewController.swift; sourceTree = "<group>"; };
@@ -196,21 +200,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4C3426B8255BC569002B5960 /* MarkdownView in Frameworks */,
 				4C513983254934760084F65F /* NetworkService.framework in Frameworks */,
+				4CF52D5A255DA10800CBB4D6 /* SwiftyMarkdown in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C3426BB255BC57E002B5960 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		4C513917254840480084F65F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,33 +258,173 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		4C51399C254934D20084F65F /* Services */ = {
+		4CF52D2C255C4BB000CBB4D6 /* IssueListScene */ = {
 			isa = PBXGroup;
 			children = (
-				4C51399D254934D20084F65F /* EndPoints */,
+				4CF52D2D255C4BBE00CBB4D6 /* Models */,
+				4CF52D2E255C4BC100CBB4D6 /* ViewControllers */,
+				4CF52D2F255C4BC500CBB4D6 /* Views */,
 			);
-			path = Services;
+			path = IssueListScene;
 			sourceTree = "<group>";
 		};
-		4C51399D254934D20084F65F /* EndPoints */ = {
+		4CF52D2D255C4BBE00CBB4D6 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				D44A9D08254FF1EC00ABA1A9 /* Issue.swift */,
 				4CBA21BA25503B63002BDCC3 /* IssueEndPoint.swift */,
-				4C51399F254934D20084F65F /* LabelEndPoint.swift */,
-				4C51399E254934D20084F65F /* MilestoneEndPoint.swift */,
+				4CBA21B425503B47002BDCC3 /* IssueInteractor.swift */,
 			);
-			path = EndPoints;
+			path = Models;
 			sourceTree = "<group>";
 		};
-		4C5139A825494E700084F65F /* Usecase */ = {
+		4CF52D2E255C4BC100CBB4D6 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				4CBA21B425503B47002BDCC3 /* IssueInteractor.swift */,
-				4CBA21B525503B47002BDCC3 /* MilestoneInteractor.swift */,
-				4C5139A925494E7E0084F65F /* LabelInteractor.swift */,
+				D4DF60242547AEF200765C0A /* IssueViewController.swift */,
+				4CBA21E92553D6D1002BDCC3 /* FilterViewController.swift */,
+				D4F8FCBF25531713008C311E /* AddIssueViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4CF52D2F255C4BC500CBB4D6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4C2D05B3255852E200FA787F /* TitleSupplementaryView.swift */,
+				4C342659255AF8E7002B5960 /* FilterCollectionViewListCell.swift */,
+				4CBA21A8255007E8002BDCC3 /* IssueListCollectionViewCell.swift */,
+				4CF52D30255C4C5700CBB4D6 /* IssueLabelCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4CF52D3D255D85C300CBB4D6 /* IssueDetailScene */ = {
+			isa = PBXGroup;
+			children = (
+				4CF52D3F255D85F400CBB4D6 /* Models */,
+				4CF52D3E255D85E700CBB4D6 /* ViewControllers */,
+				4CF52D40255D862000CBB4D6 /* Views */,
+			);
+			path = IssueDetailScene;
+			sourceTree = "<group>";
+		};
+		4CF52D3E255D85E700CBB4D6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4CBA21E52553CB4D002BDCC3 /* IssueDetailViewController.swift */,
+				D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */,
+				4C2D05ED25596C2500FA787F /* CommentViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4CF52D3F255D85F400CBB4D6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4C2F095E255A3E4600ED5F06 /* Comment.swift */,
 				4C2D05DC25591E4500FA787F /* IssueDetailInteractor.swift */,
 			);
-			path = Usecase;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4CF52D40255D862000CBB4D6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4AEAB7A25528C9000AED514 /* CommentCollectionViewCell.swift */,
+				4CBA21F52553E377002BDCC3 /* IssueDetailHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4CF52D43255D94E400CBB4D6 /* LabelScene */ = {
+			isa = PBXGroup;
+			children = (
+				4CF52D4C255D981300CBB4D6 /* Models */,
+				4CF52D44255D952C00CBB4D6 /* ViewControllers */,
+				4CF52D45255D953000CBB4D6 /* Views */,
+			);
+			path = LabelScene;
+			sourceTree = "<group>";
+		};
+		4CF52D44255D952C00CBB4D6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4C5138FF2547CA5A0084F65F /* LabelViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4CF52D45255D953000CBB4D6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D4660EA525487BE0002B392E /* LabelCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4CF52D46255D958000CBB4D6 /* MilestoneScene */ = {
+			isa = PBXGroup;
+			children = (
+				4CF52D4D255D982300CBB4D6 /* Models */,
+				4CF52D49255D961F00CBB4D6 /* ViewControllers */,
+				4CF52D4A255D962300CBB4D6 /* Views */,
+			);
+			path = MilestoneScene;
+			sourceTree = "<group>";
+		};
+		4CF52D49255D961F00CBB4D6 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				D42EC1902549180A00E57627 /* MilestoneViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4CF52D4A255D962300CBB4D6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4CF52D4B255D964100CBB4D6 /* AddAlert */ = {
+			isa = PBXGroup;
+			children = (
+				D4DF604C254800C100765C0A /* AddAlertInputView.swift */,
+				D4EA0A9F254A9AEC0000CF67 /* AddAlertDateInputView.swift */,
+				D42EC19C2549CEA600E57627 /* AddAlertColorInputView.swift */,
+			);
+			path = AddAlert;
+			sourceTree = "<group>";
+		};
+		4CF52D4C255D981300CBB4D6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4C5139A525493BB20084F65F /* Label.swift */,
+				4C51399F254934D20084F65F /* LabelEndPoint.swift */,
+				4C5139A925494E7E0084F65F /* LabelInteractor.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4CF52D4D255D982300CBB4D6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D4EA0AA5254AB93C0000CF67 /* Milestone.swift */,
+				4C51399E254934D20084F65F /* MilestoneEndPoint.swift */,
+				4CBA21B525503B47002BDCC3 /* MilestoneInteractor.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4CF52D4F255D985000CBB4D6 /* LoginScene */ = {
+			isa = PBXGroup;
+			children = (
+				4C5139C02549A36F0084F65F /* LoginViewController.swift */,
+			);
+			path = LoginScene;
 			sourceTree = "<group>";
 		};
 		D45459DB254B2AA50094E69D /* IssueTrackerTests */ = {
@@ -322,16 +459,18 @@
 		D4DF601F2547AEF200765C0A /* IssueTracker */ = {
 			isa = PBXGroup;
 			children = (
-				4C3426BB255BC57E002B5960 /* New Group */,
 				4C5139C72549B05C0084F65F /* IssueTracker.entitlements */,
 				4C513917254840480084F65F /* Utils */,
 				D4DF60372547AF7500765C0A /* Supporting Files */,
 				D4DF60352547AF5B00765C0A /* Entry */,
-				4C51399C254934D20084F65F /* Services */,
 				D4DF60382547AF9300765C0A /* Models */,
-				4C5139A825494E700084F65F /* Usecase */,
 				D4DF603A2547AFA800765C0A /* ViewControllers */,
 				D4DF60392547AF9700765C0A /* Views */,
+				4CF52D4F255D985000CBB4D6 /* LoginScene */,
+				4CF52D2C255C4BB000CBB4D6 /* IssueListScene */,
+				4CF52D3D255D85C300CBB4D6 /* IssueDetailScene */,
+				4CF52D43255D94E400CBB4D6 /* LabelScene */,
+				4CF52D46255D958000CBB4D6 /* MilestoneScene */,
 			);
 			path = IssueTracker;
 			sourceTree = "<group>";
@@ -358,12 +497,8 @@
 		D4DF60382547AF9300765C0A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				4C5139A525493BB20084F65F /* Label.swift */,
-				D4EA0AA5254AB93C0000CF67 /* Milestone.swift */,
-				D44A9D08254FF1EC00ABA1A9 /* Issue.swift */,
-				4C2D05A72557ECA300FA787F /* APIResponse.swift */,
-				4C2F095E255A3E4600ED5F06 /* Comment.swift */,
 				4C2F0968255A675400ED5F06 /* User.swift */,
+				4C2D05A72557ECA300FA787F /* APIResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -372,20 +507,12 @@
 			isa = PBXGroup;
 			children = (
 				D4DF60262547AEF200765C0A /* Main.storyboard */,
-				D4DF604C254800C100765C0A /* AddAlertInputView.swift */,
-				D4EA0A9F254A9AEC0000CF67 /* AddAlertDateInputView.swift */,
-				D42EC19C2549CEA600E57627 /* AddAlertColorInputView.swift */,
-				D4660EA525487BE0002B392E /* LabelCollectionViewCell.swift */,
+				4CF52D4B255D964100CBB4D6 /* AddAlert */,
 				4C51391C254847530084F65F /* BlockResponderView.swift */,
-				D42EC1932549306500E57627 /* MilestoneCollectionViewCell.swift */,
 				4CBA21A4255002B8002BDCC3 /* PaddingLabel.swift */,
-				4CBA21A8255007E8002BDCC3 /* IssueListCollectionViewCell.swift */,
 				4CBA21C825512FD7002BDCC3 /* GithubLabel.swift */,
-				D4AEAB7A25528C9000AED514 /* CommentCollectionViewCell.swift */,
 				4CBA21D625529331002BDCC3 /* ActionCollectionViewCell.swift */,
-				4CBA21F52553E377002BDCC3 /* IssueDetailHeaderView.swift */,
-				4C2D05B3255852E200FA787F /* TitleSupplementaryView.swift */,
-				4C342659255AF8E7002B5960 /* FilterCollectionViewListCell.swift */,
+				4CF52D5F255DB8C500CBB4D6 /* LabelStackView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -393,16 +520,7 @@
 		D4DF603A2547AFA800765C0A /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D4DF60242547AEF200765C0A /* IssueViewController.swift */,
-				4CBA21E52553CB4D002BDCC3 /* IssueDetailViewController.swift */,
-				4C5138FF2547CA5A0084F65F /* LabelViewController.swift */,
 				4C5139112548047A0084F65F /* AddAlertViewController.swift */,
-				D42EC1902549180A00E57627 /* MilestoneViewController.swift */,
-				4CBA21E92553D6D1002BDCC3 /* FilterViewController.swift */,
-				D40B30F9255049F200DEC3AA /* IssueBottomSheetViewController.swift */,
-				D4F8FCBF25531713008C311E /* AddIssueViewController.swift */,
-				4C2D05ED25596C2500FA787F /* CommentViewController.swift */,
-				4C5139C02549A36F0084F65F /* LoginViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -473,7 +591,7 @@
 			);
 			name = IssueTracker;
 			packageProductDependencies = (
-				4C3426B7255BC569002B5960 /* MarkdownView */,
+				4CF52D59255DA10800CBB4D6 /* SwiftyMarkdown */,
 			);
 			productName = IssueTracker;
 			productReference = D4DF601D2547AEF200765C0A /* IssueTracker.app */;
@@ -510,7 +628,7 @@
 			);
 			mainGroup = D4DF60142547AEF200765C0A;
 			packageReferences = (
-				4C3426B6255BC569002B5960 /* XCRemoteSwiftPackageReference "MarkdownView" */,
+				4CF52D58255DA10800CBB4D6 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */,
 			);
 			productRefGroup = D4DF601E2547AEF200765C0A /* Products */;
 			projectDirPath = "";
@@ -585,6 +703,7 @@
 				4C5139C12549A36F0084F65F /* LoginViewController.swift in Sources */,
 				D4DF60252547AEF200765C0A /* IssueViewController.swift in Sources */,
 				4C2D05DD25591E4500FA787F /* IssueDetailInteractor.swift in Sources */,
+				4CF52D31255C4C5700CBB4D6 /* IssueLabelCollectionViewCell.swift in Sources */,
 				D44A9D09254FF1EC00ABA1A9 /* Issue.swift in Sources */,
 				4C5139A1254934D20084F65F /* MilestoneEndPoint.swift in Sources */,
 				4CBA21C925512FD7002BDCC3 /* GithubLabel.swift in Sources */,
@@ -599,6 +718,7 @@
 				D4DF60232547AEF200765C0A /* SceneDelegate.swift in Sources */,
 				4CBA21D725529331002BDCC3 /* ActionCollectionViewCell.swift in Sources */,
 				4C5139002547CA5A0084F65F /* LabelViewController.swift in Sources */,
+				4CF52D60255DB8C500CBB4D6 /* LabelStackView.swift in Sources */,
 				D4F8FCC025531713008C311E /* AddIssueViewController.swift in Sources */,
 				4C5139AA25494E7E0084F65F /* LabelInteractor.swift in Sources */,
 				D4EA0AA0254A9AEC0000CF67 /* AddAlertDateInputView.swift in Sources */,
@@ -957,21 +1077,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4C3426B6255BC569002B5960 /* XCRemoteSwiftPackageReference "MarkdownView" */ = {
+		4CF52D58255DA10800CBB4D6 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/keitaoouchi/MarkdownView.git";
+			repositoryURL = "https://github.com/SimonFairbairn/SwiftyMarkdown";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.7.1;
+				minimumVersion = 1.2.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4C3426B7255BC569002B5960 /* MarkdownView */ = {
+		4CF52D59255DA10800CBB4D6 /* SwiftyMarkdown */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4C3426B6255BC569002B5960 /* XCRemoteSwiftPackageReference "MarkdownView" */;
-			productName = MarkdownView;
+			package = 4CF52D58255DA10800CBB4D6 /* XCRemoteSwiftPackageReference "SwiftyMarkdown" */;
+			productName = SwiftyMarkdown;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

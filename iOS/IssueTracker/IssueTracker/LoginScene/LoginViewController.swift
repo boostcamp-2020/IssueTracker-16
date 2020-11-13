@@ -120,8 +120,9 @@ class LoginViewController: UIViewController {
         authorizationController.performRequests()
     }
     
-    @objc
-    func handleAuthorizationAppleIDButtonPress() {
+    // MARK: Selectors
+    
+    @objc func handleAuthorizationAppleIDButtonPress() {
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
@@ -131,8 +132,12 @@ class LoginViewController: UIViewController {
         authorizationController.presentationContextProvider = self
         authorizationController.performRequests()
     }
+    
     @IBAction func touchedSignInWithGitHubButton(_ sender: UIButton) {
         requestGitHubCode()
+    }
+    @IBAction func touchedTestLoginButton(_ sender: UIButton) {
+        successLogic()
     }
 }
 

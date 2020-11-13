@@ -10,6 +10,7 @@ import UIKit
 class GithubLabel: PaddingLabel {
     var label: Label? {
         didSet {
+            textAlignment = .center
             guard let label = label else { return }
             text = label.name
             backgroundColor = UIColor(hex: label.color)
@@ -19,7 +20,9 @@ class GithubLabel: PaddingLabel {
         }
     }
     
-    func setupInsets(top: CGFloat = 2, leading: CGFloat = 6, trailing: CGFloat = 6, bottom: CGFloat = 2) {
+    func setupInsets(top: CGFloat = 4, leading: CGFloat = 8, trailing: CGFloat = 8, bottom: CGFloat = 4) {
+        layer.masksToBounds = true
+        layer.cornerRadius = intrinsicContentSize.height / 3
         topInset = top
         leftInset = leading
         rightInset = trailing
