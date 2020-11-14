@@ -23,7 +23,7 @@ export default function MilestoneProgress({
   openedIssues: open,
   closedIssues: closed,
 }) {
-  const percentage = closed ? Math.floor((open / (open + closed)) * 100) : 0;
+  const percentage = closed ? Math.floor((closed / (open + closed)) * 100) : 0;
   return (
     <div>
       <ProgressBar {...{ open, closed, color: COLOR.green }} />

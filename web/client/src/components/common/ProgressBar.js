@@ -17,7 +17,7 @@ const Progress = styled.div`
 `;
 
 export default function ProgressBar({ color, open, closed }) {
-  const percentage = closed ? Math.floor((open / (open + closed)) * 100) : 0;
+  const percentage = closed ? Math.floor((closed / (open + closed)) * 100) : 0;
 
   return (
     <Div>
