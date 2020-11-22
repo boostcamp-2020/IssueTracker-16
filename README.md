@@ -91,3 +91,11 @@ http://issue-tracker.kro.kr/
 - [API 명세서](https://github.com/boostcamp-2020/IssueTracker-16/wiki/API-서버-기능명세서)
 - [web 기능 명세서](https://github.com/boostcamp-2020/IssueTracker-16/wiki/Web-기능-명세서)
 - [iOS 기능 명세](https://docs.google.com/spreadsheets/d/1IujeyVnJQMxBj4svZm9n7yNFfdhYMCcLaFe3nrVelfk/edit#gid=0)
+
+### iOS IssueTracker
+
+<p>
+  <img src="https://user-images.githubusercontent.com/23303023/99900944-53890e00-2cf6-11eb-82df-dc1ea21f4395.gif" width="30%" />
+    <img src="https://user-images.githubusercontent.com/23303023/99900939-4cfa9680-2cf6-11eb-9a5e-9ff7fe2e23f1.gif" width="30%" />
+    <img src="https://user-images.githubusercontent.com/23303023/99900945-5421a480-2cf6-11eb-89b3-fb0a54ba9d26.gif" width="30%" />
+</p>
