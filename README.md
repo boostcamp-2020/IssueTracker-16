@@ -26,19 +26,20 @@
 
 > [@김석중](https://github.com/seokju2ng) [@시경덕](https://github.com/skid901) [@양아림](https://github.com/ahrimy) [@최철웅](https://github.com/chelwoong) [@홍경표](https://github.com/kyungpyoda) 
 
-## 웹 배포 주소
-http://issue-tracker.kro.kr/
+## 웹 배포 주소 
+_(inactivate)_ ~~http://issue-tracker.kro.kr/~~ 
+
 
 ## 기술 스택
 
 | 범위 | 스택 |
 |:---:|:---:|
-| iOS | <img src="https://devicon.dev/devicon.git/icons/swift/swift-original.svg" alt="" height="50"/> |
-| WEB | <img src="https://devicon.dev/devicon.git/icons/javascript/javascript-original.svg" alt="javaScript" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/nodejs/nodejs-original-wordmark.svg" alt="" height="50"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://devicon.dev/devicon.git/icons/npm/npm-original-wordmark.svg" alt="" height="50"/> |
-| Front End | <img src="https://devicon.dev/devicon.git/icons/react/react-original.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/babel/babel-original.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/webpack/webpack-original.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/html5/html5-original.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/css3/css3-original.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/sass/sass-original.svg" alt="" height="50"/> |
-| Back End | <img src="https://devicon.dev/devicon.git/icons/express/express-original-wordmark.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/sequelize/sequelize-original-wordmark.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://devicon.dev/devicon.git/icons/mysql/mysql-original-wordmark.svg" alt="" height="50"/> |
-| Deploy | <img src="https://devicon.dev/devicon.git/icons/docker/docker-original-wordmark.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://raw.githubusercontent.com/docker/compose/master/logo.png" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://www.ncloud.com/public/img/logo-m.png" alt="" height="50"/> |
-| Version Control | <img src="https://devicon.dev/devicon.git/icons/github/github-original.svg" alt="" height="50"/> |
+| iOS | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/swift/swift-original-wordmark.svg" alt="" height="50"/> |
+| WEB | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javaScript" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="" height="50"/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/npm/npm-original-wordmark.svg" alt="" height="50"/> |
+| Front End | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/babel/babel-original.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/webpack/webpack-original-wordmark.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg" alt="" height="50"/> |
+| Back End | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sequelize/sequelize-original-wordmark.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="" height="50"/> |
+| Deploy | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://raw.githubusercontent.com/docker/compose/master/logo.png" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://www.ncloud.com/public/img/logo-m.png" alt="" width="200"/> |
+| Version Control | <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/git/git-original-wordmark.svg" alt="" height="50"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/github/github-original-wordmark.svg" alt="" height="50"/> |
 
 ## 프로젝트 구조 🗂
 ```
